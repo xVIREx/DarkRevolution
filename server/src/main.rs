@@ -19,7 +19,9 @@ async fn main() {
         warn!("{} has no index.html yet (build the client)", dist_dir.display());
     }
 
-    let world = Arc::new(Mutex::new(World::new(data)));
+    let mut world = World::new(data);
+    world.spawn_bots(std::env::var("BOTS").ok().and_then(|n| n.parse().ok()).unwrap_or(6));
+    let world = Arc::new(Mutex::new(world));
     spawn_sim(world.clone());
 
     let port: u16 = std::env::var("PORT").ok().and_then(|p| p.parse().ok()).unwrap_or(8080);

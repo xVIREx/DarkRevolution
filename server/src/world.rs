@@ -13,6 +13,7 @@ use tokio::sync::mpsc;
 use tracing::{debug, info};
 
 mod behavior;
+mod bots;
 
 pub const TICK_HZ: f64 = 20.0;
 /// Max distance at which entities are included in a player's state snapshot
@@ -249,6 +250,7 @@ pub struct World {
     time: f64,
     respawns: Vec<Respawn>,
     rng: StdRng,
+    bots: Vec<bots::Bot>,
     /// Map-wide broadcasts queued during this tick / message handling.
     pending: Vec<(u32, String)>,
 }
@@ -263,6 +265,7 @@ impl World {
             time: 0.0,
             respawns: vec![],
             rng: StdRng::from_entropy(),
+            bots: vec![],
             pending: vec![],
         };
         let data = w.data.clone();
@@ -430,6 +433,7 @@ impl World {
     }
 
     pub fn login(&mut self, tx: Tx, name: &str, faction: &str) -> u32 {
+        let connected = !tx.is_closed(); // bots log in with a dead outbox
         let faction = match faction.to_lowercase().as_str() {
             f @ ("mmo" | "eic" | "vru") => f.to_string(),
             _ => "mmo".to_string(),
@@ -497,7 +501,9 @@ impl World {
         self.send_map(&e);
         self.ents.insert(id, e);
         self.send_you(id, true);
-        info!("player {} '{}' ({}) joined map {}", id, name, faction, map);
+        if connected {
+            info!("player {} '{}' ({}) joined map {}", id, name, faction, map);
+        }
         self.send_log(id, &format!("Welcome, {}!", name));
         id
     }
@@ -1127,6 +1133,7 @@ impl World {
         for r in due {
             self.spawn_npc(r.map, r.def);
         }
+        self.step_bots();
 
         // cooldowns, regen, timers
         for e in self.ents.values_mut() {
@@ -1248,7 +1255,7 @@ impl World {
     /// Send queued events, per-map state snapshots, and `you` updates.
     fn flush(&mut self) {
         let mut by_map: BTreeMap<u32, Vec<u32>> = BTreeMap::new();
-        for e in self.ents.values().filter(|e| e.is_player()) {
+        for e in self.ents.values().filter(|e| e.player().is_some_and(|p| !p.tx.is_closed())) {
             by_map.entry(e.map).or_default().push(e.id);
         }
         let pending = std::mem::take(&mut self.pending);
