@@ -2,6 +2,7 @@ import type { Actions, GameState } from '../actions';
 import { Assets } from '../assets';
 import { el } from './dom';
 import { DOWindow, ui } from './ui';
+import { IS_TOUCH } from '../touch';
 
 const SIZES = [220, 300, 380, 470];
 
@@ -20,9 +21,9 @@ export class Minimap {
 
   constructor(_parent: HTMLElement, private readonly assets: Assets, actions: Actions) {
     let si = 1;
-    try { si = Number(localStorage.getItem('do.minimap.size') ?? '1'); } catch { /* ignore */ }
+    try { si = Number(localStorage.getItem('do.minimap.size') ?? (IS_TOUCH ? '0' : '1')); } catch { /* ignore */ }
     this.sizeIdx = Math.max(0, Math.min(SIZES.length - 1, isFinite(si) ? si : 1));
-    this.win = new DOWindow({ id: 'win-minimap', title: 'Mini map', icon: 'minimap', w: SIZES[this.sizeIdx] + 20, anchor: 'br', x: 8, y: 8, cls: 'win-minimap' });
+    this.win = new DOWindow({ id: 'win-minimap', title: 'Mini map', icon: 'minimap', w: SIZES[this.sizeIdx] + 20, anchor: 'br', x: 8, y: IS_TOUCH ? 78 : 8, cls: 'win-minimap' });
     const minus = el('div', 'mm-btn minus', undefined, this.win.header);
     const plus = el('div', 'mm-btn plus', undefined, this.win.header);
     minus.title = 'Smaller';

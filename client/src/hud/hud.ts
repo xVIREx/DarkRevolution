@@ -2,6 +2,7 @@ import type { Actions, EquipYou, GameState } from '../actions';
 import { el, esc, fmt } from './dom';
 import { DOWindow, MenuBar, ui } from './ui';
 import { loadItems } from './items';
+import { IS_TOUCH } from '../touch';
 
 /**
  * Modern DarkOrbit HUD shell: top-left / top-right feature menus, the User window
@@ -141,7 +142,7 @@ export class Hud {
       this.tgt.name.className = 'tname';
       setFill(this.tgt.hp, 0, 0);
       setFill(this.tgt.sh, 0, 0);
-      txt(this.tgt.info, 'Click a ship to select it');
+      txt(this.tgt.info, IS_TOUCH ? 'Tap a ship to select it' : 'Click a ship to select it');
       txt(this.tgt.atk, '');
     }
   }

@@ -2,6 +2,7 @@
 // top menu bars (feature icons) that open/close them. Sprites live in public/assets/ui/
 // (extracted from the Unity client by tools/ui_build.py).
 import { el } from './dom';
+import { IS_TOUCH, TOUCH_CLOSED_WINDOWS } from '../touch';
 
 export const UI_BASE = '/assets/ui/';
 /** url of an extracted UI sprite, e.g. ui('win/minimize_button') */
@@ -77,7 +78,8 @@ export class DOWindow {
     this.root.addEventListener('pointerdown', () => this.front(), true);
     this.header.addEventListener('pointerdown', (e) => this.startDrag(e));
     ALL.set(opts.id, this);
-    this.setOpen(s.open ?? opts.open ?? true, false);
+    const defOpen = IS_TOUCH && TOUCH_CLOSED_WINDOWS.has(opts.id) ? false : opts.open ?? true;
+    this.setOpen(s.open ?? defOpen, false);
     this.place();
     window.addEventListener('resize', () => this.place());
   }

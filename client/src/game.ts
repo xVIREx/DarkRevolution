@@ -17,6 +17,7 @@ import { VolumePanel } from './hud/volume';
 import { WarpWindow } from './hud/warp';
 import { AudioSystem } from './audio';
 import type { EntId, EntSnap, Faction, MapDef, ServerMsg, YouMsg } from './types';
+import { IS_TOUCH, TouchControls } from './touch';
 
 const OPTIMISTIC_MS = 600;
 
@@ -32,6 +33,7 @@ export class Game implements Actions {
   private hangar: Hangar;
   private warpWin: WarpWindow;
   private input: Input;
+  private touch: TouchControls | null = null;
   private respawn: Dialog;
   private lost: Dialog;
 
@@ -87,7 +89,10 @@ export class Game implements Actions {
     net.onClose = () => this.lost.show('The connection to the server was closed.');
     if (!assets.manifestOk) this.log.add('assets/manifest.json not found - using placeholders', true);
     if (!assets.shipsOk) this.log.add('data/ships.json not found - hangar uses manifest sheets', true);
-    this.log.add('Welcome, pilot! Click to fly, double-click/CTRL to attack, H for hangar.', true);
+    this.log.add(IS_TOUCH
+      ? 'Welcome, pilot! Hold to fly, pinch to zoom, tap a ship to select it, tap again to attack.'
+      : 'Welcome, pilot! Click to fly, double-click/CTRL to attack, H for hangar.', true);
+    if (IS_TOUCH) this.touch = new TouchControls(this);
 
     requestAnimationFrame((t) => this.frame(t));
   }
@@ -379,6 +384,7 @@ export class Game implements Actions {
     void t;
     try {
       this.input.update(now);
+      this.touch?.update();
       this.ents.attacking = this.attacking();
       this.ents.update(now, this.world.zoom);
       const me = this.ents.me();

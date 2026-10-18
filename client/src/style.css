@@ -341,3 +341,14 @@ input[type=text]:focus, input[type=search]:focus, select:focus { border-color: v
 .eq-boost:hover { border-color: var(--cyan-hi); }
 .eq-bd tr.grp th { color: #e8c96a; padding-top: 4px; }
 .eq-bd tr.sub th, .eq-bd tr.sub td { color: #c9d8e2; border-bottom: 1px solid rgba(120,160,190,0.25); }
+
+/* --- touch devices (html.touch, see touch.ts) --- */
+html.touch, html.touch body { touch-action: none; overscroll-behavior: none; -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; }
+html.touch #actionbar { transform: translateX(-50%) scale(0.72); transform-origin: bottom center; }
+.touch-btns { position: absolute; right: 12px; bottom: 360px; display: flex; flex-direction: column; align-items: center; gap: 12px; z-index: 13; }
+.touch-btn { width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--cyan); background: rgba(3, 14, 20, 0.72); color: #fff; font: 600 10px var(--font); letter-spacing: 0.5px; touch-action: none; padding: 0; }
+.touch-btn:active { filter: brightness(1.7); }
+.touch-btn.attack { width: 78px; height: 78px; border-color: #ff5a3c; font-size: 11px; }
+.touch-btn.attack.on { background: rgba(255, 60, 30, 0.55); box-shadow: 0 0 14px #ff5a3c; }
+/* landscape phones: no room above the minimap, so the buttons move to the left edge */
+@media (orientation: landscape) and (max-height: 600px) { .touch-btns { right: auto; left: 12px; bottom: 16px; } }

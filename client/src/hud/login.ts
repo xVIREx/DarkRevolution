@@ -24,8 +24,8 @@ export class LoginScreen {
     const d = el('div', 'panel dialog', undefined, this.root);
     el('div', 'panel-title', 'Pilot login', d);
     const body = el('div', 'body', undefined, d);
-    el('h1', undefined, 'DARK<span>ORBIT</span>', body);
-    el('div', 'sub', 'classic space combat · local server', body);
+    el('h1', undefined, 'DARK<span>REVOLUTION</span>', body);
+    el('div', 'sub', 'fan-made space combat · unofficial', body);
     const name = el('input', undefined, undefined, body);
     name.type = 'text';
     name.placeholder = 'Pilot name';

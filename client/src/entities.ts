@@ -283,10 +283,10 @@ export class EntityManager {
   }
 
   /** Entity under a world point (closest within its radius), excluding self. */
-  pick(x: number, y: number, zoom: number): EntityView | null {
+  pick(x: number, y: number, zoom: number, slackPx = 12): EntityView | null {
     let best: EntityView | null = null;
     let bestD = Infinity;
-    const slack = 12 / zoom;
+    const slack = slackPx / zoom;
     for (const [k, v] of this.views) {
       if (k === this.myId) continue;
       const d = Math.hypot(v.x - x, v.y - y);
