@@ -1,0 +1,1864 @@
+[
+ {
+  "id": "ship_phoenix",
+  "name": "Phoenix",
+  "do_type_id": 1,
+  "hp": 4000,
+  "speed": 320,
+  "lasers": 1,
+  "generators": 1,
+  "extras": 1,
+  "cargo": 100,
+  "sheet": "ship_phoenix",
+  "hp_current_wiki": 104000,
+  "exp_reward": 100,
+  "honor_reward": 0,
+  "by_source": {
+   "wiki_current": {
+    "hp": 104000,
+    "speed": 320,
+    "lasers": 1,
+    "generators": 1,
+    "extras": 1,
+    "cargo": 100,
+    "exp": 100,
+    "honor": 0
+   },
+   "kalaazu": {
+    "hp": 4000,
+    "speed": 320,
+    "lasers": 1,
+    "generators": 1,
+    "extras": 1,
+    "cargo": 100
+   },
+   "borja": {
+    "hp": 4000,
+    "speed": 320,
+    "lasers": 1,
+    "generators": 1,
+    "extras": 1,
+    "cargo": 100,
+    "exp": 100,
+    "honor": 0
+   },
+   "muffin_2009": {
+    "hp": 4000,
+    "speed": 320,
+    "lasers": 1,
+    "generators": 1,
+    "extras": 1,
+    "cargo": 100
+   }
+  },
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Phoenix",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/ships/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+  ]
+ },
+ {
+  "id": "ship_yamato",
+  "name": "Yamato",
+  "do_type_id": 2,
+  "hp": 8000,
+  "speed": 340,
+  "lasers": 2,
+  "generators": 2,
+  "extras": 1,
+  "cargo": 200,
+  "sheet": "ship_yamato",
+  "hp_current_wiki": 260000,
+  "exp_reward": 200,
+  "honor_reward": 2,
+  "by_source": {
+   "wiki_current": {
+    "hp": 260000,
+    "speed": 260,
+    "lasers": 8,
+    "generators": 12,
+    "extras": 2,
+    "cargo": 1000,
+    "exp": 200,
+    "honor": 2
+   },
+   "kalaazu": {
+    "hp": 8000,
+    "speed": 340,
+    "lasers": 2,
+    "generators": 2,
+    "extras": 1,
+    "cargo": 200
+   },
+   "borja": {
+    "hp": 8000,
+    "speed": 340,
+    "lasers": 2,
+    "generators": 2,
+    "extras": 1,
+    "cargo": 200,
+    "exp": 200,
+    "honor": 2
+   },
+   "muffin_2009": {
+    "hp": 8000,
+    "speed": 340,
+    "lasers": 2,
+    "generators": 2,
+    "extras": 1,
+    "cargo": 200
+   }
+  },
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Yamato",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/ships/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+  ]
+ },
+ {
+  "id": "ship_leonov",
+  "name": "Leonov",
+  "do_type_id": 3,
+  "hp": 64000,
+  "speed": 360,
+  "lasers": 6,
+  "generators": 6,
+  "extras": 1,
+  "cargo": 500,
+  "sheet": "ship_leonov",
+  "hp_current_wiki": 260000,
+  "exp_reward": 400,
+  "honor_reward": 4,
+  "by_source": {
+   "wiki_current": {
+    "hp": 260000,
+    "speed": 360,
+    "lasers": 6,
+    "generators": 6,
+    "extras": 1,
+    "cargo": 1000,
+    "exp": 400,
+    "honor": 4
+   },
+   "kalaazu": {
+    "hp": 64000,
+    "speed": 360,
+    "lasers": 6,
+    "generators": 6,
+    "extras": 2,
+    "cargo": 500
+   },
+   "borja": {
+    "hp": 64000,
+    "speed": 360,
+    "lasers": 6,
+    "generators": 6,
+    "extras": 1,
+    "cargo": 500,
+    "exp": 400,
+    "honor": 4
+   },
+   "muffin_2009": {
+    "hp": 160000,
+    "speed": 380,
+    "lasers": 6,
+    "generators": 6,
+    "extras": 1,
+    "cargo": 1000
+   }
+  },
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Leonov",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/ships/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+  ]
+ },
+ {
+  "id": "ship_defcom",
+  "name": "Defcom",
+  "do_type_id": 4,
+  "hp": 12000,
+  "speed": 280,
+  "lasers": 3,
+  "generators": 5,
+  "extras": 2,
+  "cargo": 300,
+  "sheet": "ship_defcom",
+  "hp_current_wiki": 250000,
+  "exp_reward": null,
+  "honor_reward": null,
+  "by_source": {
+   "wiki_current": {
+    "hp": 250000,
+    "speed": 340,
+    "lasers": 12,
+    "generators": 8,
+    "extras": 2,
+    "cargo": 800,
+    "exp": null,
+    "honor": null
+   },
+   "kalaazu": {
+    "hp": 12000,
+    "speed": 280,
+    "lasers": 3,
+    "generators": 5,
+    "extras": 2,
+    "cargo": 300
+   },
+   "borja": {
+    "hp": 12000,
+    "speed": 280,
+    "lasers": 3,
+    "generators": 5,
+    "extras": 2,
+    "cargo": 300,
+    "exp": 800,
+    "honor": 8
+   },
+   "muffin_2009": {
+    "hp": 12000,
+    "speed": 280,
+    "lasers": 3,
+    "generators": 5,
+    "extras": 2,
+    "cargo": 300
+   }
+  },
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Defcom",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/ships/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+  ]
+ },
+ {
+  "id": "ship_liberator",
+  "name": "Liberator",
+  "do_type_id": 5,
+  "hp": 16000,
+  "speed": 330,
+  "lasers": 4,
+  "generators": 6,
+  "extras": 2,
+  "cargo": 400,
+  "sheet": "ship_liberator",
+  "hp_current_wiki": 116000,
+  "exp_reward": 1600,
+  "honor_reward": 16,
+  "by_source": {
+   "wiki_current": {
+    "hp": 116000,
+    "speed": 330,
+    "lasers": 4,
+    "generators": 6,
+    "extras": 2,
+    "cargo": 400,
+    "exp": 1600,
+    "honor": 16
+   },
+   "kalaazu": {
+    "hp": 16000,
+    "speed": 330,
+    "lasers": 4,
+    "generators": 6,
+    "extras": 2,
+    "cargo": 400
+   },
+   "borja": {
+    "hp": 16000,
+    "speed": 300,
+    "lasers": 4,
+    "generators": 6,
+    "extras": 2,
+    "cargo": 400,
+    "exp": 1600,
+    "honor": 16
+   },
+   "muffin_2009": {
+    "hp": 16000,
+    "speed": 300,
+    "lasers": 4,
+    "generators": 6,
+    "extras": 2,
+    "cargo": 400
+   }
+  },
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Liberator",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/ships/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+  ]
+ },
+ {
+  "id": "ship_piranha",
+  "name": "Piranha",
+  "do_type_id": 6,
+  "hp": 64000,
+  "speed": 360,
+  "lasers": 6,
+  "generators": 8,
+  "extras": 2,
+  "cargo": 600,
+  "sheet": "ship_piranha",
+  "hp_current_wiki": 164000,
+  "exp_reward": 6400,
+  "honor_reward": 64,
+  "by_source": {
+   "wiki_current": {
+    "hp": 164000,
+    "speed": 360,
+    "lasers": 6,
+    "generators": 8,
+    "extras": 2,
+    "cargo": 600,
+    "exp": 6400,
+    "honor": 64
+   },
+   "kalaazu": {
+    "hp": 64000,
+    "speed": 360,
+    "lasers": 6,
+    "generators": 8,
+    "extras": 2,
+    "cargo": 600
+   },
+   "borja": {
+    "hp": 64000,
+    "speed": 360,
+    "lasers": 5,
+    "generators": 7,
+    "extras": 2,
+    "cargo": 500,
+    "exp": 3200,
+    "honor": 32
+   },
+   "muffin_2009": {
+    "hp": 32000,
+    "speed": 320,
+    "lasers": 5,
+    "generators": 7,
+    "extras": 2,
+    "cargo": 500
+   }
+  },
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Piranha",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/ships/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+  ]
+ },
+ {
+  "id": "ship_nostromo",
+  "name": "Nostromo",
+  "do_type_id": 7,
+  "hp": 120000,
+  "speed": 340,
+  "lasers": 7,
+  "generators": 10,
+  "extras": 3,
+  "cargo": 700,
+  "sheet": "ship_nostromo",
+  "hp_current_wiki": 220000,
+  "exp_reward": 6400,
+  "honor_reward": 64,
+  "by_source": {
+   "wiki_current": {
+    "hp": 220000,
+    "speed": 340,
+    "lasers": 7,
+    "generators": 10,
+    "extras": 3,
+    "cargo": 700,
+    "exp": 6400,
+    "honor": 64
+   },
+   "kalaazu": {
+    "hp": 120000,
+    "speed": 340,
+    "lasers": 7,
+    "generators": 10,
+    "extras": 3,
+    "cargo": 700
+   },
+   "borja": {
+    "hp": 120000,
+    "speed": 340,
+    "lasers": 6,
+    "generators": 8,
+    "extras": 2,
+    "cargo": 600,
+    "exp": 6400,
+    "honor": 64
+   },
+   "muffin_2009": {
+    "hp": 64000,
+    "speed": 340,
+    "lasers": 6,
+    "generators": 8,
+    "extras": 2,
+    "cargo": 600
+   }
+  },
+  "designs": [
+   {
+    "id": "ship_nostromo_design_diplomat",
+    "name": "Diplomat",
+    "sheet": "ship_nostromo-diplomat",
+    "hp_current_wiki": 240000,
+    "stat_diff_vs_base": {
+     "cargo": 900
+    },
+    "boosts": null,
+    "abilities": null,
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Diplomat"
+    ]
+   },
+   {
+    "id": "ship_nostromo_design_envoy",
+    "name": "Envoy",
+    "sheet": "ship_nostromo-envoy",
+    "hp_current_wiki": 260000,
+    "stat_diff_vs_base": {
+     "lasers": 10,
+     "cargo": 1000
+    },
+    "boosts": null,
+    "abilities": null,
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Envoy"
+    ]
+   },
+   {
+    "id": "ship_nostromo_design_ambassador",
+    "name": "Ambassador",
+    "sheet": "ship_nostromo-ambassador",
+    "hp_current_wiki": 320000,
+    "stat_diff_vs_base": {
+     "lasers": 12,
+     "generators": 12,
+     "cargo": 1500
+    },
+    "boosts": null,
+    "abilities": null,
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Ambassador"
+    ]
+   }
+  ],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Nostromo",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/ships/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+  ]
+ },
+ {
+  "id": "ship_vengeance",
+  "name": "Vengeance",
+  "do_type_id": 8,
+  "hp": 180000,
+  "speed": 380,
+  "lasers": 10,
+  "generators": 10,
+  "extras": 2,
+  "cargo": 1000,
+  "sheet": "ship_vengeance",
+  "hp_current_wiki": 280000,
+  "exp_reward": 12800,
+  "honor_reward": 128,
+  "by_source": {
+   "wiki_current": {
+    "hp": 280000,
+    "speed": 380,
+    "lasers": 10,
+    "generators": 10,
+    "extras": 2,
+    "cargo": 1000,
+    "exp": 12800,
+    "honor": 128
+   },
+   "kalaazu": {
+    "hp": 180000,
+    "speed": 380,
+    "lasers": 10,
+    "generators": 10,
+    "extras": 2,
+    "cargo": 1000
+   },
+   "borja": {
+    "hp": 180000,
+    "speed": 380,
+    "lasers": 10,
+    "generators": 10,
+    "extras": 2,
+    "cargo": 1000,
+    "exp": 12800,
+    "honor": 128
+   },
+   "muffin_2009": {
+    "hp": 180000,
+    "speed": 360,
+    "lasers": 10,
+    "generators": 10,
+    "extras": 2,
+    "cargo": 1000
+   }
+  },
+  "designs": [
+   {
+    "id": "ship_vengeance_design_adept",
+    "name": "Adept",
+    "sheet": "ship_vengeance-adept",
+    "hp_current_wiki": 280000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "experience": 1.1
+    },
+    "abilities": null,
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Adept"
+    ]
+   },
+   {
+    "id": "ship_vengeance_design_avenger",
+    "name": "Avenger",
+    "sheet": "ship_vengeance-avenger",
+    "hp_current_wiki": 280000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "shield": 1.1
+    },
+    "abilities": null,
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Avenger"
+    ]
+   },
+   {
+    "id": "ship_vengeance_design_revenge",
+    "name": "Revenge",
+    "sheet": "ship_vengeance-revenge",
+    "hp_current_wiki": 280000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "damage": 1.05
+    },
+    "abilities": null,
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Revenge"
+    ]
+   },
+   {
+    "id": "ship_vengeance_design_corsair",
+    "name": "Corsair",
+    "sheet": "ship_vengeance-corsair",
+    "hp_current_wiki": 280000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "honor": 1.1
+    },
+    "abilities": null,
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Corsair_(Design)"
+    ]
+   },
+   {
+    "id": "ship_vengeance_design_lightning",
+    "name": "Lightning",
+    "sheet": "ship_vengeance-lightning",
+    "hp_current_wiki": 280000,
+    "stat_diff_vs_base": {
+     "cargo": 1100
+    },
+    "boosts": {
+     "damage": 1.05
+    },
+    "abilities": null,
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Lightning"
+    ]
+   }
+  ],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Vengeance",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/ships/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+  ]
+ },
+ {
+  "id": "ship_bigboy",
+  "name": "BigBoy",
+  "do_type_id": 9,
+  "hp": 160000,
+  "speed": 260,
+  "lasers": 8,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 700,
+  "sheet": "ship_bigboy",
+  "hp_current_wiki": 260000,
+  "exp_reward": 25600,
+  "honor_reward": 256,
+  "by_source": {
+   "wiki_current": {
+    "hp": 260000,
+    "speed": 260,
+    "lasers": 8,
+    "generators": 15,
+    "extras": 3,
+    "cargo": 700,
+    "exp": 25600,
+    "honor": 256
+   },
+   "kalaazu": {
+    "hp": 128000,
+    "speed": 280,
+    "lasers": 7,
+    "generators": 15,
+    "extras": 3,
+    "cargo": 800
+   },
+   "borja": {
+    "hp": 160000,
+    "speed": 260,
+    "lasers": 8,
+    "generators": 15,
+    "extras": 3,
+    "cargo": 700,
+    "exp": 25600,
+    "honor": 256
+   },
+   "muffin_2009": {
+    "hp": 128000,
+    "speed": 260,
+    "lasers": 7,
+    "generators": 15,
+    "extras": 3,
+    "cargo": 700
+   }
+  },
+  "designs": [
+   {
+    "id": "ship_bigboy_design_solemn",
+    "name": "Solemn",
+    "sheet": "ship_bigboy-solemn",
+    "hp_current_wiki": 260000,
+    "stat_diff_vs_base": {
+     "cargo": 800
+    },
+    "boosts": {
+     "experience": 1.1
+    },
+    "abilities": null,
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Solemn"
+    ]
+   }
+  ],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/BigBoy",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/ships/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+  ]
+ },
+ {
+  "id": "ship_goliath",
+  "name": "Goliath",
+  "do_type_id": 10,
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_goliath",
+  "hp_current_wiki": 356000,
+  "exp_reward": 51200,
+  "honor_reward": 512,
+  "by_source": {
+   "wiki_current": {
+    "hp": 356000,
+    "speed": 300,
+    "lasers": 15,
+    "generators": 15,
+    "extras": 3,
+    "cargo": 1500,
+    "exp": 51200,
+    "honor": 512
+   },
+   "kalaazu": {
+    "hp": 256000,
+    "speed": 300,
+    "lasers": 15,
+    "generators": 15,
+    "extras": 3,
+    "cargo": 1000
+   },
+   "borja": {
+    "hp": 256000,
+    "speed": 300,
+    "lasers": 15,
+    "generators": 15,
+    "extras": 3,
+    "cargo": 1500,
+    "exp": 51200,
+    "honor": 512
+   },
+   "muffin_2009": {
+    "hp": 256000,
+    "speed": 300,
+    "lasers": 15,
+    "generators": 15,
+    "extras": 3,
+    "cargo": 1500
+   }
+  },
+  "designs": [
+   {
+    "id": "ship_g-bastion",
+    "name": "Bastion",
+    "sheet": "ship_goliath-bastion",
+    "hp_current_wiki": 356000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "shield": 1.1
+    },
+    "abilities": [],
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Bastion",
+     "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+    ]
+   },
+   {
+    "id": "ship_g-enforcer",
+    "name": "Enforcer",
+    "sheet": "ship_goliath-enforcer",
+    "hp_current_wiki": 356000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "damage": 1.05
+    },
+    "abilities": [],
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Enforcer",
+     "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+    ]
+   },
+   {
+    "id": "ship_g-exalted",
+    "name": "Exalted",
+    "sheet": "ship_goliath-exalted",
+    "hp_current_wiki": 356000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "honor": 1.1
+    },
+    "abilities": [],
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Exalted",
+     "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+    ]
+   },
+   {
+    "id": "ship_g-veteran",
+    "name": "Veteran",
+    "sheet": "ship_goliath-veteran",
+    "hp_current_wiki": 356000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "experience": 1.1
+    },
+    "abilities": [],
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Veteran",
+     "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+    ]
+   },
+   {
+    "id": "ship_goliath_design_jade",
+    "name": "Jade",
+    "sheet": "ship_goliath-jade",
+    "hp_current_wiki": 356000,
+    "stat_diff_vs_base": {},
+    "boosts": null,
+    "abilities": null,
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Jade"
+    ]
+   },
+   {
+    "id": "ship_goliath_design_sapphire",
+    "name": "Sapphire",
+    "sheet": "ship_goliath-sapphire",
+    "hp_current_wiki": 356000,
+    "stat_diff_vs_base": {},
+    "boosts": null,
+    "abilities": null,
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Sapphire"
+    ]
+   },
+   {
+    "id": "ship_goliath_design_amber",
+    "name": "Amber",
+    "sheet": "ship_goliath-amber",
+    "hp_current_wiki": 356000,
+    "stat_diff_vs_base": {},
+    "boosts": null,
+    "abilities": null,
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Amber"
+    ]
+   },
+   {
+    "id": "ship_goliath_design_crimson",
+    "name": "Crimson",
+    "sheet": "ship_goliath-crimson",
+    "hp_current_wiki": 356000,
+    "stat_diff_vs_base": {},
+    "boosts": null,
+    "abilities": null,
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Crimson"
+    ]
+   },
+   {
+    "id": "ship_g-centaur",
+    "name": "Centaur",
+    "sheet": "ship_goliath-centaur",
+    "hp_current_wiki": 356000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "hitpoints": 1.1
+    },
+    "abilities": [],
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Centaur",
+     "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+    ]
+   },
+   {
+    "id": "ship_g-ignite",
+    "name": "Ignite",
+    "sheet": "ship_goliath-ignite",
+    "hp_current_wiki": 356000,
+    "stat_diff_vs_base": {},
+    "boosts": null,
+    "abilities": [],
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Ignite",
+     "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+    ]
+   },
+   {
+    "id": "ship_g-kick",
+    "name": "Goliath Kick",
+    "sheet": "ship_goliath-kick",
+    "hp_current_wiki": 356000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "shield": 1.1
+    },
+    "abilities": [],
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Goliath_Kick",
+     "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+    ]
+   },
+   {
+    "id": "ship_g-referee",
+    "name": "Goliath Referee",
+    "sheet": "ship_goliath-referee",
+    "hp_current_wiki": 356000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "damage": 1.05
+    },
+    "abilities": [],
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Goliath_Referee",
+     "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+    ]
+   },
+   {
+    "id": "ship_g-goal",
+    "name": "Goliath Goal",
+    "sheet": "ship_goliath-goal",
+    "hp_current_wiki": 356000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "experience": 1.1
+    },
+    "abilities": [],
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Goliath_Goal",
+     "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+    ]
+   },
+   {
+    "id": "ship_g-saturn",
+    "name": "Saturn Design",
+    "sheet": "ship_goliath-saturn",
+    "hp_current_wiki": 356000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "hitpoints": 1.2
+    },
+    "abilities": [],
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Saturn_Design",
+     "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+    ]
+   },
+   {
+    "id": "ship_diminisher",
+    "name": "Diminisher",
+    "sheet": "ship_diminisher",
+    "hp_current_wiki": 356000,
+    "stat_diff_vs_base": {
+     "cargo": 1600
+    },
+    "boosts": {
+     "damage": 1.05
+    },
+    "abilities": [
+     "WEAKEN_SHIELDS"
+    ],
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Diminisher",
+     "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+    ]
+   },
+   {
+    "id": "ship_solace",
+    "name": "Solace",
+    "sheet": "ship_solace",
+    "hp_current_wiki": 356000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "shield": 1.1
+    },
+    "abilities": [
+     "NANO_CLUSTER_REPAIR"
+    ],
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Solace",
+     "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+    ]
+   },
+   {
+    "id": "ship_spectrum",
+    "name": "Spectrum",
+    "sheet": "ship_spectrum",
+    "hp_current_wiki": 356000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "shield": 1.1
+    },
+    "abilities": [
+     "PRISMATIC_SHIELD"
+    ],
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Spectrum",
+     "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+    ]
+   },
+   {
+    "id": "ship_sentinel",
+    "name": "Sentinel",
+    "sheet": "ship_sentinel",
+    "hp_current_wiki": 356000,
+    "stat_diff_vs_base": {
+     "cargo": 1600
+    },
+    "boosts": {
+     "shield": 1.1
+    },
+    "abilities": [
+     "FORTRESS"
+    ],
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Sentinel",
+     "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+    ]
+   },
+   {
+    "id": "ship_venom",
+    "name": "Venom",
+    "sheet": "ship_venom",
+    "hp_current_wiki": 356000,
+    "stat_diff_vs_base": {
+     "cargo": 1600
+    },
+    "boosts": {
+     "damage": 1.05
+    },
+    "abilities": [
+     "SINGULARITY"
+    ],
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Venom",
+     "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+    ]
+   },
+   {
+    "id": "ship_goliath_design_peacemaker",
+    "name": "Peacemaker",
+    "sheet": "ship_goliath-peacemaker",
+    "hp_current_wiki": 356000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "damage": 1.07
+    },
+    "abilities": null,
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Peacemaker"
+    ]
+   },
+   {
+    "id": "ship_g-sovereign",
+    "name": "Sovereign",
+    "sheet": "ship_goliath-sovereign",
+    "hp_current_wiki": 356000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "damage_laser_pvp": 1.07,
+     "honor": 1.05
+    },
+    "abilities": [],
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Sovereign",
+     "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+    ]
+   },
+   {
+    "id": "ship_g-vanquisher",
+    "name": "Vanquisher",
+    "sheet": "ship_goliath-vanquisher",
+    "hp_current_wiki": 356000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "damage_laser_pvp": 1.07,
+     "honor": 1.05
+    },
+    "abilities": [],
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Vanquisher",
+     "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+    ]
+   },
+   {
+    "id": "ship_g-champion",
+    "name": "Goliath Champion",
+    "sheet": "ship_goliath-champion",
+    "hp_current_wiki": 356000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "damage": 1.05,
+     "honor": 1.1
+    },
+    "abilities": [],
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Goliath_Champion",
+     "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+    ]
+   },
+   {
+    "id": "ship_g-surgeon",
+    "name": "Surgeon",
+    "sheet": null,
+    "hp_current_wiki": 356000,
+    "stat_diff_vs_base": {
+     "generators": 16
+    },
+    "boosts": {
+     "damage": 1.06,
+     "experience": 1.06,
+     "honor": 1.06
+    },
+    "abilities": [],
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Surgeon",
+     "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+    ]
+   },
+   {
+    "id": "ship_goliath_design_goliath_x",
+    "name": "Goliath-X",
+    "sheet": "ship_goliath-x",
+    "hp_current_wiki": 356000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "damage": 1.02,
+     "experience": 1.02
+    },
+    "abilities": null,
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Goliath-X"
+    ]
+   }
+  ],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Goliath",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/ships/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+  ]
+ },
+ {
+  "id": "ship_aegis",
+  "name": "Aegis",
+  "do_type_id": 49,
+  "hp": 275000,
+  "speed": 300,
+  "lasers": 10,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 2000,
+  "sheet": "ship_aegis",
+  "hp_current_wiki": 375000,
+  "exp_reward": 25000,
+  "honor_reward": 250,
+  "by_source": {
+   "wiki_current": {
+    "hp": 375000,
+    "speed": 300,
+    "lasers": 10,
+    "generators": 15,
+    "extras": 3,
+    "cargo": 2000,
+    "exp": 25000,
+    "honor": 250
+   },
+   "kalaazu": {
+    "hp": 275000,
+    "speed": 300,
+    "lasers": 10,
+    "generators": 15,
+    "extras": 3,
+    "cargo": 2000
+   },
+   "borja": {
+    "hp": 275000,
+    "speed": 300,
+    "lasers": 10,
+    "generators": 15,
+    "extras": 3,
+    "cargo": 2000,
+    "exp": 0,
+    "honor": 0
+   }
+  },
+  "designs": [
+   {
+    "id": "ship_aegis_design_aegis_elite",
+    "name": "Aegis Elite",
+    "sheet": "ship_aegis-elite-mmo",
+    "hp_current_wiki": 375000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "damage": 1.05
+    },
+    "abilities": null,
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Aegis_Elite"
+    ]
+   },
+   {
+    "id": "ship_aegis_design_aegis_veteran",
+    "name": "Aegis Veteran",
+    "sheet": "ship_aegis-veteran-mmo",
+    "hp_current_wiki": 375000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "experience": 1.05,
+     "honor": 1.1
+    },
+    "abilities": null,
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Aegis_Veteran"
+    ]
+   }
+  ],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Aegis",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/ships/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+  ]
+ },
+ {
+  "id": "ship_citadel",
+  "name": "Citadel",
+  "do_type_id": 69,
+  "hp": 550000,
+  "speed": 240,
+  "lasers": 7,
+  "generators": 20,
+  "extras": 5,
+  "cargo": 4000,
+  "sheet": "ship_citadel",
+  "hp_current_wiki": 650000,
+  "exp_reward": 120000,
+  "honor_reward": 1200,
+  "by_source": {
+   "wiki_current": {
+    "hp": 650000,
+    "speed": 240,
+    "lasers": 7,
+    "generators": 20,
+    "extras": 5,
+    "cargo": 4000,
+    "exp": 120000,
+    "honor": 1200
+   },
+   "kalaazu": {
+    "hp": 550000,
+    "speed": 240,
+    "lasers": 7,
+    "generators": 20,
+    "extras": 5,
+    "cargo": 3000
+   },
+   "borja": {
+    "hp": 550000,
+    "speed": 240,
+    "lasers": 7,
+    "generators": 20,
+    "extras": 5,
+    "cargo": 4000,
+    "exp": 0,
+    "honor": 0
+   }
+  },
+  "designs": [
+   {
+    "id": "ship_citadel_design_citadel_elite",
+    "name": "Citadel Elite",
+    "sheet": "ship_citadel-elite-mmo",
+    "hp_current_wiki": 650000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "damage": 1.05
+    },
+    "abilities": null,
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Citadel_Elite"
+    ]
+   },
+   {
+    "id": "ship_citadel_design_citadel_veteran",
+    "name": "Citadel Veteran",
+    "sheet": "ship_citadel-veteran-mmo",
+    "hp_current_wiki": 650000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "honor": 1.05,
+     "experience": 1.05
+    },
+    "abilities": null,
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Citadel_Veteran"
+    ]
+   }
+  ],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Citadel",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/ships/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+  ]
+ },
+ {
+  "id": "ship_spearhead",
+  "name": "Spearhead",
+  "do_type_id": 70,
+  "hp": 100000,
+  "speed": 370,
+  "lasers": 5,
+  "generators": 12,
+  "extras": 2,
+  "cargo": 500,
+  "sheet": "ship_spearhead",
+  "hp_current_wiki": 200000,
+  "exp_reward": 7500,
+  "honor_reward": 75,
+  "by_source": {
+   "wiki_current": {
+    "hp": 200000,
+    "speed": 370,
+    "lasers": 5,
+    "generators": 12,
+    "extras": 2,
+    "cargo": 500,
+    "exp": 7500,
+    "honor": 75
+   },
+   "borja": {
+    "hp": 100000,
+    "speed": 370,
+    "lasers": 5,
+    "generators": 12,
+    "extras": 2,
+    "cargo": 500,
+    "exp": 0,
+    "honor": 0
+   }
+  },
+  "designs": [
+   {
+    "id": "ship_spearhead_design_spearhead_elite",
+    "name": "Spearhead Elite",
+    "sheet": "ship_spearhead-elite-mmo",
+    "hp_current_wiki": 200000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "damage": 1.05
+    },
+    "abilities": null,
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Spearhead_Elite"
+    ]
+   },
+   {
+    "id": "ship_spearhead_design_spearhead_veteran",
+    "name": "Spearhead Veteran",
+    "sheet": "ship_spearhead-veteran-mmo",
+    "hp_current_wiki": 200000,
+    "stat_diff_vs_base": {},
+    "boosts": {
+     "honor": 1.05,
+     "experience": 1.05
+    },
+    "abilities": null,
+    "source": [
+     "https://darkorbit.fandom.com/wiki/Spearhead_Veteran"
+    ]
+   }
+  ],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Spearhead",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/ships/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+  ]
+ },
+ {
+  "id": "ship_cyborg",
+  "name": "Cyborg",
+  "hp": 365000,
+  "speed": 300,
+  "lasers": 16,
+  "generators": 16,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_cyborg",
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": {
+   "damage": 1.1
+  },
+  "abilities": [
+   "SINGULARITY"
+  ],
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Cyborg",
+   "https://github.com/designated-life/EpicOrbit-Private-Server/blob/master/epicorbit/Shared/EpicOrbit.Shared/Items/Ship.cs"
+  ]
+ },
+ {
+  "id": "ship_hammerclaw",
+  "name": "Hammerclaw",
+  "hp": 377500,
+  "speed": 310,
+  "lasers": 12,
+  "generators": 14,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_hammerclaw",
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Hammerclaw"
+  ]
+ },
+ {
+  "id": "ship_hecate",
+  "name": "Hecate",
+  "hp": 377500,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 16,
+  "extras": 3,
+  "cargo": null,
+  "sheet": "ship_hecate",
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Hecate"
+  ]
+ },
+ {
+  "id": "ship_mimesis",
+  "name": "Mimesis",
+  "hp": 386000,
+  "speed": 300,
+  "lasers": 14,
+  "generators": 14,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": null,
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Mimesis"
+  ]
+ },
+ {
+  "id": "ship_tartarus",
+  "name": "Tartarus",
+  "hp": 360000,
+  "speed": 220,
+  "lasers": 14,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": null,
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Tartarus"
+  ]
+ },
+ {
+  "id": "ship_pusat",
+  "name": "Pusat",
+  "hp": 225000,
+  "speed": 370,
+  "lasers": 16,
+  "generators": 12,
+  "extras": 3,
+  "cargo": 1000,
+  "sheet": "ship_pusat",
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Pusat"
+  ]
+ },
+ {
+  "id": "ship_berserker",
+  "name": "Berserker",
+  "hp": 500000,
+  "speed": 290,
+  "lasers": 5,
+  "generators": 16,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_berserker",
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Berserker"
+  ]
+ },
+ {
+  "id": "ship_zephyr",
+  "name": "Zephyr",
+  "hp": 250000,
+  "speed": 300,
+  "lasers": 12,
+  "generators": 16,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_zephyr",
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Zephyr"
+  ]
+ },
+ {
+  "id": "ship_solaris",
+  "name": "Solaris",
+  "hp": 377500,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_solaris",
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Solaris"
+  ]
+ },
+ {
+  "id": "ship_keres",
+  "name": "Keres",
+  "hp": 356000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 16,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_keres",
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Keres"
+  ]
+ },
+ {
+  "id": "ship_retiarus",
+  "name": "Retiarus",
+  "hp": 386000,
+  "speed": 310,
+  "lasers": 15,
+  "generators": 14,
+  "extras": 3,
+  "cargo": 2000,
+  "sheet": "ship_retiarus",
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Retiarus"
+  ]
+ },
+ {
+  "id": "ship_orcus",
+  "name": "Orcus",
+  "hp": 300000,
+  "speed": 280,
+  "lasers": 15,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_orcus",
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Orcus"
+  ]
+ },
+ {
+  "id": "ship_ronin",
+  "name": "Ronin",
+  "hp": 300000,
+  "speed": 260,
+  "lasers": 8,
+  "generators": 12,
+  "extras": 3,
+  "cargo": 1000,
+  "sheet": null,
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Ronin"
+  ]
+ },
+ {
+  "id": "ship_raven",
+  "name": "Raven",
+  "hp": 287500,
+  "speed": 340,
+  "lasers": 12,
+  "generators": 8,
+  "extras": 2,
+  "cargo": 800,
+  "sheet": null,
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Raven"
+  ]
+ },
+ {
+  "id": "ship_disruptor",
+  "name": "Disruptor",
+  "hp": 356000,
+  "speed": 300,
+  "lasers": 14,
+  "generators": 14,
+  "extras": 3,
+  "cargo": 1600,
+  "sheet": "ship_disruptor",
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Disruptor"
+  ]
+ },
+ {
+  "id": "ship_centurion-ship",
+  "name": "Centurion Ship",
+  "hp": 365000,
+  "speed": 300,
+  "lasers": 16,
+  "generators": 16,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": null,
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Centurion_Ship"
+  ]
+ },
+ {
+  "id": "ship_holo",
+  "name": "Holo",
+  "hp": 375000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_holo",
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Holo"
+  ]
+ },
+ {
+  "id": "ship_tempest",
+  "name": "Tempest",
+  "hp": 300000,
+  "speed": 330,
+  "lasers": 14,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_tempest",
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Tempest"
+  ]
+ },
+ {
+  "id": "ship_goliath-plus",
+  "name": "Goliath Plus",
+  "hp": 356000,
+  "speed": 330,
+  "lasers": 18,
+  "generators": 18,
+  "extras": 4,
+  "cargo": 1500,
+  "sheet": "ship_goliath-plus",
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Goliath_Plus"
+  ]
+ },
+ {
+  "id": "ship_citadel-plus",
+  "name": "Citadel Plus",
+  "hp": 700000,
+  "speed": 250,
+  "lasers": 10,
+  "generators": 20,
+  "extras": 5,
+  "cargo": 4000,
+  "sheet": "ship_citadel-plus",
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Citadel_Plus"
+  ]
+ },
+ {
+  "id": "ship_solace-plus",
+  "name": "Solace Plus",
+  "hp": 377500,
+  "speed": 310,
+  "lasers": 16,
+  "generators": 18,
+  "extras": 4,
+  "cargo": 1500,
+  "sheet": "ship_solace-plus",
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Solace_Plus"
+  ]
+ },
+ {
+  "id": "ship_spearhead-plus",
+  "name": "Spearhead Plus",
+  "hp": 350000,
+  "speed": 370,
+  "lasers": 14,
+  "generators": 17,
+  "extras": 4,
+  "cargo": 1500,
+  "sheet": "ship_spearhead-plus",
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Spearhead_Plus"
+  ]
+ },
+ {
+  "id": "ship_liberator-plus",
+  "name": "Liberator Plus",
+  "hp": 275000,
+  "speed": 350,
+  "lasers": 12,
+  "generators": 12,
+  "extras": 4,
+  "cargo": 1500,
+  "sheet": "ship_liberator-plus",
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Liberator_Plus"
+  ]
+ },
+ {
+  "id": "ship_pusat-plus",
+  "name": "Pusat Plus",
+  "hp": 325000,
+  "speed": 400,
+  "lasers": 18,
+  "generators": 16,
+  "extras": 4,
+  "cargo": 1500,
+  "sheet": "ship_pusat-plus",
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Pusat_Plus"
+  ]
+ },
+ {
+  "id": "ship_hecate-plus",
+  "name": "Hecate Plus",
+  "hp": 377500,
+  "speed": 300,
+  "lasers": 16,
+  "generators": 18,
+  "extras": 4,
+  "cargo": 1500,
+  "sheet": "ship_hecate-plus",
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Hecate_Plus"
+  ]
+ },
+ {
+  "id": "ship_hammerclaw-plus",
+  "name": "Hammerclaw Plus",
+  "hp": 377500,
+  "speed": 310,
+  "lasers": 14,
+  "generators": 16,
+  "extras": 4,
+  "cargo": 1500,
+  "sheet": "ship_hammerclaw-plus",
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Hammerclaw_Plus"
+  ]
+ },
+ {
+  "id": "ship_solaris-plus",
+  "name": "Solaris Plus",
+  "hp": 400000,
+  "speed": 310,
+  "lasers": 18,
+  "generators": 16,
+  "extras": 4,
+  "cargo": 1500,
+  "sheet": "ship_solaris-plus",
+  "hp_is": "current wiki value (post-2014 era, ~+100k vs classic)",
+  "boosts": null,
+  "abilities": null,
+  "designs": [],
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Solaris_Plus"
+  ]
+ }
+]

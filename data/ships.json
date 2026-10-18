@@ -1,0 +1,3681 @@
+[
+ {
+  "id": "ship_phoenix",
+  "name": "Phoenix",
+  "hp": 4000,
+  "speed": 320,
+  "lasers": 1,
+  "generators": 1,
+  "extras": 1,
+  "cargo": 100,
+  "sheet": "ship_phoenix",
+  "designs": [],
+  "hp_current_wiki": 104000,
+  "do_type_id": 1,
+  "exp_reward": 100,
+  "honor_reward": 0,
+  "source": "research"
+ },
+ {
+  "id": "ship_yamato",
+  "name": "Yamato",
+  "hp": 8000,
+  "speed": 340,
+  "lasers": 2,
+  "generators": 2,
+  "extras": 1,
+  "cargo": 200,
+  "sheet": "ship_yamato",
+  "designs": [
+   {
+    "id": "ship_yamato-violet",
+    "asset": "ship_yamato_design_yamato-expo2016",
+    "name": "Yamato Violet",
+    "sheet": "ship_yamato-violet"
+   }
+  ],
+  "hp_current_wiki": 260000,
+  "do_type_id": 2,
+  "exp_reward": 200,
+  "honor_reward": 2,
+  "source": "research"
+ },
+ {
+  "id": "ship_leonov",
+  "name": "Leonov",
+  "hp": 64000,
+  "speed": 360,
+  "lasers": 6,
+  "generators": 6,
+  "extras": 1,
+  "cargo": 500,
+  "sheet": "ship_leonov",
+  "designs": [],
+  "hp_current_wiki": 260000,
+  "do_type_id": 3,
+  "exp_reward": 400,
+  "honor_reward": 4,
+  "source": "research"
+ },
+ {
+  "id": "ship_defcom",
+  "name": "Defcom",
+  "hp": 12000,
+  "speed": 280,
+  "lasers": 3,
+  "generators": 5,
+  "extras": 2,
+  "cargo": 300,
+  "sheet": "ship_defcom",
+  "designs": [
+   {
+    "id": "ship_defcom-violet",
+    "asset": "ship_defcom_design_defcom-expo2016",
+    "name": "Defcom Violet",
+    "sheet": "ship_defcom-violet"
+   }
+  ],
+  "hp_current_wiki": 250000,
+  "do_type_id": 4,
+  "source": "research"
+ },
+ {
+  "id": "ship_liberator",
+  "name": "Liberator",
+  "hp": 16000,
+  "speed": 330,
+  "lasers": 4,
+  "generators": 6,
+  "extras": 2,
+  "cargo": 400,
+  "sheet": "ship_liberator",
+  "designs": [],
+  "hp_current_wiki": 116000,
+  "do_type_id": 5,
+  "exp_reward": 1600,
+  "honor_reward": 16,
+  "source": "research"
+ },
+ {
+  "id": "ship_piranha",
+  "name": "Piranha",
+  "hp": 64000,
+  "speed": 360,
+  "lasers": 6,
+  "generators": 8,
+  "extras": 2,
+  "cargo": 600,
+  "sheet": "ship_piranha",
+  "designs": [],
+  "hp_current_wiki": 164000,
+  "do_type_id": 6,
+  "exp_reward": 6400,
+  "honor_reward": 64,
+  "source": "research"
+ },
+ {
+  "id": "ship_nostromo",
+  "name": "Nostromo",
+  "hp": 120000,
+  "speed": 340,
+  "lasers": 7,
+  "generators": 10,
+  "extras": 3,
+  "cargo": 700,
+  "sheet": "ship_nostromo",
+  "designs": [
+   {
+    "id": "ship_nostromo-razer",
+    "asset": "ship_nostromo_design_nostromo-razer",
+    "name": "Razer",
+    "sheet": "ship_nostromo-razer"
+   }
+  ],
+  "hp_current_wiki": 220000,
+  "do_type_id": 7,
+  "exp_reward": 6400,
+  "honor_reward": 64,
+  "source": "research"
+ },
+ {
+  "id": "ship_vengeance",
+  "name": "Vengeance",
+  "hp": 180000,
+  "speed": 380,
+  "lasers": 10,
+  "generators": 10,
+  "extras": 2,
+  "cargo": 1000,
+  "sheet": "ship_vengeance",
+  "designs": [],
+  "hp_current_wiki": 280000,
+  "do_type_id": 8,
+  "exp_reward": 12800,
+  "honor_reward": 128,
+  "source": "research"
+ },
+ {
+  "id": "ship_bigboy",
+  "name": "Bigboy",
+  "hp": 160000,
+  "speed": 260,
+  "lasers": 8,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 700,
+  "sheet": "ship_bigboy",
+  "designs": [
+   {
+    "id": "ship_bigboy-mamba",
+    "asset": "ship_bigboy_design_mamba",
+    "name": "Red Bigboy (Mamba)",
+    "sheet": "ship_bigboy-mamba"
+   }
+  ],
+  "hp_current_wiki": 260000,
+  "do_type_id": 9,
+  "exp_reward": 25600,
+  "honor_reward": 256,
+  "source": "research"
+ },
+ {
+  "id": "ship_goliath",
+  "name": "Goliath",
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_goliath",
+  "designs": [
+   {
+    "id": "ship_goliath-phantasm",
+    "asset": "ship_goliath_design_goliath-phantasm",
+    "name": "Goliath-Phantasm",
+    "sheet": "ship_goliath-phantasm"
+   },
+   {
+    "id": "ship_goliath-amber",
+    "asset": "ship_goliath_design_amber",
+    "name": "Goliath Orange / Amber",
+    "sheet": "ship_goliath-amber"
+   },
+   {
+    "id": "ship_goliath-frost",
+    "asset": "ship_goliath_design_goliath-frost",
+    "name": "Frozen Design",
+    "sheet": "ship_goliath-frost"
+   },
+   {
+    "id": "ship_goliath-sapphire",
+    "asset": "ship_goliath_design_sapphire",
+    "name": "Goliath Blue / Sapphire",
+    "sheet": "ship_goliath-sapphire"
+   },
+   {
+    "id": "ship_goliath-jade",
+    "asset": "ship_goliath_design_jade",
+    "name": "Goliath Jade",
+    "sheet": "ship_goliath-jade"
+   },
+   {
+    "id": "ship_goliath-crimson",
+    "asset": "ship_goliath_design_crimson",
+    "name": "Goliath Red (Crimson)",
+    "sheet": "ship_goliath-crimson"
+   },
+   {
+    "id": "ship_goliath-razer",
+    "asset": "ship_goliath_design_goliath-razer",
+    "name": "Razer",
+    "sheet": "ship_goliath-razer"
+   },
+   {
+    "id": "ship_goliath-bronze",
+    "asset": "ship_goliath_design_bronze",
+    "name": "Bronze",
+    "sheet": "ship_goliath-bronze"
+   },
+   {
+    "id": "ship_goliath-silver",
+    "asset": "ship_goliath_design_silver",
+    "name": "Silver",
+    "sheet": "ship_goliath-silver"
+   },
+   {
+    "id": "ship_goliath-gold",
+    "asset": "ship_goliath_design_gold",
+    "name": "Gold",
+    "sheet": "ship_goliath-gold"
+   },
+   {
+    "id": "ship_goliath-iron",
+    "asset": "ship_goliath_design_iron",
+    "name": "Iron",
+    "sheet": "ship_goliath-iron"
+   }
+  ],
+  "hp_current_wiki": 356000,
+  "do_type_id": 10,
+  "exp_reward": 51200,
+  "honor_reward": 512,
+  "source": "research"
+ },
+ {
+  "id": "ship_citadel",
+  "name": "Citadel",
+  "hp": 550000,
+  "speed": 240,
+  "lasers": 7,
+  "generators": 20,
+  "extras": 5,
+  "cargo": 4000,
+  "sheet": "ship_citadel",
+  "designs": [
+   {
+    "id": "ship_citadel-mmo",
+    "asset": "ship_citadel_1",
+    "name": "Citadel MMO",
+    "sheet": "ship_citadel-mmo"
+   },
+   {
+    "id": "ship_citadel-eic",
+    "asset": "ship_citadel_2",
+    "name": "Citadel EIC",
+    "sheet": "ship_citadel-eic"
+   },
+   {
+    "id": "ship_citadel-vru",
+    "asset": "ship_citadel_3",
+    "name": "Citadel VRU",
+    "sheet": "ship_citadel-vru"
+   },
+   {
+    "id": "ship_citadel-smite",
+    "asset": "ship_citadel_design_citadel-smite",
+    "name": "Citadel Smite",
+    "sheet": "ship_citadel-smite"
+   },
+   {
+    "id": "ship_citadel-osiris",
+    "asset": "ship_citadel_design_citadel-osiris",
+    "name": "Citadel Osiris",
+    "sheet": "ship_citadel-osiris"
+   },
+   {
+    "id": "ship_citadel-epion",
+    "asset": "ship_citadel_design_citadel-epion",
+    "name": "Citadel Epion",
+    "sheet": "ship_citadel-epion"
+   }
+  ],
+  "hp_current_wiki": 650000,
+  "do_type_id": 69,
+  "exp_reward": 120000,
+  "honor_reward": 1200,
+  "source": "research"
+ },
+ {
+  "id": "ship_aegis",
+  "name": "Aegis",
+  "hp": 275000,
+  "speed": 300,
+  "lasers": 10,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 2000,
+  "sheet": "ship_aegis",
+  "designs": [
+   {
+    "id": "ship_aegis-mmo",
+    "asset": "ship_aegis_1",
+    "name": "Aegis MMO",
+    "sheet": "ship_aegis-mmo"
+   },
+   {
+    "id": "ship_aegis-eic",
+    "asset": "ship_aegis_2",
+    "name": "Aegis EIC",
+    "sheet": "ship_aegis-eic"
+   },
+   {
+    "id": "ship_aegis-vru",
+    "asset": "ship_aegis_3",
+    "name": "Aegis VRU",
+    "sheet": "ship_aegis-vru"
+   }
+  ],
+  "hp_current_wiki": 375000,
+  "do_type_id": 49,
+  "exp_reward": 25000,
+  "honor_reward": 250,
+  "source": "research"
+ },
+ {
+  "id": "ship_spearhead",
+  "name": "Spearhead",
+  "hp": 100000,
+  "speed": 370,
+  "lasers": 5,
+  "generators": 12,
+  "extras": 2,
+  "cargo": 500,
+  "sheet": "ship_spearhead",
+  "designs": [
+   {
+    "id": "ship_spearhead-mmo",
+    "asset": "ship_spearhead_1",
+    "name": "Spearhead Mmo",
+    "sheet": "ship_spearhead-mmo"
+   },
+   {
+    "id": "ship_spearhead-eic",
+    "asset": "ship_spearhead_2",
+    "name": "Spearhead Eic",
+    "sheet": "ship_spearhead-eic"
+   },
+   {
+    "id": "ship_spearhead-vru",
+    "asset": "ship_spearhead_3",
+    "name": "Spearhead Vru",
+    "sheet": "ship_spearhead-vru"
+   },
+   {
+    "id": "ship_spearhead-smite",
+    "asset": "ship_spearhead_design_spearhead-smite",
+    "name": "Spearhead Smite",
+    "sheet": "ship_spearhead-smite"
+   },
+   {
+    "id": "ship_spearhead-osiris",
+    "asset": "ship_spearhead_design_spearhead-osiris",
+    "name": "Spearhead Osiris",
+    "sheet": "ship_spearhead-osiris"
+   },
+   {
+    "id": "ship_spearhead-epion",
+    "asset": "ship_spearhead_design_spearhead-epion",
+    "name": "Spearhead Epion",
+    "sheet": "ship_spearhead-epion"
+   }
+  ],
+  "hp_current_wiki": 200000,
+  "do_type_id": 70,
+  "exp_reward": 7500,
+  "honor_reward": 75,
+  "source": "research"
+ },
+ {
+  "id": "ship_v-adept",
+  "name": "Vengeance Adept",
+  "hp": 180000,
+  "speed": 380,
+  "lasers": 10,
+  "generators": 10,
+  "extras": 2,
+  "cargo": 1000,
+  "sheet": "ship_vengeance-adept",
+  "designs": [],
+  "source": "research(base ship_vengeance)"
+ },
+ {
+  "id": "ship_v-corsair",
+  "name": "Vengeance Corsair",
+  "hp": 180000,
+  "speed": 380,
+  "lasers": 10,
+  "generators": 10,
+  "extras": 2,
+  "cargo": 1000,
+  "sheet": "ship_vengeance-corsair",
+  "designs": [],
+  "source": "research(base ship_vengeance)"
+ },
+ {
+  "id": "ship_v-lightning",
+  "name": "Vengeance Lightning",
+  "hp": 180000,
+  "speed": 380,
+  "lasers": 10,
+  "generators": 10,
+  "extras": 2,
+  "cargo": 1000,
+  "sheet": "ship_vengeance-lightning",
+  "designs": [
+   {
+    "id": "ship_vengeance-lightning-violet",
+    "asset": "ship_v-lightning_design_v-lightning-expo2016",
+    "name": "Vengeance Skill Design Lightning Violet",
+    "sheet": "ship_vengeance-lightning-violet"
+   },
+   {
+    "id": "ship_vengeance-lightning-frost",
+    "asset": "ship_v-lightning_design_v-lightning-frost",
+    "name": "Vengeance Skill Design Lightning Frost",
+    "sheet": "ship_vengeance-lightning-frost"
+   },
+   {
+    "id": "ship_vengeance-lightning-inferno",
+    "asset": "ship_v-lightning_design_v-lightning-inferno",
+    "name": "Vengeance Skill Design Lightning Inferno",
+    "sheet": "ship_vengeance-lightning-inferno"
+   }
+  ],
+  "source": "research(base ship_vengeance)"
+ },
+ {
+  "id": "ship_admin",
+  "name": "UFO (Admin)",
+  "hp": 1000000,
+  "speed": 600,
+  "lasers": 20,
+  "generators": 20,
+  "extras": 5,
+  "cargo": 5000,
+  "sheet": "ship20",
+  "designs": [],
+  "guess": true
+ },
+ {
+  "id": "ship_g-enforcer",
+  "name": "Goliath Enforcer",
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_goliath-enforcer",
+  "designs": [],
+  "source": "research(base ship_goliath)"
+ },
+ {
+  "id": "ship_v-revenge",
+  "name": "Vengeance Revenge",
+  "hp": 180000,
+  "speed": 380,
+  "lasers": 10,
+  "generators": 10,
+  "extras": 2,
+  "cargo": 1000,
+  "sheet": "ship_vengeance-revenge",
+  "designs": [],
+  "source": "research(base ship_vengeance)"
+ },
+ {
+  "id": "ship_g-bastion",
+  "name": "Goliath Bastion",
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_goliath-bastion",
+  "designs": [],
+  "source": "research(base ship_goliath)"
+ },
+ {
+  "id": "ship_v-avenger",
+  "name": "Vengeance Avenger",
+  "hp": 180000,
+  "speed": 380,
+  "lasers": 10,
+  "generators": 10,
+  "extras": 2,
+  "cargo": 1000,
+  "sheet": "ship_vengeance-avenger",
+  "designs": [],
+  "source": "research(base ship_vengeance)"
+ },
+ {
+  "id": "ship_g-veteran",
+  "name": "Goliath Veteran",
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_goliath-veteran",
+  "designs": [],
+  "source": "research(base ship_goliath)"
+ },
+ {
+  "id": "ship_solace",
+  "name": "Solace",
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 16,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_solace",
+  "designs": [
+   {
+    "id": "ship_solace-blaze",
+    "asset": "ship_solace_design_solace-blaze",
+    "name": "Goliath Solace Blaze",
+    "sheet": "ship_solace-blaze"
+   },
+   {
+    "id": "ship_solace-carbonite",
+    "asset": "ship_solace_design_solace-carbonite",
+    "name": "Goliath Solace Carbonite",
+    "sheet": "ship_solace-carbonite"
+   },
+   {
+    "id": "ship_solace-ocean",
+    "asset": "ship_solace_design_solace-ocean",
+    "name": "Goliath Solace Blaze",
+    "sheet": "ship_solace-ocean"
+   },
+   {
+    "id": "ship_solace-poison",
+    "asset": "ship_solace_design_solace-poison",
+    "name": "Solace Posion",
+    "sheet": "ship_solace-poison"
+   },
+   {
+    "id": "ship_solace-borealis",
+    "asset": "ship_solace_design_solace-borealis",
+    "name": "Solace Posion",
+    "sheet": "ship_solace-borealis"
+   },
+   {
+    "id": "ship_solace-argon",
+    "asset": "ship_solace_design_solace-argon",
+    "name": "Solace Argon",
+    "sheet": "ship_solace-argon"
+   },
+   {
+    "id": "ship_solace-inferno",
+    "asset": "ship_solace_design_solace-inferno",
+    "name": "Solace Inferno",
+    "sheet": "ship_solace-inferno"
+   },
+   {
+    "id": "ship_solace-frost",
+    "asset": "ship_solace_design_solace-frost",
+    "name": "Solace Frost",
+    "sheet": "ship_solace-frost"
+   },
+   {
+    "id": "ship_solace-tyrannos",
+    "asset": "ship_solace_design_solace-tyrannos",
+    "name": "Solace Tyrannos",
+    "sheet": "ship_solace-tyrannos"
+   },
+   {
+    "id": "ship_solace-asimov",
+    "asset": "ship_solace_design_solace-asimov",
+    "name": "Solace Asimov",
+    "sheet": "ship_solace-asimov"
+   },
+   {
+    "id": "ship_solace-nobilis",
+    "asset": "ship_solace_design_solace-nobilis",
+    "name": "Solace Nobilis",
+    "sheet": "ship_solace-nobilis"
+   },
+   {
+    "id": "ship_solace-prometheus",
+    "asset": "ship_solace_design_solace-prometheus",
+    "name": "Solace Prometheus",
+    "sheet": "ship_solace-prometheus"
+   },
+   {
+    "id": "ship_solace-epion",
+    "asset": "ship_solace_design_solace-epion",
+    "name": "Solace Epion",
+    "sheet": "ship_solace-epion"
+   },
+   {
+    "id": "ship_solace-osiris",
+    "asset": "ship_solace_design_solace-osiris",
+    "name": "Solace Osiris",
+    "sheet": "ship_solace-osiris"
+   },
+   {
+    "id": "ship_solace-smite",
+    "asset": "ship_solace_design_solace-smite",
+    "name": "Solace Smite",
+    "sheet": "ship_solace-smite"
+   },
+   {
+    "id": "ship_solace-ullrin",
+    "asset": "ship_solace_design_solace-ullrin",
+    "name": "Solace Ullrin",
+    "sheet": "ship_solace-ullrin"
+   },
+   {
+    "id": "ship_solace-contagion",
+    "asset": "ship_solace_design_solace-contagion",
+    "name": "Solace Contagion",
+    "sheet": "ship_solace-contagion"
+   },
+   {
+    "id": "ship_solace-prosperous",
+    "asset": "ship_solace_design_solace-prosperous",
+    "name": "Solace Prosperous",
+    "sheet": "ship_solace-prosperous"
+   }
+  ]
+ },
+ {
+  "id": "ship_g-exalted",
+  "name": "Goliath Exalted",
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_goliath-exalted",
+  "designs": [],
+  "source": "research(base ship_goliath)"
+ },
+ {
+  "id": "ship_diminisher",
+  "name": "Diminisher",
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 16,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_diminisher",
+  "designs": [
+   {
+    "id": "ship_diminisher-neikos",
+    "asset": "ship_diminisher_design_diminisher-neikos",
+    "name": "Diminisher Neikos",
+    "sheet": "ship_diminisher-neikos"
+   },
+   {
+    "id": "ship_diminisher-arios",
+    "asset": "ship_diminisher_design_diminisher-arios",
+    "name": "Diminisher Arios",
+    "sheet": "ship_diminisher-arios"
+   },
+   {
+    "id": "ship_diminisher-violet",
+    "asset": "ship_diminisher_design_diminisher-expo2016",
+    "name": "Diminisher Violet",
+    "sheet": "ship_diminisher-violet"
+   },
+   {
+    "id": "ship_diminisher-argon",
+    "asset": "ship_diminisher_design_diminisher-argon",
+    "name": "Diminisher Argon",
+    "sheet": "ship_diminisher-argon"
+   },
+   {
+    "id": "ship_diminisher-lava",
+    "asset": "ship_diminisher_design_diminisher-lava",
+    "name": "Diminisher Lava",
+    "sheet": "ship_diminisher-lava"
+   },
+   {
+    "id": "ship_diminisher-legend",
+    "asset": "ship_diminisher_design_diminisher-legend",
+    "name": "Diminisher Legend",
+    "sheet": "ship_diminisher-legend"
+   },
+   {
+    "id": "ship_diminisher-inferno",
+    "asset": "ship_diminisher_design_diminisher-inferno",
+    "name": "Diminisher Inferno",
+    "sheet": "ship_diminisher-inferno"
+   },
+   {
+    "id": "ship_diminisher-frost",
+    "asset": "ship_diminisher_design_diminisher-frost",
+    "name": "Diminisher frost",
+    "sheet": "ship_diminisher-frost"
+   },
+   {
+    "id": "ship_diminisher-carbonite",
+    "asset": "ship_diminisher_design_diminisher-carbonite",
+    "name": "Diminisher Carbonite",
+    "sheet": "ship_diminisher-carbonite"
+   },
+   {
+    "id": "ship_diminisher-phantasm",
+    "asset": "ship_diminisher_design_diminisher-phantasm",
+    "name": "Diminisher Phantasm",
+    "sheet": "ship_diminisher-phantasm"
+   },
+   {
+    "id": "ship_diminisher-prometheus",
+    "asset": "ship_diminisher_design_diminisher-prometheus",
+    "name": "Diminisher Prometheus",
+    "sheet": "ship_diminisher-prometheus"
+   },
+   {
+    "id": "ship_diminisher-nobilis",
+    "asset": "ship_diminisher_design_diminisher-nobilis",
+    "name": "Diminisher Nobilis",
+    "sheet": "ship_diminisher-nobilis"
+   },
+   {
+    "id": "ship_diminisher-ullrin",
+    "asset": "ship_diminisher_design_diminisher-ullrin",
+    "name": "Diminisher Ullrin",
+    "sheet": "ship_diminisher-ullrin"
+   },
+   {
+    "id": "ship_diminisher-epion",
+    "asset": "ship_diminisher_design_diminisher-epion",
+    "name": "Diminisher Epion",
+    "sheet": "ship_diminisher-epion"
+   },
+   {
+    "id": "ship_diminisher-osiris",
+    "asset": "ship_diminisher_design_diminisher-osiris",
+    "name": "Diminisher Osiris",
+    "sheet": "ship_diminisher-osiris"
+   },
+   {
+    "id": "ship_diminisher-smite",
+    "asset": "ship_diminisher_design_diminisher-smite",
+    "name": "Diminisher Smite",
+    "sheet": "ship_diminisher-smite"
+   },
+   {
+    "id": "ship_diminisher-harbinger",
+    "asset": "ship_diminisher_design_diminisher-harbinger",
+    "name": "Diminisher Harbinger",
+    "sheet": "ship_diminisher-harbinger"
+   },
+   {
+    "id": "ship_diminisher-seraph",
+    "asset": "ship_diminisher_design_diminisher-seraph",
+    "name": "Diminisher Seraph",
+    "sheet": "ship_diminisher-seraph"
+   },
+   {
+    "id": "ship_diminisher-blaze",
+    "asset": "ship_diminisher_design_diminisher-blaze",
+    "name": "Diminisher Blaze",
+    "sheet": "ship_diminisher-blaze"
+   },
+   {
+    "id": "ship_diminisher-empyrian",
+    "asset": "ship_diminisher_design_diminisher-empyrian",
+    "name": "Diminisher Empyrian",
+    "sheet": "ship_diminisher-empyrian"
+   }
+  ]
+ },
+ {
+  "id": "ship_spectrum",
+  "name": "Spectrum",
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 16,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_spectrum",
+  "designs": [
+   {
+    "id": "ship_spectrum-ullrin",
+    "asset": "ship_spectrum_design_spectrum-ullrin",
+    "name": "Spectrum Ullrin",
+    "sheet": "ship_spectrum-ullrin"
+   },
+   {
+    "id": "ship_spectrum-frost",
+    "asset": "ship_spectrum_design_spectrum-frost",
+    "name": "Skill Design 3 - Spectrum Frost",
+    "sheet": "ship_spectrum-frost"
+   },
+   {
+    "id": "ship_spectrum-inferno",
+    "asset": "ship_spectrum_design_spectrum-inferno",
+    "name": "Skill Design 3 - Spectrum Inferno",
+    "sheet": "ship_spectrum-inferno"
+   },
+   {
+    "id": "ship_spectrum-poison",
+    "asset": "ship_spectrum_design_spectrum-poison",
+    "name": "Spectrum Poison",
+    "sheet": "ship_spectrum-poison"
+   },
+   {
+    "id": "ship_spectrum-lava",
+    "asset": "ship_spectrum_design_spectrum-lava",
+    "name": "Spectrum Lava",
+    "sheet": "ship_spectrum-lava"
+   },
+   {
+    "id": "ship_spectrum-sandstorm",
+    "asset": "ship_spectrum_design_spectrum-sandstorm",
+    "name": "Spectrum Sandstorm",
+    "sheet": "ship_spectrum-sandstorm"
+   },
+   {
+    "id": "ship_spectrum-blaze",
+    "asset": "ship_spectrum_design_spectrum-blaze",
+    "name": "Spectrum Blaze",
+    "sheet": "ship_spectrum-blaze"
+   },
+   {
+    "id": "ship_spectrum-ocean",
+    "asset": "ship_spectrum_design_spectrum-ocean",
+    "name": "Spectrum Ocean",
+    "sheet": "ship_spectrum-ocean"
+   },
+   {
+    "id": "ship_spectrum-legend",
+    "asset": "ship_spectrum_design_spectrum-legend",
+    "name": "Spectrum Legend",
+    "sheet": "ship_spectrum-legend"
+   },
+   {
+    "id": "ship_spectrum-dusklight",
+    "asset": "ship_spectrum_design_spectrum-dusklight",
+    "name": "Spectrum Dusklight",
+    "sheet": "ship_spectrum-dusklight"
+   },
+   {
+    "id": "ship_spectrum-tyrannos",
+    "asset": "ship_spectrum_design_spectrum-tyrannos",
+    "name": "Spectrum Tyrannos",
+    "sheet": "ship_spectrum-tyrannos"
+   },
+   {
+    "id": "ship_spectrum-argon",
+    "asset": "ship_spectrum_design_spectrum-argon",
+    "name": "Spectrum Argon",
+    "sheet": "ship_spectrum-argon"
+   },
+   {
+    "id": "ship_spectrum-ace",
+    "asset": "ship_spectrum_design_spectrum-ace",
+    "name": "Spectrum Ace",
+    "sheet": "ship_spectrum-ace"
+   },
+   {
+    "id": "ship_spectrum-asimov",
+    "asset": "ship_spectrum_design_spectrum-asimov",
+    "name": "Spectrum Asimov",
+    "sheet": "ship_spectrum-asimov"
+   },
+   {
+    "id": "ship_spectrum-carbonite",
+    "asset": "ship_spectrum_design_spectrum-carbonite",
+    "name": "Spectrum Carbonite",
+    "sheet": "ship_spectrum-carbonite"
+   },
+   {
+    "id": "ship_spectrum-epion",
+    "asset": "ship_spectrum_design_spectrum-epion",
+    "name": "Spectrum Epion",
+    "sheet": "ship_spectrum-epion"
+   },
+   {
+    "id": "ship_spectrum-osiris",
+    "asset": "ship_spectrum_design_spectrum-osiris",
+    "name": "Spectrum Osiris",
+    "sheet": "ship_spectrum-osiris"
+   },
+   {
+    "id": "ship_spectrum-smite",
+    "asset": "ship_spectrum_design_spectrum-smite",
+    "name": "Spectrum Smite",
+    "sheet": "ship_spectrum-smite"
+   },
+   {
+    "id": "ship_spectrum-prometheus",
+    "asset": "ship_spectrum_design_spectrum-prometheus",
+    "name": "Spectrum Prometheus",
+    "sheet": "ship_spectrum-prometheus"
+   },
+   {
+    "id": "ship_spectrum-empyrian",
+    "asset": "ship_spectrum_design_spectrum-empyrian",
+    "name": "Spectrum Empyrian",
+    "sheet": "ship_spectrum-empyrian"
+   }
+  ]
+ },
+ {
+  "id": "ship_sentinel",
+  "name": "Sentinel",
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 16,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_sentinel",
+  "designs": [
+   {
+    "id": "ship_sentinel-violet",
+    "asset": "ship_sentinel_design_sentinel-expo2016",
+    "name": "Sentinel violet",
+    "sheet": "ship_sentinel-violet"
+   },
+   {
+    "id": "ship_sentinel-frost",
+    "asset": "ship_sentinel_design_sentinel-frost",
+    "name": "Skill Design 4 - Sentinel Frost",
+    "sheet": "ship_sentinel-frost"
+   },
+   {
+    "id": "ship_sentinel-inferno",
+    "asset": "ship_sentinel_design_sentinel-inferno",
+    "name": "Skill Design 4 - Sentinel Inferno",
+    "sheet": "ship_sentinel-inferno"
+   },
+   {
+    "id": "ship_sentinel-lava",
+    "asset": "ship_sentinel_design_sentinel-lava",
+    "name": "Skill Design 5 - Sentinel Lava",
+    "sheet": "ship_sentinel-lava"
+   },
+   {
+    "id": "ship_sentinel-argon",
+    "asset": "ship_sentinel_design_sentinel-argon",
+    "name": "Skill Design 6 - Sentinel Argon",
+    "sheet": "ship_sentinel-argon"
+   },
+   {
+    "id": "ship_sentinel-legend",
+    "asset": "ship_sentinel_design_sentinel-legend",
+    "name": "Skill Design 6 - Sentinel Legend",
+    "sheet": "ship_sentinel-legend"
+   },
+   {
+    "id": "ship_sentinel-tyrannos",
+    "asset": "ship_sentinel_design_sentinel-tyrannos",
+    "name": "Sentinel Tyrannos",
+    "sheet": "ship_sentinel-tyrannos"
+   },
+   {
+    "id": "ship_sentinel-asimov",
+    "asset": "ship_sentinel_design_sentinel-asimov",
+    "name": "Sentinel Asimov",
+    "sheet": "ship_sentinel-asimov"
+   },
+   {
+    "id": "ship_sentinel-arios",
+    "asset": "ship_sentinel_design_sentinel-arios",
+    "name": "Sentinel Arios",
+    "sheet": "ship_sentinel-arios"
+   },
+   {
+    "id": "ship_sentinel-neikos",
+    "asset": "ship_sentinel_design_sentinel-neikos",
+    "name": "Sentinel Neikos",
+    "sheet": "ship_sentinel-neikos"
+   },
+   {
+    "id": "ship_sentinel-contagion",
+    "asset": "ship_sentinel_design_sentinel-contagion",
+    "name": "Sentinel Contagion",
+    "sheet": "ship_sentinel-contagion"
+   },
+   {
+    "id": "ship_sentinel-nobilis",
+    "asset": "ship_sentinel_design_sentinel-nobilis",
+    "name": "Sentinel Nobilis",
+    "sheet": "ship_sentinel-nobilis"
+   },
+   {
+    "id": "ship_sentinel-ullrin",
+    "asset": "ship_sentinel_design_sentinel-ullrin",
+    "name": "Sentinel Ullrin",
+    "sheet": "ship_sentinel-ullrin"
+   },
+   {
+    "id": "ship_sentinel-harbinger",
+    "asset": "ship_sentinel_design_sentinel-harbinger",
+    "name": "Sentinel Harbinger",
+    "sheet": "ship_sentinel-harbinger"
+   },
+   {
+    "id": "ship_sentinel-carbonite",
+    "asset": "ship_sentinel_design_sentinel-carbonite",
+    "name": "Sentinel Carbonite",
+    "sheet": "ship_sentinel-carbonite"
+   },
+   {
+    "id": "ship_sentinel-epion",
+    "asset": "ship_sentinel_design_sentinel-epion",
+    "name": "Sentinel Epion",
+    "sheet": "ship_sentinel-epion"
+   },
+   {
+    "id": "ship_sentinel-osiris",
+    "asset": "ship_sentinel_design_sentinel-osiris",
+    "name": "Sentinel Osiris",
+    "sheet": "ship_sentinel-osiris"
+   },
+   {
+    "id": "ship_sentinel-smite",
+    "asset": "ship_sentinel_design_sentinel-smite",
+    "name": "Sentinel Smite",
+    "sheet": "ship_sentinel-smite"
+   },
+   {
+    "id": "ship_sentinel-phantasm",
+    "asset": "ship_sentinel_design_sentinel-phantasm",
+    "name": "Sentinel Phantasm",
+    "sheet": "ship_sentinel-phantasm"
+   },
+   {
+    "id": "ship_sentinel-seraph",
+    "asset": "ship_sentinel_design_sentinel-seraph",
+    "name": "Sentinel Seraph",
+    "sheet": "ship_sentinel-seraph"
+   },
+   {
+    "id": "ship_sentinel-empyrian",
+    "asset": "ship_sentinel_design_sentinel-empyrian",
+    "name": "Sentinel Empyrian",
+    "sheet": "ship_sentinel-empyrian"
+   }
+  ]
+ },
+ {
+  "id": "ship_venom",
+  "name": "Venom",
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 16,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_venom",
+  "designs": [
+   {
+    "id": "ship_venom-blaze",
+    "asset": "ship_venom_design_venom-blaze",
+    "name": "Venom Blaze",
+    "sheet": "ship_venom-blaze"
+   },
+   {
+    "id": "ship_venom-frost",
+    "asset": "ship_venom_design_venom-frost",
+    "name": "Venom Frost",
+    "sheet": "ship_venom-frost"
+   },
+   {
+    "id": "ship_venom-inferno",
+    "asset": "ship_venom_design_venom-inferno",
+    "name": "Venom Inferno",
+    "sheet": "ship_venom-inferno"
+   },
+   {
+    "id": "ship_venom-ocean",
+    "asset": "ship_venom_design_venom-ocean",
+    "name": "Venom Ocean",
+    "sheet": "ship_venom-ocean"
+   },
+   {
+    "id": "ship_venom-poison",
+    "asset": "ship_venom_design_venom-poison",
+    "name": "Venom Posion",
+    "sheet": "ship_venom-poison"
+   },
+   {
+    "id": "ship_venom-borealis",
+    "asset": "ship_venom_design_venom-borealis",
+    "name": "Venom Borealis",
+    "sheet": "ship_venom-borealis"
+   },
+   {
+    "id": "ship_venom-argon",
+    "asset": "ship_venom_design_venom-argon",
+    "name": "Venom Argon",
+    "sheet": "ship_venom-argon"
+   },
+   {
+    "id": "ship_venom-neikos",
+    "asset": "ship_venom_design_venom-neikos",
+    "name": "Venom Neikos",
+    "sheet": "ship_venom-neikos"
+   },
+   {
+    "id": "ship_venom-arios",
+    "asset": "ship_venom_design_venom-arios",
+    "name": "Venom Arios",
+    "sheet": "ship_venom-arios"
+   },
+   {
+    "id": "ship_venom-ullrin",
+    "asset": "ship_venom_design_venom-ullrin",
+    "name": "Venom Ullrin",
+    "sheet": "ship_venom-ullrin"
+   },
+   {
+    "id": "ship_venom-epion",
+    "asset": "ship_venom_design_venom-epion",
+    "name": "Venom Epion",
+    "sheet": "ship_venom-epion"
+   },
+   {
+    "id": "ship_venom-empyrian",
+    "asset": "ship_venom_design_venom-empyrian",
+    "name": "Venom Empyrian",
+    "sheet": "ship_venom-empyrian"
+   }
+  ]
+ },
+ {
+  "id": "ship_g-ignite",
+  "name": "Goliath Ignite",
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_goliath-ignite",
+  "designs": [],
+  "source": "research(base ship_goliath)"
+ },
+ {
+  "id": "ship_police",
+  "name": "Police",
+  "hp": 1000000,
+  "speed": 600,
+  "lasers": 20,
+  "generators": 20,
+  "extras": 5,
+  "cargo": 5000,
+  "sheet": "ship_police",
+  "designs": [],
+  "guess": true
+ },
+ {
+  "id": "ship_g-kick",
+  "name": "Goliath Kick",
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_goliath-kick",
+  "designs": [],
+  "source": "research(base ship_goliath)"
+ },
+ {
+  "id": "ship_g-referee",
+  "name": "Goliath Referee",
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_goliath-referee",
+  "designs": [],
+  "source": "research(base ship_goliath)"
+ },
+ {
+  "id": "ship_g-goal",
+  "name": "Goliath Goal",
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_goliath-goal",
+  "designs": [],
+  "source": "research(base ship_goliath)"
+ },
+ {
+  "id": "ship_pusat",
+  "name": "Pusat",
+  "hp": 125000,
+  "speed": 370,
+  "lasers": 16,
+  "generators": 12,
+  "extras": 3,
+  "cargo": 1000,
+  "sheet": "ship_pusat",
+  "designs": [
+   {
+    "id": "ship_pusat-violet",
+    "asset": "ship_pusat_design_pusat-expo2016",
+    "name": "Vengeance Pusat Violet",
+    "sheet": "ship_pusat-violet"
+   },
+   {
+    "id": "ship_pusat-poison",
+    "asset": "ship_pusat_design_pusat-poison",
+    "name": "Vengeance Pusat Poison",
+    "sheet": "ship_pusat-poison"
+   },
+   {
+    "id": "ship_pusat-sandstorm",
+    "asset": "ship_pusat_design_pusat-sandstorm",
+    "name": "Vengeance Pusat Sandstorm",
+    "sheet": "ship_pusat-sandstorm"
+   },
+   {
+    "id": "ship_pusat-lava",
+    "asset": "ship_pusat_design_pusat-lava",
+    "name": "Vengeance Pusat Lava",
+    "sheet": "ship_pusat-lava"
+   },
+   {
+    "id": "ship_pusat-ocean",
+    "asset": "ship_pusat_design_pusat-ocean",
+    "name": "Vengeance Pusat Ocean",
+    "sheet": "ship_pusat-ocean"
+   },
+   {
+    "id": "ship_pusat-blaze",
+    "asset": "ship_pusat_design_pusat-blaze",
+    "name": "Vengeance Pusat blaze",
+    "sheet": "ship_pusat-blaze"
+   },
+   {
+    "id": "ship_pusat-legend",
+    "asset": "ship_pusat_design_pusat-legend",
+    "name": "Vengeance Pusat Legend",
+    "sheet": "ship_pusat-legend"
+   },
+   {
+    "id": "ship_pusat-frost",
+    "asset": "ship_pusat_design_pusat-frost",
+    "name": "Vengeance Pusat Frost",
+    "sheet": "ship_pusat-frost"
+   },
+   {
+    "id": "ship_pusat-inferno",
+    "asset": "ship_pusat_design_pusat-inferno",
+    "name": "Vengeance Pusat Inferno",
+    "sheet": "ship_pusat-inferno"
+   },
+   {
+    "id": "ship_pusat-carbonite",
+    "asset": "ship_pusat_design_pusat-carbonite",
+    "name": "Vengeance Pusat carbonite",
+    "sheet": "ship_pusat-carbonite"
+   }
+  ],
+  "hp_current_wiki": 225000,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ },
+ {
+  "id": "ship_g-surgeon",
+  "name": "Goliath Surgeon",
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_goliath-surgeon-plague",
+  "designs": [
+   {
+    "id": "ship_goliath-surgeon-cicada",
+    "asset": "ship_g-surgeon_design_g-surgeon-cicada",
+    "name": "Surgeon Cicada",
+    "sheet": "ship_goliath-surgeon-cicada"
+   },
+   {
+    "id": "ship_goliath-surgeon-locust",
+    "asset": "ship_g-surgeon_design_g-surgeon-locust",
+    "name": "Surgeon Cicada",
+    "sheet": "ship_goliath-surgeon-locust"
+   },
+   {
+    "id": "ship72",
+    "asset": "ship_g-surgeon_design_g-surgeon-devolarium",
+    "name": "G-Surgeon Devolarium",
+    "sheet": "ship72"
+   },
+   {
+    "id": "ship75",
+    "asset": "ship_g-surgeon_design_g-surgeon-saimon",
+    "name": "G-Surgeon Saimon",
+    "sheet": "ship75"
+   },
+   {
+    "id": "ship76",
+    "asset": "ship_g-surgeon_design_g-surgeon-sibelonit",
+    "name": "G-Surgeon Sibelonit",
+    "sheet": "ship76"
+   }
+  ],
+  "source": "research(base ship_goliath)"
+ },
+ {
+  "id": "ship_g-saturn",
+  "name": "Goliath Saturn",
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_goliath-saturn",
+  "designs": [],
+  "source": "research(base ship_goliath)"
+ },
+ {
+  "id": "ship_g-centaur",
+  "name": "Goliath Centaur",
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_goliath-centaur",
+  "designs": [],
+  "source": "research(base ship_goliath)"
+ },
+ {
+  "id": "ship_bb-solemn",
+  "name": "Bigboy Solemn",
+  "hp": 160000,
+  "speed": 260,
+  "lasers": 8,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 700,
+  "sheet": "ship_bigboy-solemn",
+  "designs": [],
+  "source": "research(base ship_bigboy)"
+ },
+ {
+  "id": "ship_s-veteran",
+  "name": "Spearhead Veteran",
+  "hp": 100000,
+  "speed": 370,
+  "lasers": 5,
+  "generators": 12,
+  "extras": 2,
+  "cargo": 500,
+  "sheet": "ship_spearhead",
+  "designs": [
+   {
+    "id": "ship_spearhead-veteran-mmo",
+    "asset": "ship_s-veteran_1",
+    "name": "Spearhead Veteran",
+    "sheet": "ship_spearhead-veteran-mmo"
+   },
+   {
+    "id": "ship_spearhead-veteran-eic",
+    "asset": "ship_s-veteran_2",
+    "name": "Spearhead Veteran Eic",
+    "sheet": "ship_spearhead-veteran-eic"
+   },
+   {
+    "id": "ship_spearhead-veteran-vru",
+    "asset": "ship_s-veteran_3",
+    "name": "Spearhead Veteran Vru",
+    "sheet": "ship_spearhead-veteran-vru"
+   }
+  ],
+  "source": "research(base ship_spearhead)"
+ },
+ {
+  "id": "ship_a-veteran",
+  "name": "Aegis Veteran",
+  "hp": 275000,
+  "speed": 300,
+  "lasers": 10,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 2000,
+  "sheet": "ship_aegis",
+  "designs": [
+   {
+    "id": "ship_aegis-veteran-mmo",
+    "asset": "ship_a-veteran_1",
+    "name": "Aegis Veteran MMO",
+    "sheet": "ship_aegis-veteran-mmo"
+   },
+   {
+    "id": "ship_aegis-veteran-eic",
+    "asset": "ship_a-veteran_2",
+    "name": "Aegis Veteran EIC",
+    "sheet": "ship_aegis-veteran-eic"
+   },
+   {
+    "id": "ship_aegis-veteran-vru",
+    "asset": "ship_a-veteran_3",
+    "name": "Aegis Veteran VRU",
+    "sheet": "ship_aegis-veteran-vru"
+   }
+  ],
+  "source": "research(base ship_aegis)"
+ },
+ {
+  "id": "ship_c-veteran",
+  "name": "Citadel Elite",
+  "hp": 550000,
+  "speed": 240,
+  "lasers": 7,
+  "generators": 20,
+  "extras": 5,
+  "cargo": 4000,
+  "sheet": "ship_citadel",
+  "designs": [
+   {
+    "id": "ship_citadel-veteran-mmo",
+    "asset": "ship_c-veteran_1",
+    "name": "Citadel Elite MMO",
+    "sheet": "ship_citadel-veteran-mmo"
+   },
+   {
+    "id": "ship_citadel-veteran-eic",
+    "asset": "ship_c-veteran_2",
+    "name": "Citadel Elite EIC",
+    "sheet": "ship_citadel-veteran-eic"
+   },
+   {
+    "id": "ship_citadel-veteran-vru",
+    "asset": "ship_c-veteran_3",
+    "name": "Citadel Elite VRU",
+    "sheet": "ship_citadel-veteran-vru"
+   }
+  ],
+  "source": "research(base ship_citadel)"
+ },
+ {
+  "id": "ship_s-elite",
+  "name": "Spearhead Elite",
+  "hp": 100000,
+  "speed": 370,
+  "lasers": 5,
+  "generators": 12,
+  "extras": 2,
+  "cargo": 500,
+  "sheet": "ship_spearhead",
+  "designs": [
+   {
+    "id": "ship_spearhead-elite-mmo",
+    "asset": "ship_s-elite_1",
+    "name": "Spearhead Elite MMO",
+    "sheet": "ship_spearhead-elite-mmo"
+   },
+   {
+    "id": "ship_spearhead-elite-eic",
+    "asset": "ship_s-elite_2",
+    "name": "Spearhead Elite EIC",
+    "sheet": "ship_spearhead-elite-eic"
+   },
+   {
+    "id": "ship_spearhead-elite-vru",
+    "asset": "ship_s-elite_3",
+    "name": "Spearhead Elite VRU",
+    "sheet": "ship_spearhead-elite-vru"
+   },
+   {
+    "id": "ship_spearhead-elite-frost",
+    "asset": "ship_s-elite_design_s-elite-frost",
+    "name": "Spearhead Frozen",
+    "sheet": "ship_spearhead-elite-frost"
+   }
+  ],
+  "source": "research(base ship_spearhead)"
+ },
+ {
+  "id": "ship_a-elite",
+  "name": "Aegis Elite",
+  "hp": 275000,
+  "speed": 300,
+  "lasers": 10,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 2000,
+  "sheet": "ship_aegis",
+  "designs": [
+   {
+    "id": "ship_aegis-elite-mmo",
+    "asset": "ship_a-elite_1",
+    "name": "Aegis Elite MMO",
+    "sheet": "ship_aegis-elite-mmo"
+   },
+   {
+    "id": "ship_aegis-elite-eic",
+    "asset": "ship_a-elite_2",
+    "name": "Aegis Elite eic",
+    "sheet": "ship_aegis-elite-eic"
+   },
+   {
+    "id": "ship_aegis-elite-vru",
+    "asset": "ship_a-elite_3",
+    "name": "Aegis Elite vru",
+    "sheet": "ship_aegis-elite-vru"
+   },
+   {
+    "id": "ship_aegis-elite-frost",
+    "asset": "ship_a-elite_design_a-elite-frost",
+    "name": "Aegis Frozen",
+    "sheet": "ship_aegis-elite-frost"
+   },
+   {
+    "id": "ship_aegis-elite-poison",
+    "asset": "ship_a-elite_design_a-elite-poison",
+    "name": "Aegis Elite Poison",
+    "sheet": "ship_aegis-elite-poison"
+   },
+   {
+    "id": "ship_aegis-elite-sandstorm",
+    "asset": "ship_a-elite_design_a-elite-sandstorm",
+    "name": "Aegis Elite sandstorm",
+    "sheet": "ship_aegis-elite-sandstorm"
+   },
+   {
+    "id": "ship_aegis-elite-lava",
+    "asset": "ship_a-elite_design_a-elite-lava",
+    "name": "Aegis Elite lava",
+    "sheet": "ship_aegis-elite-lava"
+   },
+   {
+    "id": "ship_aegis-elite-ocean",
+    "asset": "ship_a-elite_design_a-elite-ocean",
+    "name": "Aegis Elite ocean",
+    "sheet": "ship_aegis-elite-ocean"
+   },
+   {
+    "id": "ship_aegis-elite-blaze",
+    "asset": "ship_a-elite_design_a-elite-blaze",
+    "name": "Aegis Elite blaze",
+    "sheet": "ship_aegis-elite-blaze"
+   },
+   {
+    "id": "ship_aegis-elite-legend",
+    "asset": "ship_a-elite_design_a-elite-legend",
+    "name": "Aegis Elite legend",
+    "sheet": "ship_aegis-elite-legend"
+   }
+  ],
+  "source": "research(base ship_aegis)"
+ },
+ {
+  "id": "ship_c-elite",
+  "name": "Citadel Super Elite",
+  "hp": 550000,
+  "speed": 240,
+  "lasers": 7,
+  "generators": 20,
+  "extras": 5,
+  "cargo": 4000,
+  "sheet": "ship_citadel",
+  "designs": [
+   {
+    "id": "ship_c-elite-ullrin",
+    "asset": "ship_c-elite_design_c-elite-ullrin",
+    "name": "C-elite Ullrin",
+    "sheet": "ship_c-elite-ullrin"
+   },
+   {
+    "id": "ship_citadel-elite-mmo",
+    "asset": "ship_c-elite_1",
+    "name": "Citadel Super Elite MMO",
+    "sheet": "ship_citadel-elite-mmo"
+   },
+   {
+    "id": "ship_citadel-elite-eic",
+    "asset": "ship_c-elite_2",
+    "name": "Citadel Super Elite EIC",
+    "sheet": "ship_citadel-elite-eic"
+   },
+   {
+    "id": "ship_citadel-elite-vru",
+    "asset": "ship_c-elite_3",
+    "name": "Citadel Super Elite VRU",
+    "sheet": "ship_citadel-elite-vru"
+   },
+   {
+    "id": "ship_citadel-elite-frost",
+    "asset": "ship_c-elite_design_c-elite-frost",
+    "name": "Citadel Frozen",
+    "sheet": "ship_citadel-elite-frost"
+   }
+  ],
+  "source": "research(base ship_citadel)"
+ },
+ {
+  "id": "ship_g-vanquisher",
+  "name": "Goliath Vanquisher",
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_goliath-vanquisher",
+  "designs": [],
+  "source": "research(base ship_goliath)"
+ },
+ {
+  "id": "ship_g-sovereign",
+  "name": "Goliath Sovereign",
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_goliath-sovereign",
+  "designs": [],
+  "source": "research(base ship_goliath)"
+ },
+ {
+  "id": "ship_g-peacemaker",
+  "name": "Goliath Peacemaker",
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_goliath-peacemaker",
+  "designs": [],
+  "source": "research(base ship_goliath)"
+ },
+ {
+  "id": "ship_n-diplomat",
+  "name": "Nostromo Diplomat",
+  "hp": 120000,
+  "speed": 340,
+  "lasers": 7,
+  "generators": 10,
+  "extras": 3,
+  "cargo": 700,
+  "sheet": "ship_nostromo-diplomat",
+  "designs": [],
+  "source": "research(base ship_nostromo)"
+ },
+ {
+  "id": "ship_n-envoy",
+  "name": "Nostromo Envoy",
+  "hp": 120000,
+  "speed": 340,
+  "lasers": 7,
+  "generators": 10,
+  "extras": 3,
+  "cargo": 700,
+  "sheet": "ship_nostromo-envoy",
+  "designs": [],
+  "source": "research(base ship_nostromo)"
+ },
+ {
+  "id": "ship_n-ambassador",
+  "name": "Nostromo Ambassador",
+  "hp": 120000,
+  "speed": 340,
+  "lasers": 7,
+  "generators": 10,
+  "extras": 3,
+  "cargo": 700,
+  "sheet": "ship_nostromo-ambassador",
+  "designs": [
+   {
+    "id": "ship_nostromo-ambassador-frost",
+    "asset": "ship_n-ambassador_design_n-ambassador-frost",
+    "name": "Nostromo Frost",
+    "sheet": "ship_nostromo-ambassador-frost"
+   },
+   {
+    "id": "ship_nostromo-ambassador-inferno",
+    "asset": "ship_n-ambassador_design_n-ambassador-inferno",
+    "name": "Nostromo inferno",
+    "sheet": "ship_nostromo-ambassador-inferno"
+   }
+  ],
+  "source": "research(base ship_nostromo)"
+ },
+ {
+  "id": "ship_g-champion",
+  "name": "Goliath Champion",
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_goliath-champion",
+  "designs": [
+   {
+    "id": "ship_goliath-champion-legend",
+    "asset": "ship_g-champion_design_g-champion-legend",
+    "name": "Goliath Champion Legend",
+    "sheet": "ship_goliath-champion-legend"
+   },
+   {
+    "id": "ship_goliath-champion-lava",
+    "asset": "ship_g-champion_design_g-champion-lava",
+    "name": "Goliath Champion Lava",
+    "sheet": "ship_goliath-champion-lava"
+   },
+   {
+    "id": "ship_goliath-champion-argon",
+    "asset": "ship_g-champion_design_g-champion-argon",
+    "name": "Goliath Champion Argon",
+    "sheet": "ship_goliath-champion-argon"
+   },
+   {
+    "id": "ship_goliath-champion-dusklight",
+    "asset": "ship_g-champion_design_g-champion-dusklight",
+    "name": "Goliath Champion Dusklight",
+    "sheet": "ship_goliath-champion-dusklight"
+   },
+   {
+    "id": "ship_goliath-champion-tyrannos",
+    "asset": "ship_g-champion_design_g-champion-tyrannos",
+    "name": "Goliath Champion Tyrannos",
+    "sheet": "ship_goliath-champion-tyrannos"
+   },
+   {
+    "id": "ship_goliath-champion-independence",
+    "asset": "ship_g-champion_design_g-champion-independence",
+    "name": "Goliath Stars and Stripes",
+    "sheet": "ship_goliath-champion-independence"
+   },
+   {
+    "id": "ship_goliath-champion-turkey",
+    "asset": "ship_g-champion_design_g-champion-hezarfen",
+    "name": "Goliath TR",
+    "sheet": "ship_goliath-champion-turkey"
+   },
+   {
+    "id": "ship_goliath-champion-albania",
+    "asset": "ship_g-champion_design_g-champion-albania",
+    "name": "Goliath Albania",
+    "sheet": "ship_goliath-champion-albania"
+   },
+   {
+    "id": "ship_goliath-champion-austria",
+    "asset": "ship_g-champion_design_g-champion-austria",
+    "name": "Goliath Austria",
+    "sheet": "ship_goliath-champion-austria"
+   },
+   {
+    "id": "ship_goliath-champion-belgium",
+    "asset": "ship_g-champion_design_g-champion-belgium",
+    "name": "Goliath Belgium",
+    "sheet": "ship_goliath-champion-belgium"
+   },
+   {
+    "id": "ship_goliath-champion-croatia",
+    "asset": "ship_g-champion_design_g-champion-croatia",
+    "name": "Goliath Croatia",
+    "sheet": "ship_goliath-champion-croatia"
+   },
+   {
+    "id": "ship_goliath-champion-czech_republic",
+    "asset": "ship_g-champion_design_g-champion-czech-republic",
+    "name": "Goliath Czech-Republic",
+    "sheet": "ship_goliath-champion-czech_republic"
+   },
+   {
+    "id": "ship_goliath-champion-england",
+    "asset": "ship_g-champion_design_g-champion-england",
+    "name": "Goliath England",
+    "sheet": "ship_goliath-champion-england"
+   },
+   {
+    "id": "ship_goliath-champion-france",
+    "asset": "ship_g-champion_design_g-champion-france",
+    "name": "Goliath France",
+    "sheet": "ship_goliath-champion-france"
+   },
+   {
+    "id": "ship_goliath-champion-germany",
+    "asset": "ship_g-champion_design_g-champion-germany",
+    "name": "Goliath Germany",
+    "sheet": "ship_goliath-champion-germany"
+   },
+   {
+    "id": "ship_goliath-champion-hungary",
+    "asset": "ship_g-champion_design_g-champion-hungary",
+    "name": "Goliath Hungary",
+    "sheet": "ship_goliath-champion-hungary"
+   },
+   {
+    "id": "ship_goliath-champion-iceland",
+    "asset": "ship_g-champion_design_g-champion-iceland",
+    "name": "Goliath Iceland",
+    "sheet": "ship_goliath-champion-iceland"
+   },
+   {
+    "id": "ship_goliath-champion-italy",
+    "asset": "ship_g-champion_design_g-champion-italy",
+    "name": "Goliath Italy",
+    "sheet": "ship_goliath-champion-italy"
+   },
+   {
+    "id": "ship_goliath-champion-northen_ireland",
+    "asset": "ship_g-champion_design_g-champion-northern-ireland",
+    "name": "Goliath Northern Ireland",
+    "sheet": "ship_goliath-champion-northen_ireland"
+   },
+   {
+    "id": "ship_goliath-champion-poland",
+    "asset": "ship_g-champion_design_g-champion-poland",
+    "name": "Goliath Poland",
+    "sheet": "ship_goliath-champion-poland"
+   },
+   {
+    "id": "ship_goliath-champion-portugal",
+    "asset": "ship_g-champion_design_g-champion-portugal",
+    "name": "Goliath Portugal",
+    "sheet": "ship_goliath-champion-portugal"
+   },
+   {
+    "id": "ship_goliath-champion-republic_of_ireland",
+    "asset": "ship_g-champion_design_g-champion-republic-of-ireland",
+    "name": "Goliath Republic of Ireland",
+    "sheet": "ship_goliath-champion-republic_of_ireland"
+   },
+   {
+    "id": "ship_goliath-champion-romania",
+    "asset": "ship_g-champion_design_g-champion-romania",
+    "name": "Goliath Romania",
+    "sheet": "ship_goliath-champion-romania"
+   },
+   {
+    "id": "ship_goliath-champion-russia",
+    "asset": "ship_g-champion_design_g-champion-russia",
+    "name": "Goliath Russia",
+    "sheet": "ship_goliath-champion-russia"
+   },
+   {
+    "id": "ship_goliath-champion-slovakia",
+    "asset": "ship_g-champion_design_g-champion-slovakia",
+    "name": "Goliath Slovakia",
+    "sheet": "ship_goliath-champion-slovakia"
+   },
+   {
+    "id": "ship_goliath-champion-spain",
+    "asset": "ship_g-champion_design_g-champion-spain",
+    "name": "Goliath Spain",
+    "sheet": "ship_goliath-champion-spain"
+   },
+   {
+    "id": "ship_goliath-champion-sweden",
+    "asset": "ship_g-champion_design_g-champion-sweden",
+    "name": "Goliath Sweden",
+    "sheet": "ship_goliath-champion-sweden"
+   },
+   {
+    "id": "ship_goliath-champion-switzerland",
+    "asset": "ship_g-champion_design_g-champion-switzerland",
+    "name": "Goliath Switzerland",
+    "sheet": "ship_goliath-champion-switzerland"
+   },
+   {
+    "id": "ship_goliath-champion-ukraine",
+    "asset": "ship_g-champion_design_g-champion-ukraine",
+    "name": "Goliath Ukraine",
+    "sheet": "ship_goliath-champion-ukraine"
+   },
+   {
+    "id": "ship_goliath-champion-wales",
+    "asset": "ship_g-champion_design_g-champion-wales",
+    "name": "Goliath Wales",
+    "sheet": "ship_goliath-champion-wales"
+   }
+  ],
+  "source": "research(base ship_goliath)"
+ },
+ {
+  "id": "ship_tartarus",
+  "name": "Tartarus",
+  "hp": 260000,
+  "speed": 220,
+  "lasers": 14,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "tartarus",
+  "designs": [
+   {
+    "id": "ship_tartarus-dusklight",
+    "asset": "ship_tartarus_design_tartarus-dusklight",
+    "name": "Tartarus Dusklight",
+    "sheet": "ship_tartarus-dusklight"
+   },
+   {
+    "id": "ship_tartarus_smite",
+    "asset": "ship_tartarus_design_tartarus-smite",
+    "name": "Tartarus-smite",
+    "sheet": "ship_tartarus_smite"
+   },
+   {
+    "id": "ship_tartarus_osiris",
+    "asset": "ship_tartarus_design_tartarus-osiris",
+    "name": "Tartarus-osiris",
+    "sheet": "ship_tartarus_osiris"
+   },
+   {
+    "id": "ship_tartarus_epion",
+    "asset": "ship_tartarus_design_tartarus-epion",
+    "name": "Tartarus-epion",
+    "sheet": "ship_tartarus_epion"
+   },
+   {
+    "id": "ship_tartarus-frost",
+    "asset": "ship_tartarus_design_tartarus-frost",
+    "name": "Tartarus Frost",
+    "sheet": "ship_tartarus-frost"
+   }
+  ],
+  "hp_current_wiki": 360000,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ },
+ {
+  "id": "ship_mimesis",
+  "name": "Mimesis",
+  "hp": 286000,
+  "speed": 300,
+  "lasers": 14,
+  "generators": 14,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "mimesis",
+  "designs": [
+   {
+    "id": "mimesis_design_carbonite",
+    "asset": "ship_mimesis_design_mimesis-carbonite",
+    "name": "Mimesis Carbonite",
+    "sheet": "mimesis_design_carbonite"
+   },
+   {
+    "id": "mimesis-nobilis",
+    "asset": "ship_mimesis_design_mimesis-nobilis",
+    "name": "Mimesis Nobilis",
+    "sheet": "mimesis-nobilis"
+   },
+   {
+    "id": "mimesis-tyrannos",
+    "asset": "ship_mimesis_design_mimesis-tyrannos",
+    "name": "Mimesis Tyrannos",
+    "sheet": "mimesis-tyrannos"
+   },
+   {
+    "id": "mimesis-smite",
+    "asset": "ship_mimesis_design_mimesis-smite",
+    "name": "Mimesis Smite",
+    "sheet": "mimesis-smite"
+   },
+   {
+    "id": "mimesis-osiris",
+    "asset": "ship_mimesis_design_mimesis-osiris",
+    "name": "Mimesis Osiris",
+    "sheet": "mimesis-osiris"
+   },
+   {
+    "id": "mimesis-epion",
+    "asset": "ship_mimesis_design_mimesis-epion",
+    "name": "Mimesis Epion",
+    "sheet": "mimesis-epion"
+   },
+   {
+    "id": "ship_mimesis-prometheus",
+    "asset": "ship_mimesis_design_mimesis-prometheus",
+    "name": "Mimesis Prometheus",
+    "sheet": "ship_mimesis-prometheus"
+   },
+   {
+    "id": "ship_mimesis-asimov",
+    "asset": "ship_mimesis_design_mimesis-asimov",
+    "name": "Mimesis Asimov",
+    "sheet": "ship_mimesis-asimov"
+   },
+   {
+    "id": "ship_mimesis-inferno",
+    "asset": "ship_mimesis_design_mimesis-inferno",
+    "name": "Mimesis Inferno",
+    "sheet": "ship_mimesis-inferno"
+   },
+   {
+    "id": "ship_mimesis-frost",
+    "asset": "ship_mimesis_design_mimesis-frost",
+    "name": "Mimesis Frost",
+    "sheet": "ship_mimesis-frost"
+   },
+   {
+    "id": "ship_mimesis-phantasm",
+    "asset": "ship_mimesis_design_mimesis-phantasm",
+    "name": "Mimesis Phantasm",
+    "sheet": "ship_mimesis-phantasm"
+   }
+  ],
+  "hp_current_wiki": 386000,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ },
+ {
+  "id": "ship_goliath-x",
+  "name": "Goliath X",
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 16,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_goliath-x",
+  "designs": [
+   {
+    "id": "ship_goliath-x-ocean",
+    "asset": "ship_goliath-x_design_goliath-x-ocean",
+    "name": "Goliath-x ocean",
+    "sheet": "ship_goliath-x-ocean"
+   },
+   {
+    "id": "ship_goliath-x-borealis",
+    "asset": "ship_goliath-x_design_goliath-x-borealis",
+    "name": "Goliath-x borealis",
+    "sheet": "ship_goliath-x-borealis"
+   },
+   {
+    "id": "ship_goliath-x-sandstorm",
+    "asset": "ship_goliath-x_design_goliath-x-sandstorm",
+    "name": "Goliath-x sandstorm",
+    "sheet": "ship_goliath-x-sandstorm"
+   },
+   {
+    "id": "ship_goliath-x-lava",
+    "asset": "ship_goliath-x_design_goliath-x-lava",
+    "name": "Goliath-x lava",
+    "sheet": "ship_goliath-x-lava"
+   },
+   {
+    "id": "ship_goliath-x-argon",
+    "asset": "ship_goliath-x_design_goliath-x-argon",
+    "name": "Goliath-x argon",
+    "sheet": "ship_goliath-x-argon"
+   },
+   {
+    "id": "ship_goliath-x-legend",
+    "asset": "ship_goliath-x_design_goliath-x-legend",
+    "name": "Goliath-x legend",
+    "sheet": "ship_goliath-x-legend"
+   },
+   {
+    "id": "ship_goliath-x-frost",
+    "asset": "ship_goliath-x_design_goliath-x-frost",
+    "name": "Goliath-x frost",
+    "sheet": "ship_goliath-x-frost"
+   }
+  ],
+  "guess": true
+ },
+ {
+  "id": "ship_yamato-ronin",
+  "name": "Yamato Ronin",
+  "hp": 200000,
+  "speed": 260,
+  "lasers": 8,
+  "generators": 12,
+  "extras": 3,
+  "cargo": 1000,
+  "sheet": "ship_yamato-ronin",
+  "designs": [],
+  "hp_current_wiki": 300000,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ },
+ {
+  "id": "ship_defcom-raven",
+  "name": "Defcom Raven",
+  "hp": 187500,
+  "speed": 340,
+  "lasers": 12,
+  "generators": 8,
+  "extras": 2,
+  "cargo": 800,
+  "sheet": "ship_defcom-raven",
+  "designs": [],
+  "hp_current_wiki": 287500,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ },
+ {
+  "id": "ship_cyborg",
+  "name": "Cyborg",
+  "hp": 265000,
+  "speed": 300,
+  "lasers": 16,
+  "generators": 16,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_cyborg",
+  "designs": [
+   {
+    "id": "ship_cyborg-prosperous",
+    "asset": "ship_cyborg_design_cyborg-prosperous",
+    "name": "Cyborg Prosperous",
+    "sheet": "ship_cyborg-prosperous"
+   },
+   {
+    "id": "ship_cyborg-prometheus",
+    "asset": "ship_cyborg_design_cyborg-prometheus",
+    "name": "Cyborg Prometheus",
+    "sheet": "ship_cyborg-prometheus"
+   },
+   {
+    "id": "ship_cyborg-lava",
+    "asset": "ship_cyborg_design_cyborg-lava",
+    "name": "Cyborg Lava",
+    "sheet": "ship_cyborg-lava"
+   },
+   {
+    "id": "ship_cyborg-carbonite",
+    "asset": "ship_cyborg_design_cyborg-carbonite",
+    "name": "Cyborg Carbonite",
+    "sheet": "ship_cyborg-carbonite"
+   },
+   {
+    "id": "ship_cyborg-celestial",
+    "asset": "ship_cyborg_design_cyborg-celestial",
+    "name": "Cyborg Celestial",
+    "sheet": "ship_cyborg-celestial"
+   },
+   {
+    "id": "ship_cyborg-dusklight",
+    "asset": "ship_cyborg_design_cyborg-dusklight",
+    "name": "Cyborg Dusklight",
+    "sheet": "ship_cyborg-dusklight"
+   },
+   {
+    "id": "ship_cyborg-firestar",
+    "asset": "ship_cyborg_design_cyborg-firestar",
+    "name": "Cyborg Firestar",
+    "sheet": "ship_cyborg-firestar"
+   },
+   {
+    "id": "ship_cyborg-maelstorm",
+    "asset": "ship_cyborg_design_cyborg-maelstrom",
+    "name": "Cyborg Maelstrom",
+    "sheet": "ship_cyborg-maelstorm"
+   },
+   {
+    "id": "ship_cyborg-seraph",
+    "asset": "ship_cyborg_design_cyborg-seraph",
+    "name": "Cyborg Seraph",
+    "sheet": "ship_cyborg-seraph"
+   },
+   {
+    "id": "ship_cyborg-argon",
+    "asset": "ship_cyborg_design_ship-cyborg-argon",
+    "name": "Cyborg Argon",
+    "sheet": "ship_cyborg-argon"
+   },
+   {
+    "id": "ship_cyborg-starscream",
+    "asset": "ship_cyborg_design_cyborg-starscream",
+    "name": "Cyborg Starscream",
+    "sheet": "ship_cyborg-starscream"
+   },
+   {
+    "id": "ship_cyborg-stealthblack",
+    "asset": "ship_cyborg_design_cyborg-stealthblack",
+    "name": "Cyborg Stealthblack",
+    "sheet": "ship_cyborg-stealthblack"
+   },
+   {
+    "id": "ship_cyborg-sunstorm",
+    "asset": "ship_cyborg_design_cyborg-sunstorm",
+    "name": "Cyborg Sunstorm",
+    "sheet": "ship_cyborg-sunstorm"
+   },
+   {
+    "id": "ship_cyborg-infinite",
+    "asset": "ship_cyborg_design_cyborg-infinite",
+    "name": "Cyborg Infinite",
+    "sheet": "ship_cyborg-infinite"
+   },
+   {
+    "id": "ship_cyborg-scourge",
+    "asset": "ship_cyborg_design_cyborg-scourge",
+    "name": "Cyborg Scourge",
+    "sheet": "ship_cyborg-scourge"
+   },
+   {
+    "id": "ship_cyborg-frost",
+    "asset": "ship_cyborg_design_cyborg-frozen",
+    "name": "Cyborg Frozen",
+    "sheet": "ship_cyborg-frost"
+   },
+   {
+    "id": "ship_cyborg-nobilis",
+    "asset": "ship_cyborg_design_cyborg-nobilis",
+    "name": "Cyborg Nobilis",
+    "sheet": "ship_cyborg-nobilis"
+   },
+   {
+    "id": "ship_cyborg-inferno",
+    "asset": "ship_cyborg_design_cyborg-inferno",
+    "name": "Cyborg Inferno",
+    "sheet": "ship_cyborg-inferno"
+   },
+   {
+    "id": "ship_cyborg-ocean",
+    "asset": "ship_cyborg_design_cyborg-ocean",
+    "name": "Cyborg Ocean",
+    "sheet": "ship_cyborg-ocean"
+   },
+   {
+    "id": "ship_cyborg-poison",
+    "asset": "ship_cyborg_design_cyborg-poison",
+    "name": "Cyborg Poison",
+    "sheet": "ship_cyborg-poison"
+   },
+   {
+    "id": "ship_cyborg-blaze",
+    "asset": "ship_cyborg_design_cyborg-blaze",
+    "name": "Cyborg Blaze",
+    "sheet": "ship_cyborg-blaze"
+   },
+   {
+    "id": "ship_cyborg-ullrin",
+    "asset": "ship_cyborg_design_cyborg-ullrin",
+    "name": "Cyborg Ullrin",
+    "sheet": "ship_cyborg-ullrin"
+   },
+   {
+    "id": "ship_cyborg-tyrannos",
+    "asset": "ship_cyborg_design_cyborg-tyrannos",
+    "name": "Cyborg Tyrannos",
+    "sheet": "ship_cyborg-tyrannos"
+   },
+   {
+    "id": "ship_cyborg-asimov",
+    "asset": "ship_cyborg_design_cyborg-asimov",
+    "name": "Cyborg Asimov",
+    "sheet": "ship_cyborg-asimov"
+   },
+   {
+    "id": "ship_cyborg-epion",
+    "asset": "ship_cyborg_design_cyborg-epion",
+    "name": "Cyborg Epion",
+    "sheet": "ship_cyborg-epion"
+   },
+   {
+    "id": "ship_cyborg-osiris",
+    "asset": "ship_cyborg_design_cyborg-osiris",
+    "name": "Cyborg Osiris",
+    "sheet": "ship_cyborg-osiris"
+   },
+   {
+    "id": "ship_cyborg-smite",
+    "asset": "ship_cyborg_design_cyborg-smite",
+    "name": "Cyborg Smite",
+    "sheet": "ship_cyborg-smite"
+   },
+   {
+    "id": "ship_cyborg-neikos",
+    "asset": "ship_cyborg_design_cyborg-neikos",
+    "name": "Cyborg Neikos",
+    "sheet": "ship_cyborg-neikos"
+   },
+   {
+    "id": "ship_cyborg-arios",
+    "asset": "ship_cyborg_design_cyborg-arios",
+    "name": "Cyborg Arios",
+    "sheet": "ship_cyborg-arios"
+   },
+   {
+    "id": "ship_cyborg-amor",
+    "asset": "ship_cyborg_design_cyborg-amor",
+    "name": "Cyborg Amor",
+    "sheet": "ship_cyborg-amor"
+   },
+   {
+    "id": "ship_cyborg-psyche",
+    "asset": "ship_cyborg_design_cyborg-psyche",
+    "name": "Cyborg Psyche",
+    "sheet": "ship_cyborg-psyche"
+   },
+   {
+    "id": "ship_cyborg-horus",
+    "asset": "ship_cyborg_design_cyborg-horus",
+    "name": "Cyborg Horus",
+    "sheet": "ship_cyborg-horus"
+   }
+  ],
+  "hp_current_wiki": 365000,
+  "hp_derived": "current wiki - 100000",
+  "boosts": {
+   "damage": 1.1
+  },
+  "abilities": [
+   "SINGULARITY"
+  ],
+  "source": "research"
+ },
+ {
+  "id": "ship_hammerclaw",
+  "name": "Hammerclaw",
+  "hp": 277500,
+  "speed": 310,
+  "lasers": 12,
+  "generators": 14,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_hammerclaw",
+  "designs": [
+   {
+    "id": "ship_hammerclaw-lava",
+    "asset": "ship_hammerclaw_design_hammerclaw-lava",
+    "name": "Hammerclaw Lava",
+    "sheet": "ship_hammerclaw-lava"
+   },
+   {
+    "id": "ship_hammerclaw-carbonite",
+    "asset": "ship_hammerclaw_design_hammerclaw-carbonite",
+    "name": "Hammerclaw Carbonite",
+    "sheet": "ship_hammerclaw-carbonite"
+   },
+   {
+    "id": "ship_hammerclaw-bane",
+    "asset": "ship_hammerclaw_design_hammerclaw-bane",
+    "name": "Hammerclaw Bane",
+    "sheet": "ship_hammerclaw-bane"
+   },
+   {
+    "id": "ship_hammerclaw-frost",
+    "asset": "ship_hammerclaw_design_hammerclaw-frozen",
+    "name": "Hammerclaw Frost",
+    "sheet": "ship_hammerclaw-frost"
+   },
+   {
+    "id": "ship_hammerclaw-nobilis",
+    "asset": "ship_hammerclaw_design_hammerclaw-nobilis",
+    "name": "Hammerclaw Nobilis",
+    "sheet": "ship_hammerclaw-nobilis"
+   },
+   {
+    "id": "ship_hammerclaw-ullrin",
+    "asset": "ship_hammerclaw_design_hammerclaw-ullrin",
+    "name": "Hammerclaw Ullrin",
+    "sheet": "ship_hammerclaw-ullrin"
+   },
+   {
+    "id": "ship_hammerclaw-tyrannos",
+    "asset": "ship_hammerclaw_design_hammerclaw-tyrannos",
+    "name": "Hammerclaw Tyrannos",
+    "sheet": "ship_hammerclaw-tyrannos"
+   },
+   {
+    "id": "ship_hammerclaw-prometheus",
+    "asset": "ship_hammerclaw_design_hammerclaw-prometheus",
+    "name": "Hammerclaw Prometheus",
+    "sheet": "ship_hammerclaw-prometheus"
+   },
+   {
+    "id": "ship_hammerclaw-inferno",
+    "asset": "ship_hammerclaw_design_hammerclaw-inferno",
+    "name": "Hammerclaw Inferno",
+    "sheet": "ship_hammerclaw-inferno"
+   },
+   {
+    "id": "ship_hammerclaw-prosperous",
+    "asset": "ship_hammerclaw_design_hammerclaw-prosperous",
+    "name": "Hammerclaw Prosperous",
+    "sheet": "ship_hammerclaw-prosperous"
+   }
+  ],
+  "hp_current_wiki": 377500,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ },
+ {
+  "id": "ship_centurion",
+  "name": "Centurion",
+  "hp": 265000,
+  "speed": 300,
+  "lasers": 16,
+  "generators": 16,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_centurion",
+  "designs": [
+   {
+    "id": "ship_centurion-tyrannos",
+    "asset": "ship_centurion_design_centurion-tyrannos",
+    "name": "Centurion Tyrannos",
+    "sheet": "ship_centurion-tyrannos"
+   },
+   {
+    "id": "ship_centurion-frost",
+    "asset": "ship_centurion_design_centurion-frost",
+    "name": "Centurion Frost",
+    "sheet": "ship_centurion-frost"
+   },
+   {
+    "id": "ship_centurion-ability",
+    "asset": "ship_centurion_design_centurion-ability1",
+    "name": "Centurion",
+    "sheet": "ship_centurion-ability"
+   },
+   {
+    "id": "ship_centurion-damage",
+    "asset": "ship_centurion_design_centurion-damage1",
+    "name": "Centurion",
+    "sheet": "ship_centurion-damage"
+   },
+   {
+    "id": "ship_centurion-hp",
+    "asset": "ship_centurion_design_centurion-hp1",
+    "name": "Centurion",
+    "sheet": "ship_centurion-hp"
+   },
+   {
+    "id": "ship_centurion-shield",
+    "asset": "ship_centurion_design_centurion-shield1",
+    "name": "Centurion",
+    "sheet": "ship_centurion-shield"
+   },
+   {
+    "id": "ship_centurion-speed",
+    "asset": "ship_centurion_design_centurion-speed1",
+    "name": "Centurion",
+    "sheet": "ship_centurion-speed"
+   }
+  ],
+  "hp_current_wiki": 365000,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ },
+ {
+  "id": "ship_hecate",
+  "name": "Hecate",
+  "hp": 277500,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 16,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_hecate",
+  "designs": [
+   {
+    "id": "ship_hecate-dusklight",
+    "asset": "ship_hecate_design_hecate-dusklight",
+    "name": "Hecate Dusklight",
+    "sheet": "ship_hecate-dusklight"
+   },
+   {
+    "id": "ship_hecate-inferno",
+    "asset": "ship_hecate_design_hecate-inferno",
+    "name": "Hecate Inferno",
+    "sheet": "ship_hecate-inferno"
+   },
+   {
+    "id": "ship_hecate-ullrin",
+    "asset": "ship_hecate_design_hecate-ullrin",
+    "name": "Hecate Ullrin",
+    "sheet": "ship_hecate-ullrin"
+   },
+   {
+    "id": "ship_hecate-tyrannos",
+    "asset": "ship_hecate_design_hecate-tyrannos",
+    "name": "Hecate Tyrannos",
+    "sheet": "ship_hecate-tyrannos"
+   },
+   {
+    "id": "ship_hecate-frost",
+    "asset": "ship_hecate_design_hecate-frost",
+    "name": "Hecate Frost",
+    "sheet": "ship_hecate-frost"
+   },
+   {
+    "id": "ship_hecate-carbonite",
+    "asset": "ship_hecate_design_hecate-carbonite",
+    "name": "Hecate Carbonite",
+    "sheet": "ship_hecate-carbonite"
+   },
+   {
+    "id": "ship_hecate-lava",
+    "asset": "ship_hecate_design_hecate-lava",
+    "name": "Hecate Lava",
+    "sheet": "ship_hecate-lava"
+   },
+   {
+    "id": "ship_hecate-poison",
+    "asset": "ship_hecate_design_hecate-poison",
+    "name": "Hecate Poison",
+    "sheet": "ship_hecate-poison"
+   },
+   {
+    "id": "ship_hecate-ocean",
+    "asset": "ship_hecate_design_hecate-ocean",
+    "name": "Hecate Ocean",
+    "sheet": "ship_hecate-ocean"
+   }
+  ],
+  "hp_current_wiki": 377500,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ },
+ {
+  "id": "ship_disruptor",
+  "name": "Disruptor",
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 14,
+  "generators": 14,
+  "extras": 3,
+  "cargo": 1600,
+  "sheet": "ship_disruptor",
+  "designs": [
+   {
+    "id": "ship_disruptor-neikos",
+    "asset": "ship_disruptor_design_disruptor-neikos",
+    "name": "Disruptor Neikos",
+    "sheet": "ship_disruptor-neikos"
+   },
+   {
+    "id": "ship_disruptor-arios",
+    "asset": "ship_disruptor_design_disruptor-arios",
+    "name": "Disruptor Arios",
+    "sheet": "ship_disruptor-arios"
+   },
+   {
+    "id": "ship_disruptor-frost",
+    "asset": "ship_disruptor_design_disruptor-frost",
+    "name": "Disruptor Frost",
+    "sheet": "ship_disruptor-frost"
+   },
+   {
+    "id": "ship_disruptor-tyrannos",
+    "asset": "ship_disruptor_design_disruptor-tyrannos",
+    "name": "Disruptor Tyrannos",
+    "sheet": "ship_disruptor-tyrannos"
+   },
+   {
+    "id": "ship_disruptor-ullrin",
+    "asset": "ship_disruptor_design_disruptor-ullrin",
+    "name": "Disruptor Ullrin",
+    "sheet": "ship_disruptor-ullrin"
+   },
+   {
+    "id": "ship_disruptor-prometheus",
+    "asset": "ship_disruptor_design_disruptor-prometheus",
+    "name": "Disruptor Prometheus",
+    "sheet": "ship_disruptor-prometheus"
+   },
+   {
+    "id": "ship_disruptor-harbinger",
+    "asset": "ship_disruptor_design_disruptor-harbinger",
+    "name": "Disruptor Harbinger",
+    "sheet": "ship_disruptor-harbinger"
+   }
+  ],
+  "hp_current_wiki": 356000,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ },
+ {
+  "id": "ship_berserker",
+  "name": "Berserker",
+  "hp": 400000,
+  "speed": 290,
+  "lasers": 5,
+  "generators": 16,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_berserker",
+  "designs": [
+   {
+    "id": "ship_berserker-ocean",
+    "asset": "ship_berserker_design_berserker-ocean",
+    "name": "Berserker Ocean",
+    "sheet": "ship_berserker-ocean"
+   },
+   {
+    "id": "ship_berserker-poison",
+    "asset": "ship_berserker_design_berserker-poison",
+    "name": "Berserker Poison",
+    "sheet": "ship_berserker-poison"
+   },
+   {
+    "id": "ship_berserker-borealis",
+    "asset": "ship_berserker_design_berserker-borealis",
+    "name": "Berserker Borealis",
+    "sheet": "ship_berserker-borealis"
+   },
+   {
+    "id": "ship_berserker-legend",
+    "asset": "ship_berserker_design_berserker-legend",
+    "name": "Berserker Legend",
+    "sheet": "ship_berserker-legend"
+   },
+   {
+    "id": "ship_berserker-ullrin",
+    "asset": "ship_berserker_design_berserker-ullrin",
+    "name": "Berserker Ullrin",
+    "sheet": "ship_berserker-ullrin"
+   },
+   {
+    "id": "ship_berserker-phantasm",
+    "asset": "ship_berserker_design_berserker-phantasm",
+    "name": "Berserker Phantasm",
+    "sheet": "ship_berserker-phantasm"
+   },
+   {
+    "id": "ship_berserker-neikos",
+    "asset": "ship_berserker_design_berserker-neikos",
+    "name": "Berserker Neikos",
+    "sheet": "ship_berserker-neikos"
+   },
+   {
+    "id": "ship_berserker-arios",
+    "asset": "ship_berserker_design_berserker-arios",
+    "name": "Berserker Arios",
+    "sheet": "ship_berserker-arios"
+   },
+   {
+    "id": "ship_berserker-frost",
+    "asset": "ship_berserker_design_berserker-frost",
+    "name": "Berserker Frost",
+    "sheet": "ship_berserker-frost"
+   },
+   {
+    "id": "ship_berserker-blaze",
+    "asset": "ship_berserker_design_berserker-blaze",
+    "name": "Berserker Blaze",
+    "sheet": "ship_berserker-blaze"
+   },
+   {
+    "id": "ship_berserker-carbonite",
+    "asset": "ship_berserker_design_berserker-carbonite",
+    "name": "Berserker Carbonite",
+    "sheet": "ship_berserker-carbonite"
+   },
+   {
+    "id": "ship_berserker-lava",
+    "asset": "ship_berserker_design_berserker-lava",
+    "name": "Berserker Lava",
+    "sheet": "ship_berserker-lava"
+   },
+   {
+    "id": "ship_berserker-amor",
+    "asset": "ship_berserker_design_berserker-amor",
+    "name": "Berserker Amor",
+    "sheet": "ship_berserker-amor"
+   },
+   {
+    "id": "ship_berserker-psyche",
+    "asset": "ship_berserker_design_berserker-psyche",
+    "name": "Berserker Psyche",
+    "sheet": "ship_berserker-psyche"
+   },
+   {
+    "id": "ship_berserker-inferno",
+    "asset": "ship_berserker_design_berserker-inferno",
+    "name": "Berserker Inferno",
+    "sheet": "ship_berserker-inferno"
+   },
+   {
+    "id": "ship_berserker-prosperous",
+    "asset": "ship_berserker_design_berserker-prosperous",
+    "name": "Berserker Prosperous",
+    "sheet": "ship_berserker-prosperous"
+   },
+   {
+    "id": "ship_berserker-elysium",
+    "asset": "ship_berserker_design_berserker-elysium",
+    "name": "Berserker Elysium",
+    "sheet": "ship_berserker-elysium"
+   },
+   {
+    "id": "ship_berserker-sandstorm",
+    "asset": "ship_berserker_design_berserker-sandstorm",
+    "name": "Berserker Sandstorm",
+    "sheet": "ship_berserker-sandstorm"
+   },
+   {
+    "id": "ship_berserker-nobilis",
+    "asset": "ship_berserker_design_berserker-nobilis",
+    "name": "Berserker Nobilis",
+    "sheet": "ship_berserker-nobilis"
+   }
+  ],
+  "hp_current_wiki": 500000,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ },
+ {
+  "id": "ship_zephyr",
+  "name": "Zephyr",
+  "hp": 150000,
+  "speed": 300,
+  "lasers": 12,
+  "generators": 16,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_zephyr",
+  "designs": [
+   {
+    "id": "ship_zephyr-nobilis",
+    "asset": "ship_zephyr_design_zephyr-nobilis",
+    "name": "Zephyr Nobilis",
+    "sheet": "ship_zephyr-nobilis"
+   },
+   {
+    "id": "ship_zephyr-frost",
+    "asset": "ship_zephyr_design_zephyr-frost",
+    "name": "Zephyr Frost",
+    "sheet": "ship_zephyr-frost"
+   },
+   {
+    "id": "ship_zephyr-ullrin",
+    "asset": "ship_zephyr_design_zephyr-ullrin",
+    "name": "Zephyr Ullrin",
+    "sheet": "ship_zephyr-ullrin"
+   },
+   {
+    "id": "ship_zephyr-asimov",
+    "asset": "ship_zephyr_design_zephyr-asimov",
+    "name": "Zephyr Asimov",
+    "sheet": "ship_zephyr-asimov"
+   }
+  ],
+  "hp_current_wiki": 250000,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ },
+ {
+  "id": "ship_solaris",
+  "name": "Solaris",
+  "hp": 277500,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_solaris",
+  "designs": [
+   {
+    "id": "ship_solaris-ullrin",
+    "asset": "ship_solaris_design_solaris-ullrin",
+    "name": "Solaris Ullrin",
+    "sheet": "ship_solaris-ullrin"
+   },
+   {
+    "id": "ship_solaris-psyche",
+    "asset": "ship_solaris_design_solaris-psyche",
+    "name": "Solaris Psyche",
+    "sheet": "ship_solaris-psyche"
+   },
+   {
+    "id": "ship_solaris-amor",
+    "asset": "ship_solaris_design_solaris-amor",
+    "name": "Solaris Amor",
+    "sheet": "ship_solaris-amor"
+   },
+   {
+    "id": "ship_solaris-frost",
+    "asset": "ship_solaris_design_solaris-frost",
+    "name": "Solaris Frost",
+    "sheet": "ship_solaris-frost"
+   },
+   {
+    "id": "ship_solaris-phantasm",
+    "asset": "ship_solaris_design_solaris-phantasm",
+    "name": "Solaris Phantasm",
+    "sheet": "ship_solaris-phantasm"
+   },
+   {
+    "id": "ship_solaris-asimov",
+    "asset": "ship_solaris_design_solaris-asimov",
+    "name": "Solaris Asimov",
+    "sheet": "ship_solaris-asimov"
+   }
+  ],
+  "hp_current_wiki": 377500,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ },
+ {
+  "id": "ship_keres",
+  "name": "Keres",
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 16,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_keres",
+  "designs": [
+   {
+    "id": "ship_keres-contagion",
+    "asset": "ship_keres_design_keres-contagion",
+    "name": "Ship Keres Contagion",
+    "sheet": "ship_keres-contagion"
+   },
+   {
+    "id": "ship_keres-frost",
+    "asset": "ship_keres_design_keres-frost",
+    "name": "Ship Keres Frost",
+    "sheet": "ship_keres-frost"
+   },
+   {
+    "id": "ship_keres-prometheus",
+    "asset": "ship_keres_design_keres-prometheus",
+    "name": "Ship Keres Prometheus",
+    "sheet": "ship_keres-prometheus"
+   }
+  ],
+  "hp_current_wiki": 356000,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ },
+ {
+  "id": "ship_retiarus",
+  "name": "Retiarus",
+  "hp": 286000,
+  "speed": 310,
+  "lasers": 15,
+  "generators": 14,
+  "extras": 3,
+  "cargo": 2000,
+  "sheet": "ship_retiarus",
+  "designs": [
+   {
+    "id": "ship_retiarus-neikos",
+    "asset": "ship_retiarus_design_retiarus-neikos",
+    "name": "Retiarus Neikos",
+    "sheet": "ship_retiarus-neikos"
+   },
+   {
+    "id": "ship_retiarus-arios",
+    "asset": "ship_retiarus_design_retiarus-arios",
+    "name": "Retiarus Arios",
+    "sheet": "ship_retiarus-arios"
+   },
+   {
+    "id": "ship_retiarus-frost",
+    "asset": "ship_retiarus_design_retiarus-frost",
+    "name": "Retiarus Frost",
+    "sheet": "ship_retiarus-frost"
+   }
+  ],
+  "hp_current_wiki": 386000,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ },
+ {
+  "id": "ship_orcus",
+  "name": "Orcus",
+  "hp": 200000,
+  "speed": 280,
+  "lasers": 15,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_orcus",
+  "designs": [
+   {
+    "id": "ship_orcus-neikos",
+    "asset": "ship_orcus_design_orcus-neikos",
+    "name": "Orcus Neikos",
+    "sheet": "ship_orcus-neikos"
+   },
+   {
+    "id": "ship_orcus-arios",
+    "asset": "ship_orcus_design_orcus-arios",
+    "name": "Orcus Arios",
+    "sheet": "ship_orcus-arios"
+   },
+   {
+    "id": "ship_orcus-sunstorm",
+    "asset": "ship_orcus_design_orcus-sunstorm",
+    "name": "Orcus Sunstorm",
+    "sheet": "ship_orcus-sunstorm"
+   },
+   {
+    "id": "ship_orcus-maelstrom",
+    "asset": "ship_orcus_design_orcus-maelstrom",
+    "name": "Orcus Maelstrom",
+    "sheet": "ship_orcus-maelstrom"
+   },
+   {
+    "id": "ship_orcus-celestial",
+    "asset": "ship_orcus_design_orcus-celestial",
+    "name": "Orcus Celestial",
+    "sheet": "ship_orcus-celestial"
+   },
+   {
+    "id": "ship_orcus-starscream",
+    "asset": "ship_orcus_design_orcus-starscream",
+    "name": "Orcus Starscream",
+    "sheet": "ship_orcus-starscream"
+   },
+   {
+    "id": "ship_orcus-firestar",
+    "asset": "ship_orcus_design_orcus-firestar",
+    "name": "Orcus Firestar",
+    "sheet": "ship_orcus-firestar"
+   },
+   {
+    "id": "ship_orcus-smite",
+    "asset": "ship_orcus_design_orcus-smite",
+    "name": "Orcus Smite",
+    "sheet": "ship_orcus-smite"
+   },
+   {
+    "id": "ship_orcus-osiris",
+    "asset": "ship_orcus_design_orcus-osiris",
+    "name": "Orcus Osiris",
+    "sheet": "ship_orcus-osiris"
+   },
+   {
+    "id": "ship_orcus-epion",
+    "asset": "ship_orcus_design_orcus-epion",
+    "name": "Orcus Epion",
+    "sheet": "ship_orcus-epion"
+   },
+   {
+    "id": "ship_orcus-ullrin",
+    "asset": "ship_orcus_design_orcus-ullrin",
+    "name": "Orcus Ullrin",
+    "sheet": "ship_orcus-ullrin"
+   },
+   {
+    "id": "ship_orcus-frost",
+    "asset": "ship_orcus_design_orcus-frost",
+    "name": "Orcus Frost",
+    "sheet": "ship_orcus-frost"
+   },
+   {
+    "id": "ship_orcus-nobilis",
+    "asset": "ship_orcus_design_orcus-nobilis",
+    "name": "Orcus Nobilis",
+    "sheet": "ship_orcus-nobilis"
+   },
+   {
+    "id": "ship_orcus-harbinger",
+    "asset": "ship_orcus_design_orcus-harbinger",
+    "name": "Orcus Harbinger",
+    "sheet": "ship_orcus-harbinger"
+   },
+   {
+    "id": "ship_orcus-seraph",
+    "asset": "ship_orcus_design_orcus-seraph",
+    "name": "Orcus Seraph",
+    "sheet": "ship_orcus-seraph"
+   },
+   {
+    "id": "ship_orcus-prometheus",
+    "asset": "ship_orcus_design_orcus-prometheus",
+    "name": "Orcus Prometheus",
+    "sheet": "ship_orcus-prometheus"
+   },
+   {
+    "id": "ship_orcus-blaze",
+    "asset": "ship_orcus_design_orcus-blaze",
+    "name": "Orcus Blaze",
+    "sheet": "ship_orcus-blaze"
+   },
+   {
+    "id": "ship_orcus-inferno",
+    "asset": "ship_orcus_design_orcus-inferno",
+    "name": "Orcus Inferno",
+    "sheet": "ship_orcus-inferno"
+   },
+   {
+    "id": "ship_orcus-empyrian",
+    "asset": "ship_orcus_design_orcus-empyrian",
+    "name": "Orcus Empyrian",
+    "sheet": "ship_orcus-empyrian"
+   },
+   {
+    "id": "ship_orcus-mobius",
+    "asset": "ship_orcus_design_orcus-mobius",
+    "name": "Orcus Mobius",
+    "sheet": "ship_orcus-mobius"
+   },
+   {
+    "id": "ship_orcus-elysium",
+    "asset": "ship_orcus_design_orcus-elysium",
+    "name": "Orcus Elysium",
+    "sheet": "ship_orcus-elysium"
+   },
+   {
+    "id": "ship_orcus-phantasm",
+    "asset": "ship_orcus_design_orcus-phantasm",
+    "name": "Orcus Phantasm",
+    "sheet": "ship_orcus-phantasm"
+   },
+   {
+    "id": "ship_orcus-viking",
+    "asset": "ship_orcus_design_orcus-viking",
+    "name": "Orcus Viking",
+    "sheet": "ship_orcus-viking"
+   }
+  ],
+  "hp_current_wiki": 300000,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ },
+ {
+  "id": "ship_goliath-plus",
+  "name": "Goliath Plus",
+  "hp": 256000,
+  "speed": 330,
+  "lasers": 18,
+  "generators": 18,
+  "extras": 4,
+  "cargo": 1500,
+  "sheet": "ship_goliath-plus",
+  "designs": [
+   {
+    "id": "ship_goliath-plus-frost",
+    "asset": "ship_goliath-plus_design_goliath-plus-frost",
+    "name": "Goliath Plus Frost",
+    "sheet": "ship_goliath-plus-frost"
+   },
+   {
+    "id": "ship_goliath-plus-nobilis",
+    "asset": "ship_goliath-plus_design_goliath-plus-nobilis",
+    "name": "Goliath Plus Nobilis",
+    "sheet": "ship_goliath-plus-nobilis"
+   },
+   {
+    "id": "ship_goliath-plus-amor",
+    "asset": "ship_goliath-plus_design_goliath-plus-amor",
+    "name": "Goliath Plus Amor",
+    "sheet": "ship_goliath-plus-amor"
+   },
+   {
+    "id": "ship_goliath-plus-psyche",
+    "asset": "ship_goliath-plus_design_goliath-plus-psyche",
+    "name": "Goliath Plus Psyche",
+    "sheet": "ship_goliath-plus-psyche"
+   },
+   {
+    "id": "ship_goliath-plus-argon",
+    "asset": "ship_goliath-plus_design_goliath-plus-argon",
+    "name": "Goliath Plus Argon",
+    "sheet": "ship_goliath-plus-argon"
+   },
+   {
+    "id": "ship_goliath-plus-osiris",
+    "asset": "ship_goliath-plus_design_goliath-plus-osiris",
+    "name": "Goliath Plus Osiris",
+    "sheet": "ship_goliath-plus-osiris"
+   },
+   {
+    "id": "ship_goliath-plus-smite",
+    "asset": "ship_goliath-plus_design_goliath-plus-smite",
+    "name": "Goliath Plus Smite",
+    "sheet": "ship_goliath-plus-smite"
+   },
+   {
+    "id": "ship_goliath-plus-ullrin",
+    "asset": "ship_goliath-plus_design_goliath-plus-ullrin",
+    "name": "Goliath Plus Ullrin",
+    "sheet": "ship_goliath-plus-ullrin"
+   },
+   {
+    "id": "ship_goliath-plus-prosperous",
+    "asset": "ship_goliath-plus_design_goliath-plus-prosperous",
+    "name": "Goliath Plus Prosperous",
+    "sheet": "ship_goliath-plus-prosperous"
+   },
+   {
+    "id": "ship_goliath-plus-neikos",
+    "asset": "ship_goliath-plus_design_goliath-plus-neikos",
+    "name": "Goliath Plus Neikos",
+    "sheet": "ship_goliath-plus-neikos"
+   },
+   {
+    "id": "ship_goliath-plus-arios",
+    "asset": "ship_goliath-plus_design_goliath-plus-arios",
+    "name": "Goliath Plus Arios",
+    "sheet": "ship_goliath-plus-arios"
+   },
+   {
+    "id": "ship_goliath-plus-carbonite",
+    "asset": "ship_goliath-plus_design_goliath-plus-carbonite",
+    "name": "Goliath Plus Carbonite",
+    "sheet": "ship_goliath-plus-carbonite"
+   },
+   {
+    "id": "ship_goliath-plus-prometheus",
+    "asset": "ship_goliath-plus_design_goliath-plus-prometheus",
+    "name": "Goliath Plus Prometheus",
+    "sheet": "ship_goliath-plus-prometheus"
+   }
+  ],
+  "hp_current_wiki": 356000,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ },
+ {
+  "id": "ship_citadel-plus",
+  "name": "Citadel Plus",
+  "hp": 600000,
+  "speed": 250,
+  "lasers": 10,
+  "generators": 20,
+  "extras": 5,
+  "cargo": 4000,
+  "sheet": "ship_citadel-plus",
+  "designs": [
+   {
+    "id": "ship_citadel-plus-frost",
+    "asset": "ship_citadel-plus_design_citadel-plus-frost",
+    "name": "Citadel Plus Frost",
+    "sheet": "ship_citadel-plus-frost"
+   },
+   {
+    "id": "ship_citadel-plus-prosperous",
+    "asset": "ship_citadel-plus_design_citadel-plus-prosperous",
+    "name": "Citadel Plus Prosperous",
+    "sheet": "ship_citadel-plus-prosperous"
+   },
+   {
+    "id": "ship_citadel-plus-asimov",
+    "asset": "ship_citadel-plus_design_citadel-plus-asimov",
+    "name": "Citadel Plus Asimov",
+    "sheet": "ship_citadel-plus-asimov"
+   },
+   {
+    "id": "ship_citadel-plus-nobilis",
+    "asset": "ship_citadel-plus_design_citadel-plus-nobilis",
+    "name": "Citadel Plus Nobilis",
+    "sheet": "ship_citadel-plus-nobilis"
+   },
+   {
+    "id": "ship_citadel-plus-empyrian",
+    "asset": "ship_citadel-plus_design_citadel-plus-empyrian",
+    "name": "Citadel Plus Empyrian",
+    "sheet": "ship_citadel-plus-empyrian"
+   },
+   {
+    "id": "ship_citadel-plus-legend",
+    "asset": "ship_citadel-plus_design_citadel-plus-legend",
+    "name": "Citadel Plus Legend",
+    "sheet": "ship_citadel-plus-legend"
+   },
+   {
+    "id": "ship_citadel-plus-epion",
+    "asset": "ship_citadel-plus_design_citadel-plus-epion",
+    "name": "Citadel Plus Epion",
+    "sheet": "ship_citadel-plus-epion"
+   },
+   {
+    "id": "ship_citadel-plus-elysium",
+    "asset": "ship_citadel-plus_design_citadel-plus-elysium",
+    "name": "Citadel Plus Elysium",
+    "sheet": "ship_citadel-plus-elysium"
+   },
+   {
+    "id": "ship_citadel-plus-dusklight",
+    "asset": "ship_citadel-plus_design_citadel-plus-dusklight",
+    "name": "Citadel Plus Dusklight",
+    "sheet": "ship_citadel-plus-dusklight"
+   },
+   {
+    "id": "ship_citadel-plus-prometheus",
+    "asset": "ship_citadel-plus_design_citadel-plus-prometheus",
+    "name": "Citadel Plus Prometheus",
+    "sheet": "ship_citadel-plus-prometheus"
+   }
+  ],
+  "hp_current_wiki": 700000,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ },
+ {
+  "id": "ship_liberator-plus",
+  "name": "Liberator Plus",
+  "hp": 175000,
+  "speed": 350,
+  "lasers": 12,
+  "generators": 12,
+  "extras": 4,
+  "cargo": 1500,
+  "sheet": "ship_liberator-plus",
+  "designs": [
+   {
+    "id": "ship_liberator-plus-frost",
+    "asset": "ship_liberator-plus_design_liberator-plus-frost",
+    "name": "Liberator Plus Frost",
+    "sheet": "ship_liberator-plus-frost"
+   }
+  ],
+  "hp_current_wiki": 275000,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ },
+ {
+  "id": "ship_solace-plus",
+  "name": "Solace Plus",
+  "hp": 277500,
+  "speed": 310,
+  "lasers": 16,
+  "generators": 18,
+  "extras": 4,
+  "cargo": 1500,
+  "sheet": "ship_solace-plus",
+  "designs": [
+   {
+    "id": "ship_solace-plus-asimov",
+    "asset": "ship_solace-plus_design_solace-plus-asimov",
+    "name": "Solace Plus Asimov",
+    "sheet": "ship_solace-plus-asimov"
+   },
+   {
+    "id": "ship_solace-plus-tyrannos",
+    "asset": "ship_solace-plus_design_solace-plus-tyrannos",
+    "name": "Solace Plus Tyrannos",
+    "sheet": "ship_solace-plus-tyrannos"
+   },
+   {
+    "id": "ship_solace-plus-epion",
+    "asset": "ship_solace-plus_design_solace-plus-epion",
+    "name": "Solace Plus Epion",
+    "sheet": "ship_solace-plus-epion"
+   },
+   {
+    "id": "ship_solace-plus-ullrin",
+    "asset": "ship_solace-plus_design_solace-plus-ullrin",
+    "name": "Solace Plus Ullrin",
+    "sheet": "ship_solace-plus-ullrin"
+   },
+   {
+    "id": "ship_solace-plus-phantasm",
+    "asset": "ship_solace-plus_design_solace-plus-phantasm",
+    "name": "Solace Plus Phantasm",
+    "sheet": "ship_solace-plus-phantasm"
+   },
+   {
+    "id": "ship_solace-plus-nobilis",
+    "asset": "ship_solace-plus_design_solace-plus-nobilis",
+    "name": "Solace Plus Nobilis",
+    "sheet": "ship_solace-plus-nobilis"
+   },
+   {
+    "id": "ship_solace-plus-inferno",
+    "asset": "ship_solace-plus_design_solace-plus-inferno",
+    "name": "Solace Plus Inferno",
+    "sheet": "ship_solace-plus-inferno"
+   },
+   {
+    "id": "ship_solace-plus-neikos",
+    "asset": "ship_solace-plus_design_solace-plus-neikos",
+    "name": "Solace Plus Neikos",
+    "sheet": "ship_solace-plus-neikos"
+   },
+   {
+    "id": "ship_solace-plus-arios",
+    "asset": "ship_solace-plus_design_solace-plus-arios",
+    "name": "Solace Plus Arios",
+    "sheet": "ship_solace-plus-arios"
+   },
+   {
+    "id": "ship_solace-plus-frost",
+    "asset": "ship_solace-plus_design_solace-plus-frost",
+    "name": "Solace Plus Frost",
+    "sheet": "ship_solace-plus-frost"
+   },
+   {
+    "id": "ship_solace-plus-legend",
+    "asset": "ship_solace-plus_design_solace-plus-legend",
+    "name": "Solace Plus Legend",
+    "sheet": "ship_solace-plus-legend"
+   }
+  ],
+  "hp_current_wiki": 377500,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ },
+ {
+  "id": "ship_solaris-plus",
+  "name": "Solaris Plus",
+  "hp": 300000,
+  "speed": 310,
+  "lasers": 18,
+  "generators": 16,
+  "extras": 4,
+  "cargo": 1500,
+  "sheet": "ship_solaris-plus",
+  "designs": [
+   {
+    "id": "ship_solaris-plus-ullrin",
+    "asset": "ship_solaris-plus_design_solaris-plus-ullrin",
+    "name": "Solaris Plus Ullrin",
+    "sheet": "ship_solaris-plus-ullrin"
+   },
+   {
+    "id": "ship_solaris-plus-nobilis",
+    "asset": "ship_solaris-plus_design_solaris-plus-nobilis",
+    "name": "Solaris Plus Nobilis",
+    "sheet": "ship_solaris-plus-nobilis"
+   },
+   {
+    "id": "ship_solaris-plus-prometheus",
+    "asset": "ship_solaris-plus_design_solaris-plus-prometheus",
+    "name": "Solaris Plus Prometheus",
+    "sheet": "ship_solaris-plus-prometheus"
+   }
+  ],
+  "hp_current_wiki": 400000,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ },
+ {
+  "id": "ship_pusat-plus",
+  "name": "Pusat Plus",
+  "hp": 225000,
+  "speed": 400,
+  "lasers": 18,
+  "generators": 16,
+  "extras": 4,
+  "cargo": 1500,
+  "sheet": "ship_pusat-plus",
+  "designs": [
+   {
+    "id": "ship_pusat-plus-dusklight",
+    "asset": "ship_pusat-plus_design_pusat-plus-dusklight",
+    "name": "Pusat Plus Dusklight",
+    "sheet": "ship_pusat-plus-dusklight"
+   },
+   {
+    "id": "ship_pusat-plus-astral",
+    "asset": "ship_pusat-plus_design_pusat-plus-astral",
+    "name": "Pusat Plus Astral",
+    "sheet": "ship_pusat-plus-astral"
+   },
+   {
+    "id": "ship_pusat-plus-smite",
+    "asset": "ship_pusat-plus_design_pusat-plus-smite",
+    "name": "Pusat Plus Smite",
+    "sheet": "ship_pusat-plus-smite"
+   },
+   {
+    "id": "ship_pusat-plus-ullrin",
+    "asset": "ship_pusat-plus_design_pusat-plus-ullrin",
+    "name": "Pusat Plus Ullrin",
+    "sheet": "ship_pusat-plus-ullrin"
+   },
+   {
+    "id": "ship_pusat-plus-frost",
+    "asset": "ship_pusat-plus_design_pusat-plus-frost",
+    "name": "Pusat Plus Frost",
+    "sheet": "ship_pusat-plus-frost"
+   },
+   {
+    "id": "ship_pusat-plus-asimov",
+    "asset": "ship_pusat-plus_design_pusat-plus-asimov",
+    "name": "Pusat Plus Asimov",
+    "sheet": "ship_pusat-plus-asimov"
+   },
+   {
+    "id": "ship_pusat-plus-nobilis",
+    "asset": "ship_pusat-plus_design_pusat-plus-nobilis",
+    "name": "Pusat Plus Nobilis",
+    "sheet": "ship_pusat-plus-nobilis"
+   },
+   {
+    "id": "ship_pusat-plus-empyrian",
+    "asset": "ship_pusat-plus_design_pusat-plus-empyrian",
+    "name": "Pusat Plus Empyrian",
+    "sheet": "ship_pusat-plus-empyrian"
+   },
+   {
+    "id": "ship_pusat-plus-neikos",
+    "asset": "ship_pusat-plus_design_pusat-plus-neikos",
+    "name": "Pusat Plus Neikos",
+    "sheet": "ship_pusat-plus-neikos"
+   },
+   {
+    "id": "ship_pusat-plus-arios",
+    "asset": "ship_pusat-plus_design_pusat-plus-arios",
+    "name": "Pusat Plus Arios",
+    "sheet": "ship_pusat-plus-arios"
+   },
+   {
+    "id": "ship_pusat-plus-prosperous",
+    "asset": "ship_pusat-plus_design_pusat-plus-prosperous",
+    "name": "Pusat Plus Prosperous",
+    "sheet": "ship_pusat-plus-prosperous"
+   },
+   {
+    "id": "ship_pusat-plus-epion",
+    "asset": "ship_pusat-plus_design_pusat-plus-epion",
+    "name": "Pusat Plus Epion",
+    "sheet": "ship_pusat-plus-epion"
+   }
+  ],
+  "hp_current_wiki": 325000,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ },
+ {
+  "id": "ship_hecate-plus",
+  "name": "Hecate Plus",
+  "hp": 277500,
+  "speed": 300,
+  "lasers": 16,
+  "generators": 18,
+  "extras": 4,
+  "cargo": 1500,
+  "sheet": "ship_hecate-plus",
+  "designs": [
+   {
+    "id": "ship_hecate-plus-empyrian",
+    "asset": "ship_hecate-plus_design_hecate-plus-empyrian",
+    "name": "Hecate Plus Empyrian",
+    "sheet": "ship_hecate-plus-empyrian"
+   },
+   {
+    "id": "ship_hecate-plus-dusklight",
+    "asset": "ship_hecate-plus_design_hecate-plus-dusklight",
+    "name": "Hecate Plus Dusklight",
+    "sheet": "ship_hecate-plus-dusklight"
+   }
+  ],
+  "hp_current_wiki": 377500,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ },
+ {
+  "id": "ship_hammerclaw-plus",
+  "name": "Hammerclaw Plus",
+  "hp": 277500,
+  "speed": 310,
+  "lasers": 14,
+  "generators": 16,
+  "extras": 4,
+  "cargo": 1500,
+  "sheet": "ship_hammerclaw-plus",
+  "designs": [
+   {
+    "id": "ship_hammerclaw-plus-argon",
+    "asset": "ship_hammerclaw-plus_design_hammerclaw-plus-argon",
+    "name": "Hammerclaw Plus Argon",
+    "sheet": "ship_hammerclaw-plus-argon"
+   },
+   {
+    "id": "ship_hammerclaw-plus-frost",
+    "asset": "ship_hammerclaw-plus_design_hammerclaw-plus-frost",
+    "name": "Hammerclaw Plus frost",
+    "sheet": "ship_hammerclaw-plus-frost"
+   },
+   {
+    "id": "ship_hammerclaw-plus-phantasm",
+    "asset": "ship_hammerclaw-plus_design_hammerclaw-plus-phantasm",
+    "name": "Hammerclaw Plus Phantasm",
+    "sheet": "ship_hammerclaw-plus-phantasm"
+   },
+   {
+    "id": "ship_hammerclaw-plus-neikos",
+    "asset": "ship_hammerclaw-plus_design_hammerclaw-plus-neikos",
+    "name": "Hammerclaw Plus Neikos",
+    "sheet": "ship_hammerclaw-plus-neikos"
+   }
+  ],
+  "hp_current_wiki": 377500,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ },
+ {
+  "id": "ship_spearhead-plus",
+  "name": "Spearhead Plus",
+  "hp": 250000,
+  "speed": 370,
+  "lasers": 14,
+  "generators": 17,
+  "extras": 4,
+  "cargo": 1500,
+  "sheet": "ship_spearhead-plus",
+  "designs": [],
+  "hp_current_wiki": 350000,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ },
+ {
+  "id": "ship_tempest",
+  "name": "Tempest",
+  "hp": 200000,
+  "speed": 330,
+  "lasers": 14,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_tempest",
+  "designs": [
+   {
+    "id": "ship_tempest-frost",
+    "asset": "ship_tempest_design_tempest-frost",
+    "name": "Tempest frost",
+    "sheet": "ship_tempest-frost"
+   }
+  ],
+  "hp_current_wiki": 300000,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ },
+ {
+  "id": "ship_tartarus-plus",
+  "name": "Tartarus Plus",
+  "hp": 281600,
+  "speed": 310,
+  "lasers": 16,
+  "generators": 17,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_tartarus-plus",
+  "designs": [],
+  "guess": true
+ },
+ {
+  "id": "ship_basilisk",
+  "name": "Basilisk",
+  "hp": 256000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 16,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_basilisk",
+  "designs": [],
+  "guess": true
+ },
+ {
+  "id": "ship_spectrum-plus",
+  "name": "Spectrum Plus",
+  "hp": 281600,
+  "speed": 300,
+  "lasers": 16,
+  "generators": 17,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_spectrum-plus",
+  "designs": [
+   {
+    "id": "ship_spectrum-plus-frost",
+    "asset": "ship_spectrum-plus_design_spectrum-plus-frost",
+    "name": "Spectrum Plus Frost",
+    "sheet": "ship_spectrum-plus-frost"
+   },
+   {
+    "id": "ship_spectrum-plus-amor",
+    "asset": "ship_spectrum-plus_design_spectrum-plus-amor",
+    "name": "Spectrum Plus Amor",
+    "sheet": "ship_spectrum-plus-amor"
+   },
+   {
+    "id": "ship_spectrum-plus-psyche",
+    "asset": "ship_spectrum-plus_design_spectrum-plus-psyche",
+    "name": "Spectrum Plus Psyche",
+    "sheet": "ship_spectrum-plus-psyche"
+   },
+   {
+    "id": "ship_spectrum-plus-asimov",
+    "asset": "ship_spectrum-plus_design_spectrum-plus-asimov",
+    "name": "Spectrum Plus Asimov",
+    "sheet": "ship_spectrum-plus-asimov"
+   }
+  ],
+  "guess": true
+ },
+ {
+  "id": "ship_holo",
+  "name": "Holo",
+  "hp": 275000,
+  "speed": 300,
+  "lasers": 15,
+  "generators": 15,
+  "extras": 3,
+  "cargo": 1500,
+  "sheet": "ship_holo",
+  "designs": [
+   {
+    "id": "ship_holo-smite",
+    "asset": "ship_holo_design_holo-smite",
+    "name": "Holo Smite",
+    "sheet": "ship_holo-smite"
+   },
+   {
+    "id": "ship_holo-osiris",
+    "asset": "ship_holo_design_holo-osiris",
+    "name": "Holo Osiris",
+    "sheet": "ship_holo-osiris"
+   },
+   {
+    "id": "ship_holo-epion",
+    "asset": "ship_holo_design_holo-epion",
+    "name": "Holo Epion",
+    "sheet": "ship_holo-epion"
+   },
+   {
+    "id": "ship_holo-ullrin",
+    "asset": "ship_holo_design_holo-ullrin",
+    "name": "Holo Ullrin",
+    "sheet": "ship_holo-ullrin"
+   },
+   {
+    "id": "ship_holo-frost",
+    "asset": "ship_holo_design_holo-frost",
+    "name": "Holo Frost",
+    "sheet": "ship_holo-frost"
+   },
+   {
+    "id": "ship_holo-prometheus",
+    "asset": "ship_holo_design_holo-prometheus",
+    "name": "Holo Prometheus",
+    "sheet": "ship_holo-prometheus"
+   }
+  ],
+  "hp_current_wiki": 375000,
+  "hp_derived": "current wiki - 100000",
+  "source": "research"
+ }
+]

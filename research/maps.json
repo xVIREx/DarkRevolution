@@ -1,0 +1,5601 @@
+[
+ {
+  "id": 1,
+  "name": "1-1",
+  "faction": "mmo",
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": true,
+  "portals": [
+   {
+    "id": 1,
+    "x": 18500,
+    "y": 11500,
+    "to": 2,
+    "tx": 2000,
+    "ty": 2000,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales",
+     "zeta"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2000,
+     2000
+    ]
+   }
+  ],
+  "stations": [
+   {
+    "faction": "mmo",
+    "x": 1000,
+    "y": 1000,
+    "type": "home",
+    "src": "kalaazu"
+   }
+  ],
+  "npcs": [
+   {
+    "id": "streuner",
+    "count": 80
+   }
+  ],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "streuner",
+     "count": 50
+    }
+   ],
+   "muffin_2009": [
+    {
+     "id": "streuner",
+     "count": 50
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": [
+   "Streuner",
+   "Recruit Streuner",
+   "Aider Streuner"
+  ],
+  "jump_gates_wiki": [
+   "Bottom right: 1-2."
+  ],
+  "spawn_spots_wiki": {
+   "streuner": [
+    [
+     9500,
+     5400
+    ],
+    [
+     5100,
+     4400
+    ],
+    [
+     4000,
+     4600
+    ]
+   ]
+  },
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/1-1",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 2,
+  "name": "1-2",
+  "faction": "mmo",
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": true,
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 2000,
+    "to": 1,
+    "tx": 18500,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales",
+     "zeta"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     11500
+    ]
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 2000,
+    "to": 3,
+    "tx": 2000,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales",
+     "zeta"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2000,
+     11500
+    ]
+   },
+   {
+    "id": 3,
+    "x": 18500,
+    "y": 11500,
+    "to": 4,
+    "tx": 2000,
+    "ty": 2000,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2000,
+     2000
+    ]
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "streuner",
+    "count": 40
+   },
+   {
+    "id": "lordakia",
+    "count": 40
+   },
+   {
+    "id": "boss_streuner",
+    "count": 4
+   },
+   {
+    "id": "boss_lordakia",
+    "count": 4
+   }
+  ],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "streuner",
+     "count": 50
+    },
+    {
+     "id": "lordakia",
+     "count": 25
+    }
+   ],
+   "muffin_2009": [
+    {
+     "id": "streuner",
+     "count": 50
+    },
+    {
+     "id": "lordakia",
+     "count": 25
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": [
+   "Streuner",
+   "Recruit Streuner",
+   "Aider Streuner",
+   "Boss Streuner",
+   "Lordakia",
+   "Boss Lordakia"
+  ],
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": {
+   "Streuner": [
+    [
+     10200,
+     7600
+    ],
+    [
+     10200,
+     7000
+    ],
+    [
+     9400,
+     5200
+    ],
+    [
+     6600,
+     5400
+    ],
+    [
+     7500,
+     5200
+    ],
+    [
+     16000,
+     5000
+    ],
+    [
+     8400,
+     6700
+    ],
+    [
+     10200,
+     8200
+    ],
+    [
+     9800,
+     8900
+    ],
+    [
+     5100,
+     7500
+    ],
+    [
+     5600,
+     7400
+    ],
+    [
+     8200,
+     4000
+    ]
+   ],
+   "Lordakia": [
+    [
+     3600,
+     3900
+    ],
+    [
+     12600,
+     3600
+    ],
+    [
+     9200,
+     7300
+    ],
+    [
+     11600,
+     5300
+    ],
+    [
+     8700,
+     7700
+    ],
+    [
+     12000,
+     7700
+    ],
+    [
+     14900,
+     5300
+    ],
+    [
+     9700,
+     5000
+    ],
+    [
+     11400,
+     7400
+    ],
+    [
+     10400,
+     7200
+    ],
+    [
+     8100,
+     5200
+    ],
+    [
+     15400,
+     5600
+    ],
+    [
+     7200,
+     7400
+    ],
+    [
+     13100,
+     8000
+    ],
+    [
+     10500,
+     6300
+    ],
+    [
+     6300,
+     5200
+    ],
+    [
+     8300,
+     3900
+    ],
+    [
+     16000,
+     5000
+    ],
+    [
+     8700,
+     4700
+    ],
+    [
+     9400,
+     6900
+    ],
+    [
+     10000,
+     8500
+    ]
+   ],
+   "Boss Lordakia": [
+    [
+     10800,
+     5800
+    ],
+    [
+     15800,
+     4000
+    ],
+    [
+     13900,
+     5800
+    ]
+   ],
+   "Boss Streuner": [
+    [
+     16700,
+     8000
+    ],
+    [
+     8500,
+     4600
+    ]
+   ]
+  },
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/1-2",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 3,
+  "name": "1-3",
+  "faction": "mmo",
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 11500,
+    "to": 2,
+    "tx": 18500,
+    "ty": 2000,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales",
+     "zeta"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     2000
+    ]
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 11500,
+    "to": 4,
+    "tx": 18500,
+    "ty": 2000,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     2000
+    ]
+   },
+   {
+    "id": 3,
+    "x": 18500,
+    "y": 2000,
+    "to": 7,
+    "tx": 2000,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2000,
+     11500
+    ]
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "lordakia",
+    "count": 30
+   },
+   {
+    "id": "saimon",
+    "count": 30
+   },
+   {
+    "id": "mordon",
+    "count": 20
+   },
+   {
+    "id": "devolarium",
+    "count": 10
+   },
+   {
+    "id": "boss_mordon",
+    "count": 4
+   },
+   {
+    "id": "boss_devolarium",
+    "count": 4
+   }
+  ],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "lordakia",
+     "count": 25
+    },
+    {
+     "id": "devolarium",
+     "count": 10
+    },
+    {
+     "id": "saimon",
+     "count": 25
+    },
+    {
+     "id": "mordon",
+     "count": 25
+    }
+   ],
+   "muffin_2009": [
+    {
+     "id": "lordakia",
+     "count": 25
+    },
+    {
+     "id": "devolarium",
+     "count": 10
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": [
+   "Lordakia",
+   "Saimon",
+   "Mordon",
+   "Boss Mordon",
+   "Devolarium",
+   "Boss Devolarium"
+  ],
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": {
+   "Lordakia": [
+    [
+     3300,
+     5100
+    ],
+    [
+     9000,
+     5000
+    ],
+    [
+     12300,
+     3200
+    ],
+    [
+     6500,
+     4100
+    ],
+    [
+     4200,
+     4800
+    ],
+    [
+     6300,
+     5200
+    ],
+    [
+     5900,
+     6400
+    ],
+    [
+     6200,
+     6700
+    ],
+    [
+     12700,
+     4700
+    ],
+    [
+     12100,
+     4200
+    ]
+   ],
+   "Saimon": [
+    [
+     8700,
+     9500
+    ],
+    [
+     12000,
+     4400
+    ],
+    [
+     13000,
+     7700
+    ],
+    [
+     4500,
+     4100
+    ],
+    [
+     10000,
+     6900
+    ],
+    [
+     11100,
+     6200
+    ],
+    [
+     3900,
+     4300
+    ],
+    [
+     16100,
+     10200
+    ],
+    [
+     12600,
+     3300
+    ],
+    [
+     13100,
+     3300
+    ],
+    [
+     13000,
+     2600
+    ],
+    [
+     5000,
+     4800
+    ],
+    [
+     6700,
+     9000
+    ],
+    [
+     10000,
+     4300
+    ],
+    [
+     10800,
+     4500
+    ],
+    [
+     11500,
+     7000
+    ]
+   ],
+   "Mordon": [
+    [
+     13700,
+     6200
+    ],
+    [
+     3800,
+     4500
+    ],
+    [
+     5700,
+     3800
+    ],
+    [
+     11500,
+     4400
+    ],
+    [
+     12600,
+     3300
+    ],
+    [
+     6000,
+     4200
+    ],
+    [
+     4700,
+     3700
+    ],
+    [
+     14300,
+     3300
+    ],
+    [
+     5600,
+     4600
+    ],
+    [
+     13200,
+     6000
+    ],
+    [
+     12800,
+     8500
+    ],
+    [
+     6900,
+     8000
+    ],
+    [
+     6300,
+     6600
+    ],
+    [
+     10500,
+     4300
+    ],
+    [
+     3300,
+     5600
+    ],
+    [
+     15500,
+     4700
+    ],
+    [
+     11200,
+     4000
+    ],
+    [
+     13300,
+     5600
+    ],
+    [
+     16600,
+     7500
+    ],
+    [
+     5100,
+     8300
+    ]
+   ],
+   "Devolarium": [
+    [
+     11200,
+     6800
+    ],
+    [
+     12000,
+     7500
+    ],
+    [
+     6200,
+     3800
+    ],
+    [
+     7600,
+     5700
+    ],
+    [
+     8300,
+     7400
+    ],
+    [
+     4800,
+     3900
+    ]
+   ],
+   "Boss Devolarium": [
+    [
+     6100,
+     4600
+    ],
+    [
+     8900,
+     4800
+    ]
+   ],
+   "Boss Mordon": [
+    [
+     9800,
+     8400
+    ],
+    [
+     12000,
+     5000
+    ]
+   ]
+  },
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/1-3",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 4,
+  "name": "1-4",
+  "faction": "mmo",
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 2000,
+    "to": 2,
+    "tx": 18500,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     11500
+    ]
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 2000,
+    "to": 3,
+    "tx": 18500,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     11500
+    ]
+   },
+   {
+    "id": 3,
+    "x": 18500,
+    "y": 11500,
+    "to": 12,
+    "tx": 2000,
+    "ty": 2000,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2000,
+     2000
+    ]
+   },
+   {
+    "id": 4,
+    "x": 19500,
+    "y": 7000,
+    "to": 13,
+    "tx": 2000,
+    "ty": 7000,
+    "agree": [
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales"
+    ],
+    "alternatives": [
+     {
+      "x": 18500,
+      "y": 6750,
+      "tx": 2000,
+      "ty": 6750,
+      "src": [
+       "borja_maps"
+      ]
+     }
+    ],
+    "return_portal": [
+     2000,
+     7000
+    ]
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "lordakia",
+    "count": 30
+   },
+   {
+    "id": "saimon",
+    "count": 30
+   },
+   {
+    "id": "mordon",
+    "count": 20
+   },
+   {
+    "id": "sibelon",
+    "count": 10
+   },
+   {
+    "id": "boss_saimon",
+    "count": 4
+   },
+   {
+    "id": "boss_sibelon",
+    "count": 4
+   }
+  ],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "sibelon",
+     "count": 10
+    },
+    {
+     "id": "lordakia",
+     "count": 25
+    },
+    {
+     "id": "saimon",
+     "count": 25
+    },
+    {
+     "id": "mordon",
+     "count": 25
+    }
+   ],
+   "muffin_2009": [
+    {
+     "id": "lordakia",
+     "count": 25
+    },
+    {
+     "id": "sibelon",
+     "count": 10
+    },
+    {
+     "id": "mordon",
+     "count": 20
+    },
+    {
+     "id": "saimon",
+     "count": 18
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": {
+   "Lordakia": [
+    [
+     11400,
+     7700
+    ],
+    [
+     3500,
+     3600
+    ],
+    [
+     4500,
+     6000
+    ],
+    [
+     8100,
+     5300
+    ],
+    [
+     14500,
+     4400
+    ]
+   ],
+   "Saimon": [
+    [
+     17500,
+     4300
+    ],
+    [
+     11000,
+     2700
+    ],
+    [
+     15700,
+     3600
+    ]
+   ],
+   "Mordon": [
+    [
+     11200,
+     6100
+    ],
+    [
+     12000,
+     7500
+    ],
+    [
+     9400,
+     6600
+    ],
+    [
+     17200,
+     4100
+    ]
+   ]
+  },
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/1-4",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 5,
+  "name": "2-1",
+  "faction": "eic",
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": true,
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 11500,
+    "to": 6,
+    "tx": 18500,
+    "ty": 2000,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     2000
+    ]
+   }
+  ],
+  "stations": [
+   {
+    "faction": "eic",
+    "x": 19000,
+    "y": 1000,
+    "type": "home",
+    "src": "kalaazu"
+   }
+  ],
+  "npcs": [
+   {
+    "id": "streuner",
+    "count": 80
+   }
+  ],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "streuner",
+     "count": 50
+    }
+   ],
+   "muffin_2009": [
+    {
+     "id": "streuner",
+     "count": 50
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": [
+   "Streuner",
+   "Recruit Streuner",
+   "Aider Streuner"
+  ],
+  "jump_gates_wiki": [
+   "Bottom left: 2-2"
+  ],
+  "spawn_spots_wiki": null,
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/2-1",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 6,
+  "name": "2-2",
+  "faction": "eic",
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": true,
+  "portals": [
+   {
+    "id": 1,
+    "x": 18500,
+    "y": 2000,
+    "to": 5,
+    "tx": 2000,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2000,
+     11500
+    ]
+   },
+   {
+    "id": 2,
+    "x": 2000,
+    "y": 11500,
+    "to": 7,
+    "tx": 18500,
+    "ty": 2000,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     2000
+    ]
+   },
+   {
+    "id": 3,
+    "x": 18500,
+    "y": 11500,
+    "to": 8,
+    "tx": 2000,
+    "ty": 2000,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2000,
+     2000
+    ]
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "streuner",
+    "count": 40
+   },
+   {
+    "id": "lordakia",
+    "count": 40
+   },
+   {
+    "id": "boss_streuner",
+    "count": 4
+   },
+   {
+    "id": "boss_lordakia",
+    "count": 4
+   }
+  ],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "streuner",
+     "count": 50
+    },
+    {
+     "id": "lordakia",
+     "count": 25
+    }
+   ],
+   "muffin_2009": [
+    {
+     "id": "streuner",
+     "count": 50
+    },
+    {
+     "id": "lordakia",
+     "count": 25
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": {
+   "Streuner": [
+    [
+     7900,
+     5300
+    ],
+    [
+     7100,
+     4700
+    ],
+    [
+     5000,
+     4600
+    ],
+    [
+     8600,
+     4300
+    ],
+    [
+     9100,
+     4100
+    ],
+    [
+     3500,
+     6100
+    ]
+   ],
+   "Lordakia": [
+    [
+     11000,
+     6300
+    ],
+    [
+     8100,
+     4900
+    ],
+    [
+     3600,
+     8900
+    ],
+    [
+     5400,
+     4500
+    ],
+    [
+     11200,
+     7000
+    ],
+    [
+     12400,
+     9600
+    ]
+   ],
+   "Boss Streuner": [
+    [
+     8000,
+     4600
+    ]
+   ]
+  },
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/2-2",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 7,
+  "name": "2-3",
+  "faction": "eic",
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 11500,
+    "to": 3,
+    "tx": 18500,
+    "ty": 2000,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     2000
+    ]
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 2000,
+    "to": 6,
+    "tx": 2000,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2000,
+     11500
+    ]
+   },
+   {
+    "id": 3,
+    "x": 18500,
+    "y": 11500,
+    "to": 8,
+    "tx": 18500,
+    "ty": 2000,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     2000
+    ]
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "lordakia",
+    "count": 30
+   },
+   {
+    "id": "saimon",
+    "count": 30
+   },
+   {
+    "id": "mordon",
+    "count": 20
+   },
+   {
+    "id": "devolarium",
+    "count": 10
+   },
+   {
+    "id": "boss_mordon",
+    "count": 4
+   },
+   {
+    "id": "boss_devolarium",
+    "count": 4
+   }
+  ],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "lordakia",
+     "count": 25
+    },
+    {
+     "id": "devolarium",
+     "count": 10
+    },
+    {
+     "id": "saimon",
+     "count": 25
+    },
+    {
+     "id": "mordon",
+     "count": 25
+    }
+   ],
+   "muffin_2009": [
+    {
+     "id": "lordakia",
+     "count": 25
+    },
+    {
+     "id": "devolarium",
+     "count": 10
+    },
+    {
+     "id": "mordon",
+     "count": 20
+    },
+    {
+     "id": "saimon",
+     "count": 18
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": {
+   "Saimon": [
+    [
+     11600,
+     5200
+    ],
+    [
+     7500,
+     9200
+    ],
+    [
+     13500,
+     4200
+    ],
+    [
+     12300,
+     6600
+    ]
+   ],
+   "Mordon": [
+    [
+     11700,
+     5300
+    ],
+    [
+     3100,
+     3800
+    ]
+   ],
+   "Devolarium": [
+    [
+     16100,
+     3100
+    ]
+   ]
+  },
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/2-3",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 8,
+  "name": "2-4",
+  "faction": "eic",
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 2000,
+    "to": 6,
+    "tx": 18500,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     11500
+    ]
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 2000,
+    "to": 7,
+    "tx": 18500,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     11500
+    ]
+   },
+   {
+    "id": 3,
+    "x": 2000,
+    "y": 11500,
+    "to": 11,
+    "tx": 2000,
+    "ty": 2000,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales"
+    ],
+    "alternatives": [
+     {
+      "x": 10000,
+      "y": 12000,
+      "tx": 10700,
+      "ty": 1200,
+      "src": [
+       "muffin_portales"
+      ]
+     }
+    ],
+    "return_portal": [
+     2000,
+     2000
+    ]
+   },
+   {
+    "id": 4,
+    "x": 10000,
+    "y": 12000,
+    "to": 14,
+    "tx": 10700,
+    "ty": 1200,
+    "agree": [
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [
+     {
+      "x": 10250,
+      "y": 11500,
+      "tx": 10250,
+      "ty": 2000,
+      "src": [
+       "borja_maps"
+      ]
+     }
+    ],
+    "return_portal": [
+     10700,
+     1200
+    ]
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "lordakia",
+    "count": 30
+   },
+   {
+    "id": "saimon",
+    "count": 30
+   },
+   {
+    "id": "mordon",
+    "count": 20
+   },
+   {
+    "id": "sibelon",
+    "count": 10
+   },
+   {
+    "id": "boss_saimon",
+    "count": 4
+   },
+   {
+    "id": "boss_sibelon",
+    "count": 4
+   }
+  ],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "sibelon",
+     "count": 10
+    },
+    {
+     "id": "lordakia",
+     "count": 25
+    },
+    {
+     "id": "saimon",
+     "count": 25
+    },
+    {
+     "id": "mordon",
+     "count": 25
+    }
+   ],
+   "muffin_2009": [
+    {
+     "id": "lordakia",
+     "count": 25
+    },
+    {
+     "id": "sibelon",
+     "count": 10
+    },
+    {
+     "id": "mordon",
+     "count": 20
+    },
+    {
+     "id": "saimon",
+     "count": 18
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": {
+   "Mordon": [
+    [
+     5100,
+     3300
+    ]
+   ]
+  },
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/2-4",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 9,
+  "name": "3-1",
+  "faction": "vru",
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": true,
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 2000,
+    "to": 10,
+    "tx": 18500,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     11500
+    ]
+   }
+  ],
+  "stations": [
+   {
+    "faction": "vru",
+    "x": 19000,
+    "y": 12000,
+    "type": "home",
+    "src": "kalaazu"
+   }
+  ],
+  "npcs": [
+   {
+    "id": "streuner",
+    "count": 80
+   }
+  ],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "streuner",
+     "count": 50
+    }
+   ],
+   "muffin_2009": [
+    {
+     "id": "streuner",
+     "count": 50
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": null,
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/3-1",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 10,
+  "name": "3-2",
+  "faction": "vru",
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": true,
+  "portals": [
+   {
+    "id": 1,
+    "x": 18500,
+    "y": 11500,
+    "to": 9,
+    "tx": 2000,
+    "ty": 2000,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2000,
+     2000
+    ]
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 2000,
+    "to": 11,
+    "tx": 18500,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     11500
+    ]
+   },
+   {
+    "id": 3,
+    "x": 2000,
+    "y": 2000,
+    "to": 12,
+    "tx": 18500,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     11500
+    ]
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "streuner",
+    "count": 40
+   },
+   {
+    "id": "lordakia",
+    "count": 40
+   },
+   {
+    "id": "boss_streuner",
+    "count": 4
+   },
+   {
+    "id": "boss_lordakia",
+    "count": 4
+   }
+  ],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "streuner",
+     "count": 50
+    },
+    {
+     "id": "lordakia",
+     "count": 25
+    }
+   ],
+   "muffin_2009": [
+    {
+     "id": "streuner",
+     "count": 50
+    },
+    {
+     "id": "lordakia",
+     "count": 25
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": [
+   "Lordakia",
+   "Streuner",
+   "Boss Streuner&nbsp;",
+   "Boss Lordakia"
+  ],
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": {
+   "Streuner": [
+    [
+     11100,
+     7100
+    ]
+   ],
+   "Boss Streuner": [
+    [
+     11800,
+     7500
+    ]
+   ]
+  },
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/3-2",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 11,
+  "name": "3-3",
+  "faction": "vru",
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 2000,
+    "to": 8,
+    "tx": 2000,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2000,
+     11500
+    ]
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 11500,
+    "to": 10,
+    "tx": 18500,
+    "ty": 2000,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     2000
+    ]
+   },
+   {
+    "id": 3,
+    "x": 2000,
+    "y": 11500,
+    "to": 12,
+    "tx": 18500,
+    "ty": 2000,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     2000
+    ]
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "lordakia",
+    "count": 30
+   },
+   {
+    "id": "saimon",
+    "count": 30
+   },
+   {
+    "id": "mordon",
+    "count": 20
+   },
+   {
+    "id": "devolarium",
+    "count": 10
+   },
+   {
+    "id": "boss_mordon",
+    "count": 4
+   },
+   {
+    "id": "boss_devolarium",
+    "count": 4
+   }
+  ],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "lordakia",
+     "count": 25
+    },
+    {
+     "id": "devolarium",
+     "count": 10
+    },
+    {
+     "id": "saimon",
+     "count": 25
+    },
+    {
+     "id": "mordon",
+     "count": 25
+    }
+   ],
+   "muffin_2009": [
+    {
+     "id": "lordakia",
+     "count": 25
+    },
+    {
+     "id": "devolarium",
+     "count": 10
+    },
+    {
+     "id": "mordon",
+     "count": 20
+    },
+    {
+     "id": "saimon",
+     "count": 18
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": {
+   "Lordakia": [
+    [
+     7800,
+     5800
+    ]
+   ],
+   "Mordon": [
+    [
+     3400,
+     3500
+    ]
+   ]
+  },
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/3-3",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 12,
+  "name": "3-4",
+  "faction": "vru",
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 2000,
+    "to": 4,
+    "tx": 18500,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     11500
+    ]
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 11500,
+    "to": 10,
+    "tx": 2000,
+    "ty": 2000,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "muffin_maps"
+    ],
+    "alternatives": [
+     {
+      "x": 18500,
+      "y": 11500,
+      "tx": 2000,
+      "ty": 7000,
+      "src": [
+       "kalaazu"
+      ]
+     },
+     {
+      "x": 18500,
+      "y": 2000,
+      "tx": 2000,
+      "ty": 2000,
+      "src": [
+       "muffin_portales"
+      ]
+     }
+    ],
+    "return_portal": [
+     2000,
+     2000
+    ]
+   },
+   {
+    "id": 3,
+    "x": 18500,
+    "y": 2000,
+    "to": 11,
+    "tx": 2000,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps",
+     "muffin_portales"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2000,
+     11500
+    ]
+   },
+   {
+    "id": 4,
+    "x": 10000,
+    "y": 1200,
+    "to": 15,
+    "tx": 19500,
+    "ty": 7000,
+    "agree": [
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [
+     {
+      "x": 10700,
+      "y": 1200,
+      "tx": 19500,
+      "ty": 7000,
+      "src": [
+       "borja_portals"
+      ]
+     },
+     {
+      "x": 10250,
+      "y": 2000,
+      "tx": 18500,
+      "ty": 6750,
+      "src": [
+       "borja_maps"
+      ]
+     }
+    ],
+    "return_portal": [
+     19500,
+     7000
+    ]
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "lordakia",
+    "count": 30
+   },
+   {
+    "id": "saimon",
+    "count": 30
+   },
+   {
+    "id": "mordon",
+    "count": 20
+   },
+   {
+    "id": "sibelon",
+    "count": 10
+   },
+   {
+    "id": "boss_saimon",
+    "count": 4
+   },
+   {
+    "id": "boss_sibelon",
+    "count": 4
+   }
+  ],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "sibelon",
+     "count": 10
+    },
+    {
+     "id": "lordakia",
+     "count": 25
+    },
+    {
+     "id": "saimon",
+     "count": 25
+    },
+    {
+     "id": "mordon",
+     "count": 25
+    }
+   ],
+   "muffin_2009": [
+    {
+     "id": "lordakia",
+     "count": 25
+    },
+    {
+     "id": "sibelon",
+     "count": 10
+    },
+    {
+     "id": "mordon",
+     "count": 20
+    },
+    {
+     "id": "saimon",
+     "count": 18
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": [
+   "Lordakia",
+   "Sibelon",
+   "Boss Sibelon",
+   "Saimon",
+   "Boss Saimon",
+   "Mordon"
+  ],
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": {
+   "Saimon": [
+    [
+     14400,
+     9700
+    ]
+   ]
+  },
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/3-4",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 13,
+  "name": "4-1",
+  "faction": "mmo",
+  "w": 20800,
+  "h": 12800,
+  "pvp": true,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 7000,
+    "to": 4,
+    "tx": 19500,
+    "ty": 7000,
+    "agree": [
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [
+     {
+      "x": 2000,
+      "y": 6750,
+      "tx": 18500,
+      "ty": 6750,
+      "src": [
+       "borja_maps"
+      ]
+     }
+    ],
+    "return_portal": [
+     19500,
+     7000
+    ]
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 2000,
+    "to": 14,
+    "tx": 2000,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [
+     {
+      "x": 18900,
+      "y": 1900,
+      "tx": 2500,
+      "ty": 10900,
+      "src": [
+       "yusuf"
+      ]
+     }
+    ],
+    "return_portal": [
+     2000,
+     11500
+    ]
+   },
+   {
+    "id": 3,
+    "x": 18500,
+    "y": 11500,
+    "to": 15,
+    "tx": 2000,
+    "ty": 11500,
+    "agree": [
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [
+     {
+      "x": 18500,
+      "y": 11500,
+      "tx": 18500,
+      "ty": 11500,
+      "src": [
+       "borja_maps"
+      ]
+     },
+     {
+      "x": 18900,
+      "y": 11300,
+      "tx": 2000,
+      "ty": 11200,
+      "src": [
+       "yusuf"
+      ]
+     }
+    ],
+    "return_portal": [
+     2000,
+     11500
+    ]
+   },
+   {
+    "id": 4,
+    "x": 10700,
+    "y": 7000,
+    "to": 16,
+    "tx": 19200,
+    "ty": 13400,
+    "agree": [
+     "borja_portals"
+    ],
+    "alternatives": [
+     {
+      "x": 10700,
+      "y": 7000,
+      "tx": 9500,
+      "ty": 7500,
+      "src": [
+       "kalaazu",
+       "muffin_maps"
+      ]
+     },
+     {
+      "x": 10250,
+      "y": 6750,
+      "tx": 20000,
+      "ty": 13000,
+      "src": [
+       "borja_maps"
+      ]
+     },
+     {
+      "x": 10000,
+      "y": 6200,
+      "tx": 19200,
+      "ty": 13400,
+      "src": [
+       "yusuf"
+      ]
+     }
+    ],
+    "return_portal": [
+     19200,
+     13400
+    ]
+   }
+  ],
+  "stations": [
+   {
+    "faction": "mmo",
+    "x": 1600,
+    "y": 1600,
+    "type": "typeId46",
+    "src": "yusuf"
+   }
+  ],
+  "npcs": [],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "cubikon",
+     "count": 1
+    }
+   ],
+   "muffin_2009": [],
+   "yusuf": [
+    {
+     "id": "kristallon",
+     "count": 7
+    },
+    {
+     "id": "kristallin",
+     "count": 12
+    },
+    {
+     "id": "boss_kristallon",
+     "count": 2
+    },
+    {
+     "id": "boss_kristallin",
+     "count": 4
+    }
+   ]
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": null,
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/4-1",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 14,
+  "name": "4-2",
+  "faction": "eic",
+  "w": 20800,
+  "h": 12800,
+  "pvp": true,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 10700,
+    "y": 1200,
+    "to": 8,
+    "tx": 10000,
+    "ty": 12000,
+    "agree": [
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [
+     {
+      "x": 10250,
+      "y": 2000,
+      "tx": 10250,
+      "ty": 11500,
+      "src": [
+       "borja_maps"
+      ]
+     }
+    ],
+    "return_portal": [
+     10000,
+     12000
+    ]
+   },
+   {
+    "id": 2,
+    "x": 2000,
+    "y": 11500,
+    "to": 13,
+    "tx": 18500,
+    "ty": 2000,
+    "agree": [
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [
+     {
+      "x": 2000,
+      "y": 11500,
+      "tx": 18500,
+      "ty": 11500,
+      "src": [
+       "borja_maps"
+      ]
+     },
+     {
+      "x": 2500,
+      "y": 10900,
+      "tx": 18900,
+      "ty": 1900,
+      "src": [
+       "yusuf"
+      ]
+     }
+    ],
+    "return_portal": [
+     18500,
+     2000
+    ]
+   },
+   {
+    "id": 3,
+    "x": 18500,
+    "y": 11500,
+    "to": 15,
+    "tx": 2000,
+    "ty": 2000,
+    "agree": [
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [
+     {
+      "x": 18500,
+      "y": 11500,
+      "tx": 18500,
+      "ty": 2000,
+      "src": [
+       "borja_maps"
+      ]
+     },
+     {
+      "x": 18900,
+      "y": 10900,
+      "tx": 2000,
+      "ty": 1900,
+      "src": [
+       "yusuf"
+      ]
+     }
+    ],
+    "return_portal": [
+     2000,
+     2000
+    ]
+   },
+   {
+    "id": 4,
+    "x": 10700,
+    "y": 7000,
+    "to": 16,
+    "tx": 21900,
+    "ty": 11900,
+    "agree": [
+     "borja_portals"
+    ],
+    "alternatives": [
+     {
+      "x": 10700,
+      "y": 7000,
+      "tx": 10700,
+      "ty": 5500,
+      "src": [
+       "kalaazu",
+       "muffin_maps"
+      ]
+     },
+     {
+      "x": 10250,
+      "y": 6750,
+      "tx": 21500,
+      "ty": 12100,
+      "src": [
+       "borja_maps"
+      ]
+     },
+     {
+      "x": 10400,
+      "y": 6300,
+      "tx": 21900,
+      "ty": 11900,
+      "src": [
+       "yusuf"
+      ]
+     }
+    ],
+    "return_portal": [
+     21900,
+     11900
+    ]
+   }
+  ],
+  "stations": [
+   {
+    "faction": "eic",
+    "x": 19500,
+    "y": 1500,
+    "type": "typeId46",
+    "src": "yusuf"
+   }
+  ],
+  "npcs": [],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "cubikon",
+     "count": 1
+    }
+   ],
+   "muffin_2009": [],
+   "yusuf": [
+    {
+     "id": "kristallon",
+     "count": 7
+    },
+    {
+     "id": "kristallin",
+     "count": 12
+    },
+    {
+     "id": "boss_kristallon",
+     "count": 2
+    },
+    {
+     "id": "boss_kristallin",
+     "count": 4
+    }
+   ]
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": null,
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/4-2",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 15,
+  "name": "4-3",
+  "faction": "vru",
+  "w": 20800,
+  "h": 12800,
+  "pvp": true,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 19500,
+    "y": 7000,
+    "to": 12,
+    "tx": 10000,
+    "ty": 1200,
+    "agree": [
+     "borja_portals"
+    ],
+    "alternatives": [
+     {
+      "x": 18500,
+      "y": 6750,
+      "tx": 10250,
+      "ty": 2000,
+      "src": [
+       "borja_maps"
+      ]
+     },
+     {
+      "x": 19500,
+      "y": 7000,
+      "tx": 10000,
+      "ty": 1200,
+      "src": [
+       "muffin_maps"
+      ]
+     }
+    ],
+    "return_portal": [
+     10000,
+     1200
+    ],
+    "tx_src": 10700,
+    "ty_src": 1200
+   },
+   {
+    "id": 2,
+    "x": 2000,
+    "y": 11500,
+    "to": 13,
+    "tx": 18500,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [
+     {
+      "x": 2000,
+      "y": 11200,
+      "tx": 18900,
+      "ty": 11300,
+      "src": [
+       "yusuf"
+      ]
+     }
+    ],
+    "return_portal": [
+     18500,
+     11500
+    ]
+   },
+   {
+    "id": 3,
+    "x": 2000,
+    "y": 2000,
+    "to": 14,
+    "tx": 18500,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [
+     {
+      "x": 2000,
+      "y": 1900,
+      "tx": 18700,
+      "ty": 10900,
+      "src": [
+       "yusuf"
+      ]
+     }
+    ],
+    "return_portal": [
+     18500,
+     11500
+    ]
+   },
+   {
+    "id": 4,
+    "x": 10700,
+    "y": 7000,
+    "to": 16,
+    "tx": 21800,
+    "ty": 14500,
+    "agree": [
+     "borja_portals"
+    ],
+    "alternatives": [
+     {
+      "x": 10700,
+      "y": 7000,
+      "tx": 11900,
+      "ty": 7500,
+      "src": [
+       "kalaazu",
+       "muffin_maps"
+      ]
+     },
+     {
+      "x": 10250,
+      "y": 6750,
+      "tx": 21500,
+      "ty": 13900,
+      "src": [
+       "borja_maps"
+      ]
+     },
+     {
+      "x": 10300,
+      "y": 6600,
+      "tx": 21900,
+      "ty": 14500,
+      "src": [
+       "yusuf"
+      ]
+     }
+    ],
+    "return_portal": [
+     21800,
+     14500
+    ]
+   }
+  ],
+  "stations": [
+   {
+    "faction": "vru",
+    "x": 19500,
+    "y": 11600,
+    "type": "typeId46",
+    "src": "yusuf"
+   }
+  ],
+  "npcs": [],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "cubikon",
+     "count": 1
+    }
+   ],
+   "muffin_2009": [],
+   "yusuf": [
+    {
+     "id": "kristallon",
+     "count": 7
+    },
+    {
+     "id": "kristallin",
+     "count": 12
+    },
+    {
+     "id": "boss_kristallon",
+     "count": 2
+    },
+    {
+     "id": "boss_kristallin",
+     "count": 4
+    }
+   ]
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": null,
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/4-3",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 16,
+  "name": "4-4",
+  "faction": null,
+  "w": 41600,
+  "h": 25600,
+  "pvp": true,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 19200,
+    "y": 13400,
+    "to": 13,
+    "tx": 10700,
+    "ty": 7000,
+    "agree": [
+     "borja_portals"
+    ],
+    "alternatives": [
+     {
+      "x": 9500,
+      "y": 7500,
+      "tx": 10700,
+      "ty": 7000,
+      "src": [
+       "kalaazu"
+      ]
+     },
+     {
+      "x": 20000,
+      "y": 13000,
+      "tx": 10250,
+      "ty": 6750,
+      "src": [
+       "borja_maps"
+      ]
+     },
+     {
+      "x": 19000,
+      "y": 15000,
+      "tx": 10700,
+      "ty": 7000,
+      "src": [
+       "muffin_maps"
+      ]
+     },
+     {
+      "x": 19200,
+      "y": 13400,
+      "tx": 10000,
+      "ty": 6200,
+      "src": [
+       "yusuf"
+      ]
+     }
+    ],
+    "return_portal": [
+     10700,
+     7000
+    ]
+   },
+   {
+    "id": 2,
+    "x": 21900,
+    "y": 11900,
+    "to": 14,
+    "tx": 10700,
+    "ty": 7000,
+    "agree": [
+     "borja_portals"
+    ],
+    "alternatives": [
+     {
+      "x": 10700,
+      "y": 5500,
+      "tx": 10700,
+      "ty": 7000,
+      "src": [
+       "kalaazu"
+      ]
+     },
+     {
+      "x": 21500,
+      "y": 12100,
+      "tx": 10250,
+      "ty": 6750,
+      "src": [
+       "borja_maps"
+      ]
+     },
+     {
+      "x": 21400,
+      "y": 11000,
+      "tx": 10700,
+      "ty": 7000,
+      "src": [
+       "muffin_maps"
+      ]
+     },
+     {
+      "x": 21900,
+      "y": 11900,
+      "tx": 10400,
+      "ty": 6300,
+      "src": [
+       "yusuf"
+      ]
+     }
+    ],
+    "return_portal": [
+     10700,
+     7000
+    ]
+   },
+   {
+    "id": 3,
+    "x": 21800,
+    "y": 14500,
+    "to": 15,
+    "tx": 10700,
+    "ty": 7000,
+    "agree": [
+     "borja_portals"
+    ],
+    "alternatives": [
+     {
+      "x": 11900,
+      "y": 7500,
+      "tx": 10700,
+      "ty": 7000,
+      "src": [
+       "kalaazu"
+      ]
+     },
+     {
+      "x": 21500,
+      "y": 13900,
+      "tx": 10250,
+      "ty": 6750,
+      "src": [
+       "borja_maps"
+      ]
+     },
+     {
+      "x": 23800,
+      "y": 15000,
+      "tx": 10700,
+      "ty": 7000,
+      "src": [
+       "muffin_maps"
+      ]
+     },
+     {
+      "x": 21900,
+      "y": 14500,
+      "tx": 10300,
+      "ty": 6600,
+      "src": [
+       "yusuf"
+      ]
+     }
+    ],
+    "return_portal": [
+     10700,
+     7000
+    ]
+   },
+   {
+    "id": 4,
+    "x": 7000,
+    "y": 13500,
+    "to": 17,
+    "tx": 18500,
+    "ty": 6000,
+    "agree": [
+     "borja_portals"
+    ],
+    "alternatives": [
+     {
+      "x": 2500,
+      "y": 7500,
+      "tx": 18500,
+      "ty": 6000,
+      "src": [
+       "kalaazu"
+      ]
+     },
+     {
+      "x": 6000,
+      "y": 13000,
+      "tx": 18500,
+      "ty": 6750,
+      "src": [
+       "borja_maps"
+      ]
+     },
+     {
+      "x": 5000,
+      "y": 15000,
+      "tx": 18500,
+      "ty": 6000,
+      "src": [
+       "muffin_maps"
+      ]
+     }
+    ],
+    "return_portal": [
+     18500,
+     6000
+    ]
+   },
+   {
+    "id": 5,
+    "x": 28000,
+    "y": 1300,
+    "to": 21,
+    "tx": 2000,
+    "ty": 11500,
+    "agree": [
+     "borja_portals"
+    ],
+    "alternatives": [
+     {
+      "x": 16000,
+      "y": 1200,
+      "tx": 2000,
+      "ty": 11500,
+      "src": [
+       "kalaazu"
+      ]
+     },
+     {
+      "x": 28000,
+      "y": 3000,
+      "tx": 2000,
+      "ty": 11500,
+      "src": [
+       "borja_maps"
+      ]
+     },
+     {
+      "x": 32000,
+      "y": 2400,
+      "tx": 2000,
+      "ty": 11500,
+      "src": [
+       "muffin_maps"
+      ]
+     }
+    ],
+    "return_portal": [
+     2000,
+     11500
+    ]
+   },
+   {
+    "id": 6,
+    "x": 28000,
+    "y": 25100,
+    "to": 25,
+    "tx": 2000,
+    "ty": 2000,
+    "agree": [
+     "borja_portals"
+    ],
+    "alternatives": [
+     {
+      "x": 16000,
+      "y": 12000,
+      "tx": 2000,
+      "ty": 2000,
+      "src": [
+       "kalaazu"
+      ]
+     },
+     {
+      "x": 28000,
+      "y": 24000,
+      "tx": 2000,
+      "ty": 2000,
+      "src": [
+       "borja_maps"
+      ]
+     },
+     {
+      "x": 32000,
+      "y": 24000,
+      "tx": 2000,
+      "ty": 2000,
+      "src": [
+       "muffin_maps"
+      ]
+     }
+    ],
+    "return_portal": [
+     2000,
+     2000
+    ]
+   }
+  ],
+  "stations": [],
+  "npcs": [],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "cubikon",
+     "count": 1
+    }
+   ],
+   "muffin_2009": [],
+   "yusuf": []
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": {
+   "Ice Meteoroid Super Ice Meteoroid": [
+    [
+     9900,
+     6000
+    ],
+    [
+     10300,
+     6100
+    ]
+   ]
+  },
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/4-4",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 17,
+  "name": "1-5",
+  "faction": "mmo",
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 18500,
+    "y": 6000,
+    "to": 16,
+    "tx": 7000,
+    "ty": 13500,
+    "agree": [
+     "borja_portals"
+    ],
+    "alternatives": [
+     {
+      "x": 18500,
+      "y": 6000,
+      "tx": 2500,
+      "ty": 7500,
+      "src": [
+       "kalaazu",
+       "muffin_maps"
+      ]
+     },
+     {
+      "x": 18500,
+      "y": 6750,
+      "tx": 6000,
+      "ty": 13000,
+      "src": [
+       "borja_maps"
+      ]
+     }
+    ],
+    "return_portal": [
+     7000,
+     13500
+    ],
+    "tx_src": 21800,
+    "ty_src": 14500
+   },
+   {
+    "id": 2,
+    "x": 2000,
+    "y": 2000,
+    "to": 18,
+    "tx": 18500,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     11500
+    ]
+   },
+   {
+    "id": 3,
+    "x": 2000,
+    "y": 11500,
+    "to": 19,
+    "tx": 18500,
+    "ty": 2000,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     2000
+    ]
+   },
+   {
+    "id": 4,
+    "x": 10500,
+    "y": 12000,
+    "to": 29,
+    "tx": 5500,
+    "ty": 13500,
+    "agree": [
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     5500,
+     13500
+    ]
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "lordakia",
+    "count": 30
+   },
+   {
+    "id": "sibelonit",
+    "count": 30
+   },
+   {
+    "id": "lordakium",
+    "count": 20
+   },
+   {
+    "id": "boss_sibelonit",
+    "count": 4
+   },
+   {
+    "id": "boss_lordakium",
+    "count": 4
+   }
+  ],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "lordakium",
+     "count": 10
+    },
+    {
+     "id": "lordakia",
+     "count": 50
+    },
+    {
+     "id": "sibelonit",
+     "count": 25
+    }
+   ],
+   "muffin_2009": [
+    {
+     "id": "lordakia",
+     "count": 25
+    },
+    {
+     "id": "sibelonit",
+     "count": 35
+    },
+    {
+     "id": "lordakium",
+     "count": 10
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": {
+   "Lordakia": [
+    [
+     15100,
+     3400
+    ]
+   ],
+   "Boss Sibelonit": [
+    [
+     8600,
+     8700
+    ]
+   ],
+   "Lordakium": [
+    [
+     6300,
+     8200
+    ]
+   ]
+  },
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/1-5",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 18,
+  "name": "1-6",
+  "faction": "mmo",
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 18500,
+    "y": 11500,
+    "to": 17,
+    "tx": 2000,
+    "ty": 2000,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2000,
+     2000
+    ]
+   },
+   {
+    "id": 2,
+    "x": 2000,
+    "y": 11500,
+    "to": 20,
+    "tx": 18500,
+    "ty": 2000,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     2000
+    ]
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "kristallin",
+    "count": 60
+   },
+   {
+    "id": "kristallon",
+    "count": 20
+   },
+   {
+    "id": "boss_kristallin",
+    "count": 4
+   },
+   {
+    "id": "cubikon",
+    "count": 4
+   }
+  ],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "kristallon",
+     "count": 10
+    },
+    {
+     "id": "kristallin",
+     "count": 50
+    },
+    {
+     "id": "cubikon",
+     "count": 4
+    }
+   ],
+   "muffin_2009": [
+    {
+     "id": "kristallin",
+     "count": 40
+    },
+    {
+     "id": "kristallon",
+     "count": 12
+    },
+    {
+     "id": "cubikon",
+     "count": 4
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": {
+   "Kristallin": [
+    [
+     9600,
+     6100
+    ]
+   ],
+   "Boss Kristallin": [
+    [
+     13000,
+     2900
+    ],
+    [
+     6400,
+     6500
+    ]
+   ],
+   "Kristallon": [
+    [
+     6600,
+     8000
+    ]
+   ]
+  },
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/1-6",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 19,
+  "name": "1-7",
+  "faction": "mmo",
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 18500,
+    "y": 2000,
+    "to": 17,
+    "tx": 2000,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2000,
+     11500
+    ]
+   },
+   {
+    "id": 2,
+    "x": 2000,
+    "y": 2000,
+    "to": 20,
+    "tx": 18500,
+    "ty": 11500,
+    "agree": [
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [
+     {
+      "x": 2000,
+      "y": 2000,
+      "tx": 18500,
+      "ty": 11500,
+      "src": [
+       "borja_maps"
+      ]
+     }
+    ],
+    "return_portal": [
+     18500,
+     11500
+    ],
+    "tx_src": 18500,
+    "ty_src": 2000
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "kristallin",
+    "count": 60
+   },
+   {
+    "id": "kristallon",
+    "count": 20
+   },
+   {
+    "id": "boss_kristallon",
+    "count": 4
+   }
+  ],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "kristallon",
+     "count": 10
+    },
+    {
+     "id": "kristallin",
+     "count": 50
+    }
+   ],
+   "muffin_2009": [
+    {
+     "id": "kristallin",
+     "count": 40
+    },
+    {
+     "id": "kristallon",
+     "count": 20
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": {
+   "Kristallin": [
+    [
+     9000,
+     5200
+    ],
+    [
+     11600,
+     6800
+    ],
+    [
+     8600,
+     7000
+    ],
+    [
+     9800,
+     7200
+    ]
+   ],
+   "Boss Kristallin": [
+    [
+     8400,
+     6800
+    ]
+   ],
+   "Kristallon": [
+    [
+     11200,
+     5900
+    ],
+    [
+     11500,
+     5800
+    ]
+   ]
+  },
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/1-7",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 20,
+  "name": "1-8",
+  "faction": "mmo",
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 18500,
+    "y": 2000,
+    "to": 18,
+    "tx": 2000,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2000,
+     11500
+    ]
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 11500,
+    "to": 19,
+    "tx": 2000,
+    "ty": 2000,
+    "agree": [
+     "borja_maps",
+     "borja_portals",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2000,
+     2000
+    ]
+   }
+  ],
+  "stations": [
+   {
+    "faction": "mmo",
+    "x": 1000,
+    "y": 6000,
+    "type": "home",
+    "src": "kalaazu"
+   }
+  ],
+  "npcs": [
+   {
+    "id": "streuner_r_upper",
+    "count": 80
+   }
+  ],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "streuner_r_upper",
+     "count": 75
+    }
+   ],
+   "muffin_2009": [
+    {
+     "id": "streuner_r_upper",
+     "count": 70
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": null,
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/1-8",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 21,
+  "name": "2-5",
+  "faction": "eic",
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 11500,
+    "to": 16,
+    "tx": 28000,
+    "ty": 1300,
+    "agree": [
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [
+     {
+      "x": 2000,
+      "y": 11500,
+      "tx": 28000,
+      "ty": 3000,
+      "src": [
+       "borja_maps"
+      ]
+     }
+    ],
+    "return_portal": [
+     28000,
+     1300
+    ],
+    "tx_src": 16000,
+    "ty_src": 1200
+   },
+   {
+    "id": 2,
+    "x": 2000,
+    "y": 2000,
+    "to": 22,
+    "tx": 2000,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2000,
+     11500
+    ]
+   },
+   {
+    "id": 3,
+    "x": 18500,
+    "y": 2000,
+    "to": 23,
+    "tx": 2000,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2000,
+     11500
+    ]
+   },
+   {
+    "id": 4,
+    "x": 18500,
+    "y": 11500,
+    "to": 29,
+    "tx": 27000,
+    "ty": 2000,
+    "agree": [
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     27000,
+     2000
+    ],
+    "tx_src": 25000,
+    "ty_src": 2000
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "lordakia",
+    "count": 30
+   },
+   {
+    "id": "sibelonit",
+    "count": 30
+   },
+   {
+    "id": "lordakium",
+    "count": 20
+   },
+   {
+    "id": "boss_sibelonit",
+    "count": 4
+   },
+   {
+    "id": "boss_lordakium",
+    "count": 4
+   }
+  ],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "lordakium",
+     "count": 10
+    },
+    {
+     "id": "lordakia",
+     "count": 50
+    },
+    {
+     "id": "sibelonit",
+     "count": 25
+    }
+   ],
+   "muffin_2009": [
+    {
+     "id": "lordakia",
+     "count": 25
+    },
+    {
+     "id": "sibelonit",
+     "count": 35
+    },
+    {
+     "id": "lordakium",
+     "count": 10
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": null,
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/2-5",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 22,
+  "name": "2-6",
+  "faction": "eic",
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 11500,
+    "to": 21,
+    "tx": 2000,
+    "ty": 2000,
+    "agree": [
+     "borja_maps",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2000,
+     2000
+    ]
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 2000,
+    "to": 24,
+    "tx": 2000,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2000,
+     11500
+    ]
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "kristallin",
+    "count": 60
+   },
+   {
+    "id": "kristallon",
+    "count": 20
+   },
+   {
+    "id": "boss_kristallin",
+    "count": 4
+   },
+   {
+    "id": "cubikon",
+    "count": 4
+   }
+  ],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "kristallon",
+     "count": 10
+    },
+    {
+     "id": "kristallin",
+     "count": 50
+    },
+    {
+     "id": "cubikon",
+     "count": 4
+    }
+   ],
+   "muffin_2009": [
+    {
+     "id": "kristallin",
+     "count": 40
+    },
+    {
+     "id": "kristallon",
+     "count": 12
+    },
+    {
+     "id": "cubikon",
+     "count": 4
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": null,
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/2-6",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 23,
+  "name": "2-7",
+  "faction": "eic",
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 11500,
+    "to": 21,
+    "tx": 18500,
+    "ty": 2000,
+    "agree": [
+     "borja_maps",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     2000
+    ]
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 2000,
+    "to": 24,
+    "tx": 18500,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     11500
+    ]
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "kristallin",
+    "count": 60
+   },
+   {
+    "id": "kristallon",
+    "count": 20
+   },
+   {
+    "id": "boss_kristallon",
+    "count": 4
+   }
+  ],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "kristallon",
+     "count": 10
+    },
+    {
+     "id": "kristallin",
+     "count": 50
+    }
+   ],
+   "muffin_2009": [
+    {
+     "id": "kristallin",
+     "count": 45
+    },
+    {
+     "id": "kristallon",
+     "count": 15
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": null,
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/2-7",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 24,
+  "name": "2-8",
+  "faction": "eic",
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 11500,
+    "to": 22,
+    "tx": 18500,
+    "ty": 2000,
+    "agree": [
+     "borja_maps",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     2000
+    ]
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 11500,
+    "to": 23,
+    "tx": 18500,
+    "ty": 2000,
+    "agree": [
+     "borja_maps",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     2000
+    ]
+   }
+  ],
+  "stations": [
+   {
+    "faction": "eic",
+    "x": 10000,
+    "y": 1000,
+    "type": "home",
+    "src": "kalaazu"
+   }
+  ],
+  "npcs": [
+   {
+    "id": "streuner_r_upper",
+    "count": 80
+   }
+  ],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "streuner_r_upper",
+     "count": 75
+    }
+   ],
+   "muffin_2009": [
+    {
+     "id": "streuner_r_upper",
+     "count": 70
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": null,
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/2-8",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 25,
+  "name": "3-5",
+  "faction": "vru",
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 2000,
+    "to": 16,
+    "tx": 28000,
+    "ty": 25100,
+    "agree": [
+     "kalaazu"
+    ],
+    "alternatives": [
+     {
+      "x": 2000,
+      "y": 2000,
+      "tx": 28000,
+      "ty": 24000,
+      "src": [
+       "borja_maps"
+      ]
+     },
+     {
+      "x": 2000,
+      "y": 2000,
+      "tx": 16000,
+      "ty": 12000,
+      "src": [
+       "muffin_maps"
+      ]
+     }
+    ],
+    "return_portal": [
+     28000,
+     25100
+    ],
+    "tx_src": 16000,
+    "ty_src": 1200
+   },
+   {
+    "id": 2,
+    "x": 2000,
+    "y": 11500,
+    "to": 26,
+    "tx": 2000,
+    "ty": 2000,
+    "agree": [
+     "borja_maps",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2000,
+     2000
+    ]
+   },
+   {
+    "id": 3,
+    "x": 18500,
+    "y": 11500,
+    "to": 27,
+    "tx": 2000,
+    "ty": 11500,
+    "agree": [
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [
+     {
+      "x": 18500,
+      "y": 11500,
+      "tx": 2000,
+      "ty": 2000,
+      "src": [
+       "borja_maps"
+      ]
+     }
+    ],
+    "return_portal": [
+     2000,
+     11500
+    ]
+   },
+   {
+    "id": 4,
+    "x": 18500,
+    "y": 2000,
+    "to": 29,
+    "tx": 27000,
+    "ty": 25000,
+    "agree": [
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     27000,
+     25000
+    ],
+    "tx_src": 25000,
+    "ty_src": 25000
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "lordakia",
+    "count": 30
+   },
+   {
+    "id": "sibelonit",
+    "count": 30
+   },
+   {
+    "id": "lordakium",
+    "count": 20
+   },
+   {
+    "id": "boss_sibelonit",
+    "count": 4
+   },
+   {
+    "id": "boss_lordakium",
+    "count": 4
+   }
+  ],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "lordakium",
+     "count": 10
+    },
+    {
+     "id": "lordakia",
+     "count": 50
+    },
+    {
+     "id": "sibelonit",
+     "count": 25
+    }
+   ],
+   "muffin_2009": [
+    {
+     "id": "lordakia",
+     "count": 25
+    },
+    {
+     "id": "sibelonit",
+     "count": 35
+    },
+    {
+     "id": "lordakium",
+     "count": 10
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": null,
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/3-5",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 26,
+  "name": "3-6",
+  "faction": "vru",
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 2000,
+    "to": 25,
+    "tx": 2000,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2000,
+     11500
+    ]
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 11500,
+    "to": 28,
+    "tx": 2000,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2000,
+     11500
+    ]
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "kristallin",
+    "count": 60
+   },
+   {
+    "id": "kristallon",
+    "count": 20
+   },
+   {
+    "id": "boss_kristallin",
+    "count": 4
+   },
+   {
+    "id": "cubikon",
+    "count": 4
+   }
+  ],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "kristallon",
+     "count": 10
+    },
+    {
+     "id": "kristallin",
+     "count": 50
+    },
+    {
+     "id": "cubikon",
+     "count": 4
+    }
+   ],
+   "muffin_2009": [
+    {
+     "id": "kristallin",
+     "count": 40
+    },
+    {
+     "id": "kristallon",
+     "count": 12
+    },
+    {
+     "id": "cubikon",
+     "count": 4
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": null,
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/3-6",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 27,
+  "name": "3-7",
+  "faction": "vru",
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 11500,
+    "to": 25,
+    "tx": 18500,
+    "ty": 11500,
+    "agree": [
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [
+     {
+      "x": 2000,
+      "y": 2000,
+      "tx": 18500,
+      "ty": 11500,
+      "src": [
+       "borja_maps"
+      ]
+     }
+    ],
+    "return_portal": [
+     18500,
+     11500
+    ]
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 11500,
+    "to": 28,
+    "tx": 2000,
+    "ty": 2000,
+    "agree": [
+     "borja_maps",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2000,
+     2000
+    ]
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "kristallin",
+    "count": 60
+   },
+   {
+    "id": "kristallon",
+    "count": 20
+   },
+   {
+    "id": "boss_kristallon",
+    "count": 4
+   }
+  ],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "kristallon",
+     "count": 10
+    },
+    {
+     "id": "kristallin",
+     "count": 50
+    }
+   ],
+   "muffin_2009": [
+    {
+     "id": "kristallin",
+     "count": 45
+    },
+    {
+     "id": "kristallon",
+     "count": 15
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": null,
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/3-7",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 28,
+  "name": "3-8",
+  "faction": "vru",
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 11500,
+    "to": 26,
+    "tx": 18500,
+    "ty": 11500,
+    "agree": [
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [
+     {
+      "x": 2000,
+      "y": 11500,
+      "tx": 2000,
+      "ty": 11500,
+      "src": [
+       "borja_maps"
+      ]
+     }
+    ],
+    "return_portal": [
+     18500,
+     11500
+    ]
+   },
+   {
+    "id": 2,
+    "x": 2000,
+    "y": 2000,
+    "to": 27,
+    "tx": 18500,
+    "ty": 11500,
+    "agree": [
+     "borja_maps",
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     11500
+    ]
+   }
+  ],
+  "stations": [
+   {
+    "faction": "vru",
+    "x": 19000,
+    "y": 6000,
+    "type": "home",
+    "src": "kalaazu"
+   }
+  ],
+  "npcs": [
+   {
+    "id": "streuner_r_upper",
+    "count": 80
+   }
+  ],
+  "npcs_alt": {
+   "borja": [
+    {
+     "id": "streuner_r_upper",
+     "count": 75
+    }
+   ],
+   "muffin_2009": [
+    {
+     "id": "streuner_r_upper",
+     "count": 70
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": [
+   "StreuneR: a tougher version of the Streuner.",
+   "Boss StreuneR: a tougher version of the StreuneR."
+  ],
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": null,
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/3-8",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 29,
+  "name": "4-5",
+  "faction": null,
+  "w": 41600,
+  "h": 25600,
+  "pvp": true,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 5500,
+    "y": 13500,
+    "to": 17,
+    "tx": 10500,
+    "ty": 12000,
+    "agree": [
+     "kalaazu",
+     "muffin_maps"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     10500,
+     12000
+    ]
+   },
+   {
+    "id": 2,
+    "x": 27000,
+    "y": 2000,
+    "to": 21,
+    "tx": 18500,
+    "ty": 11500,
+    "agree": [
+     "kalaazu"
+    ],
+    "alternatives": [
+     {
+      "x": 25000,
+      "y": 2000,
+      "tx": 18500,
+      "ty": 11500,
+      "src": [
+       "muffin_maps"
+      ]
+     }
+    ],
+    "return_portal": [
+     18500,
+     11500
+    ]
+   },
+   {
+    "id": 3,
+    "x": 27000,
+    "y": 25000,
+    "to": 25,
+    "tx": 18500,
+    "ty": 2000,
+    "agree": [
+     "kalaazu"
+    ],
+    "alternatives": [
+     {
+      "x": 25000,
+      "y": 25000,
+      "tx": 18500,
+      "ty": 2000,
+      "src": [
+       "muffin_maps"
+      ]
+     }
+    ],
+    "return_portal": [
+     18500,
+     2000
+    ]
+   },
+   {
+    "id": 4,
+    "x": 24400,
+    "y": 20800,
+    "to": 91,
+    "tx": 35000,
+    "ty": 20000,
+    "agree": [
+     "kalaazu"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     35000,
+     20000
+    ]
+   },
+   {
+    "id": 5,
+    "x": 24400,
+    "y": 6400,
+    "to": 91,
+    "tx": 38000,
+    "ty": 13000,
+    "agree": [
+     "kalaazu"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     38000,
+     13000
+    ]
+   },
+   {
+    "id": 6,
+    "x": 11500,
+    "y": 13400,
+    "to": 91,
+    "tx": 35000,
+    "ty": 7500,
+    "agree": [
+     "kalaazu"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     35000,
+     7500
+    ]
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "streuner_r_upper",
+    "count": 15
+   },
+   {
+    "id": "streuner",
+    "count": 20
+   },
+   {
+    "id": "lordakia",
+    "count": 20
+   },
+   {
+    "id": "saimon",
+    "count": 20
+   },
+   {
+    "id": "mordon",
+    "count": 20
+   },
+   {
+    "id": "devolarium",
+    "count": 20
+   },
+   {
+    "id": "sibelon",
+    "count": 20
+   },
+   {
+    "id": "sibelonit",
+    "count": 20
+   },
+   {
+    "id": "lordakium",
+    "count": 20
+   },
+   {
+    "id": "kristallin",
+    "count": 20
+   },
+   {
+    "id": "kristallon",
+    "count": 20
+   },
+   {
+    "id": "streuner_r_upper",
+    "count": 20
+   },
+   {
+    "id": "boss_streuner",
+    "count": 8
+   },
+   {
+    "id": "boss_lordakia",
+    "count": 8
+   },
+   {
+    "id": "boss_saimon",
+    "count": 8
+   },
+   {
+    "id": "boss_mordon",
+    "count": 8
+   },
+   {
+    "id": "boss_devolarium",
+    "count": 8
+   },
+   {
+    "id": "boss_sibelon",
+    "count": 8
+   },
+   {
+    "id": "boss_sibelonit",
+    "count": 8
+   },
+   {
+    "id": "boss_lordakium",
+    "count": 8
+   },
+   {
+    "id": "boss_kristallin",
+    "count": 8
+   },
+   {
+    "id": "boss_kristallon",
+    "count": 8
+   },
+   {
+    "id": "boss_streuner_r_upper",
+    "count": 8
+   },
+   {
+    "id": "uber_streuner",
+    "count": 4
+   },
+   {
+    "id": "uber_lordakia",
+    "count": 4
+   },
+   {
+    "id": "uber_saimon",
+    "count": 4
+   },
+   {
+    "id": "uber_mordon",
+    "count": 4
+   },
+   {
+    "id": "uber_devolarium",
+    "count": 4
+   },
+   {
+    "id": "uber_sibelon",
+    "count": 4
+   },
+   {
+    "id": "uber_sibelonit",
+    "count": 4
+   },
+   {
+    "id": "uber_lordakium",
+    "count": 4
+   },
+   {
+    "id": "uber_kristallin",
+    "count": 4
+   },
+   {
+    "id": "uber_kristallon",
+    "count": 4
+   },
+   {
+    "id": "uber_streuner_r_upper",
+    "count": 4
+   }
+  ],
+  "npcs_alt": {
+   "borja": [],
+   "muffin_2009": [
+    {
+     "id": "streuner",
+     "count": 15
+    },
+    {
+     "id": "lordakia",
+     "count": 15
+    },
+    {
+     "id": "devolarium",
+     "count": 15
+    },
+    {
+     "id": "mordon",
+     "count": 15
+    },
+    {
+     "id": "sibelon",
+     "count": 15
+    },
+    {
+     "id": "saimon",
+     "count": 15
+    },
+    {
+     "id": "sibelonit",
+     "count": 15
+    },
+    {
+     "id": "lordakium",
+     "count": 15
+    },
+    {
+     "id": "kristallin",
+     "count": 15
+    },
+    {
+     "id": "kristallon",
+     "count": 15
+    },
+    {
+     "id": "streuner_r_upper",
+     "count": 15
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": {
+   "Battleray": [
+    [
+     39000,
+     24000
+    ]
+   ],
+   "Boss Streuner": [
+    [
+     12900,
+     6800
+    ]
+   ]
+  },
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/4-5",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 42,
+  "name": "???",
+  "faction": null,
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": false,
+  "portals": [],
+  "stations": [],
+  "npcs": [],
+  "npcs_alt": {
+   "borja": [],
+   "muffin_2009": [
+    {
+     "id": "cubikon",
+     "count": 50
+    }
+   ],
+   "yusuf": []
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": null,
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/???",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 91,
+  "name": "5-1",
+  "faction": null,
+  "w": 41600,
+  "h": 25600,
+  "pvp": false,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 35000,
+    "y": 20000,
+    "to": 29,
+    "tx": 24400,
+    "ty": 20800,
+    "agree": [
+     "kalaazu"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     24400,
+     20800
+    ]
+   },
+   {
+    "id": 2,
+    "x": 38000,
+    "y": 13000,
+    "to": 29,
+    "tx": 24400,
+    "ty": 6400,
+    "agree": [
+     "kalaazu"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     24400,
+     6400
+    ]
+   },
+   {
+    "id": 3,
+    "x": 35000,
+    "y": 7500,
+    "to": 29,
+    "tx": 11500,
+    "ty": 13400,
+    "agree": [
+     "kalaazu"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     11500,
+     13400
+    ],
+    "tx_src": 5000,
+    "ty_src": 5000
+   },
+   {
+    "id": 4,
+    "x": 4600,
+    "y": 6800,
+    "to": 92,
+    "tx": 18000,
+    "ty": 10000,
+    "agree": [
+     "kalaazu"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18000,
+     10000
+    ]
+   },
+   {
+    "id": 5,
+    "x": 2200,
+    "y": 13500,
+    "to": 92,
+    "tx": 18500,
+    "ty": 6400,
+    "agree": [
+     "kalaazu"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18500,
+     6400
+    ]
+   },
+   {
+    "id": 6,
+    "x": 4600,
+    "y": 20700,
+    "to": 92,
+    "tx": 18000,
+    "ty": 2800,
+    "agree": [
+     "kalaazu"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     18000,
+     2800
+    ],
+    "tx_src": 18000,
+    "ty_src": 2600
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "interceptor",
+    "count": 40
+   },
+   {
+    "id": "barracuda",
+    "count": 20
+   },
+   {
+    "id": "saboteur",
+    "count": 20
+   },
+   {
+    "id": "annihilator",
+    "count": 10
+   }
+  ],
+  "npcs_alt": {
+   "borja": [],
+   "muffin_2009": [],
+   "yusuf": []
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": null,
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/5-1",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 92,
+  "name": "5-2",
+  "faction": null,
+  "w": 20800,
+  "h": 12800,
+  "pvp": false,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 18000,
+    "y": 10000,
+    "to": 91,
+    "tx": 4600,
+    "ty": 6800,
+    "agree": [
+     "kalaazu"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     4600,
+     6800
+    ]
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 6400,
+    "to": 91,
+    "tx": 2200,
+    "ty": 13500,
+    "agree": [
+     "kalaazu"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2200,
+     13500
+    ]
+   },
+   {
+    "id": 3,
+    "x": 18000,
+    "y": 2800,
+    "to": 91,
+    "tx": 4600,
+    "ty": 20700,
+    "agree": [
+     "kalaazu"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     4600,
+     20700
+    ]
+   },
+   {
+    "id": 4,
+    "x": 2200,
+    "y": 11000,
+    "to": 93,
+    "tx": 37500,
+    "ty": 9000,
+    "agree": [
+     "kalaazu"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     37500,
+     9000
+    ]
+   },
+   {
+    "id": 5,
+    "x": 2200,
+    "y": 3600,
+    "to": 93,
+    "tx": 37500,
+    "ty": 13000,
+    "agree": [
+     "kalaazu"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     37500,
+     13000
+    ]
+   },
+   {
+    "id": 6,
+    "x": 700,
+    "y": 6800,
+    "to": 93,
+    "tx": 37500,
+    "ty": 11000,
+    "agree": [
+     "kalaazu"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     37500,
+     11000
+    ]
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "interceptor",
+    "count": 40
+   },
+   {
+    "id": "barracuda",
+    "count": 20
+   },
+   {
+    "id": "saboteur",
+    "count": 20
+   },
+   {
+    "id": "annihilator",
+    "count": 10
+   }
+  ],
+  "npcs_alt": {
+   "borja": [],
+   "muffin_2009": [],
+   "yusuf": []
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": {
+   "Interceptor": [
+    [
+     4400,
+     4000
+    ],
+    [
+     17800,
+     3700
+    ],
+    [
+     13500,
+     7300
+    ],
+    [
+     11600,
+     3800
+    ]
+   ],
+   "Barracuda": [
+    [
+     4700,
+     10200
+    ],
+    [
+     12100,
+     6900
+    ]
+   ],
+   "Saboteur": [
+    [
+     36500,
+     13000
+    ]
+   ],
+   "Annihilator": [
+    [
+     12200,
+     6900
+    ]
+   ]
+  },
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/5-2",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ },
+ {
+  "id": 93,
+  "name": "5-3",
+  "faction": null,
+  "w": 41600,
+  "h": 25600,
+  "pvp": false,
+  "starter": false,
+  "portals": [
+   {
+    "id": 1,
+    "x": 5000,
+    "y": 7000,
+    "to": 20,
+    "tx": 1000,
+    "ty": 6400,
+    "agree": [
+     "kalaazu"
+    ],
+    "alternatives": [],
+    "return_portal": null
+   },
+   {
+    "id": 2,
+    "x": 5000,
+    "y": 11000,
+    "to": 24,
+    "tx": 10000,
+    "ty": 1000,
+    "agree": [
+     "kalaazu"
+    ],
+    "alternatives": [],
+    "return_portal": null
+   },
+   {
+    "id": 3,
+    "x": 5000,
+    "y": 16000,
+    "to": 28,
+    "tx": 18500,
+    "ty": 6400,
+    "agree": [
+     "kalaazu"
+    ],
+    "alternatives": [],
+    "return_portal": null
+   },
+   {
+    "id": 4,
+    "x": 37500,
+    "y": 9000,
+    "to": 92,
+    "tx": 2200,
+    "ty": 11000,
+    "agree": [
+     "kalaazu"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2200,
+     11000
+    ]
+   },
+   {
+    "id": 5,
+    "x": 37500,
+    "y": 11000,
+    "to": 92,
+    "tx": 2200,
+    "ty": 3600,
+    "agree": [
+     "kalaazu"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     2200,
+     3600
+    ]
+   },
+   {
+    "id": 6,
+    "x": 37500,
+    "y": 13000,
+    "to": 92,
+    "tx": 700,
+    "ty": 6800,
+    "agree": [
+     "kalaazu"
+    ],
+    "alternatives": [],
+    "return_portal": [
+     700,
+     6800
+    ],
+    "tx_src": 700,
+    "ty_src": 6700
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "interceptor",
+    "count": 40
+   },
+   {
+    "id": "barracuda",
+    "count": 20
+   },
+   {
+    "id": "saboteur",
+    "count": 20
+   },
+   {
+    "id": "annihilator",
+    "count": 10
+   }
+  ],
+  "npcs_alt": {
+   "borja": [],
+   "muffin_2009": [],
+   "yusuf": []
+  },
+  "aliens_wiki": null,
+  "jump_gates_wiki": null,
+  "spawn_spots_wiki": {
+   "Interceptor": [
+    [
+     33000,
+     13300
+    ],
+    [
+     16000,
+     23000
+    ]
+   ],
+   "Barracuda": [
+    [
+     17300,
+     23700
+    ],
+    [
+     16400,
+     23500
+    ]
+   ],
+   "Saboteur": [
+    [
+     29800,
+     20500
+    ]
+   ]
+  },
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_portals/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/maps_stations/dump.sql",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql",
+   "https://darkorbit.fandom.com/wiki/5-3",
+   "https://darkorbit.fandom.com/wiki/Location_of_aliens"
+  ]
+ }
+]

@@ -1,0 +1,2744 @@
+{
+ "conflicts": [
+  [
+   "demaNer",
+   "damage_max",
+   {
+    "borja": 4000,
+    "kalaazu": 3750
+   }
+  ],
+  [
+   "UFO",
+   "hp",
+   {
+    "borja": 3200000,
+    "kalaazu": 3200000,
+    "wiki": 10000000
+   }
+  ],
+  [
+   "UFO",
+   "shield",
+   {
+    "borja": 2400000,
+    "kalaazu": 2400000,
+    "wiki": 10000000
+   }
+  ],
+  [
+   "UFO",
+   "damage_min",
+   {
+    "borja": 120000,
+    "wiki": 4800
+   }
+  ],
+  [
+   "UFO",
+   "damage_max",
+   {
+    "borja": 125000,
+    "kalaazu": 122500,
+    "wiki": 5000
+   }
+  ],
+  [
+   "UFO",
+   "exp",
+   {
+    "borja": 0,
+    "wiki": 222222
+   }
+  ],
+  [
+   "UFO",
+   "honor",
+   {
+    "borja": 0,
+    "wiki": 22222
+   }
+  ],
+  [
+   "UFO",
+   "credits",
+   {
+    "borja": 0,
+    "wiki": 222222
+   }
+  ],
+  [
+   "UFO",
+   "uridium",
+   {
+    "borja": 0,
+    "wiki": 2222
+   }
+  ],
+  [
+   "mini UFO",
+   "damage_max",
+   {
+    "borja": 5000,
+    "kalaazu": 4500
+   }
+  ],
+  [
+   "Boss Streuner",
+   "speed",
+   {
+    "borja": 270,
+    "zeta": 250,
+    "wiki": 250
+   }
+  ],
+  [
+   "Boss Streuner",
+   "damage_min",
+   {
+    "borja": 100,
+    "kluk": 100,
+    "wiki": 80
+   }
+  ],
+  [
+   "Boss Streuner",
+   "damage_max",
+   {
+    "borja": 120,
+    "kalaazu": 110,
+    "kluk": 120,
+    "zeta": 80,
+    "wiki": 80
+   }
+  ],
+  [
+   "Boss Lordakia",
+   "damage_min",
+   {
+    "borja": 295,
+    "kluk": 295,
+    "wiki": 263
+   }
+  ],
+  [
+   "Boss Lordakia",
+   "damage_max",
+   {
+    "borja": 350,
+    "kalaazu": 322,
+    "kluk": 350,
+    "wiki": 363
+   }
+  ],
+  [
+   "Boss Saimon",
+   "speed",
+   {
+    "borja": 320,
+    "wiki": 300
+   }
+  ],
+  [
+   "Boss Saimon",
+   "damage_max",
+   {
+    "borja": 720,
+    "kalaazu": 660,
+    "kluk": 720,
+    "wiki": 800
+   }
+  ],
+  [
+   "Boss Devolarium",
+   "damage_max",
+   {
+    "borja": 4650,
+    "kalaazu": 4375,
+    "kluk": 4650,
+    "wiki": 4650
+   }
+  ],
+  [
+   "Boss Sibelonit",
+   "speed",
+   {
+    "borja": 320,
+    "wiki": 300
+   }
+  ],
+  [
+   "Boss Sibelonit",
+   "damage_max",
+   {
+    "borja": 4350,
+    "kalaazu": 3762,
+    "kluk": 4350,
+    "wiki": 4350
+   }
+  ],
+  [
+   "Boss Sibelonit",
+   "honor",
+   {
+    "borja": 128,
+    "kalaazu": 128,
+    "kluk": 64,
+    "wiki": 64
+   }
+  ],
+  [
+   "Boss Sibelonit",
+   "credits",
+   {
+    "borja": 51200,
+    "kalaazu": 51200,
+    "kluk": 51200,
+    "wiki": 102400
+   }
+  ],
+  [
+   "Boss Sibelonit",
+   "uridium",
+   {
+    "borja": 64,
+    "kalaazu": 64,
+    "kluk": 48,
+    "wiki": 48
+   }
+  ],
+  [
+   "Boss Lordakium",
+   "speed",
+   {
+    "borja": 230,
+    "wiki": 200
+   }
+  ],
+  [
+   "Boss Lordakium",
+   "damage_min",
+   {
+    "borja": 10000,
+    "kluk": 10000,
+    "wiki": 12000
+   }
+  ],
+  [
+   "Boss Lordakium",
+   "damage_max",
+   {
+    "borja": 16000,
+    "kalaazu": 13000,
+    "kluk": 16000,
+    "wiki": 16000
+   }
+  ],
+  [
+   "Boss Kristallin",
+   "speed",
+   {
+    "borja": 320,
+    "yusuf": 320,
+    "wiki": 340
+   }
+  ],
+  [
+   "Boss Kristallin",
+   "damage_max",
+   {
+    "borja": 4700,
+    "kalaazu": 4150,
+    "kluk": 4700,
+    "yusuf": 4000,
+    "wiki": 4800
+   }
+  ],
+  [
+   "Boss Mordon",
+   "speed",
+   {
+    "borja": 125,
+    "wiki": 150
+   }
+  ],
+  [
+   "Boss Mordon",
+   "damage_min",
+   {
+    "borja": 1300,
+    "kluk": 1300,
+    "wiki": 1170
+   }
+  ],
+  [
+   "Boss Mordon",
+   "damage_max",
+   {
+    "borja": 1500,
+    "kalaazu": 1400,
+    "kluk": 1500,
+    "wiki": 1560
+   }
+  ],
+  [
+   "Boss Mordon",
+   "credits",
+   {
+    "borja": 51200,
+    "kalaazu": 51200,
+    "kluk": 25600,
+    "wiki": 25600
+   }
+  ],
+  [
+   "Santabot",
+   "damage_max",
+   {
+    "borja": 20,
+    "kalaazu": 10
+   }
+  ],
+  [
+   "Super Ice Meteoroid",
+   "hp",
+   {
+    "borja": 3200000,
+    "kalaazu": 3200000,
+    "wiki": 3600000
+   }
+  ],
+  [
+   "Super Ice Meteoroid",
+   "damage_min",
+   {
+    "borja": 0,
+    "wiki": 1000
+   }
+  ],
+  [
+   "Super Ice Meteoroid",
+   "damage_max",
+   {
+    "borja": 0,
+    "kalaazu": 0,
+    "wiki": 1000
+   }
+  ],
+  [
+   "Super Ice Meteoroid",
+   "exp",
+   {
+    "borja": 0,
+    "wiki": 440000
+   }
+  ],
+  [
+   "Super Ice Meteoroid",
+   "honor",
+   {
+    "borja": 0,
+    "wiki": 1600
+   }
+  ],
+  [
+   "Super Ice Meteoroid",
+   "credits",
+   {
+    "borja": 0,
+    "wiki": 1200000
+   }
+  ],
+  [
+   "Super Ice Meteoroid",
+   "uridium",
+   {
+    "borja": 0,
+    "wiki": 600
+   }
+  ],
+  [
+   "Boss StreuneR",
+   "speed",
+   {
+    "borja": 280,
+    "wiki": 200
+   }
+  ],
+  [
+   "Boss StreuneR",
+   "damage_min",
+   {
+    "borja": 1500,
+    "kluk": 1500,
+    "wiki": 1400
+   }
+  ],
+  [
+   "Boss StreuneR",
+   "damage_max",
+   {
+    "borja": 2000,
+    "kalaazu": 1750,
+    "kluk": 2000,
+    "wiki": 1400
+   }
+  ],
+  [
+   "Boss StreuneR",
+   "exp",
+   {
+    "borja": 12800,
+    "kalaazu": 12800,
+    "kluk": 12800,
+    "wiki": 12860
+   }
+  ],
+  [
+   "Boss StreuneR",
+   "credits",
+   {
+    "borja": 51200,
+    "kalaazu": 51200,
+    "kluk": 25600,
+    "wiki": 25600
+   }
+  ],
+  [
+   "Boss Kristallon",
+   "damage_max",
+   {
+    "borja": 20000,
+    "kalaazu": 17500,
+    "kluk": 20000,
+    "yusuf": 18000,
+    "wiki": 20000
+   }
+  ],
+  [
+   "Boss Kristallon",
+   "credits",
+   {
+    "borja": 1634400,
+    "kalaazu": 1634400,
+    "kluk": 1638400,
+    "yusuf": 1638400,
+    "wiki": 1638400
+   }
+  ],
+  [
+   "Uber Kristallin",
+   "damage_max",
+   {
+    "borja": 9400,
+    "kalaazu": 8300,
+    "kluk": 9400
+   }
+  ],
+  [
+   "Uber Kristallin",
+   "honor",
+   {
+    "borja": 256,
+    "kalaazu": 256,
+    "kluk": 246
+   }
+  ],
+  [
+   "Uber Kristallon",
+   "speed",
+   {
+    "borja": 200,
+    "wiki": 240
+   }
+  ],
+  [
+   "Uber Kristallon",
+   "damage_max",
+   {
+    "borja": 45000,
+    "kalaazu": 37500,
+    "kluk": 45000,
+    "wiki": 40000
+   }
+  ],
+  [
+   "Uber Kristallon",
+   "credits",
+   {
+    "borja": 3268800,
+    "kalaazu": 3268800,
+    "kluk": 3276800,
+    "wiki": 3276800
+   }
+  ],
+  [
+   "Boss Sibelon",
+   "speed",
+   {
+    "borja": 100,
+    "wiki": 175
+   }
+  ],
+  [
+   "Boss Sibelon",
+   "damage_min",
+   {
+    "borja": 9100,
+    "kluk": 9100,
+    "wiki": 9000
+   }
+  ],
+  [
+   "Boss Sibelon",
+   "damage_max",
+   {
+    "borja": 12350,
+    "kalaazu": 10725,
+    "kluk": 12350,
+    "wiki": 12000
+   }
+  ],
+  [
+   "Boss Sibelon",
+   "credits",
+   {
+    "borja": 408600,
+    "kalaazu": 408600,
+    "kluk": 409600,
+    "wiki": 409600
+   }
+  ],
+  [
+   "Lordakia",
+   "damage_min",
+   {
+    "borja": 80,
+    "kluk": 80,
+    "wiki": 60
+   }
+  ],
+  [
+   "Lordakia",
+   "damage_max",
+   {
+    "borja": 100,
+    "kalaazu": 40,
+    "kluk": 100,
+    "muffin": 80,
+    "zeta": 80,
+    "wiki": 80
+   }
+  ],
+  [
+   "Devolarium",
+   "damage_min",
+   {
+    "borja": 900,
+    "kluk": 1000,
+    "wiki": 900
+   }
+  ],
+  [
+   "Devolarium",
+   "damage_max",
+   {
+    "borja": 1200,
+    "kalaazu": 1050,
+    "kluk": 1200,
+    "muffin": 1000,
+    "zeta": 1000,
+    "wiki": 1200
+   }
+  ],
+  [
+   "Mordon",
+   "damage_max",
+   {
+    "borja": 400,
+    "kalaazu": 350,
+    "kluk": 390,
+    "muffin": 300,
+    "wiki": 400
+   }
+  ],
+  [
+   "Sibelon",
+   "damage_min",
+   {
+    "borja": 2250,
+    "kluk": 2400,
+    "wiki": 2250
+   }
+  ],
+  [
+   "Sibelon",
+   "damage_max",
+   {
+    "borja": 3000,
+    "kalaazu": 2625,
+    "kluk": 2650,
+    "muffin": 2400,
+    "wiki": 3000
+   }
+  ],
+  [
+   "Saimon",
+   "damage_min",
+   {
+    "borja": 150,
+    "kluk": 200,
+    "wiki": 150
+   }
+  ],
+  [
+   "Saimon",
+   "damage_max",
+   {
+    "borja": 200,
+    "kalaazu": 175,
+    "kluk": 250,
+    "muffin": 200,
+    "wiki": 200
+   }
+  ],
+  [
+   "Sibelonit",
+   "damage_min",
+   {
+    "borja": 750,
+    "kluk": 1000,
+    "wiki": 750
+   }
+  ],
+  [
+   "Sibelonit",
+   "damage_max",
+   {
+    "borja": 1000,
+    "kalaazu": 875,
+    "kluk": 1500,
+    "muffin": 1000,
+    "wiki": 1000
+   }
+  ],
+  [
+   "Lordakium",
+   "damage_min",
+   {
+    "borja": 3150,
+    "kluk": 3150,
+    "wiki": 3000
+   }
+  ],
+  [
+   "Lordakium",
+   "damage_max",
+   {
+    "borja": 3600,
+    "kalaazu": 3375,
+    "kluk": 3600,
+    "muffin": 3150,
+    "wiki": 4000
+   }
+  ],
+  [
+   "Kristallin",
+   "damage_min",
+   {
+    "borja": 900,
+    "kluk": 1500,
+    "wiki": 900
+   }
+  ],
+  [
+   "Kristallin",
+   "damage_max",
+   {
+    "borja": 1200,
+    "kalaazu": 1050,
+    "kluk": 1650,
+    "muffin": 1500,
+    "yusuf": 1100,
+    "wiki": 1200
+   }
+  ],
+  [
+   "Kristallon",
+   "damage_min",
+   {
+    "borja": 3750,
+    "kluk": 4050,
+    "wiki": 3750
+   }
+  ],
+  [
+   "Kristallon",
+   "damage_max",
+   {
+    "borja": 5000,
+    "kalaazu": 4375,
+    "kluk": 5000,
+    "muffin": 4050,
+    "yusuf": 4500,
+    "wiki": 5000
+   }
+  ],
+  [
+   "Protegit",
+   "hp",
+   {
+    "borja": 50000,
+    "kalaazu": 50000,
+    "kluk": 50000,
+    "muffin": 50000,
+    "wiki": 60000
+   }
+  ],
+  [
+   "Protegit",
+   "shield",
+   {
+    "borja": 40000,
+    "kalaazu": 40000,
+    "kluk": 40000,
+    "muffin": 40000,
+    "wiki": 50000
+   }
+  ],
+  [
+   "Protegit",
+   "speed",
+   {
+    "borja": 380,
+    "muffin": 420,
+    "wiki": 500
+   }
+  ],
+  [
+   "Protegit",
+   "damage_min",
+   {
+    "borja": 1125,
+    "kluk": 1300,
+    "wiki": 1050
+   }
+  ],
+  [
+   "Protegit",
+   "damage_max",
+   {
+    "borja": 1500,
+    "kalaazu": 1312,
+    "kluk": 1500,
+    "muffin": 1300,
+    "wiki": 1400
+   }
+  ],
+  [
+   "Kucurbium",
+   "damage_min",
+   {
+    "borja": 20000,
+    "wiki": 5000
+   }
+  ],
+  [
+   "Kucurbium",
+   "damage_max",
+   {
+    "borja": 25000,
+    "kalaazu": 22500,
+    "wiki": 5000
+   }
+  ],
+  [
+   "Kucurbium",
+   "exp",
+   {
+    "borja": 0,
+    "wiki": 204800
+   }
+  ],
+  [
+   "Kucurbium",
+   "honor",
+   {
+    "borja": 0,
+    "wiki": 1024
+   }
+  ],
+  [
+   "Kucurbium",
+   "credits",
+   {
+    "borja": 0,
+    "wiki": 6000000
+   }
+  ],
+  [
+   "Kucurbium",
+   "uridium",
+   {
+    "borja": 0,
+    "wiki": 512
+   }
+  ],
+  [
+   "Boss Kucurbium",
+   "damage_min",
+   {
+    "borja": 50000,
+    "wiki": 10000
+   }
+  ],
+  [
+   "Boss Kucurbium",
+   "damage_max",
+   {
+    "borja": 60000,
+    "kalaazu": 55000,
+    "wiki": 10000
+   }
+  ],
+  [
+   "Boss Kucurbium",
+   "exp",
+   {
+    "borja": 0,
+    "wiki": 819200
+   }
+  ],
+  [
+   "Boss Kucurbium",
+   "honor",
+   {
+    "borja": 0,
+    "wiki": 4096
+   }
+  ],
+  [
+   "Boss Kucurbium",
+   "credits",
+   {
+    "borja": 0,
+    "wiki": 13107200
+   }
+  ],
+  [
+   "Boss Kucurbium",
+   "uridium",
+   {
+    "borja": 0,
+    "wiki": 2048
+   }
+  ],
+  [
+   "Streuner",
+   "speed",
+   {
+    "borja": 270,
+    "muffin": 280,
+    "zeta": 270,
+    "wiki": 280
+   }
+  ],
+  [
+   "Streuner",
+   "damage_min",
+   {
+    "borja": 10,
+    "kluk": 10,
+    "wiki": 15
+   }
+  ],
+  [
+   "Streuner",
+   "damage_max",
+   {
+    "borja": 20,
+    "kalaazu": 15,
+    "kluk": 20,
+    "muffin": 20,
+    "zeta": 20,
+    "wiki": 20
+   }
+  ],
+  [
+   "StreuneR",
+   "hp",
+   {
+    "borja": 20000,
+    "kalaazu": 20000,
+    "kluk": 20000,
+    "muffin": 20000,
+    "wiki": 40000
+   }
+  ],
+  [
+   "StreuneR",
+   "shield",
+   {
+    "borja": 10000,
+    "kalaazu": 10000,
+    "kluk": 10000,
+    "muffin": 10000,
+    "wiki": 30000
+   }
+  ],
+  [
+   "StreuneR",
+   "damage_min",
+   {
+    "borja": 350,
+    "kluk": 400,
+    "wiki": 750
+   }
+  ],
+  [
+   "StreuneR",
+   "damage_max",
+   {
+    "borja": 500,
+    "kalaazu": 425,
+    "kluk": 900,
+    "muffin": 400,
+    "wiki": 1000
+   }
+  ],
+  [
+   "StreuneR",
+   "exp",
+   {
+    "borja": 3200,
+    "kalaazu": 3200,
+    "kluk": 3200,
+    "muffin": 3200,
+    "wiki": 6000
+   }
+  ],
+  [
+   "StreuneR",
+   "honor",
+   {
+    "borja": 16,
+    "kalaazu": 16,
+    "kluk": 16,
+    "muffin": 16,
+    "wiki": 30
+   }
+  ],
+  [
+   "StreuneR",
+   "credits",
+   {
+    "borja": 6400,
+    "kalaazu": 6400,
+    "kluk": 6400,
+    "muffin": 6400,
+    "wiki": 12000
+   }
+  ],
+  [
+   "StreuneR",
+   "uridium",
+   {
+    "borja": 8,
+    "kalaazu": 8,
+    "kluk": 8,
+    "muffin": 8,
+    "wiki": 15
+   }
+  ],
+  [
+   "Century Falcon",
+   "hp",
+   {
+    "borja": 4000000,
+    "kalaazu": 4000000,
+    "wiki": 36000000
+   }
+  ],
+  [
+   "Century Falcon",
+   "shield",
+   {
+    "borja": 3000000,
+    "kalaazu": 3000000,
+    "wiki": 27000000
+   }
+  ],
+  [
+   "Century Falcon",
+   "speed",
+   {
+    "borja": 200,
+    "wiki": 360
+   }
+  ],
+  [
+   "Century Falcon",
+   "damage_min",
+   {
+    "borja": 19000,
+    "wiki": 55000
+   }
+  ],
+  [
+   "Century Falcon",
+   "damage_max",
+   {
+    "borja": 25000,
+    "kalaazu": 22000,
+    "wiki": 66000
+   }
+  ],
+  [
+   "Century Falcon",
+   "exp",
+   {
+    "borja": 1000000,
+    "kalaazu": 1000000,
+    "wiki": 9000000
+   }
+  ],
+  [
+   "Century Falcon",
+   "honor",
+   {
+    "borja": 5000,
+    "kalaazu": 5000,
+    "wiki": 130000
+   }
+  ],
+  [
+   "Century Falcon",
+   "credits",
+   {
+    "borja": 1000000,
+    "kalaazu": 1000000,
+    "wiki": 22500000
+   }
+  ],
+  [
+   "Century Falcon",
+   "uridium",
+   {
+    "borja": 5000,
+    "kalaazu": 5000,
+    "wiki": 45000
+   }
+  ],
+  [
+   "Corsair",
+   "speed",
+   {
+    "borja": 320,
+    "wiki": 380
+   }
+  ],
+  [
+   "Corsair",
+   "damage_min",
+   {
+    "borja": 6000,
+    "wiki": 6200
+   }
+  ],
+  [
+   "Corsair",
+   "damage_max",
+   {
+    "borja": 8000,
+    "kalaazu": 7000,
+    "wiki": 7800
+   }
+  ],
+  [
+   "Corsair",
+   "exp",
+   {
+    "borja": 10000,
+    "kalaazu": 10000,
+    "wiki": 15000
+   }
+  ],
+  [
+   "Corsair",
+   "honor",
+   {
+    "borja": 32,
+    "kalaazu": 32,
+    "wiki": 8
+   }
+  ],
+  [
+   "Corsair",
+   "credits",
+   {
+    "borja": 12000,
+    "kalaazu": 12000,
+    "wiki": 80000
+   }
+  ],
+  [
+   "Corsair",
+   "uridium",
+   {
+    "borja": 64,
+    "kalaazu": 64,
+    "wiki": 32
+   }
+  ],
+  [
+   "Outcast",
+   "hp",
+   {
+    "borja": 150000,
+    "kalaazu": 150000,
+    "wiki": 300000
+   }
+  ],
+  [
+   "Outcast",
+   "shield",
+   {
+    "borja": 80000,
+    "kalaazu": 80000,
+    "wiki": 160000
+   }
+  ],
+  [
+   "Outcast",
+   "speed",
+   {
+    "borja": 320,
+    "wiki": 370
+   }
+  ],
+  [
+   "Outcast",
+   "damage_min",
+   {
+    "borja": 3800,
+    "wiki": 4500
+   }
+  ],
+  [
+   "Outcast",
+   "damage_max",
+   {
+    "borja": 5000,
+    "kalaazu": 4400,
+    "wiki": 4500
+   }
+  ],
+  [
+   "Outcast",
+   "exp",
+   {
+    "borja": 7500,
+    "kalaazu": 7500,
+    "wiki": 9000
+   }
+  ],
+  [
+   "Outcast",
+   "credits",
+   {
+    "borja": 7500,
+    "kalaazu": 7500,
+    "wiki": 50000
+   }
+  ],
+  [
+   "Marauder",
+   "hp",
+   {
+    "borja": 100000,
+    "kalaazu": 100000,
+    "wiki": 80000
+   }
+  ],
+  [
+   "Marauder",
+   "speed",
+   {
+    "borja": 380,
+    "wiki": 370
+   }
+  ],
+  [
+   "Marauder",
+   "damage_min",
+   {
+    "borja": 3500,
+    "wiki": 4500
+   }
+  ],
+  [
+   "Marauder",
+   "damage_max",
+   {
+    "borja": 4500,
+    "kalaazu": 4000,
+    "wiki": 4500
+   }
+  ],
+  [
+   "Marauder",
+   "exp",
+   {
+    "borja": 4500,
+    "kalaazu": 4500,
+    "wiki": 6000
+   }
+  ],
+  [
+   "Marauder",
+   "credits",
+   {
+    "borja": 4500,
+    "kalaazu": 4500,
+    "wiki": 30000
+   }
+  ],
+  [
+   "Vagrant",
+   "hp",
+   {
+    "borja": 40000,
+    "kalaazu": 40000,
+    "wiki": 60000
+   }
+  ],
+  [
+   "Vagrant",
+   "damage_min",
+   {
+    "borja": 1900,
+    "wiki": 2500
+   }
+  ],
+  [
+   "Vagrant",
+   "damage_max",
+   {
+    "borja": 2500,
+    "kalaazu": 2200,
+    "wiki": 2500
+   }
+  ],
+  [
+   "Vagrant",
+   "exp",
+   {
+    "borja": 2000,
+    "kalaazu": 2000,
+    "wiki": 4000
+   }
+  ],
+  [
+   "Vagrant",
+   "credits",
+   {
+    "borja": 2000,
+    "kalaazu": 2000,
+    "wiki": 15000
+   }
+  ],
+  [
+   "Convict",
+   "hp",
+   {
+    "borja": 400000,
+    "kalaazu": 400000,
+    "wiki": 450000
+   }
+  ],
+  [
+   "Convict",
+   "shield",
+   {
+    "borja": 200000,
+    "kalaazu": 200000,
+    "wiki": 300000
+   }
+  ],
+  [
+   "Convict",
+   "speed",
+   {
+    "borja": 340,
+    "wiki": 400
+   }
+  ],
+  [
+   "Convict",
+   "damage_max",
+   {
+    "borja": 12000,
+    "kalaazu": 10750,
+    "wiki": 11500
+   }
+  ],
+  [
+   "Convict",
+   "exp",
+   {
+    "borja": 18000,
+    "kalaazu": 18000,
+    "wiki": 30000
+   }
+  ],
+  [
+   "Convict",
+   "honor",
+   {
+    "borja": 64,
+    "kalaazu": 64,
+    "wiki": 100
+   }
+  ],
+  [
+   "Convict",
+   "credits",
+   {
+    "borja": 25000,
+    "kalaazu": 25000,
+    "wiki": 220000
+   }
+  ],
+  [
+   "Convict",
+   "uridium",
+   {
+    "borja": 128,
+    "kalaazu": 128,
+    "wiki": 150
+   }
+  ],
+  [
+   "Hooligan",
+   "speed",
+   {
+    "borja": 340,
+    "wiki": 380
+   }
+  ],
+  [
+   "Hooligan",
+   "damage_min",
+   {
+    "borja": 7000,
+    "wiki": 7200
+   }
+  ],
+  [
+   "Hooligan",
+   "damage_max",
+   {
+    "borja": 9000,
+    "kalaazu": 8000,
+    "wiki": 9000
+   }
+  ],
+  [
+   "Hooligan",
+   "exp",
+   {
+    "borja": 12000,
+    "kalaazu": 12000,
+    "wiki": 40000
+   }
+  ],
+  [
+   "Hooligan",
+   "honor",
+   {
+    "borja": 16,
+    "kalaazu": 16,
+    "wiki": 32
+   }
+  ],
+  [
+   "Hooligan",
+   "credits",
+   {
+    "borja": 15000,
+    "kalaazu": 15000,
+    "wiki": 125000
+   }
+  ],
+  [
+   "Hooligan",
+   "uridium",
+   {
+    "borja": 32,
+    "kalaazu": 32,
+    "wiki": 64
+   }
+  ],
+  [
+   "Ravager",
+   "shield",
+   {
+    "borja": 200000,
+    "kalaazu": 200000,
+    "wiki": 250000
+   }
+  ],
+  [
+   "Ravager",
+   "damage_min",
+   {
+    "borja": 8000,
+    "wiki": 8500
+   }
+  ],
+  [
+   "Ravager",
+   "damage_max",
+   {
+    "borja": 11000,
+    "kalaazu": 9500,
+    "wiki": 10700
+   }
+  ],
+  [
+   "Ravager",
+   "exp",
+   {
+    "borja": 15000,
+    "kalaazu": 15000,
+    "wiki": 25000
+   }
+  ],
+  [
+   "Ravager",
+   "credits",
+   {
+    "borja": 20000,
+    "kalaazu": 20000,
+    "wiki": 160000
+   }
+  ],
+  [
+   "Scorcher",
+   "speed",
+   {
+    "borja": 280,
+    "wiki": 360
+   }
+  ],
+  [
+   "Scorcher",
+   "damage_min",
+   {
+    "borja": 2500,
+    "wiki": 2000
+   }
+  ],
+  [
+   "Scorcher",
+   "damage_max",
+   {
+    "borja": 2500,
+    "kalaazu": 1250,
+    "wiki": 3000
+   }
+  ],
+  [
+   "Scorcher",
+   "exp",
+   {
+    "borja": 0,
+    "wiki": 15000
+   }
+  ],
+  [
+   "Scorcher",
+   "honor",
+   {
+    "borja": 0,
+    "wiki": 8
+   }
+  ],
+  [
+   "Scorcher",
+   "credits",
+   {
+    "borja": 0,
+    "wiki": 150000
+   }
+  ],
+  [
+   "Scorcher",
+   "uridium",
+   {
+    "borja": 0,
+    "wiki": 32
+   }
+  ],
+  [
+   "Infernal",
+   "speed",
+   {
+    "borja": 300,
+    "wiki": 370
+   }
+  ],
+  [
+   "Infernal",
+   "damage_min",
+   {
+    "borja": 950,
+    "wiki": 900
+   }
+  ],
+  [
+   "Infernal",
+   "damage_max",
+   {
+    "borja": 950,
+    "kalaazu": 475,
+    "wiki": 1000
+   }
+  ],
+  [
+   "Infernal",
+   "exp",
+   {
+    "borja": 0,
+    "wiki": 8000
+   }
+  ],
+  [
+   "Infernal",
+   "honor",
+   {
+    "borja": 0,
+    "wiki": 4
+   }
+  ],
+  [
+   "Infernal",
+   "credits",
+   {
+    "borja": 0,
+    "wiki": 25000
+   }
+  ],
+  [
+   "Infernal",
+   "uridium",
+   {
+    "borja": 0,
+    "wiki": 16
+   }
+  ],
+  [
+   "Ice Meteoroid",
+   "exp",
+   {
+    "borja": 0,
+    "wiki": 1000000
+   }
+  ],
+  [
+   "Ice Meteoroid",
+   "honor",
+   {
+    "borja": 0,
+    "wiki": 5000
+   }
+  ],
+  [
+   "Ice Meteoroid",
+   "credits",
+   {
+    "borja": 0,
+    "wiki": 3000000
+   }
+  ],
+  [
+   "Ice Meteoroid",
+   "uridium",
+   {
+    "borja": 0,
+    "wiki": 1800
+   }
+  ],
+  [
+   "Melter",
+   "hp",
+   {
+    "borja": 1000,
+    "kalaazu": 1000,
+    "wiki": 300000
+   }
+  ],
+  [
+   "Melter",
+   "shield",
+   {
+    "borja": 0,
+    "kalaazu": 0,
+    "wiki": 400000
+   }
+  ],
+  [
+   "Melter",
+   "speed",
+   {
+    "borja": 150,
+    "wiki": 360
+   }
+  ],
+  [
+   "Melter",
+   "damage_min",
+   {
+    "borja": 20,
+    "wiki": 3750
+   }
+  ],
+  [
+   "Melter",
+   "damage_max",
+   {
+    "borja": 20,
+    "kalaazu": 10,
+    "wiki": 5000
+   }
+  ],
+  [
+   "Melter",
+   "exp",
+   {
+    "borja": 0,
+    "wiki": 55000
+   }
+  ],
+  [
+   "Melter",
+   "honor",
+   {
+    "borja": 0,
+    "wiki": 12
+   }
+  ],
+  [
+   "Melter",
+   "credits",
+   {
+    "borja": 0,
+    "wiki": 400000
+   }
+  ],
+  [
+   "Melter",
+   "uridium",
+   {
+    "borja": 0,
+    "wiki": 256
+   }
+  ],
+  [
+   "Icy",
+   "speed",
+   {
+    "borja": 450,
+    "wiki": 475
+   }
+  ],
+  [
+   "Icy",
+   "damage_max",
+   {
+    "borja": 1500,
+    "kalaazu": 750,
+    "wiki": 2000
+   }
+  ],
+  [
+   "Icy",
+   "exp",
+   {
+    "borja": 0,
+    "wiki": 6400
+   }
+  ],
+  [
+   "Icy",
+   "honor",
+   {
+    "borja": 0,
+    "wiki": 32
+   }
+  ],
+  [
+   "Icy",
+   "credits",
+   {
+    "borja": 0,
+    "wiki": 12800
+   }
+  ],
+  [
+   "Icy",
+   "uridium",
+   {
+    "borja": 0,
+    "wiki": 16
+   }
+  ],
+  [
+   "Binarybot",
+   "hp",
+   {
+    "borja": 800000,
+    "kalaazu": 800000,
+    "wiki": 100000
+   }
+  ],
+  [
+   "Binarybot",
+   "shield",
+   {
+    "borja": 1200000,
+    "kalaazu": 1200000,
+    "wiki": 300000
+   }
+  ],
+  [
+   "Binarybot",
+   "speed",
+   {
+    "borja": 300,
+    "wiki": 280
+   }
+  ],
+  [
+   "Binarybot",
+   "damage_min",
+   {
+    "borja": 20000,
+    "wiki": 1800
+   }
+  ],
+  [
+   "Binarybot",
+   "damage_max",
+   {
+    "borja": 20000,
+    "kalaazu": 10000,
+    "wiki": 20000
+   }
+  ],
+  [
+   "Binarybot",
+   "exp",
+   {
+    "borja": 0,
+    "wiki": 51200
+   }
+  ],
+  [
+   "Binarybot",
+   "honor",
+   {
+    "borja": 0,
+    "wiki": 156
+   }
+  ],
+  [
+   "Binarybot",
+   "credits",
+   {
+    "borja": 0,
+    "wiki": 406900
+   }
+  ],
+  [
+   "Binarybot",
+   "uridium",
+   {
+    "borja": 0,
+    "wiki": 128
+   }
+  ],
+  [
+   "Devourer",
+   "hp",
+   {
+    "borja": 1000,
+    "kalaazu": 1000,
+    "wiki": 2000000
+   }
+  ],
+  [
+   "Devourer",
+   "shield",
+   {
+    "borja": 0,
+    "kalaazu": 0,
+    "wiki": 1000000
+   }
+  ],
+  [
+   "Devourer",
+   "speed",
+   {
+    "borja": 150,
+    "wiki": 370
+   }
+  ],
+  [
+   "Devourer",
+   "damage_min",
+   {
+    "borja": 20,
+    "wiki": 9000
+   }
+  ],
+  [
+   "Devourer",
+   "damage_max",
+   {
+    "borja": 20,
+    "kalaazu": 10,
+    "wiki": 12000
+   }
+  ],
+  [
+   "Devourer",
+   "exp",
+   {
+    "borja": 0,
+    "wiki": 1000000
+   }
+  ],
+  [
+   "Devourer",
+   "honor",
+   {
+    "borja": 0,
+    "wiki": 512
+   }
+  ],
+  [
+   "Devourer",
+   "credits",
+   {
+    "borja": 0,
+    "wiki": 2500000
+   }
+  ],
+  [
+   "Devourer",
+   "uridium",
+   {
+    "borja": 0,
+    "wiki": 1024
+   }
+  ],
+  [
+   "Lordakia",
+   "damage_min",
+   {
+    "borja": 80,
+    "wiki": 60
+   }
+  ],
+  [
+   "Solarburst",
+   "damage_max",
+   {
+    "borja": 20,
+    "kalaazu": 10
+   }
+  ],
+  [
+   "Havok",
+   "damage_max",
+   {
+    "borja": 1400,
+    "kalaazu": 700
+   }
+  ],
+  [
+   "Interceptor",
+   "speed",
+   {
+    "borja": 450,
+    "wiki": 600
+   }
+  ],
+  [
+   "Interceptor",
+   "damage_min",
+   {
+    "borja": 350,
+    "wiki": 375
+   }
+  ],
+  [
+   "Interceptor",
+   "damage_max",
+   {
+    "borja": 500,
+    "kalaazu": 425,
+    "wiki": 500
+   }
+  ],
+  [
+   "Interceptor",
+   "honor",
+   {
+    "borja": 24,
+    "kalaazu": 24,
+    "wiki": 40
+   }
+  ],
+  [
+   "Barracuda",
+   "damage_max",
+   {
+    "borja": 6000,
+    "kalaazu": 5250,
+    "wiki": 6000
+   }
+  ],
+  [
+   "Saboteur",
+   "speed",
+   {
+    "borja": 430,
+    "wiki": 400
+   }
+  ],
+  [
+   "Saboteur",
+   "damage_max",
+   {
+    "borja": 4000,
+    "kalaazu": 3500,
+    "wiki": 4000
+   }
+  ],
+  [
+   "Annihilator",
+   "damage_min",
+   {
+    "borja": 12000,
+    "wiki": 11250
+   }
+  ],
+  [
+   "Annihilator",
+   "damage_max",
+   {
+    "borja": 14000,
+    "kalaazu": 13000,
+    "wiki": 15000
+   }
+  ],
+  [
+   "Battleray",
+   "hp",
+   {
+    "borja": 500000,
+    "kalaazu": 500000,
+    "wiki": 330000
+   }
+  ],
+  [
+   "Battleray",
+   "shield",
+   {
+    "borja": 400000,
+    "kalaazu": 400000,
+    "wiki": 260000
+   }
+  ],
+  [
+   "Battleray",
+   "speed",
+   {
+    "borja": 250,
+    "wiki": 450
+   }
+  ],
+  [
+   "Battleray",
+   "damage_min",
+   {
+    "borja": 7000,
+    "wiki": 15000
+   }
+  ],
+  [
+   "Battleray",
+   "damage_max",
+   {
+    "borja": 10000,
+    "kalaazu": 8500,
+    "wiki": 16500
+   }
+  ],
+  [
+   "Battleray",
+   "exp",
+   {
+    "borja": 125000,
+    "kalaazu": 125000,
+    "wiki": 83300
+   }
+  ],
+  [
+   "Battleray",
+   "honor",
+   {
+    "borja": 192,
+    "kalaazu": 192,
+    "wiki": 190
+   }
+  ],
+  [
+   "Battleray",
+   "credits",
+   {
+    "borja": 1750000,
+    "kalaazu": 1750000,
+    "wiki": 1160000
+   }
+  ],
+  [
+   "Battleray",
+   "uridium",
+   {
+    "borja": 175,
+    "kalaazu": 175,
+    "wiki": 116
+   }
+  ],
+  [
+   "Hitac 2.0",
+   "hp",
+   {
+    "borja": 1000,
+    "kalaazu": 1000,
+    "wiki": 10000000
+   }
+  ],
+  [
+   "Hitac 2.0",
+   "shield",
+   {
+    "borja": 0,
+    "kalaazu": 0,
+    "wiki": 5500000
+   }
+  ],
+  [
+   "Hitac 2.0",
+   "speed",
+   {
+    "borja": 150,
+    "wiki": 300
+   }
+  ],
+  [
+   "Hitac 2.0",
+   "damage_min",
+   {
+    "borja": 20,
+    "wiki": 25000
+   }
+  ],
+  [
+   "Hitac 2.0",
+   "damage_max",
+   {
+    "borja": 20,
+    "kalaazu": 10,
+    "wiki": 30000
+   }
+  ],
+  [
+   "Hitac 2.0",
+   "exp",
+   {
+    "borja": 0,
+    "wiki": 200000
+   }
+  ],
+  [
+   "Hitac 2.0",
+   "honor",
+   {
+    "borja": 0,
+    "wiki": 5000
+   }
+  ],
+  [
+   "Hitac 2.0",
+   "credits",
+   {
+    "borja": 0,
+    "wiki": 1000000
+   }
+  ],
+  [
+   "Hitac 2.0",
+   "uridium",
+   {
+    "borja": 0,
+    "wiki": 5000
+   }
+  ],
+  [
+   "Minion",
+   "hp",
+   {
+    "borja": 1000,
+    "kalaazu": 1000,
+    "wiki": 3800000
+   }
+  ],
+  [
+   "Minion",
+   "shield",
+   {
+    "borja": 0,
+    "kalaazu": 0,
+    "wiki": 2600000
+   }
+  ],
+  [
+   "Minion",
+   "speed",
+   {
+    "borja": 150,
+    "wiki": 300
+   }
+  ],
+  [
+   "Minion",
+   "damage_min",
+   {
+    "borja": 20,
+    "wiki": 8000
+   }
+  ],
+  [
+   "Minion",
+   "damage_max",
+   {
+    "borja": 20,
+    "kalaazu": 10,
+    "wiki": 10000
+   }
+  ],
+  [
+   "Minion",
+   "exp",
+   {
+    "borja": 0,
+    "wiki": 1000000
+   }
+  ],
+  [
+   "Minion",
+   "honor",
+   {
+    "borja": 0,
+    "wiki": 12000
+   }
+  ],
+  [
+   "Minion",
+   "credits",
+   {
+    "borja": 0,
+    "wiki": 1000000
+   }
+  ],
+  [
+   "Minion",
+   "uridium",
+   {
+    "borja": 0,
+    "wiki": 2250
+   }
+  ],
+  [
+   "Boss Twist",
+   "damage_max",
+   {
+    "borja": 20,
+    "kalaazu": 10
+   }
+  ],
+  [
+   "Twist",
+   "damage_max",
+   {
+    "borja": 20,
+    "kalaazu": 10
+   }
+  ],
+  [
+   "Turkey",
+   "damage_max",
+   {
+    "borja": 20,
+    "kalaazu": 10
+   }
+  ],
+  [
+   "Snowman",
+   "damage_max",
+   {
+    "borja": 20,
+    "kalaazu": 10
+   }
+  ],
+  [
+   "Emperor Kristallon",
+   "hp",
+   {
+    "borja": 1000,
+    "kalaazu": 1000,
+    "wiki": 14080000
+   }
+  ],
+  [
+   "Emperor Kristallon",
+   "shield",
+   {
+    "borja": 0,
+    "kalaazu": 0,
+    "wiki": 11100000
+   }
+  ],
+  [
+   "Emperor Kristallon",
+   "speed",
+   {
+    "borja": 150,
+    "wiki": 350
+   }
+  ],
+  [
+   "Emperor Kristallon",
+   "damage_min",
+   {
+    "borja": 20,
+    "wiki": 40000
+   }
+  ],
+  [
+   "Emperor Kristallon",
+   "damage_max",
+   {
+    "borja": 20,
+    "kalaazu": 10,
+    "wiki": 40000
+   }
+  ],
+  [
+   "Emperor Kristallon",
+   "exp",
+   {
+    "borja": 0,
+    "wiki": 1536000
+   }
+  ],
+  [
+   "Emperor Kristallon",
+   "honor",
+   {
+    "borja": 0,
+    "wiki": 8192
+   }
+  ],
+  [
+   "Emperor Kristallon",
+   "credits",
+   {
+    "borja": 0,
+    "wiki": 5000000
+   }
+  ],
+  [
+   "Emperor Kristallon",
+   "uridium",
+   {
+    "borja": 0,
+    "wiki": 36864
+   }
+  ],
+  [
+   "Emperor Lordakium",
+   "hp",
+   {
+    "borja": 1000,
+    "kalaazu": 1000,
+    "wiki": 9600000
+   }
+  ],
+  [
+   "Emperor Lordakium",
+   "shield",
+   {
+    "borja": 0,
+    "kalaazu": 0,
+    "wiki": 6400000
+   }
+  ],
+  [
+   "Emperor Lordakium",
+   "damage_min",
+   {
+    "borja": 20,
+    "wiki": 45000
+   }
+  ],
+  [
+   "Emperor Lordakium",
+   "damage_max",
+   {
+    "borja": 20,
+    "kalaazu": 10,
+    "wiki": 45000
+   }
+  ],
+  [
+   "Emperor Lordakium",
+   "exp",
+   {
+    "borja": 0,
+    "wiki": 786000
+   }
+  ],
+  [
+   "Emperor Lordakium",
+   "honor",
+   {
+    "borja": 0,
+    "wiki": 4096
+   }
+  ],
+  [
+   "Emperor Lordakium",
+   "credits",
+   {
+    "borja": 0,
+    "wiki": 2000000
+   }
+  ],
+  [
+   "Emperor Lordakium",
+   "uridium",
+   {
+    "borja": 0,
+    "wiki": 12288
+   }
+  ],
+  [
+   "Emperor Sibelon",
+   "hp",
+   {
+    "borja": 1000,
+    "kalaazu": 1000,
+    "wiki": 6400000
+   }
+  ],
+  [
+   "Emperor Sibelon",
+   "shield",
+   {
+    "borja": 0,
+    "kalaazu": 0,
+    "wiki": 6400000
+   }
+  ],
+  [
+   "Emperor Sibelon",
+   "damage_min",
+   {
+    "borja": 20,
+    "wiki": 35000
+   }
+  ],
+  [
+   "Emperor Sibelon",
+   "damage_max",
+   {
+    "borja": 20,
+    "kalaazu": 10,
+    "wiki": 35000
+   }
+  ],
+  [
+   "Emperor Sibelon",
+   "exp",
+   {
+    "borja": 0,
+    "wiki": 409600
+   }
+  ],
+  [
+   "Emperor Sibelon",
+   "honor",
+   {
+    "borja": 0,
+    "wiki": 2048
+   }
+  ],
+  [
+   "Emperor Sibelon",
+   "credits",
+   {
+    "borja": 0,
+    "wiki": 1400000
+   }
+  ],
+  [
+   "Emperor Sibelon",
+   "uridium",
+   {
+    "borja": 0,
+    "wiki": 6144
+   }
+  ],
+  [
+   "Mine Car",
+   "damage_max",
+   {
+    "borja": 20,
+    "kalaazu": 10
+   }
+  ],
+  [
+   "Uber Streuner",
+   "damage_min",
+   {
+    "kluk": 160,
+    "wiki": 120
+   }
+  ],
+  [
+   "Uber Streuner",
+   "damage_max",
+   {
+    "kalaazu": 220,
+    "kluk": 270,
+    "wiki": 160
+   }
+  ],
+  [
+   "Uber Lordakia",
+   "damage_min",
+   {
+    "kluk": 500,
+    "wiki": 480
+   }
+  ],
+  [
+   "Uber Lordakia",
+   "damage_max",
+   {
+    "kalaazu": 644,
+    "kluk": 700,
+    "wiki": 640
+   }
+  ],
+  [
+   "Uber Saimon",
+   "damage_max",
+   {
+    "kalaazu": 1320,
+    "kluk": 1440,
+    "wiki": 1600
+   }
+  ],
+  [
+   "Uber Mordon",
+   "damage_min",
+   {
+    "kluk": 2600,
+    "wiki": 2400
+   }
+  ],
+  [
+   "Uber Mordon",
+   "damage_max",
+   {
+    "kalaazu": 2800,
+    "kluk": 3100,
+    "wiki": 3200
+   }
+  ],
+  [
+   "Uber Mordon",
+   "credits",
+   {
+    "kalaazu": 102400,
+    "kluk": 51200,
+    "wiki": 51200
+   }
+  ],
+  [
+   "Uber Devolarium",
+   "damage_min",
+   {
+    "kluk": 8200,
+    "wiki": 7200
+   }
+  ],
+  [
+   "Uber Devolarium",
+   "damage_max",
+   {
+    "kalaazu": 8750,
+    "kluk": 9300,
+    "wiki": 9600
+   }
+  ],
+  [
+   "Uber Devolarium",
+   "honor",
+   {
+    "kalaazu": 256,
+    "kluk": 246,
+    "wiki": 256
+   }
+  ],
+  [
+   "Uber Devolarium",
+   "credits",
+   {
+    "kalaazu": 408600,
+    "kluk": 409600,
+    "wiki": 409600
+   }
+  ],
+  [
+   "Uber Sibelon",
+   "damage_min",
+   {
+    "kluk": 18200,
+    "wiki": 18000
+   }
+  ],
+  [
+   "Uber Sibelon",
+   "damage_max",
+   {
+    "kalaazu": 21550,
+    "kluk": 24700,
+    "wiki": 24000
+   }
+  ],
+  [
+   "Uber Sibelon",
+   "uridium",
+   {
+    "kalaazu": 256,
+    "kluk": 146,
+    "wiki": 256
+   }
+  ],
+  [
+   "Uber Sibelonit",
+   "damage_min",
+   {
+    "kluk": 6350,
+    "wiki": 6000
+   }
+  ],
+  [
+   "Uber Sibelonit",
+   "damage_max",
+   {
+    "kalaazu": 7524,
+    "kluk": 8700,
+    "wiki": 8000
+   }
+  ],
+  [
+   "Uber Sibelonit",
+   "honor",
+   {
+    "kalaazu": 256,
+    "kluk": 128,
+    "wiki": 128
+   }
+  ],
+  [
+   "Uber Sibelonit",
+   "credits",
+   {
+    "kalaazu": 102400,
+    "kluk": 102400,
+    "wiki": 204800
+   }
+  ],
+  [
+   "Uber Sibelonit",
+   "uridium",
+   {
+    "kalaazu": 128,
+    "kluk": 96,
+    "wiki": 96
+   }
+  ],
+  [
+   "Uber Lordakium",
+   "damage_max",
+   {
+    "kalaazu": 26000,
+    "kluk": 31000
+   }
+  ],
+  [
+   "Uber Lordakium",
+   "honor",
+   {
+    "kalaazu": 1025,
+    "kluk": 1024
+   }
+  ],
+  [
+   "Uber StreuneR",
+   "hp",
+   {
+    "kalaazu": 160000,
+    "kluk": 160000,
+    "wiki": 320000
+   }
+  ],
+  [
+   "Uber StreuneR",
+   "shield",
+   {
+    "kalaazu": 80000,
+    "kluk": 80000,
+    "wiki": 240000
+   }
+  ],
+  [
+   "Uber StreuneR",
+   "damage_min",
+   {
+    "kluk": 3000,
+    "wiki": 6000
+   }
+  ],
+  [
+   "Uber StreuneR",
+   "damage_max",
+   {
+    "kalaazu": 3500,
+    "kluk": 4000,
+    "wiki": 8000
+   }
+  ],
+  [
+   "Uber StreuneR",
+   "exp",
+   {
+    "kalaazu": 25600,
+    "kluk": 25600,
+    "wiki": 48000
+   }
+  ],
+  [
+   "Uber StreuneR",
+   "honor",
+   {
+    "kalaazu": 128,
+    "kluk": 128,
+    "wiki": 240
+   }
+  ],
+  [
+   "Uber StreuneR",
+   "credits",
+   {
+    "kalaazu": 103400,
+    "kluk": 51200,
+    "wiki": 96000
+   }
+  ],
+  [
+   "Uber StreuneR",
+   "uridium",
+   {
+    "kalaazu": 64,
+    "kluk": 64,
+    "wiki": 120
+   }
+  ]
+ ],
+ "recip_issues": [
+  [
+   17,
+   16,
+   "source target 21800,14500 != return portal 7000,13500 -> normalised"
+  ],
+  [
+   19,
+   20,
+   "source target 18500,2000 != return portal 18500,11500 -> normalised"
+  ],
+  [
+   21,
+   16,
+   "source target 16000,1200 != return portal 28000,1300 -> normalised"
+  ],
+  [
+   21,
+   29,
+   "source target 25000,2000 != return portal 27000,2000 -> normalised"
+  ],
+  [
+   25,
+   16,
+   "source target 16000,1200 != return portal 28000,25100 -> normalised"
+  ],
+  [
+   25,
+   29,
+   "source target 25000,25000 != return portal 27000,25000 -> normalised"
+  ],
+  [
+   52,
+   1,
+   "no return portal (one-way in source)"
+  ],
+  [
+   91,
+   29,
+   "source target 5000,5000 != return portal 11500,13400 -> normalised"
+  ],
+  [
+   93,
+   20,
+   "no return portal (one-way in source)"
+  ],
+  [
+   93,
+   24,
+   "no return portal (one-way in source)"
+  ],
+  [
+   93,
+   28,
+   "no return portal (one-way in source)"
+  ]
+ ]
+}

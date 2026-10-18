@@ -1,0 +1,228 @@
+//! WebSocket message types (JSON text frames, discriminated by `t`). See CONTRACT.md.
+
+use crate::equipment::{DroneCfg, EquipConfig, Slots, Stats};
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
+
+#[derive(Deserialize, Debug, Clone)]
+#[serde(tag = "t", rename_all = "lowercase")]
+pub enum ClientMsg {
+    Login {
+        #[serde(default)]
+        name: String,
+        #[serde(default)]
+        faction: String,
+    },
+    Move {
+        x: f64,
+        y: f64,
+    },
+    Select {
+        #[serde(default)]
+        id: Option<u32>,
+    },
+    Attack {
+        #[serde(default)]
+        on: bool,
+    },
+    Ammo {
+        id: String,
+    },
+    Rocket {
+        #[serde(default)]
+        id: Option<String>,
+    },
+    Ship {
+        ship: String,
+        #[serde(default)]
+        design: Option<String>,
+    },
+    Config {
+        #[serde(default, rename = "speedGens")]
+        speed_gens: Option<f64>,
+    },
+    Jump,
+    /// Additive: instant warp to any map (jump CPU). Arrives at the own-faction station if the
+    /// map has one, else any station, else the map centre.
+    Warp {
+        #[serde(deserialize_with = "crate::data::lenient_u32")]
+        map: u32,
+    },
+    Revive,
+    Cheat {
+        #[serde(default)]
+        god: Option<bool>,
+        #[serde(default, rename = "dmgMult")]
+        dmg_mult: Option<f64>,
+    },
+    Chat {
+        #[serde(default)]
+        text: String,
+    },
+    /// Additive: set equipment of config 1 or 2. Omitted fields keep their current value.
+    Equip {
+        #[serde(default = "one")]
+        config: u8,
+        #[serde(default)]
+        lasers: Option<Vec<String>>,
+        #[serde(default)]
+        gens: Option<Vec<String>>,
+        #[serde(default)]
+        extras: Option<Vec<String>>,
+        #[serde(default)]
+        drones: Option<Vec<DroneCfg>>,
+        /// `null`/"" removes the design; omitted keeps it.
+        #[serde(default, rename = "droneDesign", deserialize_with = "some_opt")]
+        drone_design: Option<Option<String>>,
+        /// Upgrade levels parallel to `lasers` / `gens` (missing = item max).
+        #[serde(default, rename = "laserLvls")]
+        laser_lvls: Option<Vec<u8>>,
+        #[serde(default, rename = "genLvls")]
+        gen_lvls: Option<Vec<u8>>,
+    },
+    /// Additive: set upgrade levels. `target` "laser"|"gen"|"drone", `slot` index or "all".
+    Upgrade {
+        #[serde(default = "one")]
+        config: u8,
+        target: String,
+        #[serde(default = "all")]
+        slot: serde_json::Value,
+        level: u8,
+    },
+    /// Additive: switch drone formation.
+    Formation {
+        id: String,
+    },
+    /// Additive: toggle a booster.
+    Booster {
+        id: String,
+        on: bool,
+    },
+    /// Additive: switch the active config (5 s cooldown).
+    Cfg {
+        n: u8,
+    },
+}
+
+fn one() -> u8 {
+    1
+}
+
+fn all() -> Value {
+    Value::String("all".into())
+}
+
+/// Distinguish "field missing" (None) from "field null" (Some(None)).
+fn some_opt<'de, D: serde::Deserializer<'de>>(d: D) -> Result<Option<Option<String>>, D::Error> {
+    Ok(Some(Option::<String>::deserialize(d)?))
+}
+
+#[derive(Serialize, Debug, Clone)]
+pub struct EntState {
+    pub id: u32,
+    pub k: &'static str,
+    pub n: String,
+    pub s: String,
+    pub x: f64,
+    pub y: f64,
+    pub a: f64,
+    pub hp: f64,
+    pub mhp: f64,
+    pub sh: f64,
+    pub msh: f64,
+    pub f: String,
+    pub tg: Option<u32>,
+    pub atk: bool,
+    /// Additive: drone type ids (players only; omitted when none).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub dr: Vec<String>,
+    /// Additive: active drone design id (omitted when none).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub dd: Option<String>,
+    /// Additive: active drone formation id (players with drones only).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub fm: Option<String>,
+}
+
+#[derive(Serialize, Debug, Clone)]
+#[serde(tag = "t", rename_all = "lowercase")]
+pub enum ServerMsg<'a> {
+    Welcome {
+        id: u32,
+    },
+    Map {
+        map: &'a Value,
+    },
+    State {
+        tick: u64,
+        ents: &'a [EntState],
+    },
+    You(&'a YouMsg),
+    Shot {
+        from: u32,
+        to: u32,
+        kind: &'static str,
+        ammo: String,
+        dmg: f64,
+        shd: f64,
+        miss: bool,
+    },
+    Boom {
+        id: u32,
+        x: f64,
+        y: f64,
+    },
+    Dead {
+        by: String,
+    },
+    Log {
+        text: String,
+    },
+    Chat {
+        from: String,
+        text: String,
+    },
+}
+
+impl ServerMsg<'_> {
+    pub fn json(&self) -> String {
+        serde_json::to_string(self).unwrap_or_default()
+    }
+}
+
+#[derive(Serialize, Debug, Clone, PartialEq)]
+pub struct YouMsg {
+    pub ship: String,
+    pub design: Option<String>,
+    pub speed: f64,
+    pub ammo: String,
+    pub credits: f64,
+    pub uridium: f64,
+    pub exp: f64,
+    pub honor: f64,
+    pub level: u32,
+    pub god: bool,
+    #[serde(rename = "dmgMult")]
+    pub dmg_mult: f64,
+    #[serde(rename = "speedGens")]
+    pub speed_gens: f64,
+    // --- additive fields (not in the original contract) ---
+    /// Your entity id (same as `welcome.id`).
+    pub id: u32,
+    /// Current map id.
+    pub map: u32,
+    /// Selected rocket id (last fired / default).
+    pub rocket: String,
+    /// Whether you are currently dead (waiting for `revive`).
+    pub dead: bool,
+    /// Active config (1 or 2).
+    pub cfg: u8,
+    /// Both configs (index 0 = config 1).
+    pub configs: [EquipConfig; 2],
+    pub slots: Slots,
+    /// Stats of the active config.
+    pub stats: Stats,
+    /// Seconds until `cfg` can switch again.
+    #[serde(rename = "cfgCd")]
+    pub cfg_cd: f64,
+}

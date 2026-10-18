@@ -1,0 +1,123 @@
+{
+ "ammo": [
+  {
+   "id": "x1",
+   "name": "LCB-10",
+   "mult": 1,
+   "color": "red"
+  },
+  {
+   "id": "x2",
+   "name": "MCB-25",
+   "mult": 2,
+   "color": "blue"
+  },
+  {
+   "id": "x3",
+   "name": "MCB-50",
+   "mult": 3,
+   "color": "green"
+  },
+  {
+   "id": "x4",
+   "name": "UCB-100",
+   "mult": 4,
+   "color": "white"
+  },
+  {
+   "id": "sab",
+   "name": "SAB-50",
+   "mult": 2,
+   "color": "sab",
+   "shieldDrain": true
+  },
+  {
+   "id": "rsb",
+   "name": "RSB-75",
+   "mult": 6,
+   "color": "rsb",
+   "cooldown": 3
+  },
+  {
+   "id": "cbo",
+   "name": "CBO-100",
+   "mult": 3,
+   "drain": 1,
+   "color": "cbo",
+   "_src": "wiki CBO-100: MCB-50 damage + half SAB"
+  },
+  {
+   "id": "abl",
+   "name": "A-BL",
+   "mult": 4,
+   "multVs": {
+    "mindfire": 8,
+    "invoke": 8
+   },
+   "color": "abl",
+   "_src": "wiki A-BL Ammo"
+  },
+  {
+   "id": "pib",
+   "name": "PIB-100",
+   "mult": 4,
+   "infect": true,
+   "color": "pib",
+   "_src": "wiki PIB-100"
+  },
+  {
+   "id": "idb",
+   "name": "IDB-125",
+   "mult": 1,
+   "ramp": {
+    "step": 1.25,
+    "max": 6,
+    "resetMs": 3000
+   },
+   "color": "idb",
+   "_src": "wiki IDB-125"
+  },
+  {
+   "id": "job",
+   "name": "JOB-100",
+   "mult": 3.5,
+   "multPve": 3.5,
+   "multPvp": 2,
+   "color": "job",
+   "_src": "wiki JOB-100"
+  },
+  {
+   "id": "rb214",
+   "name": "RB-214",
+   "mult": 4,
+   "multVs": {
+    "demaner": 8
+   },
+   "color": "rb214",
+   "_src": "wiki RB-214"
+  },
+  {
+   "id": "rcb",
+   "name": "RCB-140",
+   "mult": 7,
+   "color": "rcb",
+   "_src": "wiki RCB-140"
+  }
+ ],
+ "laserDamage": 175,
+ "rockets": [
+  {
+   "id": "r310",
+   "name": "R-310",
+   "damage": 1000
+  },
+  {
+   "id": "plt2026",
+   "damage": 2000
+  },
+  {
+   "id": "plt2021",
+   "damage": 4000
+  }
+ ]
+}

@@ -1,0 +1,7368 @@
+[
+ {
+  "id": "demaner",
+  "name": "-=[ demaNer ]=-",
+  "base_name": "demaNer",
+  "gfx": 11,
+  "sheet": "ship11",
+  "hp": 400000,
+  "shield": 300000,
+  "speed": 300,
+  "damage_min": 3500,
+  "damage_max": 4000,
+  "exp": null,
+  "honor": null,
+  "credits": null,
+  "uridium": null,
+  "shield_absorption": 80,
+  "damage": 4000,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "field_source": {
+   "hp": "borja",
+   "shield": "borja",
+   "speed": "borja",
+   "damage_min": "borja",
+   "damage_max": "borja",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 400000,
+    "shield": 300000,
+    "damage_min": 3500,
+    "damage_max": 4000,
+    "speed": 300,
+    "aggressive": true,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 400000,
+    "shield": 300000,
+    "damage_max": 3750,
+    "aggressive": true,
+    "gfx": 11,
+    "shield_absorption": 80
+   }
+  },
+  "source": [
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 14
+ },
+ {
+  "id": "ufo",
+  "name": "UFO",
+  "base_name": "UFO",
+  "gfx": 20,
+  "sheet": "ship20",
+  "hp": 10000000,
+  "shield": 10000000,
+  "speed": 250,
+  "damage_min": 4800,
+  "damage_max": 5000,
+  "exp": 222222,
+  "honor": 22222,
+  "credits": 222222,
+  "uridium": 2222,
+  "shield_absorption": 80,
+  "damage": 5000,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "borja",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 3200000,
+    "shield": 2400000,
+    "damage_min": 120000,
+    "damage_max": 125000,
+    "speed": 250,
+    "aggressive": true,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 3200000,
+    "shield": 2400000,
+    "damage_max": 122500,
+    "aggressive": true,
+    "gfx": 20,
+    "shield_absorption": 80
+   },
+   "wiki": {
+    "hp": 10000000,
+    "shield": 10000000,
+    "damage_min": 4800,
+    "damage_max": 5000,
+    "exp": 222222,
+    "honor": 22222,
+    "credits": 222222,
+    "uridium": 2222
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/UFO",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 76
+ },
+ {
+  "id": "mini_ufo",
+  "name": "mini UFO",
+  "base_name": "mini UFO",
+  "gfx": 21,
+  "sheet": "ship21",
+  "hp": 400000,
+  "shield": 300000,
+  "speed": 300,
+  "damage_min": 4000,
+  "damage_max": 5000,
+  "exp": null,
+  "honor": null,
+  "credits": null,
+  "uridium": null,
+  "shield_absorption": 80,
+  "damage": 5000,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "field_source": {
+   "hp": "borja",
+   "shield": "borja",
+   "speed": "borja",
+   "damage_min": "borja",
+   "damage_max": "borja",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 400000,
+    "shield": 300000,
+    "damage_min": 4000,
+    "damage_max": 5000,
+    "speed": 300,
+    "aggressive": true,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 400000,
+    "shield": 300000,
+    "damage_max": 4500,
+    "aggressive": true,
+    "gfx": 21,
+    "shield_absorption": 80
+   }
+  },
+  "source": [
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 77
+ },
+ {
+  "id": "boss_streuner",
+  "name": "..::{ Boss Streuner }::..",
+  "base_name": "Boss Streuner",
+  "gfx": 23,
+  "sheet": "ship23",
+  "hp": 3200,
+  "shield": 1600,
+  "speed": 250,
+  "current_wiki": {
+   "damage_min": 80
+  },
+  "damage_min": 80,
+  "damage_max": 100,
+  "exp": 1600,
+  "honor": 8,
+  "credits": 1600,
+  "uridium": 4,
+  "shield_absorption": 80,
+  "damage": 100,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false,
+   "zeta": false
+  },
+  "cargo": {
+   "prometium": 40,
+   "endurium": 40,
+   "terbium": 10
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "emulator-consensus",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 3200,
+    "shield": 1600,
+    "damage_min": 100,
+    "damage_max": 120,
+    "speed": 270,
+    "aggressive": false,
+    "exp": 1600,
+    "honor": 8,
+    "credits": 1600,
+    "uridium": 4,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 3200,
+    "shield": 1600,
+    "damage_max": 110,
+    "aggressive": false,
+    "gfx": 23,
+    "shield_absorption": 80,
+    "exp": 1600,
+    "honor": 8,
+    "credits": 1600,
+    "uridium": 4
+   },
+   "kluk": {
+    "hp": 3200,
+    "shield": 1600,
+    "exp": 1600,
+    "honor": 8,
+    "credits": 1600,
+    "uridium": 4,
+    "damage_min": 100,
+    "damage_max": 120
+   },
+   "zeta": {
+    "hp": 3200,
+    "shield": 1600,
+    "damage_max": 80,
+    "speed": 250,
+    "shield_absorption": 60,
+    "aggressive": false
+   },
+   "wiki": {
+    "hp": 3200,
+    "shield": 1600,
+    "damage_min": 80,
+    "damage_max": 80,
+    "speed": 250,
+    "exp": 1600,
+    "honor": 8,
+    "credits": 1600,
+    "uridium": 4
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Boss_Streuner",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql",
+   "https://github.com/zeta-arts/DoPs/blob/master/darkorbitDB2.sql"
+  ],
+  "kalaazu_id": 15
+ },
+ {
+  "id": "boss_lordakia",
+  "name": "..::{ Boss Lordakia }::..",
+  "base_name": "Boss Lordakia",
+  "gfx": 24,
+  "sheet": "ship24",
+  "hp": 8000,
+  "shield": 8000,
+  "speed": 320,
+  "current_wiki": {
+   "damage_min": 263,
+   "damage_max": 363
+  },
+  "damage_min": 295,
+  "damage_max": 350,
+  "exp": 3200,
+  "honor": 16,
+  "credits": 3200,
+  "uridium": 8,
+  "shield_absorption": 80,
+  "damage": 350,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "cargo": {
+   "prometium": 80,
+   "endurium": 80,
+   "terbium": 80,
+   "prometid": 10,
+   "duranium": 0,
+   "promerium": 0,
+   "xenomit": 1
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "emulator-consensus",
+   "damage_max": "emulator-consensus",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 8000,
+    "shield": 8000,
+    "damage_min": 295,
+    "damage_max": 350,
+    "speed": 320,
+    "aggressive": true,
+    "exp": 3200,
+    "honor": 16,
+    "credits": 3200,
+    "uridium": 8,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 8000,
+    "shield": 8000,
+    "damage_max": 322,
+    "aggressive": true,
+    "gfx": 24,
+    "shield_absorption": 80,
+    "exp": 3200,
+    "honor": 16,
+    "credits": 3200,
+    "uridium": 8
+   },
+   "kluk": {
+    "hp": 8000,
+    "shield": 8000,
+    "exp": 3200,
+    "honor": 16,
+    "credits": 3200,
+    "uridium": 8,
+    "damage_min": 295,
+    "damage_max": 350
+   },
+   "wiki": {
+    "hp": 8000,
+    "shield": 8000,
+    "damage_min": 263,
+    "damage_max": 363,
+    "speed": 320,
+    "exp": 3200,
+    "honor": 16,
+    "credits": 3200,
+    "uridium": 8
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Boss_Lordakia",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql"
+  ],
+  "kalaazu_id": 16
+ },
+ {
+  "id": "boss_saimon",
+  "name": "..::{ Boss Saimon }::..",
+  "base_name": "Boss Saimon",
+  "gfx": 25,
+  "sheet": "ship25",
+  "hp": 24000,
+  "shield": 12000,
+  "speed": 300,
+  "damage_min": 600,
+  "current_wiki": {
+   "damage_max": 800
+  },
+  "damage_max": 720,
+  "exp": 6400,
+  "honor": 32,
+  "credits": 6400,
+  "uridium": 16,
+  "shield_absorption": 80,
+  "damage": 720,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "cargo": {
+   "prometium": 160,
+   "endurium": 160,
+   "terbium": 160,
+   "prometid": 8,
+   "duranium": 8,
+   "promerium": 1,
+   "xenomit": 2
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "emulator-consensus",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 24000,
+    "shield": 12000,
+    "damage_min": 600,
+    "damage_max": 720,
+    "speed": 320,
+    "aggressive": true,
+    "exp": 6400,
+    "honor": 32,
+    "credits": 6400,
+    "uridium": 16,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 24000,
+    "shield": 12000,
+    "damage_max": 660,
+    "aggressive": true,
+    "gfx": 25,
+    "shield_absorption": 80,
+    "exp": 6400,
+    "honor": 32,
+    "credits": 6400,
+    "uridium": 16
+   },
+   "kluk": {
+    "hp": 24000,
+    "shield": 12000,
+    "exp": 6400,
+    "honor": 32,
+    "credits": 6400,
+    "uridium": 16,
+    "damage_min": 600,
+    "damage_max": 720
+   },
+   "wiki": {
+    "hp": 24000,
+    "shield": 12000,
+    "damage_min": 600,
+    "damage_max": 800,
+    "speed": 300,
+    "exp": 6400,
+    "honor": 32,
+    "credits": 6400,
+    "uridium": 16
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Boss_Saimon",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql"
+  ],
+  "kalaazu_id": 17
+ },
+ {
+  "id": "boss_devolarium",
+  "name": "..::{ Boss Devolarium }::..",
+  "base_name": "Boss Devolarium",
+  "gfx": 26,
+  "sheet": "ship26",
+  "hp": 400000,
+  "shield": 400000,
+  "speed": 200,
+  "damage_min": 4100,
+  "damage_max": 4650,
+  "exp": 25600,
+  "honor": 128,
+  "credits": 204800,
+  "uridium": 64,
+  "shield_absorption": 80,
+  "damage": 4650,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "cargo": {
+   "prometium": 400,
+   "endurium": 400,
+   "terbium": 400,
+   "prometid": 64,
+   "duranium": 64,
+   "promerium": 8,
+   "xenomit": 8
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "borja",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 400000,
+    "shield": 400000,
+    "damage_min": 4100,
+    "damage_max": 4650,
+    "speed": 200,
+    "aggressive": true,
+    "exp": 25600,
+    "honor": 128,
+    "credits": 204800,
+    "uridium": 64,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 400000,
+    "shield": 400000,
+    "damage_max": 4375,
+    "aggressive": true,
+    "gfx": 26,
+    "shield_absorption": 80,
+    "exp": 25600,
+    "honor": 128,
+    "credits": 204800,
+    "uridium": 64
+   },
+   "kluk": {
+    "hp": 400000,
+    "shield": 400000,
+    "exp": 25600,
+    "honor": 128,
+    "credits": 204800,
+    "uridium": 64,
+    "damage_min": 4100,
+    "damage_max": 4650
+   },
+   "wiki": {
+    "hp": 400000,
+    "shield": 400000,
+    "damage_min": 4100,
+    "damage_max": 4650,
+    "exp": 25600,
+    "honor": 128,
+    "credits": 204800,
+    "uridium": 64
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Boss_Devolarium",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql"
+  ],
+  "kalaazu_id": 19
+ },
+ {
+  "id": "boss_sibelonit",
+  "name": "..::{ Boss Sibelonit }::..",
+  "base_name": "Boss Sibelonit",
+  "gfx": 27,
+  "sheet": "ship27",
+  "hp": 160000,
+  "shield": 160000,
+  "speed": 300,
+  "damage_min": 3175,
+  "damage_max": 4350,
+  "exp": 12800,
+  "honor": 64,
+  "current_wiki": {
+   "credits": 102400
+  },
+  "credits": 51200,
+  "uridium": 48,
+  "shield_absorption": 80,
+  "damage": 4350,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "cargo": {
+   "prometium": 400,
+   "endurium": 400,
+   "terbium": 400,
+   "prometid": 32,
+   "duranium": 32,
+   "promerium": 4,
+   "xenomit": 8
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "emulator-consensus",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 160000,
+    "shield": 160000,
+    "damage_min": 3175,
+    "damage_max": 4350,
+    "speed": 320,
+    "aggressive": true,
+    "exp": 12800,
+    "honor": 128,
+    "credits": 51200,
+    "uridium": 64,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 160000,
+    "shield": 160000,
+    "damage_max": 3762,
+    "aggressive": true,
+    "gfx": 27,
+    "shield_absorption": 80,
+    "exp": 12800,
+    "honor": 128,
+    "credits": 51200,
+    "uridium": 64
+   },
+   "kluk": {
+    "hp": 160000,
+    "shield": 160000,
+    "exp": 12800,
+    "honor": 64,
+    "credits": 51200,
+    "uridium": 48,
+    "damage_min": 3175,
+    "damage_max": 4350
+   },
+   "wiki": {
+    "hp": 160000,
+    "shield": 160000,
+    "damage_min": 3175,
+    "damage_max": 4350,
+    "speed": 300,
+    "exp": 12800,
+    "honor": 64,
+    "credits": 102400,
+    "uridium": 48
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Boss_Sibelonit",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql"
+  ],
+  "kalaazu_id": 21
+ },
+ {
+  "id": "boss_lordakium",
+  "name": "..::{ Boss Lordakium }::..",
+  "base_name": "Boss Lordakium",
+  "gfx": 28,
+  "sheet": "ship28",
+  "hp": 1200000,
+  "shield": 800000,
+  "speed": 200,
+  "current_wiki": {
+   "damage_min": 12000
+  },
+  "damage_min": 10000,
+  "damage_max": 16000,
+  "exp": 102400,
+  "honor": 512,
+  "credits": 819200,
+  "uridium": 256,
+  "shield_absorption": 80,
+  "damage": 16000,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false
+  },
+  "cargo": {
+   "prometium": 1200,
+   "endurium": 1200,
+   "terbium": 1200,
+   "prometid": 256,
+   "duranium": 256,
+   "promerium": 32,
+   "xenomit": 32
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "emulator-consensus",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 1200000,
+    "shield": 800000,
+    "damage_min": 10000,
+    "damage_max": 16000,
+    "speed": 230,
+    "aggressive": false,
+    "exp": 102400,
+    "honor": 512,
+    "credits": 819200,
+    "uridium": 256,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 1200000,
+    "shield": 800000,
+    "damage_max": 13000,
+    "aggressive": false,
+    "gfx": 28,
+    "shield_absorption": 80,
+    "exp": 102400,
+    "honor": 512,
+    "credits": 819200,
+    "uridium": 256
+   },
+   "kluk": {
+    "hp": 1200000,
+    "shield": 800000,
+    "exp": 102400,
+    "honor": 512,
+    "credits": 819200,
+    "uridium": 256,
+    "damage_min": 10000,
+    "damage_max": 16000
+   },
+   "wiki": {
+    "hp": 1200000,
+    "shield": 800000,
+    "damage_min": 12000,
+    "damage_max": 16000,
+    "speed": 200,
+    "exp": 102400,
+    "honor": 512,
+    "credits": 819200,
+    "uridium": 256
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Boss_Lordakium",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql"
+  ],
+  "kalaazu_id": 22
+ },
+ {
+  "id": "boss_kristallin",
+  "name": "..::{ Boss Kristallin }::..",
+  "base_name": "Boss Kristallin",
+  "gfx": 29,
+  "sheet": "ship29",
+  "hp": 200000,
+  "shield": 160000,
+  "current_wiki": {
+   "speed": 340,
+   "damage_max": 4800
+  },
+  "speed": 320,
+  "damage_min": 3600,
+  "damage_max": 4700,
+  "exp": 25600,
+  "honor": 128,
+  "credits": 51200,
+  "uridium": 64,
+  "shield_absorption": 80,
+  "damage": 4700,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true,
+   "yusuf": true
+  },
+  "cargo": {
+   "prometium": 400,
+   "endurium": 400,
+   "terbium": 400,
+   "prometid": 64,
+   "duranium": 64,
+   "promerium": 4,
+   "xenomit": 8
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "emulator-consensus",
+   "damage_min": "wiki",
+   "damage_max": "emulator-consensus",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 200000,
+    "shield": 160000,
+    "damage_min": 3600,
+    "damage_max": 4700,
+    "speed": 320,
+    "aggressive": true,
+    "exp": 25600,
+    "honor": 128,
+    "credits": 51200,
+    "uridium": 64,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 200000,
+    "shield": 160000,
+    "damage_max": 4150,
+    "aggressive": true,
+    "gfx": 29,
+    "shield_absorption": 80,
+    "exp": 25600,
+    "honor": 128,
+    "credits": 51200,
+    "uridium": 64
+   },
+   "kluk": {
+    "hp": 200000,
+    "shield": 160000,
+    "exp": 25600,
+    "honor": 128,
+    "credits": 51200,
+    "uridium": 64,
+    "damage_min": 3600,
+    "damage_max": 4700
+   },
+   "yusuf": {
+    "hp": 200000,
+    "shield": 160000,
+    "speed": 320,
+    "damage_max": 4000,
+    "aggressive": true,
+    "exp": 25600,
+    "honor": 128,
+    "credits": 51200,
+    "uridium": 64
+   },
+   "wiki": {
+    "hp": 200000,
+    "shield": 160000,
+    "damage_min": 3600,
+    "damage_max": 4800,
+    "speed": 340,
+    "exp": 25600,
+    "honor": 128,
+    "credits": 51200,
+    "uridium": 64
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Boss_Kristallin",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql"
+  ],
+  "kalaazu_id": 23
+ },
+ {
+  "id": "boss_mordon",
+  "name": "..::{ Boss Mordon }::..",
+  "base_name": "Boss Mordon",
+  "gfx": 31,
+  "sheet": "ship31",
+  "hp": 80000,
+  "shield": 40000,
+  "speed": 150,
+  "current_wiki": {
+   "damage_min": 1170,
+   "damage_max": 1560
+  },
+  "damage_min": 1300,
+  "damage_max": 1500,
+  "exp": 12800,
+  "honor": 64,
+  "credits": 25600,
+  "uridium": 32,
+  "shield_absorption": 80,
+  "damage": 1500,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true,
+   "wiki": true
+  },
+  "cargo": {
+   "prometium": 320,
+   "endurium": 320,
+   "terbium": 320,
+   "prometid": 32,
+   "duranium": 32,
+   "promerium": 8,
+   "xenomit": 4
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "emulator-consensus",
+   "damage_max": "emulator-consensus",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 80000,
+    "shield": 40000,
+    "damage_min": 1300,
+    "damage_max": 1500,
+    "speed": 125,
+    "aggressive": true,
+    "exp": 12800,
+    "honor": 64,
+    "credits": 51200,
+    "uridium": 32,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 80000,
+    "shield": 40000,
+    "damage_max": 1400,
+    "aggressive": true,
+    "gfx": 31,
+    "shield_absorption": 80,
+    "exp": 12800,
+    "honor": 64,
+    "credits": 51200,
+    "uridium": 32
+   },
+   "kluk": {
+    "hp": 80000,
+    "shield": 40000,
+    "exp": 12800,
+    "honor": 64,
+    "credits": 25600,
+    "uridium": 32,
+    "damage_min": 1300,
+    "damage_max": 1500
+   },
+   "wiki": {
+    "hp": 80000,
+    "shield": 40000,
+    "damage_min": 1170,
+    "damage_max": 1560,
+    "speed": 150,
+    "exp": 12800,
+    "honor": 64,
+    "credits": 25600,
+    "uridium": 32,
+    "aggressive": true
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Boss_Mordon",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql"
+  ],
+  "kalaazu_id": 18
+ },
+ {
+  "id": "santabot",
+  "name": "-=[ Santabot ]=-",
+  "base_name": "Santabot",
+  "gfx": 32,
+  "sheet": "ship32",
+  "hp": 1000,
+  "shield": null,
+  "speed": 150,
+  "damage_min": 20,
+  "damage_max": 20,
+  "exp": null,
+  "honor": null,
+  "credits": null,
+  "uridium": null,
+  "shield_absorption": 80,
+  "damage": 20,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false
+  },
+  "field_source": {
+   "hp": "borja",
+   "speed": "borja",
+   "damage_min": "borja",
+   "damage_max": "borja",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_min": 20,
+    "damage_max": 20,
+    "speed": 150,
+    "aggressive": false,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 20
+   },
+   "kalaazu": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_max": 10,
+    "aggressive": false,
+    "gfx": 32,
+    "shield_absorption": 80
+   }
+  },
+  "source": [
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 65
+ },
+ {
+  "id": "super_ice_meteoroid",
+  "name": "-=[ Super Ice Meteoroid ]=-",
+  "base_name": "Super Ice Meteoroid",
+  "gfx": 33,
+  "sheet": "ship33",
+  "hp": 3600000,
+  "shield": 2400000,
+  "speed": 200,
+  "damage_min": 1000,
+  "damage_max": 1000,
+  "exp": 440000,
+  "honor": 1600,
+  "credits": 1200000,
+  "uridium": 600,
+  "shield_absorption": 80,
+  "damage": 1000,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false
+  },
+  "cargo": {
+   "prometium": 2400,
+   "endurium": 2400,
+   "terbium": 2400,
+   "prometid": 1024,
+   "duranium": 1024,
+   "promerium": 128,
+   "xenomit": 512
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "borja",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 3200000,
+    "shield": 2400000,
+    "damage_min": 0,
+    "damage_max": 0,
+    "speed": 200,
+    "aggressive": false,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 3200000,
+    "shield": 2400000,
+    "damage_max": 0,
+    "aggressive": false,
+    "gfx": 33,
+    "shield_absorption": 80
+   },
+   "wiki": {
+    "hp": 3600000,
+    "shield": 2400000,
+    "damage_min": 1000,
+    "damage_max": 1000,
+    "exp": 440000,
+    "honor": 1600,
+    "credits": 1200000,
+    "uridium": 600
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Super_Ice_Meteoroid",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 59
+ },
+ {
+  "id": "boss_streuner_r_upper",
+  "name": "..::{ Boss StreuneR }::..",
+  "base_name": "Boss StreuneR",
+  "gfx": 34,
+  "sheet": "ship34",
+  "hp": 80000,
+  "shield": 40000,
+  "speed": 200,
+  "current_wiki": {
+   "damage_min": 1400,
+   "damage_max": 1400,
+   "exp": 12860
+  },
+  "damage_min": 1500,
+  "damage_max": 2000,
+  "exp": 12800,
+  "honor": 64,
+  "credits": 25600,
+  "uridium": 32,
+  "shield_absorption": 80,
+  "damage": 2000,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false
+  },
+  "cargo": {
+   "xenomit": 4,
+   "terbium": 320,
+   "endurium": 320,
+   "duranium": 32,
+   "prometid": 32,
+   "prometium": 320
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "emulator-consensus",
+   "damage_max": "emulator-consensus",
+   "exp": "emulator-consensus",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 80000,
+    "shield": 40000,
+    "damage_min": 1500,
+    "damage_max": 2000,
+    "speed": 280,
+    "aggressive": false,
+    "exp": 12800,
+    "honor": 64,
+    "credits": 51200,
+    "uridium": 32,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 80000,
+    "shield": 40000,
+    "damage_max": 1750,
+    "aggressive": false,
+    "gfx": 34,
+    "shield_absorption": 80,
+    "exp": 12800,
+    "honor": 64,
+    "credits": 51200,
+    "uridium": 32
+   },
+   "kluk": {
+    "hp": 80000,
+    "shield": 40000,
+    "exp": 12800,
+    "honor": 64,
+    "credits": 25600,
+    "uridium": 32,
+    "damage_min": 1500,
+    "damage_max": 2000
+   },
+   "wiki": {
+    "hp": 80000,
+    "shield": 40000,
+    "damage_min": 1400,
+    "damage_max": 1400,
+    "speed": 200,
+    "exp": 12860,
+    "honor": 64,
+    "credits": 25600,
+    "uridium": 32
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Boss_StreuneR",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql"
+  ],
+  "kalaazu_id": 25
+ },
+ {
+  "id": "boss_kristallon",
+  "name": "..::{ Boss Kristallon }::..",
+  "base_name": "Boss Kristallon",
+  "gfx": 35,
+  "sheet": "ship35",
+  "hp": 1600000,
+  "shield": 1200000,
+  "speed": 250,
+  "damage_min": 15000,
+  "damage_max": 20000,
+  "exp": 204800,
+  "honor": 1024,
+  "credits": 1638400,
+  "uridium": 512,
+  "shield_absorption": 80,
+  "damage": 20000,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false,
+   "yusuf": false
+  },
+  "cargo": {
+   "prometium": 1200,
+   "endurium": 1200,
+   "terbium": 1200,
+   "prometid": 512,
+   "duranium": 512,
+   "promerium": 64,
+   "xenomit": 64
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 1600000,
+    "shield": 1200000,
+    "damage_min": 15000,
+    "damage_max": 20000,
+    "speed": 250,
+    "aggressive": false,
+    "exp": 204800,
+    "honor": 1024,
+    "credits": 1634400,
+    "uridium": 512,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 1600000,
+    "shield": 1200000,
+    "damage_max": 17500,
+    "aggressive": false,
+    "gfx": 35,
+    "shield_absorption": 80,
+    "exp": 204800,
+    "honor": 1024,
+    "credits": 1634400,
+    "uridium": 512
+   },
+   "kluk": {
+    "hp": 1600000,
+    "shield": 1200000,
+    "exp": 204800,
+    "honor": 1024,
+    "credits": 1638400,
+    "uridium": 512,
+    "damage_min": 15000,
+    "damage_max": 20000
+   },
+   "yusuf": {
+    "hp": 1600000,
+    "shield": 1200000,
+    "speed": 250,
+    "damage_max": 18000,
+    "aggressive": false,
+    "exp": 204800,
+    "honor": 1024,
+    "credits": 1638400,
+    "uridium": 512
+   },
+   "wiki": {
+    "hp": 1600000,
+    "shield": 1200000,
+    "damage_min": 15000,
+    "damage_max": 20000,
+    "speed": 250,
+    "exp": 204800,
+    "honor": 1024,
+    "credits": 1638400,
+    "uridium": 512
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Boss_Kristallon",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql"
+  ],
+  "kalaazu_id": 24
+ },
+ {
+  "id": "uber_kristallin",
+  "name": "<-o( Uber Kristallin )o->",
+  "base_name": "Uber Kristallin",
+  "gfx": 42,
+  "sheet": "ship42",
+  "hp": 400000,
+  "shield": 320000,
+  "speed": 250,
+  "damage_min": 7200,
+  "damage_max": 9400,
+  "exp": 51200,
+  "honor": 256,
+  "credits": 102400,
+  "uridium": 128,
+  "shield_absorption": 80,
+  "damage": 9400,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "cargo": {
+   "prometium": 800,
+   "endurium": 800,
+   "terbium": 800,
+   "prometid": 128,
+   "duranium": 128,
+   "promerium": 8,
+   "xenomit": 16
+  },
+  "field_source": {
+   "hp": "borja",
+   "shield": "borja",
+   "speed": "borja",
+   "damage_min": "borja",
+   "damage_max": "borja",
+   "exp": "borja",
+   "honor": "borja",
+   "credits": "borja",
+   "uridium": "borja",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 400000,
+    "shield": 320000,
+    "damage_min": 7200,
+    "damage_max": 9400,
+    "speed": 250,
+    "aggressive": true,
+    "exp": 51200,
+    "honor": 256,
+    "credits": 102400,
+    "uridium": 128,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 400000,
+    "shield": 320000,
+    "damage_max": 8300,
+    "aggressive": true,
+    "gfx": 42,
+    "shield_absorption": 80,
+    "exp": 51200,
+    "honor": 256,
+    "credits": 102400,
+    "uridium": 128
+   },
+   "kluk": {
+    "hp": 400000,
+    "shield": 320000,
+    "exp": 51200,
+    "honor": 246,
+    "credits": 102400,
+    "uridium": 128,
+    "damage_min": 7200,
+    "damage_max": 9400
+   }
+  },
+  "source": [
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql"
+  ],
+  "kalaazu_id": 34
+ },
+ {
+  "id": "uber_kristallon",
+  "name": "<-o( Uber Kristallon )o->",
+  "base_name": "Uber Kristallon",
+  "gfx": 45,
+  "sheet": "ship45",
+  "hp": 3200000,
+  "shield": 2400000,
+  "speed": 240,
+  "damage_min": 30000,
+  "current_wiki": {
+   "damage_max": 40000
+  },
+  "damage_max": 45000,
+  "exp": 409600,
+  "honor": 2048,
+  "credits": 3276800,
+  "uridium": 1024,
+  "shield_absorption": 80,
+  "damage": 45000,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false,
+   "wiki": true
+  },
+  "cargo": {
+   "prometium": 2400,
+   "endurium": 2400,
+   "terbium": 2400,
+   "prometid": 512,
+   "duranium": 512,
+   "promerium": 128,
+   "xenomit": 128
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "emulator-consensus",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 3200000,
+    "shield": 2400000,
+    "damage_min": 30000,
+    "damage_max": 45000,
+    "speed": 200,
+    "aggressive": false,
+    "exp": 409600,
+    "honor": 2048,
+    "credits": 3268800,
+    "uridium": 1024,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 3200000,
+    "shield": 2400000,
+    "damage_max": 37500,
+    "aggressive": false,
+    "gfx": 45,
+    "shield_absorption": 80,
+    "exp": 409600,
+    "honor": 2048,
+    "credits": 3268800,
+    "uridium": 1024
+   },
+   "kluk": {
+    "hp": 3200000,
+    "shield": 2400000,
+    "exp": 409600,
+    "honor": 2048,
+    "credits": 3276800,
+    "uridium": 1024,
+    "damage_min": 30000,
+    "damage_max": 45000
+   },
+   "wiki": {
+    "hp": 3200000,
+    "shield": 2400000,
+    "damage_min": 30000,
+    "damage_max": 40000,
+    "speed": 240,
+    "exp": 409600,
+    "honor": 2048,
+    "credits": 3276800,
+    "uridium": 1024,
+    "aggressive": true
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Uber_Kristallon",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql"
+  ],
+  "kalaazu_id": 35
+ },
+ {
+  "id": "boss_sibelon",
+  "name": "..::{ Boss Sibelon }::..",
+  "base_name": "Boss Sibelon",
+  "gfx": 46,
+  "sheet": "ship46",
+  "hp": 800000,
+  "shield": 800000,
+  "speed": 175,
+  "current_wiki": {
+   "damage_min": 9000,
+   "damage_max": 12000
+  },
+  "damage_min": 9100,
+  "damage_max": 12350,
+  "exp": 51200,
+  "honor": 256,
+  "credits": 409600,
+  "uridium": 128,
+  "shield_absorption": 80,
+  "damage": 12350,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true,
+   "wiki": true
+  },
+  "cargo": {
+   "prometium": 800,
+   "endurium": 800,
+   "terbium": 800,
+   "prometid": 128,
+   "duranium": 128,
+   "promerium": 16,
+   "xenomit": 32
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "emulator-consensus",
+   "damage_max": "emulator-consensus",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 800000,
+    "shield": 800000,
+    "damage_min": 9100,
+    "damage_max": 12350,
+    "speed": 100,
+    "aggressive": true,
+    "exp": 51200,
+    "honor": 256,
+    "credits": 408600,
+    "uridium": 128,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 800000,
+    "shield": 800000,
+    "damage_max": 10725,
+    "aggressive": true,
+    "gfx": 46,
+    "shield_absorption": 80,
+    "exp": 51200,
+    "honor": 256,
+    "credits": 408600,
+    "uridium": 128
+   },
+   "kluk": {
+    "hp": 800000,
+    "shield": 800000,
+    "exp": 51200,
+    "honor": 256,
+    "credits": 409600,
+    "uridium": 128,
+    "damage_min": 9100,
+    "damage_max": 12350
+   },
+   "wiki": {
+    "hp": 800000,
+    "shield": 800000,
+    "damage_min": 9000,
+    "damage_max": 12000,
+    "speed": 175,
+    "exp": 51200,
+    "honor": 256,
+    "credits": 409600,
+    "uridium": 128,
+    "aggressive": true
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Boss_Sibelon",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql"
+  ],
+  "kalaazu_id": 20
+ },
+ {
+  "id": "carnivalbot",
+  "name": "-=[ Carnivalbot ]=-",
+  "base_name": "Carnivalbot",
+  "gfx": 48,
+  "sheet": "ship48",
+  "hp": 1000,
+  "shield": null,
+  "speed": 150,
+  "damage_min": 20,
+  "damage_max": 20,
+  "exp": null,
+  "honor": null,
+  "credits": null,
+  "uridium": null,
+  "shield_absorption": 80,
+  "damage": 20,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false
+  },
+  "field_source": {
+   "hp": "borja",
+   "speed": "borja",
+   "damage_min": "borja",
+   "damage_max": "borja",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_min": 20,
+    "damage_max": 20,
+    "speed": 150,
+    "aggressive": false,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_max": 20,
+    "aggressive": false,
+    "gfx": 48,
+    "shield_absorption": 80
+   }
+  },
+  "source": [
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 66
+ },
+ {
+  "id": "lordakia",
+  "name": "-=[ Lordakia ]=-",
+  "base_name": "Lordakia",
+  "gfx": 71,
+  "sheet": "ship71",
+  "hp": 2000,
+  "shield": 2000,
+  "speed": 320,
+  "current_wiki": {
+   "damage_min": 60
+  },
+  "damage_min": 80,
+  "damage_max": 80,
+  "exp": 800,
+  "honor": 4,
+  "credits": 800,
+  "uridium": 2,
+  "shield_absorption": 80,
+  "damage": 80,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true,
+   "muffin": true,
+   "zeta": true
+  },
+  "cargo": {
+   "prometium": 20,
+   "endurium": 20,
+   "terbium": 20,
+   "prometid": 0,
+   "duranium": 0,
+   "promerium": 0,
+   "xenomit": 0
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "emulator-consensus",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 2000,
+    "shield": 2000,
+    "damage_min": 80,
+    "damage_max": 100,
+    "speed": 320,
+    "aggressive": true,
+    "exp": 800,
+    "honor": 4,
+    "credits": 800,
+    "uridium": 2,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 2000,
+    "shield": 2000,
+    "damage_max": 40,
+    "aggressive": true,
+    "gfx": 106,
+    "shield_absorption": 80,
+    "exp": 800,
+    "honor": 4,
+    "credits": 800,
+    "uridium": 2
+   },
+   "kluk": {
+    "hp": 2000,
+    "shield": 2000,
+    "exp": 800,
+    "honor": 4,
+    "credits": 800,
+    "uridium": 2,
+    "damage_min": 80,
+    "damage_max": 100
+   },
+   "muffin": {
+    "hp": 2000,
+    "shield": 2000,
+    "exp": 800,
+    "honor": 4,
+    "credits": 800,
+    "uridium": 2,
+    "damage_max": 80,
+    "speed": 320,
+    "aggressive": true
+   },
+   "zeta": {
+    "hp": 2000,
+    "shield": 2000,
+    "damage_max": 80,
+    "speed": 320,
+    "shield_absorption": 60,
+    "aggressive": true
+   },
+   "wiki": {
+    "hp": 2000,
+    "shield": 2000,
+    "damage_min": 60,
+    "damage_max": 80,
+    "speed": 320,
+    "exp": 800,
+    "honor": 4,
+    "credits": 800,
+    "uridium": 2
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Lordakia",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/zeta-arts/DoPs/blob/master/darkorbitDB2.sql"
+  ],
+  "kalaazu_id": 2
+ },
+ {
+  "id": "devolarium",
+  "name": "-=[ Devolarium ]=-",
+  "base_name": "Devolarium",
+  "gfx": 72,
+  "sheet": "ship72",
+  "hp": 100000,
+  "shield": 100000,
+  "speed": 200,
+  "damage_min": 900,
+  "damage_max": 1200,
+  "exp": 6400,
+  "honor": 32,
+  "credits": 51200,
+  "uridium": 16,
+  "shield_absorption": 80,
+  "damage": 1200,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true,
+   "muffin": true,
+   "zeta": true
+  },
+  "cargo": {
+   "prometium": 100,
+   "endurium": 100,
+   "terbium": 100,
+   "prometid": 16,
+   "duranium": 16,
+   "promerium": 2,
+   "xenomit": 0
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 100000,
+    "shield": 100000,
+    "damage_min": 900,
+    "damage_max": 1200,
+    "speed": 200,
+    "aggressive": true,
+    "exp": 6400,
+    "honor": 32,
+    "credits": 51200,
+    "uridium": 16,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 100000,
+    "shield": 100000,
+    "damage_max": 1050,
+    "aggressive": true,
+    "gfx": 72,
+    "shield_absorption": 80,
+    "exp": 6400,
+    "honor": 32,
+    "credits": 51200,
+    "uridium": 16
+   },
+   "kluk": {
+    "hp": 100000,
+    "shield": 100000,
+    "exp": 6400,
+    "honor": 32,
+    "credits": 51200,
+    "uridium": 16,
+    "damage_min": 1000,
+    "damage_max": 1200
+   },
+   "muffin": {
+    "hp": 100000,
+    "shield": 100000,
+    "exp": 6400,
+    "honor": 32,
+    "credits": 51200,
+    "uridium": 16,
+    "damage_max": 1000,
+    "speed": 200,
+    "aggressive": true
+   },
+   "zeta": {
+    "hp": 100000,
+    "shield": 100000,
+    "damage_max": 1000,
+    "speed": 200,
+    "shield_absorption": 60,
+    "aggressive": true
+   },
+   "wiki": {
+    "hp": 100000,
+    "shield": 100000,
+    "damage_min": 900,
+    "damage_max": 1200,
+    "speed": 200,
+    "exp": 6400,
+    "honor": 32,
+    "credits": 51200,
+    "uridium": 16
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Devolarium",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/zeta-arts/DoPs/blob/master/darkorbitDB2.sql"
+  ],
+  "kalaazu_id": 5
+ },
+ {
+  "id": "mordon",
+  "name": "-=[ Mordon ]=-",
+  "base_name": "Mordon",
+  "gfx": 73,
+  "sheet": "ship73",
+  "hp": 20000,
+  "shield": 10000,
+  "speed": 125,
+  "damage_min": 300,
+  "damage_max": 400,
+  "exp": 3200,
+  "honor": 16,
+  "credits": 6400,
+  "uridium": 8,
+  "shield_absorption": 80,
+  "damage": 400,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true,
+   "muffin": false
+  },
+  "cargo": {
+   "prometium": 80,
+   "endurium": 80,
+   "terbium": 80,
+   "prometid": 8,
+   "duranium": 8,
+   "promerium": 1,
+   "xenomit": 0
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 20000,
+    "shield": 10000,
+    "damage_min": 300,
+    "damage_max": 400,
+    "speed": 125,
+    "aggressive": true,
+    "exp": 3200,
+    "honor": 16,
+    "credits": 6400,
+    "uridium": 8,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 20000,
+    "shield": 10000,
+    "damage_max": 350,
+    "aggressive": true,
+    "gfx": 73,
+    "shield_absorption": 80,
+    "exp": 3200,
+    "honor": 16,
+    "credits": 6400,
+    "uridium": 8
+   },
+   "kluk": {
+    "hp": 20000,
+    "shield": 10000,
+    "exp": 3200,
+    "honor": 16,
+    "credits": 6400,
+    "uridium": 8,
+    "damage_min": 300,
+    "damage_max": 390
+   },
+   "muffin": {
+    "hp": 20000,
+    "shield": 10000,
+    "exp": 3200,
+    "honor": 16,
+    "credits": 6400,
+    "uridium": 8,
+    "damage_max": 300,
+    "speed": 125,
+    "aggressive": false
+   },
+   "wiki": {
+    "hp": 20000,
+    "shield": 10000,
+    "damage_min": 300,
+    "damage_max": 400,
+    "speed": 125,
+    "exp": 3200,
+    "honor": 16,
+    "credits": 6400,
+    "uridium": 8
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Mordon",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql"
+  ],
+  "kalaazu_id": 4
+ },
+ {
+  "id": "sibelon",
+  "name": "-=[ Sibelon ]=-",
+  "base_name": "Sibelon",
+  "gfx": 74,
+  "sheet": "ship74",
+  "hp": 200000,
+  "shield": 200000,
+  "speed": 100,
+  "damage_min": 2250,
+  "damage_max": 3000,
+  "exp": 12800,
+  "honor": 64,
+  "credits": 102400,
+  "uridium": 32,
+  "shield_absorption": 80,
+  "damage": 3000,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true,
+   "muffin": true
+  },
+  "cargo": {
+   "prometium": 200,
+   "endurium": 200,
+   "terbium": 200,
+   "prometid": 32,
+   "duranium": 32,
+   "promerium": 4,
+   "xenomit": 0
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 200000,
+    "shield": 200000,
+    "damage_min": 2250,
+    "damage_max": 3000,
+    "speed": 100,
+    "aggressive": true,
+    "exp": 12800,
+    "honor": 64,
+    "credits": 102400,
+    "uridium": 32,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 200000,
+    "shield": 200000,
+    "damage_max": 2625,
+    "aggressive": true,
+    "gfx": 74,
+    "shield_absorption": 80,
+    "exp": 12800,
+    "honor": 64,
+    "credits": 102400,
+    "uridium": 32
+   },
+   "kluk": {
+    "hp": 200000,
+    "shield": 200000,
+    "exp": 12800,
+    "honor": 64,
+    "credits": 102400,
+    "uridium": 32,
+    "damage_min": 2400,
+    "damage_max": 2650
+   },
+   "muffin": {
+    "hp": 200000,
+    "shield": 200000,
+    "exp": 12800,
+    "honor": 64,
+    "credits": 102400,
+    "uridium": 32,
+    "damage_max": 2400,
+    "speed": 100,
+    "aggressive": true
+   },
+   "wiki": {
+    "hp": 200000,
+    "shield": 200000,
+    "damage_min": 2250,
+    "damage_max": 3000,
+    "speed": 100,
+    "exp": 12800,
+    "honor": 64,
+    "credits": 102400,
+    "uridium": 32
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Sibelon",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql"
+  ],
+  "kalaazu_id": 6
+ },
+ {
+  "id": "saimon",
+  "name": "-=[ Saimon ]=-",
+  "base_name": "Saimon",
+  "gfx": 75,
+  "sheet": "ship75",
+  "hp": 6000,
+  "shield": 3000,
+  "speed": 320,
+  "damage_min": 150,
+  "damage_max": 200,
+  "exp": 1600,
+  "honor": 8,
+  "credits": 1600,
+  "uridium": 4,
+  "shield_absorption": 80,
+  "damage": 200,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true,
+   "muffin": true
+  },
+  "cargo": {
+   "prometium": 40,
+   "endurium": 40,
+   "terbium": 40,
+   "prometid": 2,
+   "duranium": 2,
+   "promerium": 0,
+   "xenomit": 0
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 6000,
+    "shield": 3000,
+    "damage_min": 150,
+    "damage_max": 200,
+    "speed": 320,
+    "aggressive": true,
+    "exp": 1600,
+    "honor": 8,
+    "credits": 1600,
+    "uridium": 4,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 6000,
+    "shield": 3000,
+    "damage_max": 175,
+    "aggressive": true,
+    "gfx": 75,
+    "shield_absorption": 80,
+    "exp": 1600,
+    "honor": 8,
+    "credits": 1600,
+    "uridium": 4
+   },
+   "kluk": {
+    "hp": 6000,
+    "shield": 3000,
+    "exp": 1600,
+    "honor": 8,
+    "credits": 1600,
+    "uridium": 4,
+    "damage_min": 200,
+    "damage_max": 250
+   },
+   "muffin": {
+    "hp": 6000,
+    "shield": 3000,
+    "exp": 1600,
+    "honor": 8,
+    "credits": 1600,
+    "uridium": 4,
+    "damage_max": 200,
+    "speed": 320,
+    "aggressive": true
+   },
+   "wiki": {
+    "hp": 6000,
+    "shield": 3000,
+    "damage_min": 150,
+    "damage_max": 200,
+    "speed": 320,
+    "exp": 1600,
+    "honor": 8,
+    "credits": 1600,
+    "uridium": 4
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Saimon",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql"
+  ],
+  "kalaazu_id": 3
+ },
+ {
+  "id": "sibelonit",
+  "name": "-=[ Sibelonit ]=-",
+  "base_name": "Sibelonit",
+  "gfx": 76,
+  "sheet": "ship76",
+  "hp": 40000,
+  "shield": 40000,
+  "speed": 320,
+  "damage_min": 750,
+  "damage_max": 1000,
+  "exp": 3200,
+  "honor": 16,
+  "credits": 12800,
+  "uridium": 12,
+  "shield_absorption": 80,
+  "damage": 1000,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true,
+   "muffin": true
+  },
+  "cargo": {
+   "prometium": 100,
+   "endurium": 100,
+   "terbium": 100,
+   "prometid": 8,
+   "duranium": 8,
+   "promerium": 1,
+   "xenomit": 0
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 40000,
+    "shield": 40000,
+    "damage_min": 750,
+    "damage_max": 1000,
+    "speed": 320,
+    "aggressive": true,
+    "exp": 3200,
+    "honor": 16,
+    "credits": 12800,
+    "uridium": 12,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 40000,
+    "shield": 40000,
+    "damage_max": 875,
+    "aggressive": true,
+    "gfx": 76,
+    "shield_absorption": 80,
+    "exp": 3200,
+    "honor": 16,
+    "credits": 12800,
+    "uridium": 12
+   },
+   "kluk": {
+    "hp": 40000,
+    "shield": 40000,
+    "exp": 3200,
+    "honor": 16,
+    "credits": 12800,
+    "uridium": 12,
+    "damage_min": 1000,
+    "damage_max": 1500
+   },
+   "muffin": {
+    "hp": 40000,
+    "shield": 40000,
+    "exp": 3200,
+    "honor": 16,
+    "credits": 12800,
+    "uridium": 12,
+    "damage_max": 1000,
+    "speed": 320,
+    "aggressive": true
+   },
+   "wiki": {
+    "hp": 40000,
+    "shield": 40000,
+    "damage_min": 750,
+    "damage_max": 1000,
+    "speed": 320,
+    "exp": 3200,
+    "honor": 16,
+    "credits": 12800,
+    "uridium": 12
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Sibelonit",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql"
+  ],
+  "kalaazu_id": 7
+ },
+ {
+  "id": "lordakium",
+  "name": "-=[ Lordakium ]=-",
+  "base_name": "Lordakium",
+  "gfx": 77,
+  "sheet": "ship77",
+  "hp": 300000,
+  "shield": 200000,
+  "speed": 230,
+  "current_wiki": {
+   "damage_min": 3000,
+   "damage_max": 4000
+  },
+  "damage_min": 3150,
+  "damage_max": 3600,
+  "exp": 25600,
+  "honor": 128,
+  "credits": 204800,
+  "uridium": 64,
+  "shield_absorption": 80,
+  "damage": 3600,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true,
+   "wiki": false
+  },
+  "cargo": {
+   "prometium": 300,
+   "endurium": 300,
+   "terbium": 300,
+   "prometid": 64,
+   "duranium": 64,
+   "promerium": 8,
+   "xenomit": 0
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "emulator-consensus",
+   "damage_max": "emulator-consensus",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 300000,
+    "shield": 200000,
+    "damage_min": 3150,
+    "damage_max": 3600,
+    "speed": 230,
+    "aggressive": true,
+    "exp": 25600,
+    "honor": 128,
+    "credits": 204800,
+    "uridium": 64,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 300000,
+    "shield": 200000,
+    "damage_max": 3375,
+    "aggressive": true,
+    "gfx": 77,
+    "shield_absorption": 80,
+    "exp": 25600,
+    "honor": 128,
+    "credits": 204800,
+    "uridium": 64
+   },
+   "kluk": {
+    "hp": 300000,
+    "shield": 200000,
+    "exp": 25600,
+    "honor": 128,
+    "credits": 204800,
+    "uridium": 64,
+    "damage_min": 3150,
+    "damage_max": 3600
+   },
+   "muffin": {
+    "hp": 300000,
+    "shield": 200000,
+    "exp": 25600,
+    "honor": 128,
+    "credits": 204800,
+    "uridium": 64,
+    "damage_max": 3150,
+    "speed": 230
+   },
+   "wiki": {
+    "hp": 300000,
+    "shield": 200000,
+    "damage_min": 3000,
+    "damage_max": 4000,
+    "speed": 230,
+    "exp": 25600,
+    "honor": 128,
+    "credits": 204800,
+    "uridium": 64,
+    "aggressive": false
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Lordakium",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql"
+  ],
+  "kalaazu_id": 8
+ },
+ {
+  "id": "kristallin",
+  "name": "-=[ Kristallin ]=-",
+  "base_name": "Kristallin",
+  "gfx": 78,
+  "sheet": "ship78",
+  "hp": 50000,
+  "shield": 40000,
+  "speed": 320,
+  "damage_min": 900,
+  "damage_max": 1200,
+  "exp": 6400,
+  "honor": 32,
+  "credits": 12800,
+  "uridium": 16,
+  "shield_absorption": 80,
+  "damage": 1200,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true,
+   "muffin": true,
+   "yusuf": true,
+   "wiki": true
+  },
+  "cargo": {
+   "prometium": 100,
+   "endurium": 100,
+   "terbium": 100,
+   "prometid": 16,
+   "duranium": 16,
+   "promerium": 1,
+   "xenomit": 0
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 50000,
+    "shield": 40000,
+    "damage_min": 900,
+    "damage_max": 1200,
+    "speed": 320,
+    "aggressive": true,
+    "exp": 6400,
+    "honor": 32,
+    "credits": 12800,
+    "uridium": 16,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 50000,
+    "shield": 40000,
+    "damage_max": 1050,
+    "aggressive": true,
+    "gfx": 78,
+    "shield_absorption": 80,
+    "exp": 6400,
+    "honor": 32,
+    "credits": 12800,
+    "uridium": 16
+   },
+   "kluk": {
+    "hp": 50000,
+    "shield": 40000,
+    "exp": 6400,
+    "honor": 32,
+    "credits": 12800,
+    "uridium": 16,
+    "damage_min": 1500,
+    "damage_max": 1650
+   },
+   "muffin": {
+    "hp": 50000,
+    "shield": 40000,
+    "exp": 6400,
+    "honor": 32,
+    "credits": 12800,
+    "uridium": 16,
+    "damage_max": 1500,
+    "speed": 320,
+    "aggressive": true
+   },
+   "yusuf": {
+    "hp": 50000,
+    "shield": 40000,
+    "speed": 320,
+    "damage_max": 1100,
+    "aggressive": true,
+    "exp": 6400,
+    "honor": 32,
+    "credits": 12800,
+    "uridium": 16
+   },
+   "wiki": {
+    "hp": 50000,
+    "shield": 40000,
+    "damage_min": 900,
+    "damage_max": 1200,
+    "speed": 320,
+    "exp": 6400,
+    "honor": 32,
+    "credits": 12800,
+    "uridium": 16,
+    "aggressive": true
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Kristallin",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql"
+  ],
+  "kalaazu_id": 9
+ },
+ {
+  "id": "kristallon",
+  "name": "-=[ Kristallon ]=-",
+  "base_name": "Kristallon",
+  "gfx": 79,
+  "sheet": "ship79",
+  "hp": 400000,
+  "shield": 300000,
+  "speed": 250,
+  "damage_min": 3750,
+  "damage_max": 5000,
+  "exp": 51200,
+  "honor": 256,
+  "credits": 409600,
+  "uridium": 128,
+  "shield_absorption": 80,
+  "damage": 5000,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false,
+   "yusuf": false,
+   "wiki": false
+  },
+  "cargo": {
+   "prometium": 300,
+   "endurium": 300,
+   "terbium": 300,
+   "prometid": 128,
+   "duranium": 128,
+   "promerium": 16,
+   "xenomit": 0
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 400000,
+    "shield": 300000,
+    "damage_min": 3750,
+    "damage_max": 5000,
+    "speed": 250,
+    "aggressive": false,
+    "exp": 51200,
+    "honor": 256,
+    "credits": 409600,
+    "uridium": 128,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 400000,
+    "shield": 300000,
+    "damage_max": 4375,
+    "aggressive": false,
+    "gfx": 79,
+    "shield_absorption": 80,
+    "exp": 51200,
+    "honor": 256,
+    "credits": 409600,
+    "uridium": 128
+   },
+   "kluk": {
+    "hp": 400000,
+    "shield": 300000,
+    "exp": 51200,
+    "honor": 256,
+    "credits": 409600,
+    "uridium": 128,
+    "damage_min": 4050,
+    "damage_max": 5000
+   },
+   "muffin": {
+    "hp": 400000,
+    "shield": 300000,
+    "exp": 51200,
+    "honor": 256,
+    "credits": 409600,
+    "uridium": 128,
+    "damage_max": 4050,
+    "speed": 250
+   },
+   "yusuf": {
+    "hp": 400000,
+    "shield": 300000,
+    "speed": 250,
+    "damage_max": 4500,
+    "aggressive": false,
+    "exp": 51200,
+    "honor": 256,
+    "credits": 409600,
+    "uridium": 128
+   },
+   "wiki": {
+    "hp": 400000,
+    "shield": 300000,
+    "damage_min": 3750,
+    "damage_max": 5000,
+    "speed": 250,
+    "exp": 51200,
+    "honor": 256,
+    "credits": 409600,
+    "uridium": 128,
+    "aggressive": false
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Kristallon",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/yusufsahinhamza/darkorbit-cms/blob/master/server.sql"
+  ],
+  "kalaazu_id": 10
+ },
+ {
+  "id": "cubikon",
+  "name": "-=[ Cubikon ]=-",
+  "base_name": "Cubikon",
+  "gfx": 80,
+  "sheet": "ship80",
+  "hp": 1600000,
+  "shield": 1200000,
+  "speed": 30,
+  "damage_min": 0,
+  "damage_max": 0,
+  "exp": 512000,
+  "honor": 4096,
+  "credits": 1638400,
+  "uridium": 1024,
+  "shield_absorption": 80,
+  "damage": 0,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false,
+   "wiki": false
+  },
+  "cargo": {
+   "prometium": 1200,
+   "endurium": 1200,
+   "terbium": 1200,
+   "prometid": 512,
+   "duranium": 512,
+   "promerium": 128,
+   "xenomit": 120
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "borja",
+   "damage_max": "borja",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 1600000,
+    "shield": 1200000,
+    "damage_min": 0,
+    "damage_max": 0,
+    "speed": 30,
+    "aggressive": false,
+    "exp": 512000,
+    "honor": 4096,
+    "credits": 1638400,
+    "uridium": 1024,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 1600000,
+    "shield": 1200000,
+    "damage_max": 0,
+    "aggressive": false,
+    "gfx": 80,
+    "shield_absorption": 80,
+    "exp": 512000,
+    "honor": 4096,
+    "credits": 1638400,
+    "uridium": 1024
+   },
+   "kluk": {
+    "hp": 1600000,
+    "shield": 1200000,
+    "exp": 512000,
+    "honor": 4096,
+    "credits": 1638400,
+    "uridium": 1024,
+    "damage_min": 0,
+    "damage_max": 0
+   },
+   "muffin": {
+    "hp": 1600000,
+    "shield": 1200000,
+    "exp": 512000,
+    "honor": 4096,
+    "credits": 1638400,
+    "uridium": 1024,
+    "damage_max": 0,
+    "speed": 30
+   },
+   "wiki": {
+    "hp": 1600000,
+    "shield": 1200000,
+    "speed": 30,
+    "exp": 512000,
+    "honor": 4096,
+    "credits": 1638400,
+    "uridium": 1024,
+    "aggressive": false
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Cubikon",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql"
+  ],
+  "kalaazu_id": 12
+ },
+ {
+  "id": "protegit",
+  "name": "-=[ Protegit ]=-",
+  "base_name": "Protegit",
+  "gfx": 81,
+  "sheet": "ship81",
+  "current_wiki": {
+   "hp": 60000,
+   "shield": 50000,
+   "damage_max": 1400
+  },
+  "hp": 50000,
+  "shield": 40000,
+  "speed": 500,
+  "damage_min": 1050,
+  "damage_max": 1500,
+  "exp": 6400,
+  "honor": 32,
+  "credits": 12800,
+  "uridium": 16,
+  "shield_absorption": 80,
+  "damage": 1500,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true,
+   "muffin": true
+  },
+  "cargo": {
+   "prometium": 100,
+   "endurium": 100,
+   "terbium": 100,
+   "prometid": 16,
+   "duranium": 16,
+   "promerium": 2,
+   "xenomit": 0
+  },
+  "field_source": {
+   "hp": "emulator-consensus",
+   "shield": "emulator-consensus",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "emulator-consensus",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 50000,
+    "shield": 40000,
+    "damage_min": 1125,
+    "damage_max": 1500,
+    "speed": 380,
+    "aggressive": true,
+    "exp": 6400,
+    "honor": 32,
+    "credits": 12800,
+    "uridium": 16,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 50000,
+    "shield": 40000,
+    "damage_max": 1312,
+    "aggressive": true,
+    "gfx": 81,
+    "shield_absorption": 80,
+    "exp": 6400,
+    "honor": 32,
+    "credits": 12800,
+    "uridium": 16
+   },
+   "kluk": {
+    "hp": 50000,
+    "shield": 40000,
+    "exp": 6400,
+    "honor": 32,
+    "credits": 12800,
+    "uridium": 16,
+    "damage_min": 1300,
+    "damage_max": 1500
+   },
+   "muffin": {
+    "hp": 50000,
+    "shield": 40000,
+    "exp": 6400,
+    "honor": 32,
+    "credits": 12800,
+    "uridium": 16,
+    "damage_max": 1300,
+    "speed": 420,
+    "aggressive": true
+   },
+   "wiki": {
+    "hp": 60000,
+    "shield": 50000,
+    "damage_min": 1050,
+    "damage_max": 1400,
+    "speed": 500,
+    "exp": 6400,
+    "honor": 32,
+    "credits": 12800,
+    "uridium": 16
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Protegit",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql"
+  ],
+  "kalaazu_id": 11
+ },
+ {
+  "id": "kucurbium",
+  "name": "<==< Kucurbium >==>",
+  "base_name": "Kucurbium",
+  "gfx": 82,
+  "sheet": "ship82",
+  "hp": 5000000,
+  "shield": 5000000,
+  "speed": 200,
+  "damage_min": 5000,
+  "damage_max": 5000,
+  "exp": 204800,
+  "honor": 1024,
+  "credits": 6000000,
+  "uridium": 512,
+  "shield_absorption": 80,
+  "damage": 5000,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "cargo": {
+   "prometium": 1200,
+   "endurium": 1200,
+   "terbium": 1200,
+   "prometid": 512,
+   "duranium": 512,
+   "promerium": 64,
+   "xenomit": 256
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 5000000,
+    "shield": 5000000,
+    "damage_min": 20000,
+    "damage_max": 25000,
+    "speed": 200,
+    "aggressive": true,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 5000000,
+    "shield": 5000000,
+    "damage_max": 22500,
+    "aggressive": true,
+    "gfx": 82,
+    "shield_absorption": 80
+   },
+   "wiki": {
+    "hp": 5000000,
+    "shield": 5000000,
+    "damage_min": 5000,
+    "damage_max": 5000,
+    "speed": 200,
+    "exp": 204800,
+    "honor": 1024,
+    "credits": 6000000,
+    "uridium": 512
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Kucurbium",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 60
+ },
+ {
+  "id": "boss_kucurbium",
+  "name": "..::{ Boss Kucurbium }::..",
+  "base_name": "Boss Kucurbium",
+  "gfx": 83,
+  "sheet": "ship83",
+  "hp": 20000000,
+  "shield": 20000000,
+  "speed": 200,
+  "damage_min": 10000,
+  "damage_max": 10000,
+  "exp": 819200,
+  "honor": 4096,
+  "credits": 13107200,
+  "uridium": 2048,
+  "shield_absorption": 80,
+  "damage": 10000,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "cargo": {
+   "prometium": 4800,
+   "endurium": 4800,
+   "terbium": 4800,
+   "prometid": 2048,
+   "duranium": 2048,
+   "promerium": 256,
+   "xenomit": 1024
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 20000000,
+    "shield": 20000000,
+    "damage_min": 50000,
+    "damage_max": 60000,
+    "speed": 200,
+    "aggressive": true,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 20000000,
+    "shield": 20000000,
+    "damage_max": 55000,
+    "aggressive": true,
+    "gfx": 83,
+    "shield_absorption": 80
+   },
+   "wiki": {
+    "hp": 20000000,
+    "shield": 20000000,
+    "damage_min": 10000,
+    "damage_max": 10000,
+    "speed": 200,
+    "exp": 819200,
+    "honor": 4096,
+    "credits": 13107200,
+    "uridium": 2048
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Boss_Kucurbium",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 61
+ },
+ {
+  "id": "streuner",
+  "name": "-=[ Streuner ]=-",
+  "base_name": "Streuner",
+  "gfx": 84,
+  "sheet": "ship84",
+  "hp": 800,
+  "shield": 400,
+  "speed": 280,
+  "current_wiki": {
+   "damage_min": 15
+  },
+  "damage_min": 10,
+  "damage_max": 20,
+  "exp": 400,
+  "honor": 2,
+  "credits": 400,
+  "uridium": 1,
+  "shield_absorption": 80,
+  "damage": 20,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false,
+   "muffin": false,
+   "zeta": false,
+   "wiki": false
+  },
+  "cargo": {
+   "prometium": 10,
+   "endurium": 10,
+   "terbium": 0,
+   "prometid": 0,
+   "duranium": 0,
+   "promerium": 0,
+   "xenomit": 0,
+   "seprom": 0
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "emulator-consensus",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 800,
+    "shield": 400,
+    "damage_min": 10,
+    "damage_max": 20,
+    "speed": 270,
+    "aggressive": false,
+    "exp": 400,
+    "honor": 2,
+    "credits": 400,
+    "uridium": 1,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 800,
+    "shield": 400,
+    "damage_max": 15,
+    "aggressive": false,
+    "gfx": 84,
+    "shield_absorption": 80,
+    "exp": 400,
+    "honor": 2,
+    "credits": 400,
+    "uridium": 1
+   },
+   "kluk": {
+    "hp": 800,
+    "shield": 400,
+    "exp": 400,
+    "honor": 2,
+    "credits": 400,
+    "uridium": 1,
+    "damage_min": 10,
+    "damage_max": 20
+   },
+   "muffin": {
+    "hp": 800,
+    "shield": 400,
+    "exp": 400,
+    "honor": 2,
+    "credits": 400,
+    "uridium": 1,
+    "damage_max": 20,
+    "speed": 280,
+    "aggressive": false
+   },
+   "zeta": {
+    "hp": 800,
+    "shield": 400,
+    "damage_max": 20,
+    "speed": 270,
+    "shield_absorption": 60,
+    "aggressive": false
+   },
+   "wiki": {
+    "hp": 800,
+    "shield": 400,
+    "damage_min": 15,
+    "damage_max": 20,
+    "speed": 280,
+    "exp": 400,
+    "honor": 2,
+    "credits": 400,
+    "uridium": 1,
+    "aggressive": false
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Streuner",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+   "https://github.com/zeta-arts/DoPs/blob/master/darkorbitDB2.sql"
+  ],
+  "kalaazu_id": 1
+ },
+ {
+  "id": "streuner_r_upper",
+  "name": "-=[ StreuneR ]=-",
+  "base_name": "StreuneR",
+  "gfx": 85,
+  "sheet": "ship85",
+  "current_wiki": {
+   "hp": 40000,
+   "shield": 30000,
+   "exp": 6000,
+   "honor": 30,
+   "credits": 12000,
+   "uridium": 15
+  },
+  "hp": 20000,
+  "shield": 10000,
+  "speed": 280,
+  "damage_min": 750,
+  "damage_max": 1000,
+  "exp": 3200,
+  "honor": 16,
+  "credits": 6400,
+  "uridium": 8,
+  "shield_absorption": 80,
+  "damage": 1000,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false,
+   "muffin": false,
+   "wiki": true
+  },
+  "cargo": {
+   "prometium": 80,
+   "endurium": 80,
+   "terbium": 80,
+   "prometid": 8,
+   "duranium": 8,
+   "promerium": 0,
+   "xenomit": 0
+  },
+  "field_source": {
+   "hp": "emulator-consensus",
+   "shield": "emulator-consensus",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "emulator-consensus",
+   "honor": "emulator-consensus",
+   "credits": "emulator-consensus",
+   "uridium": "emulator-consensus",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 20000,
+    "shield": 10000,
+    "damage_min": 350,
+    "damage_max": 500,
+    "speed": 280,
+    "aggressive": false,
+    "exp": 3200,
+    "honor": 16,
+    "credits": 6400,
+    "uridium": 8,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 20000,
+    "shield": 10000,
+    "damage_max": 425,
+    "aggressive": false,
+    "gfx": 85,
+    "shield_absorption": 80,
+    "exp": 3200,
+    "honor": 16,
+    "credits": 6400,
+    "uridium": 8
+   },
+   "kluk": {
+    "hp": 20000,
+    "shield": 10000,
+    "exp": 3200,
+    "honor": 16,
+    "credits": 6400,
+    "uridium": 8,
+    "damage_min": 400,
+    "damage_max": 900
+   },
+   "muffin": {
+    "hp": 20000,
+    "shield": 10000,
+    "exp": 3200,
+    "honor": 16,
+    "credits": 6400,
+    "uridium": 8,
+    "damage_max": 400,
+    "speed": 280,
+    "aggressive": false
+   },
+   "wiki": {
+    "hp": 40000,
+    "shield": 30000,
+    "damage_min": 750,
+    "damage_max": 1000,
+    "speed": 280,
+    "exp": 6000,
+    "honor": 30,
+    "credits": 12000,
+    "uridium": 15,
+    "aggressive": true
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/StreuneR",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql",
+   "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql"
+  ],
+  "kalaazu_id": 13
+ },
+ {
+  "id": "refreebot",
+  "name": "-=[ Refreebot ]=-",
+  "base_name": "Refreebot",
+  "gfx": 89,
+  "sheet": "ship89",
+  "hp": 1000,
+  "shield": null,
+  "speed": 150,
+  "damage_min": 20,
+  "damage_max": 20,
+  "exp": null,
+  "honor": null,
+  "credits": null,
+  "uridium": null,
+  "shield_absorption": 80,
+  "damage": 20,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false
+  },
+  "field_source": {
+   "hp": "borja",
+   "speed": "borja",
+   "damage_min": "borja",
+   "damage_max": "borja",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_min": 20,
+    "damage_max": 20,
+    "speed": 150,
+    "aggressive": false,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 20
+   },
+   "kalaazu": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_max": 20,
+    "aggressive": false,
+    "gfx": 89,
+    "shield_absorption": 80
+   }
+  },
+  "source": [
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 67
+ },
+ {
+  "id": "century_falcon",
+  "name": "-=[ Century Falcon ]=-",
+  "base_name": "Century Falcon",
+  "gfx": 90,
+  "sheet": "ship90",
+  "hp": 36000000,
+  "shield": 27000000,
+  "speed": 360,
+  "damage_min": 55000,
+  "damage_max": 66000,
+  "exp": 9000000,
+  "honor": 130000,
+  "credits": 22500000,
+  "uridium": 45000,
+  "shield_absorption": 80,
+  "damage": 66000,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "cargo": {
+   "prometium": 1,
+   "endurium": 1,
+   "terbium": 1,
+   "prometid": 1,
+   "duranium": 1,
+   "promerium": 1,
+   "xenomit": 1
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 4000000,
+    "shield": 3000000,
+    "damage_min": 19000,
+    "damage_max": 25000,
+    "speed": 200,
+    "aggressive": true,
+    "exp": 1000000,
+    "honor": 5000,
+    "credits": 1000000,
+    "uridium": 5000,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 4000000,
+    "shield": 3000000,
+    "damage_max": 22000,
+    "aggressive": true,
+    "gfx": 90,
+    "shield_absorption": 80,
+    "exp": 1000000,
+    "honor": 5000,
+    "credits": 1000000,
+    "uridium": 5000
+   },
+   "wiki": {
+    "hp": 36000000,
+    "shield": 27000000,
+    "damage_min": 55000,
+    "damage_max": 66000,
+    "speed": 360,
+    "exp": 9000000,
+    "honor": 130000,
+    "credits": 22500000,
+    "uridium": 45000
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Century_Falcon",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 49
+ },
+ {
+  "id": "corsair",
+  "name": "-=[ Corsair ]=-",
+  "base_name": "Corsair",
+  "gfx": 91,
+  "sheet": "ship91",
+  "hp": 200000,
+  "shield": 120000,
+  "speed": 380,
+  "damage_min": 6200,
+  "damage_max": 7800,
+  "exp": 15000,
+  "honor": 8,
+  "credits": 80000,
+  "uridium": 32,
+  "shield_absorption": 80,
+  "damage": 7800,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "cargo": {
+   "seprom": 2,
+   "prometium": 150,
+   "endurium": 150,
+   "terbium": 150,
+   "prometid": 25,
+   "duranium": 25,
+   "promerium": 2,
+   "xenomit": 8
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 200000,
+    "shield": 120000,
+    "damage_min": 6000,
+    "damage_max": 8000,
+    "speed": 320,
+    "aggressive": true,
+    "exp": 10000,
+    "honor": 32,
+    "credits": 12000,
+    "uridium": 64,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 200000,
+    "shield": 120000,
+    "damage_max": 7000,
+    "aggressive": true,
+    "gfx": 91,
+    "shield_absorption": 80,
+    "exp": 10000,
+    "honor": 32,
+    "credits": 12000,
+    "uridium": 64
+   },
+   "wiki": {
+    "hp": 200000,
+    "shield": 120000,
+    "damage_min": 6200,
+    "damage_max": 7800,
+    "speed": 380,
+    "exp": 15000,
+    "honor": 8,
+    "credits": 80000,
+    "uridium": 32
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Corsair_(Epsilon)",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 42
+ },
+ {
+  "id": "outcast",
+  "name": "-=[ Outcast ]=-",
+  "base_name": "Outcast",
+  "gfx": 92,
+  "sheet": "ship92",
+  "hp": 300000,
+  "shield": 160000,
+  "speed": 370,
+  "damage_min": 4500,
+  "damage_max": 4500,
+  "exp": 9000,
+  "honor": 12,
+  "credits": 50000,
+  "uridium": 24,
+  "shield_absorption": 80,
+  "damage": 4500,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "cargo": {
+   "seprom": 1,
+   "prometium": 100,
+   "endurium": 100,
+   "terbium": 100,
+   "prometid": 16,
+   "duranium": 16,
+   "promerium": 1,
+   "xenomit": 4
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 150000,
+    "shield": 80000,
+    "damage_min": 3800,
+    "damage_max": 5000,
+    "speed": 320,
+    "aggressive": true,
+    "exp": 7500,
+    "honor": 12,
+    "credits": 7500,
+    "uridium": 24,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 150000,
+    "shield": 80000,
+    "damage_max": 4400,
+    "aggressive": true,
+    "gfx": 92,
+    "shield_absorption": 80,
+    "exp": 7500,
+    "honor": 12,
+    "credits": 7500,
+    "uridium": 24
+   },
+   "wiki": {
+    "hp": 300000,
+    "shield": 160000,
+    "damage_min": 4500,
+    "damage_max": 4500,
+    "speed": 370,
+    "exp": 9000,
+    "honor": 12,
+    "credits": 50000,
+    "uridium": 24
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Outcast",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 43
+ },
+ {
+  "id": "marauder",
+  "name": "-=[ Marauder ]=-",
+  "base_name": "Marauder",
+  "gfx": 93,
+  "sheet": "ship93",
+  "hp": 80000,
+  "shield": 60000,
+  "speed": 370,
+  "damage_min": 4500,
+  "damage_max": 4500,
+  "exp": 6000,
+  "honor": 8,
+  "credits": 30000,
+  "uridium": 16,
+  "shield_absorption": 80,
+  "damage": 4500,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "cargo": {
+   "seprom": 0,
+   "prometium": 75,
+   "endurium": 75,
+   "terbium": 75,
+   "prometid": 8,
+   "duranium": 8,
+   "promerium": 0,
+   "xenomit": 2
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 100000,
+    "shield": 60000,
+    "damage_min": 3500,
+    "damage_max": 4500,
+    "speed": 380,
+    "aggressive": true,
+    "exp": 4500,
+    "honor": 8,
+    "credits": 4500,
+    "uridium": 16,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 100000,
+    "shield": 60000,
+    "damage_max": 4000,
+    "aggressive": true,
+    "gfx": 93,
+    "shield_absorption": 80,
+    "exp": 4500,
+    "honor": 8,
+    "credits": 4500,
+    "uridium": 16
+   },
+   "wiki": {
+    "hp": 80000,
+    "shield": 60000,
+    "damage_min": 4500,
+    "damage_max": 4500,
+    "speed": 370,
+    "exp": 6000,
+    "honor": 8,
+    "credits": 30000,
+    "uridium": 16
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Marauder",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 44
+ },
+ {
+  "id": "vagrant",
+  "name": "-=[ Vagrant ]=-",
+  "base_name": "Vagrant",
+  "gfx": 94,
+  "sheet": "ship94",
+  "hp": 60000,
+  "shield": 40000,
+  "speed": 380,
+  "damage_min": 2500,
+  "damage_max": 2500,
+  "exp": 4000,
+  "honor": 4,
+  "credits": 15000,
+  "uridium": 8,
+  "shield_absorption": 80,
+  "damage": 2500,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "cargo": {
+   "seprom": 0,
+   "prometium": 50,
+   "endurium": 50,
+   "terbium": 50,
+   "prometid": 4,
+   "duranium": 4,
+   "promerium": 0,
+   "xenomit": 1
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "borja",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 40000,
+    "shield": 40000,
+    "damage_min": 1900,
+    "damage_max": 2500,
+    "speed": 380,
+    "aggressive": true,
+    "exp": 2000,
+    "honor": 4,
+    "credits": 2000,
+    "uridium": 8,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 40000,
+    "shield": 40000,
+    "damage_max": 2200,
+    "aggressive": true,
+    "gfx": 94,
+    "shield_absorption": 80,
+    "exp": 2000,
+    "honor": 4,
+    "credits": 2000,
+    "uridium": 8
+   },
+   "wiki": {
+    "hp": 60000,
+    "shield": 40000,
+    "damage_min": 2500,
+    "damage_max": 2500,
+    "exp": 4000,
+    "honor": 4,
+    "credits": 15000,
+    "uridium": 8
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Vagrant",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 45
+ },
+ {
+  "id": "convict",
+  "name": "-=[ Convict ]=-",
+  "base_name": "Convict",
+  "gfx": 95,
+  "sheet": "ship95",
+  "hp": 450000,
+  "shield": 300000,
+  "speed": 400,
+  "damage_min": 9500,
+  "damage_max": 11500,
+  "exp": 30000,
+  "honor": 100,
+  "credits": 220000,
+  "uridium": 150,
+  "shield_absorption": 80,
+  "damage": 11500,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "cargo": {
+   "seprom": 16,
+   "prometium": 400,
+   "endurium": 400,
+   "terbium": 400,
+   "prometid": 64,
+   "duranium": 64,
+   "promerium": 16,
+   "xenomit": 24
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 400000,
+    "shield": 200000,
+    "damage_min": 9500,
+    "damage_max": 12000,
+    "speed": 340,
+    "aggressive": true,
+    "exp": 18000,
+    "honor": 64,
+    "credits": 25000,
+    "uridium": 128,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 400000,
+    "shield": 200000,
+    "damage_max": 10750,
+    "aggressive": true,
+    "gfx": 95,
+    "shield_absorption": 80,
+    "exp": 18000,
+    "honor": 64,
+    "credits": 25000,
+    "uridium": 128
+   },
+   "wiki": {
+    "hp": 450000,
+    "shield": 300000,
+    "damage_min": 9500,
+    "damage_max": 11500,
+    "speed": 400,
+    "exp": 30000,
+    "honor": 100,
+    "credits": 220000,
+    "uridium": 150
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Convict",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 46
+ },
+ {
+  "id": "hooligan",
+  "name": "-=[ Hooligan ]=-",
+  "base_name": "Hooligan",
+  "gfx": 96,
+  "sheet": "ship96",
+  "hp": 250000,
+  "shield": 200000,
+  "speed": 380,
+  "damage_min": 7200,
+  "damage_max": 9000,
+  "exp": 40000,
+  "honor": 32,
+  "credits": 125000,
+  "uridium": 64,
+  "shield_absorption": 80,
+  "damage": 9000,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "cargo": {
+   "seprom": 4,
+   "prometium": 200,
+   "endurium": 200,
+   "terbium": 200,
+   "prometid": 32,
+   "duranium": 32,
+   "promerium": 4,
+   "xenomit": 12
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 250000,
+    "shield": 200000,
+    "damage_min": 7000,
+    "damage_max": 9000,
+    "speed": 340,
+    "aggressive": true,
+    "exp": 12000,
+    "honor": 16,
+    "credits": 15000,
+    "uridium": 32,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 250000,
+    "shield": 200000,
+    "damage_max": 8000,
+    "aggressive": true,
+    "gfx": 96,
+    "shield_absorption": 80,
+    "exp": 12000,
+    "honor": 16,
+    "credits": 15000,
+    "uridium": 32
+   },
+   "wiki": {
+    "hp": 250000,
+    "shield": 200000,
+    "damage_min": 7200,
+    "damage_max": 9000,
+    "speed": 380,
+    "exp": 40000,
+    "honor": 32,
+    "credits": 125000,
+    "uridium": 64
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Hooligan",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 47
+ },
+ {
+  "id": "ravager",
+  "name": "-=[ Ravager ]=-",
+  "base_name": "Ravager",
+  "gfx": 97,
+  "sheet": "ship97",
+  "hp": 300000,
+  "shield": 250000,
+  "speed": 340,
+  "damage_min": 8500,
+  "damage_max": 10700,
+  "exp": 25000,
+  "honor": 64,
+  "credits": 160000,
+  "uridium": 128,
+  "shield_absorption": 80,
+  "damage": 10700,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "cargo": {
+   "seprom": 8,
+   "prometium": 300,
+   "endurium": 300,
+   "terbium": 300,
+   "prometid": 50,
+   "duranium": 50,
+   "promerium": 8,
+   "xenomit": 16
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "borja",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 300000,
+    "shield": 200000,
+    "damage_min": 8000,
+    "damage_max": 11000,
+    "speed": 340,
+    "aggressive": true,
+    "exp": 15000,
+    "honor": 64,
+    "credits": 20000,
+    "uridium": 128,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 300000,
+    "shield": 200000,
+    "damage_max": 9500,
+    "aggressive": true,
+    "gfx": 97,
+    "shield_absorption": 80,
+    "exp": 15000,
+    "honor": 64,
+    "credits": 20000,
+    "uridium": 128
+   },
+   "wiki": {
+    "hp": 300000,
+    "shield": 250000,
+    "damage_min": 8500,
+    "damage_max": 10700,
+    "exp": 25000,
+    "honor": 64,
+    "credits": 160000,
+    "uridium": 128
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Ravager",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 48
+ },
+ {
+  "id": "scorcher",
+  "name": "-=[ Scorcher ]=-",
+  "base_name": "Scorcher",
+  "gfx": 99,
+  "sheet": "ship99",
+  "hp": 200000,
+  "shield": 200000,
+  "speed": 360,
+  "damage_min": 2000,
+  "damage_max": 3000,
+  "exp": 15000,
+  "honor": 8,
+  "credits": 150000,
+  "uridium": 32,
+  "shield_absorption": 80,
+  "damage": 3000,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "cargo": {
+   "prometium": 200,
+   "endurium": 200,
+   "terbium": 200,
+   "prometid": 32,
+   "duranium": 32,
+   "promerium": 4,
+   "xenomit": 0,
+   "seprom": 3
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 200000,
+    "shield": 200000,
+    "damage_min": 2500,
+    "damage_max": 2500,
+    "speed": 280,
+    "aggressive": true,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 200000,
+    "shield": 200000,
+    "damage_max": 1250,
+    "aggressive": true,
+    "gfx": 99,
+    "shield_absorption": 80
+   },
+   "wiki": {
+    "hp": 200000,
+    "shield": 200000,
+    "damage_min": 2000,
+    "damage_max": 3000,
+    "speed": 360,
+    "exp": 15000,
+    "honor": 8,
+    "credits": 150000,
+    "uridium": 32
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Scorcher",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 51
+ },
+ {
+  "id": "infernal",
+  "name": "-=[ Infernal ]=-",
+  "base_name": "Infernal",
+  "gfx": 100,
+  "sheet": "ship100",
+  "hp": 60000,
+  "shield": 50000,
+  "speed": 370,
+  "damage_min": 900,
+  "damage_max": 1000,
+  "exp": 8000,
+  "honor": 4,
+  "credits": 25000,
+  "uridium": 16,
+  "shield_absorption": 80,
+  "damage": 1000,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "cargo": {
+   "prometium": 100,
+   "endurium": 100,
+   "terbium": 100,
+   "prometid": 16,
+   "duranium": 16,
+   "promerium": 2,
+   "xenomit": 0,
+   "seprom": 1
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 60000,
+    "shield": 50000,
+    "damage_min": 950,
+    "damage_max": 950,
+    "speed": 300,
+    "aggressive": true,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 60000,
+    "shield": 50000,
+    "damage_max": 475,
+    "aggressive": true,
+    "gfx": 100,
+    "shield_absorption": 80
+   },
+   "wiki": {
+    "hp": 60000,
+    "shield": 50000,
+    "damage_min": 900,
+    "damage_max": 1000,
+    "speed": 370,
+    "exp": 8000,
+    "honor": 4,
+    "credits": 25000,
+    "uridium": 16
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Infernal",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 50
+ },
+ {
+  "id": "ice_meteoroid",
+  "name": "-=[ Ice Meteoroid ]=-",
+  "base_name": "Ice Meteoroid",
+  "gfx": 101,
+  "sheet": "ship101",
+  "hp": 1600000,
+  "shield": 1200000,
+  "speed": 200,
+  "damage_min": 0,
+  "damage_max": 0,
+  "exp": 1000000,
+  "honor": 5000,
+  "credits": 3000000,
+  "uridium": 1800,
+  "shield_absorption": 80,
+  "damage": 0,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 1600000,
+    "shield": 1200000,
+    "damage_min": 0,
+    "damage_max": 0,
+    "speed": 200,
+    "aggressive": true,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 1600000,
+    "shield": 1200000,
+    "damage_max": 0,
+    "aggressive": true,
+    "gfx": 101,
+    "shield_absorption": 80
+   },
+   "wiki": {
+    "hp": 1600000,
+    "shield": 1200000,
+    "speed": 200,
+    "exp": 1000000,
+    "honor": 5000,
+    "credits": 3000000,
+    "uridium": 1800
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Ice_Meteoroid",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 58
+ },
+ {
+  "id": "melter",
+  "name": "-=[ Melter ]=-",
+  "base_name": "Melter",
+  "gfx": 102,
+  "sheet": "ship102",
+  "hp": 300000,
+  "shield": 400000,
+  "speed": 360,
+  "damage_min": 3750,
+  "damage_max": 5000,
+  "exp": 55000,
+  "honor": 12,
+  "credits": 400000,
+  "uridium": 256,
+  "shield_absorption": 80,
+  "damage": 5000,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_min": 20,
+    "damage_max": 20,
+    "speed": 150,
+    "aggressive": false,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 20
+   },
+   "kalaazu": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_max": 10,
+    "aggressive": false,
+    "gfx": 102,
+    "shield_absorption": 80
+   },
+   "wiki": {
+    "hp": 300000,
+    "shield": 400000,
+    "damage_min": 3750,
+    "damage_max": 5000,
+    "speed": 360,
+    "exp": 55000,
+    "honor": 12,
+    "credits": 400000,
+    "uridium": 256
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Melter",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 52
+ },
+ {
+  "id": "icy",
+  "name": "<=< Icy >=>",
+  "base_name": "Icy",
+  "gfx": 103,
+  "sheet": "ship103",
+  "hp": 100000,
+  "shield": 80000,
+  "speed": 475,
+  "damage_min": 1500,
+  "damage_max": 2000,
+  "exp": 6400,
+  "honor": 32,
+  "credits": 12800,
+  "uridium": 16,
+  "shield_absorption": 80,
+  "damage": 2000,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "cargo": {
+   "prometium": 100,
+   "endurium": 100,
+   "terbium": 100,
+   "prometid": 16,
+   "duranium": 16,
+   "promerium": 2,
+   "xenomit": 0
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 100000,
+    "shield": 80000,
+    "damage_min": 1500,
+    "damage_max": 1500,
+    "speed": 450,
+    "aggressive": true,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 100000,
+    "shield": 80000,
+    "damage_max": 750,
+    "aggressive": true,
+    "gfx": 103,
+    "shield_absorption": 80
+   },
+   "wiki": {
+    "hp": 100000,
+    "shield": 80000,
+    "damage_min": 1500,
+    "damage_max": 2000,
+    "speed": 475,
+    "exp": 6400,
+    "honor": 32,
+    "credits": 12800,
+    "uridium": 16
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Icy",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 57
+ },
+ {
+  "id": "binarybot",
+  "name": "-=[ Binarybot ]=-",
+  "base_name": "Binarybot",
+  "gfx": 104,
+  "sheet": "ship104",
+  "hp": 100000,
+  "shield": 300000,
+  "speed": 280,
+  "damage_min": 1800,
+  "damage_max": 20000,
+  "exp": 51200,
+  "honor": 156,
+  "credits": 406900,
+  "uridium": 128,
+  "shield_absorption": 80,
+  "damage": 20000,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "cargo": {
+   "prometium": 150,
+   "endurium": 150,
+   "terbium": 150,
+   "prometid": 64,
+   "duranium": 64,
+   "promerium": 8,
+   "xenomit": 2
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 800000,
+    "shield": 1200000,
+    "damage_min": 20000,
+    "damage_max": 20000,
+    "speed": 300,
+    "aggressive": true,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 80
+   },
+   "kalaazu": {
+    "hp": 800000,
+    "shield": 1200000,
+    "damage_max": 10000,
+    "aggressive": true,
+    "gfx": 104,
+    "shield_absorption": 80
+   },
+   "wiki": {
+    "hp": 100000,
+    "shield": 300000,
+    "damage_min": 1800,
+    "damage_max": 20000,
+    "speed": 280,
+    "exp": 51200,
+    "honor": 156,
+    "credits": 406900,
+    "uridium": 128
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Binary_Bot",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 64
+ },
+ {
+  "id": "devourer",
+  "name": "-=[ Devourer ]=-",
+  "base_name": "Devourer",
+  "gfx": 105,
+  "sheet": "ship105",
+  "hp": 2000000,
+  "shield": 1000000,
+  "speed": 370,
+  "damage_min": 9000,
+  "damage_max": 12000,
+  "exp": 1000000,
+  "honor": 512,
+  "credits": 2500000,
+  "uridium": 1024,
+  "shield_absorption": 80,
+  "damage": 12000,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false
+  },
+  "cargo": {
+   "xenomit": 64,
+   "prometium": 1600,
+   "endurium": 1600,
+   "terbium": 1600,
+   "prometid": 256,
+   "duranium": 256,
+   "promerium": 32,
+   "seprom": 16
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_min": 20,
+    "damage_max": 20,
+    "speed": 150,
+    "aggressive": false,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 20
+   },
+   "kalaazu": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_max": 10,
+    "aggressive": false,
+    "gfx": 105,
+    "shield_absorption": 80
+   },
+   "wiki": {
+    "hp": 2000000,
+    "shield": 1000000,
+    "damage_min": 9000,
+    "damage_max": 12000,
+    "speed": 370,
+    "exp": 1000000,
+    "honor": 512,
+    "credits": 2500000,
+    "uridium": 1024
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Devourer",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 53
+ },
+ {
+  "id": "lordakia_106",
+  "name": "-=[ Lordakia ]=-",
+  "base_name": "Lordakia",
+  "gfx": 106,
+  "sheet": "ship106",
+  "hp": 2000,
+  "shield": 2000,
+  "speed": 320,
+  "damage_min": 60,
+  "damage_max": 80,
+  "exp": 800,
+  "honor": 4,
+  "credits": 800,
+  "uridium": 2,
+  "shield_absorption": 60,
+  "damage": 80,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true
+  },
+  "cargo": {
+   "prometium": 20,
+   "endurium": 20,
+   "terbium": 20,
+   "prometid": 0,
+   "duranium": 0,
+   "promerium": 0,
+   "xenomit": 0
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "borja"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 2000,
+    "shield": 2000,
+    "damage_min": 80,
+    "damage_max": 80,
+    "speed": 320,
+    "aggressive": true,
+    "exp": 800,
+    "honor": 4,
+    "credits": 800,
+    "uridium": 2,
+    "shield_absorption": 60
+   },
+   "wiki": {
+    "hp": 2000,
+    "shield": 2000,
+    "damage_min": 60,
+    "damage_max": 80,
+    "speed": 320,
+    "exp": 800,
+    "honor": 4,
+    "credits": 800,
+    "uridium": 2
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Lordakia",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql"
+  ],
+  "kalaazu_id": null
+ },
+ {
+  "id": "solarburst",
+  "name": "-=[ Solarburst ]=-",
+  "base_name": "Solarburst",
+  "gfx": 107,
+  "sheet": "ship107",
+  "hp": 1000,
+  "shield": null,
+  "speed": 150,
+  "damage_min": 20,
+  "damage_max": 20,
+  "exp": null,
+  "honor": null,
+  "credits": null,
+  "uridium": null,
+  "shield_absorption": 80,
+  "damage": 20,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false
+  },
+  "field_source": {
+   "hp": "borja",
+   "speed": "borja",
+   "damage_min": "borja",
+   "damage_max": "borja",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_min": 20,
+    "damage_max": 20,
+    "speed": 150,
+    "aggressive": false,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 20
+   },
+   "kalaazu": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_max": 10,
+    "aggressive": false,
+    "gfx": 107,
+    "shield_absorption": 80
+   }
+  },
+  "source": [
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 69
+ },
+ {
+  "id": "havok",
+  "name": "-=[ Havok ]=-",
+  "base_name": "Havok",
+  "gfx": 108,
+  "sheet": "ship108",
+  "hp": 50000,
+  "shield": 50000,
+  "speed": 300,
+  "damage_min": 1400,
+  "damage_max": 1400,
+  "exp": 12800,
+  "honor": 64,
+  "credits": 12800,
+  "uridium": 32,
+  "shield_absorption": 80,
+  "damage": 1400,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "field_source": {
+   "hp": "borja",
+   "shield": "borja",
+   "speed": "borja",
+   "damage_min": "borja",
+   "damage_max": "borja",
+   "exp": "borja",
+   "honor": "borja",
+   "credits": "borja",
+   "uridium": "borja",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 50000,
+    "shield": 50000,
+    "damage_min": 1400,
+    "damage_max": 1400,
+    "speed": 300,
+    "aggressive": true,
+    "exp": 12800,
+    "honor": 64,
+    "credits": 12800,
+    "uridium": 32,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 50000,
+    "shield": 50000,
+    "damage_max": 700,
+    "aggressive": true,
+    "gfx": 108,
+    "shield_absorption": 80,
+    "exp": 12800,
+    "honor": 64,
+    "credits": 12800,
+    "uridium": 32
+   }
+  },
+  "source": [
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 75
+ },
+ {
+  "id": "interceptor",
+  "name": "-=[ Interceptor ]=-",
+  "base_name": "Interceptor",
+  "gfx": 111,
+  "sheet": "ship111",
+  "hp": 60000,
+  "shield": 40000,
+  "speed": 600,
+  "damage_min": 375,
+  "damage_max": 500,
+  "exp": 7500,
+  "honor": 40,
+  "credits": 25000,
+  "uridium": 20,
+  "shield_absorption": 80,
+  "damage": 500,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "cargo": {
+   "prometium": 100,
+   "endurium": 100,
+   "terbium": 100,
+   "prometid": 18,
+   "duranium": 18,
+   "promerium": 2,
+   "xenomit": 0
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 60000,
+    "shield": 40000,
+    "damage_min": 350,
+    "damage_max": 500,
+    "speed": 450,
+    "aggressive": true,
+    "exp": 7500,
+    "honor": 24,
+    "credits": 25000,
+    "uridium": 20,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 60000,
+    "shield": 40000,
+    "damage_max": 425,
+    "aggressive": true,
+    "gfx": 111,
+    "shield_absorption": 80,
+    "exp": 7500,
+    "honor": 24,
+    "credits": 25000,
+    "uridium": 20
+   },
+   "wiki": {
+    "hp": 60000,
+    "shield": 40000,
+    "damage_min": 375,
+    "damage_max": 500,
+    "speed": 600,
+    "exp": 7500,
+    "honor": 40,
+    "credits": 25000,
+    "uridium": 20
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Interceptor",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 37
+ },
+ {
+  "id": "barracuda",
+  "name": "-=[ Barracuda ]=-",
+  "base_name": "Barracuda",
+  "gfx": 112,
+  "sheet": "ship112",
+  "hp": 180000,
+  "shield": 100000,
+  "speed": 430,
+  "damage_min": 4500,
+  "damage_max": 6000,
+  "exp": 15000,
+  "honor": 56,
+  "credits": 90000,
+  "uridium": 25,
+  "shield_absorption": 80,
+  "damage": 6000,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "cargo": {
+   "prometium": 200,
+   "endurium": 200,
+   "terbium": 200,
+   "prometid": 24,
+   "duranium": 24,
+   "promerium": 4,
+   "xenomit": 0
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 180000,
+    "shield": 100000,
+    "damage_min": 4500,
+    "damage_max": 6000,
+    "speed": 430,
+    "aggressive": true,
+    "exp": 15000,
+    "honor": 56,
+    "credits": 90000,
+    "uridium": 25,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 180000,
+    "shield": 100000,
+    "damage_max": 5250,
+    "aggressive": true,
+    "gfx": 112,
+    "shield_absorption": 80,
+    "exp": 15000,
+    "honor": 56,
+    "credits": 90000,
+    "uridium": 25
+   },
+   "wiki": {
+    "hp": 180000,
+    "shield": 100000,
+    "damage_min": 4500,
+    "damage_max": 6000,
+    "speed": 430,
+    "exp": 15000,
+    "honor": 56,
+    "credits": 90000,
+    "uridium": 25
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Barracuda",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 38
+ },
+ {
+  "id": "saboteur",
+  "name": "-=[ Saboteur ]=-",
+  "base_name": "Saboteur",
+  "gfx": 113,
+  "sheet": "ship113",
+  "hp": 200000,
+  "shield": 150000,
+  "speed": 400,
+  "damage_min": 3000,
+  "damage_max": 4000,
+  "exp": 22500,
+  "honor": 72,
+  "credits": 125000,
+  "uridium": 45,
+  "shield_absorption": 80,
+  "damage": 4000,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "cargo": {
+   "prometium": 200,
+   "endurium": 200,
+   "terbium": 200,
+   "prometid": 32,
+   "duranium": 32,
+   "promerium": 8,
+   "xenomit": 0
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 200000,
+    "shield": 150000,
+    "damage_min": 3000,
+    "damage_max": 4000,
+    "speed": 430,
+    "aggressive": true,
+    "exp": 22500,
+    "honor": 72,
+    "credits": 125000,
+    "uridium": 45,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 200000,
+    "shield": 150000,
+    "damage_max": 3500,
+    "aggressive": true,
+    "gfx": 113,
+    "shield_absorption": 80,
+    "exp": 22500,
+    "honor": 72,
+    "credits": 125000,
+    "uridium": 45
+   },
+   "wiki": {
+    "hp": 200000,
+    "shield": 150000,
+    "damage_min": 3000,
+    "damage_max": 4000,
+    "speed": 400,
+    "exp": 22500,
+    "honor": 72,
+    "credits": 125000,
+    "uridium": 45
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Saboteur",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 39
+ },
+ {
+  "id": "annihilator",
+  "name": "-=[ Annihilator ]=-",
+  "base_name": "Annihilator",
+  "gfx": 114,
+  "sheet": "ship114",
+  "hp": 300000,
+  "shield": 200000,
+  "speed": 350,
+  "damage_min": 11250,
+  "damage_max": 15000,
+  "exp": 75000,
+  "honor": 128,
+  "credits": 250000,
+  "uridium": 65,
+  "shield_absorption": 80,
+  "damage": 15000,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "cargo": {
+   "prometium": 300,
+   "endurium": 300,
+   "terbium": 300,
+   "prometid": 48,
+   "duranium": 48,
+   "promerium": 12,
+   "xenomit": 3,
+   "seprom": 0
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 300000,
+    "shield": 200000,
+    "damage_min": 12000,
+    "damage_max": 14000,
+    "speed": 350,
+    "aggressive": true,
+    "exp": 75000,
+    "honor": 128,
+    "credits": 250000,
+    "uridium": 65,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 300000,
+    "shield": 200000,
+    "damage_max": 13000,
+    "aggressive": true,
+    "gfx": 114,
+    "shield_absorption": 80,
+    "exp": 75000,
+    "honor": 128,
+    "credits": 250000,
+    "uridium": 65
+   },
+   "wiki": {
+    "hp": 300000,
+    "shield": 200000,
+    "damage_min": 11250,
+    "damage_max": 15000,
+    "speed": 350,
+    "exp": 75000,
+    "honor": 128,
+    "credits": 250000,
+    "uridium": 65
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Annihilator",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 40
+ },
+ {
+  "id": "battleray",
+  "name": "-=[ Battleray ]=-",
+  "base_name": "Battleray",
+  "gfx": 115,
+  "sheet": "ship115",
+  "hp": 330000,
+  "shield": 260000,
+  "speed": 450,
+  "damage_min": 15000,
+  "damage_max": 16500,
+  "exp": 83300,
+  "honor": 190,
+  "credits": 1160000,
+  "uridium": 116,
+  "shield_absorption": 80,
+  "damage": 16500,
+  "aggressive": true,
+  "aggressive_votes": {
+   "borja": true,
+   "kalaazu": true
+  },
+  "cargo": {
+   "prometium": 400,
+   "endurium": 400,
+   "terbium": 400,
+   "prometid": 64,
+   "duranium": 64,
+   "promerium": 8,
+   "xenomit": 4
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 500000,
+    "shield": 400000,
+    "damage_min": 7000,
+    "damage_max": 10000,
+    "speed": 250,
+    "aggressive": true,
+    "exp": 125000,
+    "honor": 192,
+    "credits": 1750000,
+    "uridium": 175,
+    "shield_absorption": 60
+   },
+   "kalaazu": {
+    "hp": 500000,
+    "shield": 400000,
+    "damage_max": 8500,
+    "aggressive": true,
+    "gfx": 115,
+    "shield_absorption": 80,
+    "exp": 125000,
+    "honor": 192,
+    "credits": 1750000,
+    "uridium": 175
+   },
+   "wiki": {
+    "hp": 330000,
+    "shield": 260000,
+    "damage_min": 15000,
+    "damage_max": 16500,
+    "speed": 450,
+    "exp": 83300,
+    "honor": 190,
+    "credits": 1160000,
+    "uridium": 116
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Battleray",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 41
+ },
+ {
+  "id": "hitac_2_0",
+  "name": "-=[ Hitac 2.0 ]=-",
+  "base_name": "Hitac 2.0",
+  "gfx": 116,
+  "sheet": "ship116",
+  "hp": 10000000,
+  "shield": 5500000,
+  "speed": 300,
+  "damage_min": 25000,
+  "damage_max": 30000,
+  "exp": 200000,
+  "honor": 5000,
+  "credits": 1000000,
+  "uridium": 5000,
+  "shield_absorption": 80,
+  "damage": 30000,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_min": 20,
+    "damage_max": 20,
+    "speed": 150,
+    "aggressive": false,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 20
+   },
+   "kalaazu": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_max": 10,
+    "aggressive": false,
+    "gfx": 116,
+    "shield_absorption": 80
+   },
+   "wiki": {
+    "hp": 10000000,
+    "shield": 5500000,
+    "damage_min": 25000,
+    "damage_max": 30000,
+    "speed": 300,
+    "exp": 200000,
+    "honor": 5000,
+    "credits": 1000000,
+    "uridium": 5000
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Hitac-Mothership",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 63
+ },
+ {
+  "id": "minion",
+  "name": "-=[ Minion ]=-",
+  "base_name": "Minion",
+  "gfx": 117,
+  "sheet": "ship117",
+  "hp": 3800000,
+  "shield": 2600000,
+  "speed": 300,
+  "damage_min": 8000,
+  "damage_max": 10000,
+  "exp": 1000000,
+  "honor": 12000,
+  "credits": 1000000,
+  "uridium": 2250,
+  "shield_absorption": 80,
+  "damage": 10000,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_min": 20,
+    "damage_max": 20,
+    "speed": 150,
+    "aggressive": false,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 20
+   },
+   "kalaazu": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_max": 10,
+    "aggressive": false,
+    "gfx": 117,
+    "shield_absorption": 80
+   },
+   "wiki": {
+    "hp": 3800000,
+    "shield": 2600000,
+    "damage_min": 8000,
+    "damage_max": 10000,
+    "speed": 300,
+    "exp": 1000000,
+    "honor": 12000,
+    "credits": 1000000,
+    "uridium": 2250
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Hitac-Minion",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 62
+ },
+ {
+  "id": "boss_twist",
+  "name": "..::{ Boss Twist }::..",
+  "base_name": "Boss Twist",
+  "gfx": 118,
+  "sheet": "ship118",
+  "hp": 1000,
+  "shield": null,
+  "speed": 150,
+  "damage_min": 20,
+  "damage_max": 20,
+  "exp": null,
+  "honor": null,
+  "credits": null,
+  "uridium": null,
+  "shield_absorption": 80,
+  "damage": 20,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false
+  },
+  "field_source": {
+   "hp": "borja",
+   "speed": "borja",
+   "damage_min": "borja",
+   "damage_max": "borja",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_min": 20,
+    "damage_max": 20,
+    "speed": 150,
+    "aggressive": false,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 20
+   },
+   "kalaazu": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_max": 10,
+    "aggressive": false,
+    "gfx": 118,
+    "shield_absorption": 80
+   }
+  },
+  "source": [
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 71
+ },
+ {
+  "id": "twist",
+  "name": "-=[ Twist ]=-",
+  "base_name": "Twist",
+  "gfx": 119,
+  "sheet": "ship119",
+  "hp": 1000,
+  "shield": null,
+  "speed": 150,
+  "damage_min": 20,
+  "damage_max": 20,
+  "exp": null,
+  "honor": null,
+  "credits": null,
+  "uridium": null,
+  "shield_absorption": 80,
+  "damage": 20,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false
+  },
+  "field_source": {
+   "hp": "borja",
+   "speed": "borja",
+   "damage_min": "borja",
+   "damage_max": "borja",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_min": 20,
+    "damage_max": 20,
+    "speed": 150,
+    "aggressive": false,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 20
+   },
+   "kalaazu": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_max": 10,
+    "aggressive": false,
+    "gfx": 119,
+    "shield_absorption": 80
+   }
+  },
+  "source": [
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 70
+ },
+ {
+  "id": "turkey",
+  "name": "-=[ Turkey ]=-",
+  "base_name": "Turkey",
+  "gfx": 120,
+  "sheet": "ship120",
+  "hp": 1000,
+  "shield": null,
+  "speed": 150,
+  "damage_min": 20,
+  "damage_max": 20,
+  "exp": null,
+  "honor": null,
+  "credits": null,
+  "uridium": null,
+  "shield_absorption": 80,
+  "damage": 20,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false
+  },
+  "field_source": {
+   "hp": "borja",
+   "speed": "borja",
+   "damage_min": "borja",
+   "damage_max": "borja",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_min": 20,
+    "damage_max": 20,
+    "speed": 150,
+    "aggressive": false,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 20
+   },
+   "kalaazu": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_max": 10,
+    "aggressive": false,
+    "gfx": 120,
+    "shield_absorption": 80
+   }
+  },
+  "source": [
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 72
+ },
+ {
+  "id": "snowman",
+  "name": "-=[ Snowman ]=-",
+  "base_name": "Snowman",
+  "gfx": 121,
+  "sheet": "ship121",
+  "hp": 1000,
+  "shield": null,
+  "speed": 150,
+  "damage_min": 20,
+  "damage_max": 20,
+  "exp": null,
+  "honor": null,
+  "credits": null,
+  "uridium": null,
+  "shield_absorption": 80,
+  "damage": 20,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false
+  },
+  "field_source": {
+   "hp": "borja",
+   "speed": "borja",
+   "damage_min": "borja",
+   "damage_max": "borja",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_min": 20,
+    "damage_max": 20,
+    "speed": 150,
+    "aggressive": false,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 20
+   },
+   "kalaazu": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_max": 10,
+    "aggressive": false,
+    "gfx": 121,
+    "shield_absorption": 80
+   }
+  },
+  "source": [
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 73
+ },
+ {
+  "id": "emperor_kristallon",
+  "name": "-=[ Emperor Kristallon ]=-",
+  "base_name": "Emperor Kristallon",
+  "gfx": 122,
+  "sheet": "ship122",
+  "hp": 14080000,
+  "shield": 11100000,
+  "speed": 350,
+  "damage_min": 40000,
+  "damage_max": 40000,
+  "exp": 1536000,
+  "honor": 8192,
+  "credits": 5000000,
+  "uridium": 36864,
+  "shield_absorption": 80,
+  "damage": 40000,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false
+  },
+  "cargo": {
+   "prometium": 2560,
+   "endurium": 2560,
+   "terbium": 2560,
+   "promedit": 1024,
+   "duranium": 1024,
+   "promerium": 128,
+   "xenomit": 128
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_min": 20,
+    "damage_max": 20,
+    "speed": 150,
+    "aggressive": false,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 20
+   },
+   "kalaazu": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_max": 10,
+    "aggressive": false,
+    "gfx": 122,
+    "shield_absorption": 80
+   },
+   "wiki": {
+    "hp": 14080000,
+    "shield": 11100000,
+    "damage_min": 40000,
+    "damage_max": 40000,
+    "speed": 350,
+    "exp": 1536000,
+    "honor": 8192,
+    "credits": 5000000,
+    "uridium": 36864
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Emperor_Kristallon",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 54
+ },
+ {
+  "id": "emperor_lordakium",
+  "name": "-=[ Emperor Lordakium ]=-",
+  "base_name": "Emperor Lordakium",
+  "gfx": 123,
+  "sheet": "ship123",
+  "hp": 9600000,
+  "shield": 6400000,
+  "speed": 150,
+  "damage_min": 45000,
+  "damage_max": 45000,
+  "exp": 786000,
+  "honor": 4096,
+  "credits": 2000000,
+  "uridium": 12288,
+  "shield_absorption": 80,
+  "damage": 45000,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false
+  },
+  "cargo": {
+   "prometium": 2560,
+   "endurium": 2560,
+   "terbium": 2560,
+   "promedit": 512,
+   "duranium": 512,
+   "promerium": 64,
+   "xenomit": 64
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "borja",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_min": 20,
+    "damage_max": 20,
+    "speed": 150,
+    "aggressive": false,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 20
+   },
+   "kalaazu": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_max": 10,
+    "aggressive": false,
+    "gfx": 123,
+    "shield_absorption": 80
+   },
+   "wiki": {
+    "hp": 9600000,
+    "shield": 6400000,
+    "damage_min": 45000,
+    "damage_max": 45000,
+    "exp": 786000,
+    "honor": 4096,
+    "credits": 2000000,
+    "uridium": 12288
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Emperor_Lordakium",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 55
+ },
+ {
+  "id": "emperor_sibelon",
+  "name": "-=[ Emperor Sibelon ]=-",
+  "base_name": "Emperor Sibelon",
+  "gfx": 124,
+  "sheet": "ship124",
+  "hp": 6400000,
+  "shield": 6400000,
+  "speed": 150,
+  "damage_min": 35000,
+  "damage_max": 35000,
+  "exp": 409600,
+  "honor": 2048,
+  "credits": 1400000,
+  "uridium": 6144,
+  "shield_absorption": 80,
+  "damage": 35000,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false
+  },
+  "cargo": {
+   "prometium": 2560,
+   "endurium": 2560,
+   "terbium": 2560,
+   "duranium": 256,
+   "promerium": 32,
+   "xenomit": 32
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "borja",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_min": 20,
+    "damage_max": 20,
+    "speed": 150,
+    "aggressive": false,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 20
+   },
+   "kalaazu": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_max": 10,
+    "aggressive": false,
+    "gfx": 124,
+    "shield_absorption": 80
+   },
+   "wiki": {
+    "hp": 6400000,
+    "shield": 6400000,
+    "damage_min": 35000,
+    "damage_max": 35000,
+    "exp": 409600,
+    "honor": 2048,
+    "credits": 1400000,
+    "uridium": 6144
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Emperor_Sibelon",
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 56
+ },
+ {
+  "id": "mine_car",
+  "name": "-=[ Mine Car ]=-",
+  "base_name": "Mine Car",
+  "gfx": 125,
+  "sheet": "ship125",
+  "hp": 1000,
+  "shield": null,
+  "speed": 150,
+  "damage_min": 20,
+  "damage_max": 20,
+  "exp": null,
+  "honor": null,
+  "credits": null,
+  "uridium": null,
+  "shield_absorption": 80,
+  "damage": 20,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false
+  },
+  "field_source": {
+   "hp": "borja",
+   "speed": "borja",
+   "damage_min": "borja",
+   "damage_max": "borja",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_min": 20,
+    "damage_max": 20,
+    "speed": 150,
+    "aggressive": false,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 20
+   },
+   "kalaazu": {
+    "hp": 1000,
+    "shield": 0,
+    "damage_max": 10,
+    "aggressive": false,
+    "gfx": 125,
+    "shield_absorption": 80
+   }
+  },
+  "source": [
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 74
+ },
+ {
+  "id": "spaceball",
+  "name": "-=[ Spaceball ]=-",
+  "base_name": "Spaceball",
+  "gfx": 442,
+  "sheet": "ship442",
+  "hp": null,
+  "shield": null,
+  "speed": 200,
+  "damage_min": null,
+  "damage_max": null,
+  "exp": null,
+  "honor": null,
+  "credits": null,
+  "uridium": null,
+  "shield_absorption": 80,
+  "damage": null,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false,
+   "kalaazu": false
+  },
+  "field_source": {
+   "speed": "borja",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 0,
+    "shield": 0,
+    "damage_min": 0,
+    "damage_max": 0,
+    "speed": 200,
+    "aggressive": false,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 0
+   },
+   "kalaazu": {
+    "hp": 0,
+    "shield": 0,
+    "damage_max": 0,
+    "aggressive": false,
+    "gfx": 444,
+    "shield_absorption": 80
+   }
+  },
+  "source": [
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql"
+  ],
+  "kalaazu_id": 78
+ },
+ {
+  "id": "spaceball_443",
+  "name": "-=[ Spaceball ]=-",
+  "base_name": "Spaceball",
+  "gfx": 443,
+  "sheet": "ship443",
+  "hp": null,
+  "shield": null,
+  "speed": 200,
+  "damage_min": null,
+  "damage_max": null,
+  "exp": null,
+  "honor": null,
+  "credits": null,
+  "uridium": null,
+  "shield_absorption": null,
+  "damage": null,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false
+  },
+  "field_source": {
+   "speed": "borja"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 0,
+    "shield": 0,
+    "damage_min": 0,
+    "damage_max": 0,
+    "speed": 200,
+    "aggressive": false,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 0
+   }
+  },
+  "source": [
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql"
+  ],
+  "kalaazu_id": null
+ },
+ {
+  "id": "spaceball_444",
+  "name": "-=[ Spaceball ]=-",
+  "base_name": "Spaceball",
+  "gfx": 444,
+  "sheet": "ship444",
+  "hp": null,
+  "shield": null,
+  "speed": 200,
+  "damage_min": null,
+  "damage_max": null,
+  "exp": null,
+  "honor": null,
+  "credits": null,
+  "uridium": null,
+  "shield_absorption": null,
+  "damage": null,
+  "aggressive": false,
+  "aggressive_votes": {
+   "borja": false
+  },
+  "field_source": {
+   "speed": "borja"
+  },
+  "by_source": {
+   "borja": {
+    "hp": 0,
+    "shield": 0,
+    "damage_min": 0,
+    "damage_max": 0,
+    "speed": 200,
+    "aggressive": false,
+    "exp": 0,
+    "honor": 0,
+    "credits": 0,
+    "uridium": 0,
+    "shield_absorption": 0
+   }
+  },
+  "source": [
+   "https://github.com/BorjaSanchidrian/DarkOrbitServer/blob/master/db/darkorbit_userBorja.sql"
+  ],
+  "kalaazu_id": null
+ },
+ {
+  "id": "uber_streuner",
+  "name": "<-o( Uber Streuner )o->",
+  "base_name": "Uber Streuner",
+  "gfx": 23,
+  "sheet": "ship23",
+  "hp": 6400,
+  "shield": 3200,
+  "speed": null,
+  "damage_min": 120,
+  "damage_max": 160,
+  "exp": 3200,
+  "honor": 16,
+  "credits": 3200,
+  "uridium": 8,
+  "shield_absorption": 80,
+  "damage": 160,
+  "aggressive": false,
+  "aggressive_votes": {
+   "kalaazu": false
+  },
+  "cargo": {
+   "prometium": 80,
+   "endurium": 80,
+   "terbium": 40,
+   "prometid": 0,
+   "duranium": 0,
+   "promerium": 0,
+   "xenomit": 0
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "kluk",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "kalaazu": {
+    "hp": 6400,
+    "shield": 3200,
+    "damage_max": 220,
+    "aggressive": false,
+    "gfx": 23,
+    "shield_absorption": 80,
+    "exp": 3200,
+    "honor": 16,
+    "credits": 3200,
+    "uridium": 8
+   },
+   "kluk": {
+    "hp": 6400,
+    "shield": 3200,
+    "exp": 3200,
+    "honor": 16,
+    "credits": 3200,
+    "uridium": 8,
+    "damage_min": 160,
+    "damage_max": 270
+   },
+   "wiki": {
+    "hp": 6400,
+    "shield": 3200,
+    "damage_min": 120,
+    "damage_max": 160,
+    "honor": 16,
+    "credits": 3200,
+    "uridium": 8
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Uber_Streuner",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql"
+  ],
+  "kalaazu_id": 26
+ },
+ {
+  "id": "uber_lordakia",
+  "name": "<-o( Uber Lordakia )o->",
+  "base_name": "Uber Lordakia",
+  "gfx": 24,
+  "sheet": "ship24",
+  "hp": 16000,
+  "shield": 16000,
+  "speed": 250,
+  "damage_min": 480,
+  "damage_max": 640,
+  "exp": 6400,
+  "honor": 32,
+  "credits": 6400,
+  "uridium": 16,
+  "shield_absorption": 80,
+  "damage": 640,
+  "aggressive": true,
+  "aggressive_votes": {
+   "kalaazu": true
+  },
+  "cargo": {
+   "prometium": 160,
+   "endurium": 160,
+   "terbium": 160,
+   "prometid": 20,
+   "duranium": 20,
+   "promerium": 2,
+   "xenomit": 2
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "kalaazu": {
+    "hp": 16000,
+    "shield": 16000,
+    "damage_max": 644,
+    "aggressive": true,
+    "gfx": 24,
+    "shield_absorption": 80,
+    "exp": 6400,
+    "honor": 32,
+    "credits": 6400,
+    "uridium": 16
+   },
+   "kluk": {
+    "hp": 16000,
+    "shield": 16000,
+    "exp": 6400,
+    "honor": 32,
+    "credits": 6400,
+    "uridium": 16,
+    "damage_min": 500,
+    "damage_max": 700
+   },
+   "wiki": {
+    "hp": 16000,
+    "shield": 16000,
+    "damage_min": 480,
+    "damage_max": 640,
+    "speed": 250,
+    "exp": 6400,
+    "honor": 32,
+    "credits": 6400,
+    "uridium": 16
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Uber_Lordakia",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql"
+  ],
+  "kalaazu_id": 27
+ },
+ {
+  "id": "uber_saimon",
+  "name": "<-o( Uber Saimon )o->",
+  "base_name": "Uber Saimon",
+  "gfx": 25,
+  "sheet": "ship25",
+  "hp": 48000,
+  "shield": 24000,
+  "speed": 340,
+  "damage_min": 1200,
+  "damage_max": 1600,
+  "exp": 12800,
+  "honor": 64,
+  "credits": 12800,
+  "uridium": 32,
+  "shield_absorption": 80,
+  "damage": 1600,
+  "aggressive": true,
+  "aggressive_votes": {
+   "kalaazu": true
+  },
+  "cargo": {
+   "prometium": 320,
+   "endurium": 320,
+   "terbium": 320,
+   "prometid": 32,
+   "duranium": 32,
+   "promerium": 2,
+   "xenomit": 4
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "kalaazu": {
+    "hp": 48000,
+    "shield": 24000,
+    "damage_max": 1320,
+    "aggressive": true,
+    "gfx": 25,
+    "shield_absorption": 80,
+    "exp": 12800,
+    "honor": 64,
+    "credits": 12800,
+    "uridium": 32
+   },
+   "kluk": {
+    "hp": 48000,
+    "shield": 24000,
+    "exp": 12800,
+    "honor": 64,
+    "credits": 12800,
+    "uridium": 32,
+    "damage_min": 1200,
+    "damage_max": 1440
+   },
+   "wiki": {
+    "hp": 48000,
+    "shield": 24000,
+    "damage_min": 1200,
+    "damage_max": 1600,
+    "speed": 340,
+    "exp": 12800,
+    "honor": 64,
+    "credits": 12800,
+    "uridium": 32
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Uber_Saimon",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql"
+  ],
+  "kalaazu_id": 28
+ },
+ {
+  "id": "uber_mordon",
+  "name": "<-o( Uber Mordon )o->",
+  "base_name": "Uber Mordon",
+  "gfx": 31,
+  "sheet": "ship31",
+  "hp": 160000,
+  "shield": 80000,
+  "speed": 100,
+  "damage_min": 2400,
+  "damage_max": 3200,
+  "exp": 25600,
+  "honor": 128,
+  "credits": 51200,
+  "uridium": 64,
+  "shield_absorption": 80,
+  "damage": 3200,
+  "aggressive": true,
+  "aggressive_votes": {
+   "kalaazu": true
+  },
+  "cargo": {
+   "prometium": 640,
+   "endurium": 640,
+   "terbium": 640,
+   "prometid": 64,
+   "duranium": 64,
+   "promerium": 16,
+   "xenomit": 8
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "kalaazu": {
+    "hp": 160000,
+    "shield": 80000,
+    "damage_max": 2800,
+    "aggressive": true,
+    "gfx": 31,
+    "shield_absorption": 80,
+    "exp": 25600,
+    "honor": 128,
+    "credits": 102400,
+    "uridium": 64
+   },
+   "kluk": {
+    "hp": 160000,
+    "shield": 80000,
+    "exp": 25600,
+    "honor": 128,
+    "credits": 51200,
+    "uridium": 64,
+    "damage_min": 2600,
+    "damage_max": 3100
+   },
+   "wiki": {
+    "hp": 160000,
+    "shield": 80000,
+    "damage_min": 2400,
+    "damage_max": 3200,
+    "speed": 100,
+    "exp": 25600,
+    "honor": 128,
+    "credits": 51200,
+    "uridium": 64
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Uber_Mordon",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql"
+  ],
+  "kalaazu_id": 29
+ },
+ {
+  "id": "uber_devolarium",
+  "name": "<-o( Uber Devolarium )o->",
+  "base_name": "Uber Devolarium",
+  "gfx": 26,
+  "sheet": "ship26",
+  "hp": 800000,
+  "shield": 800000,
+  "speed": 150,
+  "damage_min": 7200,
+  "damage_max": 9600,
+  "exp": 51200,
+  "honor": 256,
+  "credits": 409600,
+  "uridium": 128,
+  "shield_absorption": 80,
+  "damage": 9600,
+  "aggressive": true,
+  "aggressive_votes": {
+   "kalaazu": true
+  },
+  "cargo": {
+   "prometium": 800,
+   "endurium": 800,
+   "terbium": 800,
+   "prometid": 128,
+   "duranium": 128,
+   "promerium": 16,
+   "xenomit": 32
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "kalaazu": {
+    "hp": 800000,
+    "shield": 800000,
+    "damage_max": 8750,
+    "aggressive": true,
+    "gfx": 26,
+    "shield_absorption": 80,
+    "exp": 51200,
+    "honor": 256,
+    "credits": 408600,
+    "uridium": 128
+   },
+   "kluk": {
+    "hp": 800000,
+    "shield": 800000,
+    "exp": 51200,
+    "honor": 246,
+    "credits": 409600,
+    "uridium": 128,
+    "damage_min": 8200,
+    "damage_max": 9300
+   },
+   "wiki": {
+    "hp": 800000,
+    "shield": 800000,
+    "damage_min": 7200,
+    "damage_max": 9600,
+    "speed": 150,
+    "exp": 51200,
+    "honor": 256,
+    "credits": 409600,
+    "uridium": 128
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Uber_Devolarium",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql"
+  ],
+  "kalaazu_id": 30
+ },
+ {
+  "id": "uber_sibelon",
+  "name": "<-o( Uber Sibelon )o->",
+  "base_name": "Uber Sibelon",
+  "gfx": 46,
+  "sheet": "ship46",
+  "hp": 1600000,
+  "shield": 1600000,
+  "speed": 100,
+  "damage_min": 18000,
+  "damage_max": 24000,
+  "exp": 102400,
+  "honor": 512,
+  "credits": 819200,
+  "uridium": 256,
+  "shield_absorption": 80,
+  "damage": 24000,
+  "aggressive": true,
+  "aggressive_votes": {
+   "kalaazu": true
+  },
+  "cargo": {
+   "prometium": 1200,
+   "endurium": 1200,
+   "terbium": 1200,
+   "prometid": 256,
+   "duranium": 256,
+   "promerium": 64,
+   "xenomit": 64
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "wiki",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "kalaazu": {
+    "hp": 1600000,
+    "shield": 1600000,
+    "damage_max": 21550,
+    "aggressive": true,
+    "gfx": 46,
+    "shield_absorption": 80,
+    "exp": 102400,
+    "honor": 512,
+    "credits": 819200,
+    "uridium": 256
+   },
+   "kluk": {
+    "hp": 1600000,
+    "shield": 1600000,
+    "exp": 102400,
+    "honor": 512,
+    "credits": 819200,
+    "uridium": 146,
+    "damage_min": 18200,
+    "damage_max": 24700
+   },
+   "wiki": {
+    "hp": 1600000,
+    "shield": 1600000,
+    "damage_min": 18000,
+    "damage_max": 24000,
+    "speed": 100,
+    "exp": 102400,
+    "honor": 512,
+    "credits": 819200,
+    "uridium": 256
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Uber_Sibelon",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql"
+  ],
+  "kalaazu_id": 31
+ },
+ {
+  "id": "uber_sibelonit",
+  "name": "<-o( Uber Sibelonit )o->",
+  "base_name": "Uber Sibelonit",
+  "gfx": 27,
+  "sheet": "ship27",
+  "hp": 320000,
+  "shield": 320000,
+  "speed": 350,
+  "damage_min": 6000,
+  "damage_max": 8000,
+  "exp": 25600,
+  "honor": 128,
+  "current_wiki": {
+   "credits": 204800
+  },
+  "credits": 102400,
+  "uridium": 96,
+  "shield_absorption": 80,
+  "damage": 8000,
+  "aggressive": true,
+  "aggressive_votes": {
+   "kalaazu": true
+  },
+  "cargo": {
+   "prometium": 800,
+   "endurium": 800,
+   "terbium": 800,
+   "prometid": 128,
+   "duranium": 128,
+   "promerium": 16,
+   "xenomit": 32
+  },
+  "field_source": {
+   "hp": "wiki",
+   "shield": "wiki",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "wiki",
+   "honor": "wiki",
+   "credits": "emulator-consensus",
+   "uridium": "wiki",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "kalaazu": {
+    "hp": 320000,
+    "shield": 320000,
+    "damage_max": 7524,
+    "aggressive": true,
+    "gfx": 27,
+    "shield_absorption": 80,
+    "exp": 25600,
+    "honor": 256,
+    "credits": 102400,
+    "uridium": 128
+   },
+   "kluk": {
+    "hp": 320000,
+    "shield": 320000,
+    "exp": 25600,
+    "honor": 128,
+    "credits": 102400,
+    "uridium": 96,
+    "damage_min": 6350,
+    "damage_max": 8700
+   },
+   "wiki": {
+    "hp": 320000,
+    "shield": 320000,
+    "damage_min": 6000,
+    "damage_max": 8000,
+    "speed": 350,
+    "exp": 25600,
+    "honor": 128,
+    "credits": 204800,
+    "uridium": 96
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Uber_Sibelonit",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql"
+  ],
+  "kalaazu_id": 32
+ },
+ {
+  "id": "uber_lordakium",
+  "name": "<-o( Uber Lordakium )o->",
+  "base_name": "Uber Lordakium",
+  "gfx": 28,
+  "sheet": "ship28",
+  "hp": 2400000,
+  "shield": 1600000,
+  "speed": null,
+  "damage_min": 20000,
+  "damage_max": 31000,
+  "exp": 204800,
+  "honor": 1024,
+  "credits": 1638400,
+  "uridium": 512,
+  "shield_absorption": 80,
+  "damage": 31000,
+  "aggressive": false,
+  "aggressive_votes": {
+   "kalaazu": false
+  },
+  "cargo": {
+   "prometium": 2400,
+   "endurium": 2400,
+   "terbium": 2400,
+   "prometid": 512,
+   "duranium": 512,
+   "promerium": 64,
+   "xenomit": 64
+  },
+  "field_source": {
+   "hp": "kalaazu",
+   "shield": "kalaazu",
+   "damage_min": "kluk",
+   "damage_max": "kluk",
+   "exp": "kluk",
+   "honor": "kluk",
+   "credits": "kluk",
+   "uridium": "kluk",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "kalaazu": {
+    "hp": 2400000,
+    "shield": 1600000,
+    "damage_max": 26000,
+    "aggressive": false,
+    "gfx": 28,
+    "shield_absorption": 80,
+    "exp": 204800,
+    "honor": 1025,
+    "credits": 1638400,
+    "uridium": 512
+   },
+   "kluk": {
+    "hp": 2400000,
+    "shield": 1600000,
+    "exp": 204800,
+    "honor": 1024,
+    "credits": 1638400,
+    "uridium": 512,
+    "damage_min": 20000,
+    "damage_max": 31000
+   }
+  },
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql"
+  ],
+  "kalaazu_id": 33
+ },
+ {
+  "id": "uber_streuner_r_upper",
+  "name": "<-o( Uber StreuneR )o->",
+  "base_name": "Uber StreuneR",
+  "gfx": 34,
+  "sheet": "ship34",
+  "current_wiki": {
+   "hp": 320000,
+   "shield": 240000,
+   "exp": 48000,
+   "honor": 240,
+   "uridium": 120
+  },
+  "hp": 160000,
+  "shield": 80000,
+  "speed": 330,
+  "damage_min": 6000,
+  "damage_max": 8000,
+  "exp": 25600,
+  "honor": 128,
+  "credits": 96000,
+  "uridium": 64,
+  "shield_absorption": 80,
+  "damage": 8000,
+  "aggressive": false,
+  "aggressive_votes": {
+   "kalaazu": false
+  },
+  "cargo": {
+   "xenomit": 8,
+   "terbium": 640,
+   "endurium": 640,
+   "duranium": 64,
+   "prometid": 64,
+   "prometium": 640
+  },
+  "field_source": {
+   "hp": "emulator-consensus",
+   "shield": "emulator-consensus",
+   "speed": "wiki",
+   "damage_min": "wiki",
+   "damage_max": "wiki",
+   "exp": "emulator-consensus",
+   "honor": "emulator-consensus",
+   "credits": "wiki",
+   "uridium": "emulator-consensus",
+   "shield_absorption": "kalaazu"
+  },
+  "by_source": {
+   "kalaazu": {
+    "hp": 160000,
+    "shield": 80000,
+    "damage_max": 3500,
+    "aggressive": false,
+    "gfx": 34,
+    "shield_absorption": 80,
+    "exp": 25600,
+    "honor": 128,
+    "credits": 103400,
+    "uridium": 64
+   },
+   "kluk": {
+    "hp": 160000,
+    "shield": 80000,
+    "exp": 25600,
+    "honor": 128,
+    "credits": 51200,
+    "uridium": 64,
+    "damage_min": 3000,
+    "damage_max": 4000
+   },
+   "wiki": {
+    "hp": 320000,
+    "shield": 240000,
+    "damage_min": 6000,
+    "damage_max": 8000,
+    "speed": 330,
+    "exp": 48000,
+    "honor": 240,
+    "credits": 96000,
+    "uridium": 120
+   }
+  },
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Uber_StreuneR",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/npcs/dump.sql",
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/rewards/dump.sql",
+   "https://github.com/klukarkata/DarkOrbit/blob/master/WEBCODE/database%20fix/do_es.sql"
+  ],
+  "kalaazu_id": 36
+ },
+ {
+  "id": "recruit_streuner",
+  "name": "-=[ Recruit Streuner ]=-",
+  "base_name": "Recruit Streuner",
+  "gfx": null,
+  "sheet": null,
+  "hp": 600,
+  "shield": 800,
+  "speed": 300,
+  "damage_min": 30,
+  "damage_max": 40,
+  "damage": 40,
+  "exp": 500,
+  "honor": 3,
+  "credits": 600,
+  "uridium": 2,
+  "aggressive": null,
+  "note": "wiki-only (modern alien or no emulator row); gfx unknown",
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Recruit_Streuner"
+  ]
+ },
+ {
+  "id": "aider_streuner",
+  "name": "-=[ Aider Streuner ]=-",
+  "base_name": "Aider Streuner",
+  "gfx": null,
+  "sheet": null,
+  "hp": 1500,
+  "shield": 1000,
+  "speed": null,
+  "damage_min": null,
+  "damage_max": null,
+  "damage": null,
+  "exp": 700,
+  "honor": 4,
+  "credits": 700,
+  "uridium": 2,
+  "aggressive": false,
+  "note": "wiki-only (modern alien or no emulator row); gfx unknown",
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Aider_Streuner"
+  ]
+ },
+ {
+  "id": "lordakium_spore",
+  "name": "-=[ Lordakium Spore ]=-",
+  "base_name": "Lordakium Spore",
+  "gfx": null,
+  "sheet": null,
+  "hp": 4000,
+  "shield": 4000,
+  "speed": 320,
+  "damage_min": 70,
+  "damage_max": 70,
+  "damage": 70,
+  "exp": 714,
+  "honor": 15,
+  "credits": 800,
+  "uridium": 3,
+  "aggressive": null,
+  "note": "wiki-only (modern alien or no emulator row); gfx unknown",
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Lordakium_Spore"
+  ]
+ },
+ {
+  "id": "deadly_battleray",
+  "name": "-=[ Deadly Battleray ]=-",
+  "base_name": "Deadly Battleray",
+  "gfx": null,
+  "sheet": null,
+  "hp": 750000,
+  "shield": 600000,
+  "speed": null,
+  "damage_min": 12000,
+  "damage_max": 14000,
+  "damage": 14000,
+  "exp": 187500,
+  "honor": 375,
+  "credits": 2625000,
+  "uridium": 265,
+  "aggressive": null,
+  "note": "wiki-only (modern alien or no emulator row); gfx unknown",
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Deadly_Battleray"
+  ]
+ },
+ {
+  "id": "blighted_kristallon",
+  "name": "-=[ Blighted Kristallon ]=-",
+  "base_name": "Blighted Kristallon",
+  "gfx": null,
+  "sheet": null,
+  "hp": 600000,
+  "shield": 400000,
+  "speed": 250,
+  "damage_min": 4000,
+  "damage_max": 4000,
+  "damage": 4000,
+  "exp": 65000,
+  "honor": 300,
+  "credits": 500000,
+  "uridium": 150,
+  "aggressive": null,
+  "note": "wiki-only (modern alien or no emulator row); gfx unknown",
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Blighted_Kristallon"
+  ]
+ },
+ {
+  "id": "streuner_soldier",
+  "name": "-=[ Streuner Soldier ]=-",
+  "base_name": "Streuner Soldier",
+  "gfx": null,
+  "sheet": null,
+  "hp": 150000,
+  "shield": 150000,
+  "speed": 380,
+  "damage_min": 5000,
+  "damage_max": 5000,
+  "damage": 5000,
+  "exp": 13860,
+  "honor": 40,
+  "credits": 100000,
+  "uridium": 40,
+  "aggressive": null,
+  "note": "wiki-only (modern alien or no emulator row); gfx unknown",
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Streuner_Soldier"
+  ]
+ },
+ {
+  "id": "streuner_specialist",
+  "name": "-=[ Streuner Specialist ]=-",
+  "base_name": "Streuner Specialist",
+  "gfx": null,
+  "sheet": null,
+  "hp": 300000,
+  "shield": 300000,
+  "speed": 150,
+  "damage_min": 7000,
+  "damage_max": 7000,
+  "damage": 7000,
+  "exp": 23810,
+  "honor": null,
+  "credits": 200000,
+  "uridium": 200,
+  "aggressive": null,
+  "note": "wiki-only (modern alien or no emulator row); gfx unknown",
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Streuner_Specialist"
+  ]
+ },
+ {
+  "id": "emperor_streuner",
+  "name": "-=[ Emperor Streuner ]=-",
+  "base_name": "Emperor Streuner",
+  "gfx": null,
+  "sheet": null,
+  "hp": 650000,
+  "shield": 750000,
+  "speed": null,
+  "damage_min": 2250,
+  "damage_max": 3000,
+  "damage": 3000,
+  "exp": 30000,
+  "honor": 150,
+  "credits": 400000,
+  "uridium": 6000,
+  "aggressive": null,
+  "note": "wiki-only (modern alien or no emulator row); gfx unknown",
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Emperor_Streuner"
+  ]
+ },
+ {
+  "id": "uber_interceptor",
+  "name": "-=[ Uber Interceptor ]=-",
+  "base_name": "Uber Interceptor",
+  "gfx": null,
+  "sheet": null,
+  "hp": 480000,
+  "shield": 320000,
+  "speed": 500,
+  "damage_min": 4000,
+  "damage_max": 4000,
+  "damage": 4000,
+  "exp": 30000,
+  "honor": 100,
+  "credits": 100000,
+  "uridium": 80,
+  "aggressive": true,
+  "note": "wiki-only (modern alien or no emulator row); gfx unknown",
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Uber_Interceptor"
+  ]
+ },
+ {
+  "id": "uber_barracuda",
+  "name": "-=[ Uber Barracuda ]=-",
+  "base_name": "Uber Barracuda",
+  "gfx": null,
+  "sheet": null,
+  "hp": 1440000,
+  "shield": 800000,
+  "speed": 400,
+  "damage_min": 48000,
+  "damage_max": 48000,
+  "damage": 48000,
+  "exp": 60000,
+  "honor": 100,
+  "credits": 360000,
+  "uridium": 80,
+  "aggressive": null,
+  "note": "wiki-only (modern alien or no emulator row); gfx unknown",
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Uber_Barracuda"
+  ]
+ },
+ {
+  "id": "uber_saboteur",
+  "name": "-=[ Uber Saboteur ]=-",
+  "base_name": "Uber Saboteur",
+  "gfx": null,
+  "sheet": null,
+  "hp": 1600000,
+  "shield": 1200000,
+  "speed": 400,
+  "damage_min": 32000,
+  "damage_max": 32000,
+  "damage": 32000,
+  "exp": 90000,
+  "honor": 130,
+  "credits": 500000,
+  "uridium": 150,
+  "aggressive": null,
+  "note": "wiki-only (modern alien or no emulator row); gfx unknown",
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Uber_Saboteur"
+  ]
+ },
+ {
+  "id": "uber_annihilator",
+  "name": "-=[ Uber Annihilator ]=-",
+  "base_name": "Uber Annihilator",
+  "gfx": null,
+  "sheet": null,
+  "hp": 2400000,
+  "shield": 1600000,
+  "speed": 320,
+  "damage_min": 67500,
+  "damage_max": 90000,
+  "damage": 90000,
+  "exp": 300000,
+  "honor": 200,
+  "credits": 1000000,
+  "uridium": 220,
+  "aggressive": false,
+  "note": "wiki-only (modern alien or no emulator row); gfx unknown",
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Uber_Annihilator"
+  ]
+ },
+ {
+  "id": "uber_battleray",
+  "name": "-=[ Uber Battleray ]=-",
+  "base_name": "Uber Battleray",
+  "gfx": null,
+  "sheet": null,
+  "hp": 2640000,
+  "shield": 2080000,
+  "speed": 350,
+  "damage_min": 38400,
+  "damage_max": 51200,
+  "damage": 51200,
+  "exp": 320000,
+  "honor": 300,
+  "credits": 4000000,
+  "uridium": 300,
+  "aggressive": true,
+  "note": "wiki-only (modern alien or no emulator row); gfx unknown; wiki ep typo 320,00 read as 320000",
+  "source": [
+   "https://darkorbit.fandom.com/wiki/Uber_Battleray"
+  ]
+ }
+]

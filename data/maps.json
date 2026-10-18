@@ -1,0 +1,4433 @@
+[
+ {
+  "id": 1,
+  "name": "1-1",
+  "faction": "mmo",
+  "w": 20800,
+  "h": 12800,
+  "background": "1",
+  "region": "2048,1276",
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "1",
+    "pFactor": "10",
+    "layer": "1"
+   },
+   {
+    "typeID": "2013",
+    "pFactor": "6",
+    "layer": "3",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2024",
+    "pFactor": "3",
+    "layer": "4",
+    "scale": "1.8",
+    "maskID": "18"
+   }
+  ],
+  "planets": [
+   {
+    "type": "114",
+    "x": 1110,
+    "y": 1100,
+    "p": 9,
+    "layer": 2
+   },
+   {
+    "type": "115",
+    "x": 680,
+    "y": 740,
+    "p": 5,
+    "layer": 5
+   },
+   {
+    "type": "116",
+    "x": 1800,
+    "y": 250,
+    "p": 6,
+    "layer": 6
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "1",
+    "x": 1740,
+    "y": 1106,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "normal",
+  "home": "1",
+  "minimap": "1",
+  "music": "1",
+  "portals": [
+   {
+    "id": 1,
+    "x": 18500,
+    "y": 11500,
+    "to": 2,
+    "tx": 2000,
+    "ty": 2000
+   }
+  ],
+  "stations": [
+   {
+    "faction": "mmo",
+    "x": 1000,
+    "y": 1000
+   }
+  ],
+  "npcs": [
+   {
+    "id": "streuner",
+    "count": 80
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": true,
+  "source": "research"
+ },
+ {
+  "id": 2,
+  "name": "1-2",
+  "faction": "mmo",
+  "w": 20800,
+  "h": 12800,
+  "background": "2",
+  "region": "2048,1276",
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "2",
+    "layer": "1"
+   },
+   {
+    "typeID": "2013",
+    "pFactor": "5",
+    "layer": "5",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2026",
+    "pFactor": "6",
+    "layer": "4",
+    "scale": "1.6",
+    "maskID": "20"
+   },
+   {
+    "typeID": "2024",
+    "pFactor": "3",
+    "layer": "6",
+    "scale": "1.8",
+    "maskID": "20"
+   }
+  ],
+  "planets": [
+   {
+    "type": "3",
+    "x": 492,
+    "y": 266,
+    "p": 8,
+    "layer": 3
+   },
+   {
+    "type": "4",
+    "x": 492,
+    "y": 1080,
+    "p": 6,
+    "layer": 3
+   },
+   {
+    "type": "193",
+    "x": 492,
+    "y": 1080,
+    "p": 7,
+    "layer": 2
+   },
+   {
+    "type": "198",
+    "x": 1560,
+    "y": 960,
+    "p": 9,
+    "layer": 2
+   },
+   {
+    "type": "10",
+    "x": 1800,
+    "y": 240,
+    "p": 8,
+    "layer": 3
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 1710,
+    "y": 800,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "normal",
+  "home": null,
+  "minimap": "2",
+  "music": "1",
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 2000,
+    "to": 1,
+    "tx": 18500,
+    "ty": 11500
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 2000,
+    "to": 3,
+    "tx": 2000,
+    "ty": 11500
+   },
+   {
+    "id": 3,
+    "x": 18500,
+    "y": 11500,
+    "to": 4,
+    "tx": 2000,
+    "ty": 2000
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "streuner",
+    "count": 40
+   },
+   {
+    "id": "lordakia",
+    "count": 40
+   },
+   {
+    "id": "boss_streuner",
+    "count": 4
+   },
+   {
+    "id": "boss_lordakia",
+    "count": 4
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": true,
+  "source": "research"
+ },
+ {
+  "id": 3,
+  "name": "1-3",
+  "faction": "mmo",
+  "w": 20800,
+  "h": 12800,
+  "background": "3",
+  "region": "2048,1276",
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "3",
+    "layer": "1"
+   },
+   {
+    "typeID": "2013",
+    "pFactor": "5",
+    "layer": "4",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2024",
+    "pFactor": "6",
+    "layer": "3",
+    "scale": "1.6",
+    "maskID": "20"
+   },
+   {
+    "typeID": "2022",
+    "pFactor": "3",
+    "layer": "5",
+    "scale": "1.8",
+    "maskID": "20"
+   }
+  ],
+  "planets": [
+   {
+    "type": "185",
+    "x": 450,
+    "y": 930,
+    "p": 9,
+    "layer": 2
+   },
+   {
+    "type": "13",
+    "x": 1800,
+    "y": 960,
+    "p": 9,
+    "layer": 2
+   },
+   {
+    "type": "150",
+    "x": 1580,
+    "y": 290,
+    "p": 8,
+    "layer": 2
+   },
+   {
+    "type": "149",
+    "x": 580,
+    "y": 500,
+    "p": 8,
+    "layer": 2
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 1725,
+    "y": 945,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "normal",
+  "home": null,
+  "minimap": "3",
+  "music": "1",
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 11500,
+    "to": 2,
+    "tx": 18500,
+    "ty": 2000
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 11500,
+    "to": 4,
+    "tx": 18500,
+    "ty": 2000
+   },
+   {
+    "id": 3,
+    "x": 18500,
+    "y": 2000,
+    "to": 7,
+    "tx": 2000,
+    "ty": 11500
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "lordakia",
+    "count": 30
+   },
+   {
+    "id": "saimon",
+    "count": 30
+   },
+   {
+    "id": "mordon",
+    "count": 20
+   },
+   {
+    "id": "devolarium",
+    "count": 10
+   },
+   {
+    "id": "boss_mordon",
+    "count": 4
+   },
+   {
+    "id": "boss_devolarium",
+    "count": 4
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": false,
+  "source": "research"
+ },
+ {
+  "id": 4,
+  "name": "1-4",
+  "faction": "mmo",
+  "w": 20800,
+  "h": 12800,
+  "background": "4",
+  "region": "2048,1276",
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "4",
+    "layer": "1"
+   },
+   {
+    "typeID": "2013",
+    "pFactor": "5",
+    "layer": "4",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2027",
+    "pFactor": "6",
+    "layer": "3",
+    "scale": "1.6",
+    "maskID": "20"
+   },
+   {
+    "typeID": "2028",
+    "pFactor": "3",
+    "layer": "5",
+    "scale": "1.8",
+    "maskID": "20"
+   }
+  ],
+  "planets": [
+   {
+    "type": "189",
+    "x": 1774,
+    "y": 360,
+    "p": 9,
+    "layer": 2
+   },
+   {
+    "type": "186",
+    "x": 450,
+    "y": 320,
+    "p": 8,
+    "layer": 2
+   },
+   {
+    "type": "1",
+    "x": 1520,
+    "y": 880,
+    "p": 8,
+    "layer": 2
+   },
+   {
+    "type": "2",
+    "x": 430,
+    "y": 550,
+    "p": 9,
+    "layer": 2
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 1724,
+    "y": 360,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "normal",
+  "home": null,
+  "minimap": "4",
+  "music": "1",
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 2000,
+    "to": 2,
+    "tx": 18500,
+    "ty": 11500
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 2000,
+    "to": 3,
+    "tx": 18500,
+    "ty": 11500
+   },
+   {
+    "id": 3,
+    "x": 18500,
+    "y": 11500,
+    "to": 12,
+    "tx": 2000,
+    "ty": 2000
+   },
+   {
+    "id": 4,
+    "x": 19500,
+    "y": 7000,
+    "to": 13,
+    "tx": 2000,
+    "ty": 7000
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "lordakia",
+    "count": 30
+   },
+   {
+    "id": "saimon",
+    "count": 30
+   },
+   {
+    "id": "mordon",
+    "count": 20
+   },
+   {
+    "id": "sibelon",
+    "count": 10
+   },
+   {
+    "id": "boss_saimon",
+    "count": 4
+   },
+   {
+    "id": "boss_sibelon",
+    "count": 4
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": false,
+  "source": "research"
+ },
+ {
+  "id": 5,
+  "name": "2-1",
+  "faction": "eic",
+  "w": 20800,
+  "h": 12800,
+  "background": "5",
+  "region": "2048,1276",
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "5",
+    "layer": "1"
+   },
+   {
+    "typeID": "2022",
+    "pFactor": "3",
+    "layer": "4",
+    "scale": "1.8",
+    "maskID": "16"
+   }
+  ],
+  "planets": [
+   {
+    "type": "117",
+    "x": 1762,
+    "y": 1206,
+    "p": 9,
+    "layer": 2
+   },
+   {
+    "type": "118",
+    "x": 527,
+    "y": 392,
+    "p": 8,
+    "layer": 3
+   },
+   {
+    "type": "121",
+    "x": 1228,
+    "y": 550,
+    "p": 7,
+    "layer": 5
+   },
+   {
+    "type": "120",
+    "x": 1096,
+    "y": 500,
+    "p": 5,
+    "layer": 6
+   },
+   {
+    "type": "122",
+    "x": 1197,
+    "y": 1000,
+    "p": 4,
+    "layer": 7
+   },
+   {
+    "type": "119",
+    "x": 1978,
+    "y": 1234,
+    "p": 3,
+    "layer": 8
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 344,
+    "y": 1114,
+    "p": 10,
+    "star": true
+   },
+   {
+    "id": "1",
+    "x": 1458,
+    "y": 628,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "normal",
+  "home": "2",
+  "minimap": "5",
+  "music": "2",
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 11500,
+    "to": 6,
+    "tx": 18500,
+    "ty": 2000
+   }
+  ],
+  "stations": [
+   {
+    "faction": "eic",
+    "x": 19000,
+    "y": 1000
+   }
+  ],
+  "npcs": [
+   {
+    "id": "streuner",
+    "count": 80
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": true,
+  "source": "research"
+ },
+ {
+  "id": 6,
+  "name": "2-2",
+  "faction": "eic",
+  "w": 20800,
+  "h": 12800,
+  "background": "6",
+  "region": "2048,1276",
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "6",
+    "layer": "1"
+   },
+   {
+    "typeID": "2011",
+    "pFactor": "5",
+    "layer": "6",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2022",
+    "pFactor": "6",
+    "layer": "5",
+    "scale": "1.6",
+    "maskID": "19"
+   },
+   {
+    "typeID": "2023",
+    "pFactor": "3",
+    "layer": "7",
+    "scale": "1.8",
+    "maskID": "20"
+   }
+  ],
+  "planets": [
+   {
+    "type": "17",
+    "x": 530,
+    "y": 830,
+    "p": 7,
+    "layer": 3
+   },
+   {
+    "type": "18",
+    "x": 1030,
+    "y": 300,
+    "p": 8,
+    "layer": 3
+   },
+   {
+    "type": "19",
+    "x": 1680,
+    "y": 1000,
+    "p": 9,
+    "layer": 2
+   },
+   {
+    "type": "194",
+    "x": 1770,
+    "y": 550,
+    "p": 8,
+    "layer": 3
+   },
+   {
+    "type": "197",
+    "x": 1450,
+    "y": 400,
+    "p": 9,
+    "layer": 2
+   },
+   {
+    "type": "144",
+    "x": 1750,
+    "y": 630,
+    "p": 7,
+    "layer": 4
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 375,
+    "y": 945,
+    "p": 10,
+    "star": true
+   },
+   {
+    "id": "1",
+    "x": 1444,
+    "y": 628,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "normal",
+  "home": null,
+  "minimap": "6",
+  "music": "2",
+  "portals": [
+   {
+    "id": 1,
+    "x": 18500,
+    "y": 2000,
+    "to": 5,
+    "tx": 2000,
+    "ty": 11500
+   },
+   {
+    "id": 2,
+    "x": 2000,
+    "y": 11500,
+    "to": 7,
+    "tx": 18500,
+    "ty": 2000
+   },
+   {
+    "id": 3,
+    "x": 18500,
+    "y": 11500,
+    "to": 8,
+    "tx": 2000,
+    "ty": 2000
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "streuner",
+    "count": 40
+   },
+   {
+    "id": "lordakia",
+    "count": 40
+   },
+   {
+    "id": "boss_streuner",
+    "count": 4
+   },
+   {
+    "id": "boss_lordakia",
+    "count": 4
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": true,
+  "source": "research"
+ },
+ {
+  "id": 7,
+  "name": "2-3",
+  "faction": "eic",
+  "w": 20800,
+  "h": 12800,
+  "background": "7",
+  "region": "2048,1276",
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "7",
+    "layer": "1"
+   },
+   {
+    "typeID": "2011",
+    "pFactor": "5",
+    "layer": "4",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2024",
+    "pFactor": "6",
+    "layer": "3",
+    "scale": "1.6",
+    "maskID": "19"
+   },
+   {
+    "typeID": "2022",
+    "pFactor": "3",
+    "layer": "5",
+    "scale": "1.8",
+    "maskID": "20"
+   }
+  ],
+  "planets": [
+   {
+    "type": "20",
+    "x": 340,
+    "y": 570,
+    "p": 8,
+    "layer": 2
+   },
+   {
+    "type": "21",
+    "x": 1560,
+    "y": 370,
+    "p": 7,
+    "layer": 2
+   },
+   {
+    "type": "22",
+    "x": 722,
+    "y": 880,
+    "p": 8,
+    "layer": 2
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 1725,
+    "y": 945,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "normal",
+  "home": null,
+  "minimap": "7",
+  "music": "2",
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 11500,
+    "to": 3,
+    "tx": 18500,
+    "ty": 2000
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 2000,
+    "to": 6,
+    "tx": 2000,
+    "ty": 11500
+   },
+   {
+    "id": 3,
+    "x": 18500,
+    "y": 11500,
+    "to": 8,
+    "tx": 18500,
+    "ty": 2000
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "lordakia",
+    "count": 30
+   },
+   {
+    "id": "saimon",
+    "count": 30
+   },
+   {
+    "id": "mordon",
+    "count": 20
+   },
+   {
+    "id": "devolarium",
+    "count": 10
+   },
+   {
+    "id": "boss_mordon",
+    "count": 4
+   },
+   {
+    "id": "boss_devolarium",
+    "count": 4
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": false,
+  "source": "research"
+ },
+ {
+  "id": 8,
+  "name": "2-4",
+  "faction": "eic",
+  "w": 20800,
+  "h": 12800,
+  "background": "8",
+  "region": "2048,1276",
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "8",
+    "layer": "1"
+   },
+   {
+    "typeID": "2011",
+    "pFactor": "5",
+    "layer": "4",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2025",
+    "pFactor": "6",
+    "layer": "3",
+    "scale": "1.6",
+    "maskID": "19"
+   },
+   {
+    "typeID": "2022",
+    "pFactor": "3",
+    "layer": "5",
+    "scale": "1.8",
+    "maskID": "20"
+   }
+  ],
+  "planets": [
+   {
+    "type": "23",
+    "x": 570,
+    "y": 350,
+    "p": 8,
+    "layer": 2
+   },
+   {
+    "type": "24",
+    "x": 1780,
+    "y": 240,
+    "p": 9,
+    "layer": 2
+   },
+   {
+    "type": "153",
+    "x": 520,
+    "y": 700,
+    "p": 9,
+    "layer": 2
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 375,
+    "y": 950,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "normal",
+  "home": null,
+  "minimap": "8",
+  "music": "2",
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 2000,
+    "to": 6,
+    "tx": 18500,
+    "ty": 11500
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 2000,
+    "to": 7,
+    "tx": 18500,
+    "ty": 11500
+   },
+   {
+    "id": 3,
+    "x": 2000,
+    "y": 11500,
+    "to": 11,
+    "tx": 2000,
+    "ty": 2000
+   },
+   {
+    "id": 4,
+    "x": 10000,
+    "y": 12000,
+    "to": 14,
+    "tx": 10700,
+    "ty": 1200
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "lordakia",
+    "count": 30
+   },
+   {
+    "id": "saimon",
+    "count": 30
+   },
+   {
+    "id": "mordon",
+    "count": 20
+   },
+   {
+    "id": "sibelon",
+    "count": 10
+   },
+   {
+    "id": "boss_saimon",
+    "count": 4
+   },
+   {
+    "id": "boss_sibelon",
+    "count": 4
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": false,
+  "source": "research"
+ },
+ {
+  "id": 9,
+  "name": "3-1",
+  "faction": "vru",
+  "w": 20800,
+  "h": 12800,
+  "background": "9",
+  "region": "2048,1276",
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "9",
+    "pFactor": "10",
+    "layer": "1"
+   },
+   {
+    "typeID": "2026",
+    "pFactor": "6",
+    "layer": "3",
+    "scale": "1.6",
+    "maskID": "19"
+   },
+   {
+    "typeID": "2027",
+    "pFactor": "3",
+    "layer": "5",
+    "scale": "1.8",
+    "maskID": "20"
+   }
+  ],
+  "planets": [
+   {
+    "type": "123",
+    "x": 1724,
+    "y": 1204,
+    "p": 9,
+    "layer": 2
+   },
+   {
+    "type": "124",
+    "x": 479,
+    "y": 874,
+    "p": 4,
+    "layer": 4
+   },
+   {
+    "type": "125",
+    "x": 1583,
+    "y": 302,
+    "p": 4,
+    "layer": 6
+   },
+   {
+    "type": "126",
+    "x": 529,
+    "y": 929,
+    "p": 2,
+    "layer": 7
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 346,
+    "y": 296,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "normal",
+  "home": "3",
+  "minimap": "9",
+  "music": "3",
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 2000,
+    "to": 10,
+    "tx": 18500,
+    "ty": 11500
+   }
+  ],
+  "stations": [
+   {
+    "faction": "vru",
+    "x": 19000,
+    "y": 12000
+   }
+  ],
+  "npcs": [
+   {
+    "id": "streuner",
+    "count": 80
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": true,
+  "source": "research"
+ },
+ {
+  "id": 10,
+  "name": "3-2",
+  "faction": "vru",
+  "w": 20800,
+  "h": 12800,
+  "background": "10",
+  "region": "2048,1276",
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "10",
+    "layer": "1"
+   },
+   {
+    "typeID": "2012",
+    "pFactor": "5",
+    "layer": "5",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2027",
+    "pFactor": "6",
+    "layer": "4",
+    "scale": "1.6",
+    "maskID": "19"
+   },
+   {
+    "typeID": "2025",
+    "pFactor": "3",
+    "layer": "6",
+    "scale": "1.8",
+    "maskID": "20"
+   }
+  ],
+  "planets": [
+   {
+    "type": "145",
+    "x": 1580,
+    "y": 1010,
+    "p": 7,
+    "layer": 4
+   },
+   {
+    "type": "195",
+    "x": 1480,
+    "y": 1010,
+    "p": 8,
+    "layer": 3
+   },
+   {
+    "type": "146",
+    "x": 770,
+    "y": 340,
+    "p": 8,
+    "layer": 4
+   },
+   {
+    "type": "147",
+    "x": 1000,
+    "y": 1080,
+    "p": 8,
+    "layer": 4
+   },
+   {
+    "type": "148",
+    "x": 1960,
+    "y": 990,
+    "p": 7,
+    "layer": 3
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 590,
+    "y": 270,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "normal",
+  "home": null,
+  "minimap": "10",
+  "music": "3",
+  "portals": [
+   {
+    "id": 1,
+    "x": 18500,
+    "y": 11500,
+    "to": 9,
+    "tx": 2000,
+    "ty": 2000
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 2000,
+    "to": 11,
+    "tx": 18500,
+    "ty": 11500
+   },
+   {
+    "id": 3,
+    "x": 2000,
+    "y": 2000,
+    "to": 12,
+    "tx": 18500,
+    "ty": 11500
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "streuner",
+    "count": 40
+   },
+   {
+    "id": "lordakia",
+    "count": 40
+   },
+   {
+    "id": "boss_streuner",
+    "count": 4
+   },
+   {
+    "id": "boss_lordakia",
+    "count": 4
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": true,
+  "source": "research"
+ },
+ {
+  "id": 11,
+  "name": "3-3",
+  "faction": "vru",
+  "w": 20800,
+  "h": 12800,
+  "background": "11",
+  "region": "2048,1276",
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "11",
+    "layer": "1"
+   },
+   {
+    "typeID": "2012",
+    "pFactor": "5",
+    "layer": "4",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2022",
+    "pFactor": "6",
+    "layer": "3",
+    "scale": "1.6",
+    "maskID": "20"
+   },
+   {
+    "typeID": "2027",
+    "pFactor": "3",
+    "layer": "5",
+    "scale": "1.8",
+    "maskID": "20"
+   }
+  ],
+  "planets": [
+   {
+    "type": "187",
+    "x": 360,
+    "y": 960,
+    "p": 9,
+    "layer": 2
+   },
+   {
+    "type": "152",
+    "x": 1610,
+    "y": 320,
+    "p": 9,
+    "layer": 2
+   },
+   {
+    "type": "151",
+    "x": 330,
+    "y": 850,
+    "p": 8,
+    "layer": 3
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 428,
+    "y": 288,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "normal",
+  "home": null,
+  "minimap": "11",
+  "music": "3",
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 2000,
+    "to": 8,
+    "tx": 2000,
+    "ty": 11500
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 11500,
+    "to": 10,
+    "tx": 18500,
+    "ty": 2000
+   },
+   {
+    "id": 3,
+    "x": 2000,
+    "y": 11500,
+    "to": 12,
+    "tx": 18500,
+    "ty": 2000
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "lordakia",
+    "count": 30
+   },
+   {
+    "id": "saimon",
+    "count": 30
+   },
+   {
+    "id": "mordon",
+    "count": 20
+   },
+   {
+    "id": "devolarium",
+    "count": 10
+   },
+   {
+    "id": "boss_mordon",
+    "count": 4
+   },
+   {
+    "id": "boss_devolarium",
+    "count": 4
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": false,
+  "source": "research"
+ },
+ {
+  "id": 12,
+  "name": "3-4",
+  "faction": "vru",
+  "w": 20800,
+  "h": 12800,
+  "background": "12",
+  "region": "2048,1276",
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "12",
+    "layer": "1"
+   },
+   {
+    "typeID": "2012",
+    "pFactor": "5",
+    "layer": "5",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2026",
+    "pFactor": "6",
+    "layer": "4",
+    "scale": "1.6",
+    "maskID": "19"
+   },
+   {
+    "typeID": "2027",
+    "pFactor": "3",
+    "layer": "6",
+    "scale": "1.8",
+    "maskID": "20"
+   }
+  ],
+  "planets": [
+   {
+    "type": "188",
+    "x": 420,
+    "y": 500,
+    "p": 9,
+    "layer": 2
+   },
+   {
+    "type": "155",
+    "x": 1750,
+    "y": 840,
+    "p": 9,
+    "layer": 2
+   },
+   {
+    "type": "154",
+    "x": 570,
+    "y": 380,
+    "p": 8,
+    "layer": 3
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 1722,
+    "y": 360,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "normal",
+  "home": null,
+  "minimap": "12",
+  "music": "3",
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 2000,
+    "to": 4,
+    "tx": 18500,
+    "ty": 11500
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 11500,
+    "to": 10,
+    "tx": 2000,
+    "ty": 2000
+   },
+   {
+    "id": 3,
+    "x": 18500,
+    "y": 2000,
+    "to": 11,
+    "tx": 2000,
+    "ty": 11500
+   },
+   {
+    "id": 4,
+    "x": 10000,
+    "y": 1200,
+    "to": 15,
+    "tx": 19500,
+    "ty": 7000
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "lordakia",
+    "count": 30
+   },
+   {
+    "id": "saimon",
+    "count": 30
+   },
+   {
+    "id": "mordon",
+    "count": 20
+   },
+   {
+    "id": "sibelon",
+    "count": 10
+   },
+   {
+    "id": "boss_saimon",
+    "count": 4
+   },
+   {
+    "id": "boss_sibelon",
+    "count": 4
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": false,
+  "source": "research"
+ },
+ {
+  "id": 13,
+  "name": "4-1",
+  "faction": "none",
+  "w": 20800,
+  "h": 12800,
+  "background": "13",
+  "region": null,
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "13",
+    "pFactor": "10",
+    "layer": "1"
+   },
+   {
+    "typeID": "2014",
+    "pFactor": "9",
+    "layer": "2",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2028",
+    "pFactor": "6",
+    "layer": "6",
+    "scale": "1.8",
+    "maskID": "18"
+   }
+  ],
+  "planets": [
+   {
+    "type": "127",
+    "x": 1931,
+    "y": 1081,
+    "p": 7,
+    "layer": 3
+   },
+   {
+    "type": "128",
+    "x": 673,
+    "y": 1039,
+    "p": 7,
+    "layer": 4
+   },
+   {
+    "type": "129",
+    "x": 678,
+    "y": 165,
+    "p": 7,
+    "layer": 5
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 1480,
+    "y": 672,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "normal",
+  "home": null,
+  "minimap": "13",
+  "music": "4",
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 7000,
+    "to": 4,
+    "tx": 19500,
+    "ty": 7000
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 2000,
+    "to": 14,
+    "tx": 2000,
+    "ty": 11500
+   },
+   {
+    "id": 3,
+    "x": 18500,
+    "y": 11500,
+    "to": 15,
+    "tx": 2000,
+    "ty": 11500
+   },
+   {
+    "id": 4,
+    "x": 10700,
+    "y": 7000,
+    "to": 16,
+    "tx": 19200,
+    "ty": 13400
+   }
+  ],
+  "stations": [
+   {
+    "faction": "mmo",
+    "x": 1600,
+    "y": 1600
+   }
+  ],
+  "npcs": [
+   {
+    "id": "deadly_battleray",
+    "count": 2
+   },
+   {
+    "id": "kristallin",
+    "count": 12
+   },
+   {
+    "id": "sibelonit",
+    "count": 7
+   },
+   {
+    "id": "lordakium",
+    "count": 3
+   },
+   {
+    "id": "kristallon",
+    "count": 3
+   },
+   {
+    "id": "sibelon",
+    "count": 3
+   }
+  ],
+  "npcSource": "client-list+guessed-counts",
+  "pvp": true,
+  "starter": false,
+  "source": "research"
+ },
+ {
+  "id": 14,
+  "name": "4-2",
+  "faction": "none",
+  "w": 20800,
+  "h": 12800,
+  "background": "14",
+  "region": null,
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "14",
+    "pFactor": "10",
+    "layer": "1"
+   },
+   {
+    "typeID": "2014",
+    "pFactor": "9",
+    "layer": "2",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2028",
+    "pFactor": "6",
+    "layer": "6",
+    "scale": "1.8",
+    "maskID": "18"
+   }
+  ],
+  "planets": [
+   {
+    "type": "127",
+    "x": 1160,
+    "y": 395,
+    "p": 7,
+    "layer": 3
+   },
+   {
+    "type": "128",
+    "x": 310,
+    "y": 265,
+    "p": 7,
+    "layer": 4
+   },
+   {
+    "type": "129",
+    "x": 425,
+    "y": 985,
+    "p": 7,
+    "layer": 5
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 590,
+    "y": 682,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "normal",
+  "home": null,
+  "minimap": "14",
+  "music": "4",
+  "portals": [
+   {
+    "id": 1,
+    "x": 10700,
+    "y": 1200,
+    "to": 8,
+    "tx": 10000,
+    "ty": 12000
+   },
+   {
+    "id": 2,
+    "x": 2000,
+    "y": 11500,
+    "to": 13,
+    "tx": 18500,
+    "ty": 2000
+   },
+   {
+    "id": 3,
+    "x": 18500,
+    "y": 11500,
+    "to": 15,
+    "tx": 2000,
+    "ty": 2000
+   },
+   {
+    "id": 4,
+    "x": 10700,
+    "y": 7000,
+    "to": 16,
+    "tx": 21900,
+    "ty": 11900
+   }
+  ],
+  "stations": [
+   {
+    "faction": "eic",
+    "x": 19500,
+    "y": 1500
+   }
+  ],
+  "npcs": [
+   {
+    "id": "deadly_battleray",
+    "count": 2
+   },
+   {
+    "id": "kristallin",
+    "count": 12
+   },
+   {
+    "id": "sibelonit",
+    "count": 7
+   },
+   {
+    "id": "lordakium",
+    "count": 3
+   },
+   {
+    "id": "kristallon",
+    "count": 3
+   },
+   {
+    "id": "sibelon",
+    "count": 3
+   }
+  ],
+  "npcSource": "client-list+guessed-counts",
+  "pvp": true,
+  "starter": false,
+  "source": "research"
+ },
+ {
+  "id": 15,
+  "name": "4-3",
+  "faction": "none",
+  "w": 20800,
+  "h": 12800,
+  "background": "15",
+  "region": null,
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "15",
+    "pFactor": "10",
+    "layer": "1"
+   },
+   {
+    "typeID": "2014",
+    "pFactor": "9",
+    "layer": "2",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2028",
+    "pFactor": "6",
+    "layer": "6",
+    "scale": "1.8",
+    "maskID": "18"
+   }
+  ],
+  "planets": [
+   {
+    "type": "127",
+    "x": 325,
+    "y": 175,
+    "p": 7,
+    "layer": 3
+   },
+   {
+    "type": "128",
+    "x": 1260,
+    "y": 435,
+    "p": 7,
+    "layer": 4
+   },
+   {
+    "type": "129",
+    "x": 375,
+    "y": 825,
+    "p": 7,
+    "layer": 5
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 560,
+    "y": 462,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "normal",
+  "home": null,
+  "minimap": "15",
+  "music": "4",
+  "portals": [
+   {
+    "id": 1,
+    "x": 19500,
+    "y": 7000,
+    "to": 12,
+    "tx": 10000,
+    "ty": 1200
+   },
+   {
+    "id": 2,
+    "x": 2000,
+    "y": 11500,
+    "to": 13,
+    "tx": 18500,
+    "ty": 11500
+   },
+   {
+    "id": 3,
+    "x": 2000,
+    "y": 2000,
+    "to": 14,
+    "tx": 18500,
+    "ty": 11500
+   },
+   {
+    "id": 4,
+    "x": 10700,
+    "y": 7000,
+    "to": 16,
+    "tx": 21800,
+    "ty": 14500
+   }
+  ],
+  "stations": [
+   {
+    "faction": "vru",
+    "x": 19500,
+    "y": 11600
+   }
+  ],
+  "npcs": [
+   {
+    "id": "deadly_battleray",
+    "count": 2
+   },
+   {
+    "id": "kristallin",
+    "count": 12
+   },
+   {
+    "id": "sibelonit",
+    "count": 7
+   },
+   {
+    "id": "lordakium",
+    "count": 3
+   },
+   {
+    "id": "kristallon",
+    "count": 3
+   },
+   {
+    "id": "sibelon",
+    "count": 3
+   }
+  ],
+  "npcSource": "client-list+guessed-counts",
+  "pvp": true,
+  "starter": false,
+  "source": "research"
+ },
+ {
+  "id": 16,
+  "name": "4-4",
+  "faction": "none",
+  "w": 41600,
+  "h": 25600,
+  "background": "16",
+  "region": "4096,2600",
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "1.6"
+   },
+   {
+    "typeID": "16",
+    "pFactor": "10",
+    "layer": "1"
+   },
+   {
+    "typeID": "2014",
+    "pFactor": "8",
+    "layer": "2",
+    "scale": "1.4",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2028",
+    "pFactor": "6",
+    "layer": "5",
+    "scale": "1.6",
+    "maskID": "18"
+   }
+  ],
+  "planets": [
+   {
+    "type": "130",
+    "x": 690,
+    "y": 1788,
+    "p": 7,
+    "layer": 3
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 2200,
+    "y": 1360,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "normal",
+  "home": null,
+  "minimap": "16",
+  "music": "4",
+  "portals": [
+   {
+    "id": 1,
+    "x": 19200,
+    "y": 13400,
+    "to": 13,
+    "tx": 10700,
+    "ty": 7000
+   },
+   {
+    "id": 2,
+    "x": 21900,
+    "y": 11900,
+    "to": 14,
+    "tx": 10700,
+    "ty": 7000
+   },
+   {
+    "id": 3,
+    "x": 21800,
+    "y": 14500,
+    "to": 15,
+    "tx": 10700,
+    "ty": 7000
+   },
+   {
+    "id": 4,
+    "x": 7000,
+    "y": 13500,
+    "to": 17,
+    "tx": 18500,
+    "ty": 6000
+   },
+   {
+    "id": 5,
+    "x": 28000,
+    "y": 1300,
+    "to": 21,
+    "tx": 2000,
+    "ty": 11500
+   },
+   {
+    "id": 6,
+    "x": 28000,
+    "y": 25100,
+    "to": 25,
+    "tx": 2000,
+    "ty": 2000
+   }
+  ],
+  "stations": [
+   {
+    "faction": "mmo",
+    "x": 3467,
+    "y": 12800
+   },
+   {
+    "faction": "eic",
+    "x": 32686,
+    "y": 4885
+   },
+   {
+    "faction": "vru",
+    "x": 32686,
+    "y": 20715
+   }
+  ],
+  "npcs": [
+   {
+    "id": "deadly_battleray",
+    "count": 2
+   },
+   {
+    "id": "kristallin",
+    "count": 12
+   },
+   {
+    "id": "sibelonit",
+    "count": 7
+   },
+   {
+    "id": "lordakium",
+    "count": 3
+   },
+   {
+    "id": "kristallon",
+    "count": 3
+   },
+   {
+    "id": "sibelon",
+    "count": 3
+   }
+  ],
+  "npcSource": "client-list+guessed-counts",
+  "pvp": true,
+  "starter": false,
+  "source": "research"
+ },
+ {
+  "id": 17,
+  "name": "1-5",
+  "faction": "mmo",
+  "w": 20800,
+  "h": 12800,
+  "background": "17",
+  "region": "2048,1276",
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "17",
+    "layer": "1"
+   },
+   {
+    "typeID": "2013",
+    "pFactor": "5",
+    "layer": "5",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2026",
+    "pFactor": "6",
+    "layer": "4",
+    "scale": "1.6",
+    "maskID": "20"
+   },
+   {
+    "typeID": "2024",
+    "pFactor": "3",
+    "layer": "6",
+    "scale": "1.8",
+    "maskID": "20"
+   }
+  ],
+  "planets": [
+   {
+    "type": "156",
+    "x": 1090,
+    "y": 250,
+    "p": 8,
+    "layer": 3
+   },
+   {
+    "type": "157",
+    "x": 492,
+    "y": 1080,
+    "p": 7,
+    "layer": 3
+   },
+   {
+    "type": "169",
+    "x": 360,
+    "y": 300,
+    "p": 9,
+    "layer": 2
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 1590,
+    "y": 810,
+    "p": 10,
+    "star": false
+   }
+  ],
+  "type": "normal",
+  "home": null,
+  "minimap": "17",
+  "music": "1",
+  "portals": [
+   {
+    "id": 1,
+    "x": 18500,
+    "y": 6000,
+    "to": 16,
+    "tx": 7000,
+    "ty": 13500
+   },
+   {
+    "id": 2,
+    "x": 2000,
+    "y": 2000,
+    "to": 18,
+    "tx": 18500,
+    "ty": 11500
+   },
+   {
+    "id": 3,
+    "x": 2000,
+    "y": 11500,
+    "to": 19,
+    "tx": 18500,
+    "ty": 2000
+   },
+   {
+    "id": 4,
+    "x": 10500,
+    "y": 12000,
+    "to": 29,
+    "tx": 5500,
+    "ty": 13500
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "lordakia",
+    "count": 30
+   },
+   {
+    "id": "sibelonit",
+    "count": 30
+   },
+   {
+    "id": "lordakium",
+    "count": 20
+   },
+   {
+    "id": "boss_sibelonit",
+    "count": 4
+   },
+   {
+    "id": "boss_lordakium",
+    "count": 4
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": false,
+  "source": "research"
+ },
+ {
+  "id": 18,
+  "name": "1-6",
+  "faction": "mmo",
+  "w": 20800,
+  "h": 12800,
+  "background": "18",
+  "region": "2048,1276",
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "18",
+    "layer": "1"
+   },
+   {
+    "typeID": "2013",
+    "pFactor": "5",
+    "layer": "5",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2026",
+    "pFactor": "6",
+    "layer": "4",
+    "scale": "1.6",
+    "maskID": "20"
+   },
+   {
+    "typeID": "2028",
+    "pFactor": "3",
+    "layer": "6",
+    "scale": "1.8",
+    "maskID": "20"
+   }
+  ],
+  "planets": [
+   {
+    "type": "159",
+    "x": 250,
+    "y": 250,
+    "p": 8,
+    "layer": 3
+   },
+   {
+    "type": "158",
+    "x": 492,
+    "y": 1080,
+    "p": 7,
+    "layer": 3
+   },
+   {
+    "type": "170",
+    "x": 1200,
+    "y": 666,
+    "p": 9,
+    "layer": 2
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 1555,
+    "y": 785,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "normal",
+  "home": null,
+  "minimap": "18",
+  "music": "1",
+  "portals": [
+   {
+    "id": 1,
+    "x": 18500,
+    "y": 11500,
+    "to": 17,
+    "tx": 2000,
+    "ty": 2000
+   },
+   {
+    "id": 2,
+    "x": 2000,
+    "y": 11500,
+    "to": 20,
+    "tx": 18500,
+    "ty": 2000
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "kristallin",
+    "count": 60
+   },
+   {
+    "id": "kristallon",
+    "count": 20
+   },
+   {
+    "id": "boss_kristallin",
+    "count": 4
+   },
+   {
+    "id": "cubikon",
+    "count": 4
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": false,
+  "source": "research"
+ },
+ {
+  "id": 19,
+  "name": "1-7",
+  "faction": "mmo",
+  "w": 20800,
+  "h": 12800,
+  "background": "19",
+  "region": "2048,1276",
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "19",
+    "layer": "1"
+   },
+   {
+    "typeID": "2013",
+    "pFactor": "5",
+    "layer": "5",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2026",
+    "pFactor": "6",
+    "layer": "4",
+    "scale": "1.6",
+    "maskID": "19"
+   },
+   {
+    "typeID": "2028",
+    "pFactor": "3",
+    "layer": "6",
+    "scale": "1.8",
+    "maskID": "20"
+   }
+  ],
+  "planets": [
+   {
+    "type": "159",
+    "x": 250,
+    "y": 250,
+    "p": 6,
+    "layer": 3
+   },
+   {
+    "type": "156",
+    "x": 492,
+    "y": 1080,
+    "p": 6,
+    "layer": 3
+   },
+   {
+    "type": "171",
+    "x": 1200,
+    "y": 666,
+    "p": 7,
+    "layer": 2
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 1225,
+    "y": 505,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "normal",
+  "home": null,
+  "minimap": "19",
+  "music": "1",
+  "portals": [
+   {
+    "id": 1,
+    "x": 18500,
+    "y": 2000,
+    "to": 17,
+    "tx": 2000,
+    "ty": 11500
+   },
+   {
+    "id": 2,
+    "x": 2000,
+    "y": 2000,
+    "to": 20,
+    "tx": 18500,
+    "ty": 11500
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "kristallin",
+    "count": 60
+   },
+   {
+    "id": "kristallon",
+    "count": 20
+   },
+   {
+    "id": "boss_kristallon",
+    "count": 4
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": false,
+  "source": "research"
+ },
+ {
+  "id": 20,
+  "name": "1-8",
+  "faction": "mmo",
+  "w": 20800,
+  "h": 12800,
+  "background": "20",
+  "region": "2048,1276",
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "20",
+    "layer": "1"
+   },
+   {
+    "typeID": "2013",
+    "pFactor": "5",
+    "layer": "5",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2026",
+    "pFactor": "6",
+    "layer": "4",
+    "scale": "1.6",
+    "maskID": "19"
+   },
+   {
+    "typeID": "2024",
+    "pFactor": "3",
+    "layer": "6",
+    "scale": "1.8",
+    "maskID": "20"
+   }
+  ],
+  "planets": [
+   {
+    "type": "13",
+    "x": 1340,
+    "y": 910,
+    "p": 9,
+    "layer": 2
+   },
+   {
+    "type": "157",
+    "x": 190,
+    "y": 670,
+    "p": 7,
+    "layer": 3
+   },
+   {
+    "type": "160",
+    "x": 950,
+    "y": 350,
+    "p": 6,
+    "layer": 3
+   },
+   {
+    "type": "172",
+    "x": 880,
+    "y": 1010,
+    "p": 9,
+    "layer": 2
+   },
+   {
+    "type": "173",
+    "x": 1550,
+    "y": 340,
+    "p": 9,
+    "layer": 2
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 1300,
+    "y": 880,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": null,
+  "home": null,
+  "minimap": "20",
+  "music": "1",
+  "portals": [
+   {
+    "id": 1,
+    "x": 18500,
+    "y": 2000,
+    "to": 18,
+    "tx": 2000,
+    "ty": 11500
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 11500,
+    "to": 19,
+    "tx": 2000,
+    "ty": 2000
+   }
+  ],
+  "stations": [
+   {
+    "faction": "mmo",
+    "x": 1000,
+    "y": 6000
+   }
+  ],
+  "npcs": [
+   {
+    "id": "streuner_r",
+    "count": 80
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": false,
+  "source": "research"
+ },
+ {
+  "id": 21,
+  "name": "2-5",
+  "faction": "eic",
+  "w": 20800,
+  "h": 12800,
+  "background": "21",
+  "region": "2048,1276",
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "21",
+    "layer": "1"
+   },
+   {
+    "typeID": "2011",
+    "pFactor": "5",
+    "layer": "4",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2022",
+    "pFactor": "6",
+    "layer": "3",
+    "scale": "1.6",
+    "maskID": "19"
+   },
+   {
+    "typeID": "2023",
+    "pFactor": "3",
+    "layer": "5",
+    "scale": "1.8",
+    "maskID": "20"
+   }
+  ],
+  "planets": [
+   {
+    "type": "161",
+    "x": 1430,
+    "y": 260,
+    "p": 7,
+    "layer": 3
+   },
+   {
+    "type": "162",
+    "x": 1280,
+    "y": 1130,
+    "p": 6,
+    "layer": 3
+   },
+   {
+    "type": "174",
+    "x": 990,
+    "y": 600,
+    "p": 8,
+    "layer": 2
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 650,
+    "y": 740,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "normal",
+  "home": null,
+  "minimap": "21",
+  "music": "2",
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 11500,
+    "to": 16,
+    "tx": 28000,
+    "ty": 1300
+   },
+   {
+    "id": 2,
+    "x": 2000,
+    "y": 2000,
+    "to": 22,
+    "tx": 2000,
+    "ty": 11500
+   },
+   {
+    "id": 3,
+    "x": 18500,
+    "y": 2000,
+    "to": 23,
+    "tx": 2000,
+    "ty": 11500
+   },
+   {
+    "id": 4,
+    "x": 18500,
+    "y": 11500,
+    "to": 29,
+    "tx": 27000,
+    "ty": 2000
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "lordakia",
+    "count": 30
+   },
+   {
+    "id": "sibelonit",
+    "count": 30
+   },
+   {
+    "id": "lordakium",
+    "count": 20
+   },
+   {
+    "id": "boss_sibelonit",
+    "count": 4
+   },
+   {
+    "id": "boss_lordakium",
+    "count": 4
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": false,
+  "source": "research"
+ },
+ {
+  "id": 22,
+  "name": "2-6",
+  "faction": "eic",
+  "w": 20800,
+  "h": 12800,
+  "background": "22",
+  "region": "2048,1276",
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "22",
+    "layer": "1"
+   },
+   {
+    "typeID": "2011",
+    "pFactor": "5",
+    "layer": "4",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2022",
+    "pFactor": "6",
+    "layer": "3",
+    "scale": "1.6",
+    "maskID": "19"
+   },
+   {
+    "typeID": "2023",
+    "pFactor": "3",
+    "layer": "5",
+    "scale": "1.8",
+    "maskID": "20"
+   }
+  ],
+  "planets": [
+   {
+    "type": "163",
+    "x": 1430,
+    "y": 260,
+    "p": 7,
+    "layer": 3
+   },
+   {
+    "type": "164",
+    "x": 1280,
+    "y": 1130,
+    "p": 6,
+    "layer": 3
+   },
+   {
+    "type": "175",
+    "x": 730,
+    "y": 740,
+    "p": 8,
+    "layer": 2
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 520,
+    "y": 670,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "normal",
+  "home": null,
+  "minimap": "22",
+  "music": "2",
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 11500,
+    "to": 21,
+    "tx": 2000,
+    "ty": 2000
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 2000,
+    "to": 24,
+    "tx": 2000,
+    "ty": 11500
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "kristallin",
+    "count": 60
+   },
+   {
+    "id": "kristallon",
+    "count": 20
+   },
+   {
+    "id": "boss_kristallin",
+    "count": 4
+   },
+   {
+    "id": "cubikon",
+    "count": 4
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": false,
+  "source": "research"
+ },
+ {
+  "id": 23,
+  "name": "2-7",
+  "faction": "eic",
+  "w": 20800,
+  "h": 12800,
+  "background": "23",
+  "region": "2048,1276",
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "23",
+    "layer": "1"
+   },
+   {
+    "typeID": "2011",
+    "pFactor": "5",
+    "layer": "4",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2022",
+    "pFactor": "6",
+    "layer": "3",
+    "scale": "1.6",
+    "maskID": "19"
+   },
+   {
+    "typeID": "2023",
+    "pFactor": "3",
+    "layer": "5",
+    "scale": "1.8",
+    "maskID": "20"
+   }
+  ],
+  "planets": [
+   {
+    "type": "161",
+    "x": 1430,
+    "y": 260,
+    "p": 7,
+    "layer": 3
+   },
+   {
+    "type": "165",
+    "x": 700,
+    "y": 1130,
+    "p": 6,
+    "layer": 3
+   },
+   {
+    "type": "176",
+    "x": 990,
+    "y": 741,
+    "p": 9,
+    "layer": 2
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 677,
+    "y": 370,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "normal",
+  "home": null,
+  "minimap": "23",
+  "music": "2",
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 11500,
+    "to": 21,
+    "tx": 18500,
+    "ty": 2000
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 2000,
+    "to": 24,
+    "tx": 18500,
+    "ty": 11500
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "kristallin",
+    "count": 60
+   },
+   {
+    "id": "kristallon",
+    "count": 20
+   },
+   {
+    "id": "boss_kristallon",
+    "count": 4
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": false,
+  "source": "research"
+ },
+ {
+  "id": 24,
+  "name": "2-8",
+  "faction": "eic",
+  "w": 20800,
+  "h": 12800,
+  "background": "24",
+  "region": "2048,1276",
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "24",
+    "layer": "1"
+   },
+   {
+    "typeID": "2011",
+    "pFactor": "5",
+    "layer": "4",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2022",
+    "pFactor": "6",
+    "layer": "3",
+    "scale": "1.6",
+    "maskID": "19"
+   },
+   {
+    "typeID": "2023",
+    "pFactor": "3",
+    "layer": "5",
+    "scale": "1.8",
+    "maskID": "20"
+   }
+  ],
+  "planets": [
+   {
+    "type": "163",
+    "x": 1430,
+    "y": 260,
+    "p": 7,
+    "layer": 3
+   },
+   {
+    "type": "162",
+    "x": 700,
+    "y": 1130,
+    "p": 6,
+    "layer": 3
+   },
+   {
+    "type": "178",
+    "x": 1460,
+    "y": 1090,
+    "p": 9,
+    "layer": 2
+   },
+   {
+    "type": "177",
+    "x": 540,
+    "y": 640,
+    "p": 9,
+    "layer": 2
+   }
+  ],
+  "lensflares": [],
+  "type": "normal",
+  "home": null,
+  "minimap": "24",
+  "music": "2",
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 11500,
+    "to": 22,
+    "tx": 18500,
+    "ty": 2000
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 11500,
+    "to": 23,
+    "tx": 18500,
+    "ty": 2000
+   }
+  ],
+  "stations": [
+   {
+    "faction": "eic",
+    "x": 10000,
+    "y": 1000
+   }
+  ],
+  "npcs": [
+   {
+    "id": "streuner_r",
+    "count": 80
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": false,
+  "source": "research"
+ },
+ {
+  "id": 25,
+  "name": "3-5",
+  "faction": "vru",
+  "w": 20800,
+  "h": 12800,
+  "background": "25",
+  "region": "2048,1276",
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "25",
+    "layer": "1"
+   },
+   {
+    "typeID": "2012",
+    "pFactor": "5",
+    "layer": "4",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2027",
+    "pFactor": "6",
+    "layer": "3",
+    "scale": "1.6",
+    "maskID": "19"
+   },
+   {
+    "typeID": "2025",
+    "pFactor": "3",
+    "layer": "5",
+    "scale": "1.8",
+    "maskID": "20"
+   }
+  ],
+  "planets": [
+   {
+    "type": "166",
+    "x": 1580,
+    "y": 1010,
+    "p": 9,
+    "layer": 2
+   },
+   {
+    "type": "167",
+    "x": 770,
+    "y": 340,
+    "p": 8,
+    "layer": 3
+   },
+   {
+    "type": "179",
+    "x": 990,
+    "y": 620,
+    "p": 9,
+    "layer": 2
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 990,
+    "y": 620,
+    "p": 9,
+    "star": true
+   }
+  ],
+  "type": "normal",
+  "home": null,
+  "minimap": "25",
+  "music": "3",
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 2000,
+    "to": 16,
+    "tx": 28000,
+    "ty": 25100
+   },
+   {
+    "id": 2,
+    "x": 2000,
+    "y": 11500,
+    "to": 26,
+    "tx": 2000,
+    "ty": 2000
+   },
+   {
+    "id": 3,
+    "x": 18500,
+    "y": 11500,
+    "to": 27,
+    "tx": 2000,
+    "ty": 11500
+   },
+   {
+    "id": 4,
+    "x": 18500,
+    "y": 2000,
+    "to": 29,
+    "tx": 27000,
+    "ty": 25000
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "lordakia",
+    "count": 30
+   },
+   {
+    "id": "sibelonit",
+    "count": 30
+   },
+   {
+    "id": "lordakium",
+    "count": 20
+   },
+   {
+    "id": "boss_sibelonit",
+    "count": 4
+   },
+   {
+    "id": "boss_lordakium",
+    "count": 4
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": false,
+  "source": "research"
+ },
+ {
+  "id": 26,
+  "name": "3-6",
+  "faction": "vru",
+  "w": 20800,
+  "h": 12800,
+  "background": "26",
+  "region": "2048,1276",
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "26",
+    "layer": "1"
+   },
+   {
+    "typeID": "2012",
+    "pFactor": "5",
+    "layer": "4",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2027",
+    "pFactor": "6",
+    "layer": "3",
+    "scale": "1.6",
+    "maskID": "19"
+   },
+   {
+    "typeID": "2025",
+    "pFactor": "3",
+    "layer": "5",
+    "scale": "1.8",
+    "maskID": "20"
+   }
+  ],
+  "planets": [
+   {
+    "type": "166",
+    "x": 390,
+    "y": 260,
+    "p": 9,
+    "layer": 2
+   },
+   {
+    "type": "167",
+    "x": 540,
+    "y": 1000,
+    "p": 8,
+    "layer": 3
+   },
+   {
+    "type": "166",
+    "x": 1700,
+    "y": 220,
+    "p": 8,
+    "layer": 3
+   },
+   {
+    "type": "180",
+    "x": 1248,
+    "y": 570,
+    "p": 9,
+    "layer": 2
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 1447,
+    "y": 335,
+    "p": 9,
+    "star": true
+   }
+  ],
+  "type": "normal",
+  "home": null,
+  "minimap": "26",
+  "music": "3",
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 2000,
+    "to": 25,
+    "tx": 2000,
+    "ty": 11500
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 11500,
+    "to": 28,
+    "tx": 2000,
+    "ty": 11500
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "kristallin",
+    "count": 60
+   },
+   {
+    "id": "kristallon",
+    "count": 20
+   },
+   {
+    "id": "boss_kristallin",
+    "count": 4
+   },
+   {
+    "id": "cubikon",
+    "count": 4
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": false,
+  "source": "research"
+ },
+ {
+  "id": 27,
+  "name": "3-7",
+  "faction": "vru",
+  "w": 20800,
+  "h": 12800,
+  "background": "27",
+  "region": "2048,1276",
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "27",
+    "layer": "1"
+   },
+   {
+    "typeID": "2012",
+    "pFactor": "5",
+    "layer": "4",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2027",
+    "pFactor": "6",
+    "layer": "3",
+    "scale": "1.6",
+    "maskID": "19"
+   },
+   {
+    "typeID": "2025",
+    "pFactor": "3",
+    "layer": "5",
+    "scale": "1.8",
+    "maskID": "20"
+   }
+  ],
+  "planets": [
+   {
+    "type": "166",
+    "x": 390,
+    "y": 260,
+    "p": 9,
+    "layer": 2
+   },
+   {
+    "type": "181",
+    "x": 1230,
+    "y": 657,
+    "p": 8,
+    "layer": 3
+   },
+   {
+    "type": "184",
+    "x": 500,
+    "y": 840,
+    "p": 9,
+    "layer": 2
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 1140,
+    "y": 420,
+    "p": 8,
+    "star": true
+   },
+   {
+    "id": "0",
+    "x": 1070,
+    "y": 860,
+    "p": 8,
+    "star": true
+   },
+   {
+    "id": "0",
+    "x": 1490,
+    "y": 710,
+    "p": 8,
+    "star": true
+   },
+   {
+    "id": "0",
+    "x": 600,
+    "y": 800,
+    "p": 10,
+    "star": false
+   }
+  ],
+  "type": "normal",
+  "home": null,
+  "minimap": "27",
+  "music": "3",
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 11500,
+    "to": 25,
+    "tx": 18500,
+    "ty": 11500
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 11500,
+    "to": 28,
+    "tx": 2000,
+    "ty": 2000
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "kristallin",
+    "count": 60
+   },
+   {
+    "id": "kristallon",
+    "count": 20
+   },
+   {
+    "id": "boss_kristallon",
+    "count": 4
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": false,
+  "source": "research"
+ },
+ {
+  "id": 28,
+  "name": "3-8",
+  "faction": "vru",
+  "w": 20800,
+  "h": 12800,
+  "background": "28",
+  "region": "2048,1276",
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.5"
+   },
+   {
+    "typeID": "28",
+    "layer": "1"
+   },
+   {
+    "typeID": "2012",
+    "pFactor": "5",
+    "layer": "4",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2027",
+    "pFactor": "6",
+    "layer": "3",
+    "scale": "1.6",
+    "maskID": "19"
+   },
+   {
+    "typeID": "2025",
+    "pFactor": "3",
+    "layer": "5",
+    "scale": "1.8",
+    "maskID": "20"
+   }
+  ],
+  "planets": [
+   {
+    "type": "166",
+    "x": 390,
+    "y": 260,
+    "p": 6,
+    "layer": 3
+   },
+   {
+    "type": "167",
+    "x": 340,
+    "y": 1111,
+    "p": 6,
+    "layer": 3
+   },
+   {
+    "type": "168",
+    "x": 1390,
+    "y": 760,
+    "p": 7,
+    "layer": 3
+   },
+   {
+    "type": "182",
+    "x": 900,
+    "y": 920,
+    "p": 9,
+    "layer": 2
+   },
+   {
+    "type": "183",
+    "x": 1760,
+    "y": 600,
+    "p": 9,
+    "layer": 2
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 890,
+    "y": 560,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "normal",
+  "home": null,
+  "minimap": "28",
+  "music": "3",
+  "portals": [
+   {
+    "id": 1,
+    "x": 2000,
+    "y": 11500,
+    "to": 26,
+    "tx": 18500,
+    "ty": 11500
+   },
+   {
+    "id": 2,
+    "x": 2000,
+    "y": 2000,
+    "to": 27,
+    "tx": 18500,
+    "ty": 11500
+   }
+  ],
+  "stations": [
+   {
+    "faction": "vru",
+    "x": 19000,
+    "y": 6000
+   }
+  ],
+  "npcs": [
+   {
+    "id": "streuner_r",
+    "count": 80
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": false,
+  "source": "research"
+ },
+ {
+  "id": 29,
+  "name": "4-5",
+  "faction": "none",
+  "w": 41600,
+  "h": 25600,
+  "background": "29",
+  "region": null,
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "1.6"
+   },
+   {
+    "typeID": "29",
+    "pFactor": "10",
+    "layer": "1"
+   },
+   {
+    "typeID": "2015",
+    "pFactor": "8",
+    "layer": "3",
+    "scale": "1.6",
+    "maskID": "17"
+   },
+   {
+    "typeID": "2023",
+    "pFactor": "6",
+    "layer": "4",
+    "scale": "1.8",
+    "maskID": "18"
+   }
+  ],
+  "planets": [
+   {
+    "type": "132",
+    "x": 3348,
+    "y": 850,
+    "p": 9,
+    "layer": 2
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 1610,
+    "y": 1360,
+    "p": 10,
+    "star": true
+   },
+   {
+    "id": "1",
+    "x": 2944,
+    "y": 884,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "normal",
+  "home": null,
+  "minimap": "29",
+  "music": "4",
+  "portals": [
+   {
+    "id": 1,
+    "x": 5500,
+    "y": 13500,
+    "to": 17,
+    "tx": 10500,
+    "ty": 12000
+   },
+   {
+    "id": 2,
+    "x": 27000,
+    "y": 2000,
+    "to": 21,
+    "tx": 18500,
+    "ty": 11500
+   },
+   {
+    "id": 3,
+    "x": 27000,
+    "y": 25000,
+    "to": 25,
+    "tx": 18500,
+    "ty": 2000
+   },
+   {
+    "id": 4,
+    "x": 24400,
+    "y": 20800,
+    "to": 91,
+    "tx": 35000,
+    "ty": 20000
+   },
+   {
+    "id": 5,
+    "x": 24400,
+    "y": 6400,
+    "to": 91,
+    "tx": 38000,
+    "ty": 13000
+   },
+   {
+    "id": 6,
+    "x": 11500,
+    "y": 13400,
+    "to": 91,
+    "tx": 35000,
+    "ty": 7500
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "streuner_r",
+    "count": 20
+   },
+   {
+    "id": "streuner",
+    "count": 20
+   },
+   {
+    "id": "lordakia",
+    "count": 20
+   },
+   {
+    "id": "saimon",
+    "count": 20
+   },
+   {
+    "id": "mordon",
+    "count": 20
+   },
+   {
+    "id": "devolarium",
+    "count": 20
+   },
+   {
+    "id": "sibelon",
+    "count": 20
+   },
+   {
+    "id": "sibelonit",
+    "count": 20
+   },
+   {
+    "id": "lordakium",
+    "count": 20
+   },
+   {
+    "id": "kristallin",
+    "count": 20
+   },
+   {
+    "id": "kristallon",
+    "count": 20
+   },
+   {
+    "id": "boss_streuner",
+    "count": 8
+   },
+   {
+    "id": "boss_lordakia",
+    "count": 8
+   },
+   {
+    "id": "boss_saimon",
+    "count": 8
+   },
+   {
+    "id": "boss_mordon",
+    "count": 8
+   },
+   {
+    "id": "boss_devolarium",
+    "count": 8
+   },
+   {
+    "id": "boss_sibelon",
+    "count": 8
+   },
+   {
+    "id": "boss_sibelonit",
+    "count": 8
+   },
+   {
+    "id": "boss_lordakium",
+    "count": 8
+   },
+   {
+    "id": "boss_kristallin",
+    "count": 8
+   },
+   {
+    "id": "boss_kristallon",
+    "count": 8
+   },
+   {
+    "id": "boss_streuner_r",
+    "count": 8
+   },
+   {
+    "id": "uber_streuner",
+    "count": 4
+   },
+   {
+    "id": "uber_lordakia",
+    "count": 4
+   },
+   {
+    "id": "uber_saimon",
+    "count": 4
+   },
+   {
+    "id": "uber_mordon",
+    "count": 4
+   },
+   {
+    "id": "uber_devolarium",
+    "count": 4
+   },
+   {
+    "id": "uber_sibelon",
+    "count": 4
+   },
+   {
+    "id": "uber_sibelonit",
+    "count": 4
+   },
+   {
+    "id": "uber_lordakium",
+    "count": 4
+   },
+   {
+    "id": "uber_kristallin",
+    "count": 4
+   },
+   {
+    "id": "uber_kristallon",
+    "count": 4
+   },
+   {
+    "id": "uber_streuner_r",
+    "count": 4
+   }
+  ],
+  "npcSource": "research",
+  "pvp": true,
+  "starter": false,
+  "source": "research"
+ },
+ {
+  "id": 91,
+  "name": "5-1",
+  "faction": "none",
+  "w": 41600,
+  "h": 25600,
+  "background": "91",
+  "region": null,
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "1.6"
+   },
+   {
+    "typeID": "91",
+    "pFactor": "10",
+    "layer": "1"
+   },
+   {
+    "typeID": "2024",
+    "pFactor": "7",
+    "layer": "3",
+    "scale": "1.4",
+    "maskID": "1"
+   },
+   {
+    "typeID": "2011",
+    "pFactor": "6",
+    "layer": "4",
+    "scale": "1.4",
+    "maskID": "2"
+   },
+   {
+    "typeID": "2022",
+    "pFactor": "4",
+    "layer": "5",
+    "scale": "1.4",
+    "maskID": "3"
+   }
+  ],
+  "planets": [
+   {
+    "type": "44",
+    "x": 800,
+    "y": 800,
+    "p": 8,
+    "layer": 2
+   },
+   {
+    "type": "48",
+    "x": 490,
+    "y": 690,
+    "p": 1,
+    "layer": 7
+   },
+   {
+    "type": "48",
+    "x": 260,
+    "y": 1360,
+    "p": 1,
+    "layer": 8
+   },
+   {
+    "type": "48",
+    "x": 490,
+    "y": 2070,
+    "p": 1,
+    "layer": 9
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 900,
+    "y": 920,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "pirate",
+  "home": null,
+  "minimap": "91",
+  "music": "5",
+  "portals": [
+   {
+    "id": 1,
+    "x": 35000,
+    "y": 20000,
+    "to": 29,
+    "tx": 24400,
+    "ty": 20800
+   },
+   {
+    "id": 2,
+    "x": 38000,
+    "y": 13000,
+    "to": 29,
+    "tx": 24400,
+    "ty": 6400
+   },
+   {
+    "id": 3,
+    "x": 35000,
+    "y": 7500,
+    "to": 29,
+    "tx": 11500,
+    "ty": 13400
+   },
+   {
+    "id": 4,
+    "x": 4600,
+    "y": 6800,
+    "to": 92,
+    "tx": 18000,
+    "ty": 10000
+   },
+   {
+    "id": 5,
+    "x": 2200,
+    "y": 13500,
+    "to": 92,
+    "tx": 18500,
+    "ty": 6400
+   },
+   {
+    "id": 6,
+    "x": 4600,
+    "y": 20700,
+    "to": 92,
+    "tx": 18000,
+    "ty": 2800
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "interceptor",
+    "count": 40
+   },
+   {
+    "id": "barracuda",
+    "count": 20
+   },
+   {
+    "id": "saboteur",
+    "count": 20
+   },
+   {
+    "id": "annihilator",
+    "count": 10
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": false,
+  "source": "research"
+ },
+ {
+  "id": 92,
+  "name": "5-2",
+  "faction": "none",
+  "w": 20800,
+  "h": 12800,
+  "background": "92",
+  "region": null,
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "2.2",
+    "maskID": "4"
+   },
+   {
+    "typeID": "92",
+    "pFactor": "10",
+    "layer": "1"
+   },
+   {
+    "typeID": "2024",
+    "pFactor": "7",
+    "layer": "3",
+    "scale": "1.6",
+    "maskID": "5"
+   },
+   {
+    "typeID": "2011",
+    "pFactor": "6",
+    "layer": "4",
+    "scale": "1.4",
+    "maskID": "6"
+   },
+   {
+    "typeID": "2022",
+    "pFactor": "4",
+    "layer": "5",
+    "scale": "1.6",
+    "maskID": "7"
+   }
+  ],
+  "planets": [
+   {
+    "type": "45",
+    "x": 1050,
+    "y": 0,
+    "p": 8,
+    "layer": 2
+   },
+   {
+    "type": "48",
+    "x": 250,
+    "y": 370,
+    "p": 1,
+    "layer": 6
+   },
+   {
+    "type": "48",
+    "x": 100,
+    "y": 685,
+    "p": 1,
+    "layer": 7
+   },
+   {
+    "type": "48",
+    "x": 250,
+    "y": 1100,
+    "p": 1,
+    "layer": 8
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "0",
+    "x": 1410,
+    "y": 500,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "pirate",
+  "home": null,
+  "minimap": "92",
+  "music": "5",
+  "portals": [
+   {
+    "id": 1,
+    "x": 18000,
+    "y": 10000,
+    "to": 91,
+    "tx": 4600,
+    "ty": 6800
+   },
+   {
+    "id": 2,
+    "x": 18500,
+    "y": 6400,
+    "to": 91,
+    "tx": 2200,
+    "ty": 13500
+   },
+   {
+    "id": 3,
+    "x": 18000,
+    "y": 2800,
+    "to": 91,
+    "tx": 4600,
+    "ty": 20700
+   },
+   {
+    "id": 4,
+    "x": 2200,
+    "y": 11000,
+    "to": 93,
+    "tx": 37500,
+    "ty": 9000
+   },
+   {
+    "id": 5,
+    "x": 2200,
+    "y": 3600,
+    "to": 93,
+    "tx": 37500,
+    "ty": 13000
+   },
+   {
+    "id": 6,
+    "x": 700,
+    "y": 6800,
+    "to": 93,
+    "tx": 37500,
+    "ty": 11000
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "interceptor",
+    "count": 40
+   },
+   {
+    "id": "barracuda",
+    "count": 20
+   },
+   {
+    "id": "saboteur",
+    "count": 20
+   },
+   {
+    "id": "annihilator",
+    "count": 10
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": false,
+  "source": "research"
+ },
+ {
+  "id": 93,
+  "name": "5-3",
+  "faction": "none",
+  "w": 41600,
+  "h": 25600,
+  "background": "93",
+  "region": null,
+  "backgrounds": [
+   {
+    "typeID": "2001",
+    "pFactor": "10",
+    "layer": "0",
+    "scale": "1.6"
+   },
+   {
+    "typeID": "93",
+    "pFactor": "10",
+    "layer": "1"
+   },
+   {
+    "typeID": "2024",
+    "pFactor": "7",
+    "layer": "3",
+    "scale": "1.4",
+    "maskID": "8"
+   },
+   {
+    "typeID": "2022",
+    "pFactor": "4",
+    "layer": "5",
+    "scale": "1.4",
+    "maskID": "9"
+   }
+  ],
+  "planets": [
+   {
+    "type": "46",
+    "x": 3400,
+    "y": 820,
+    "p": 8,
+    "layer": 2
+   },
+   {
+    "type": "49",
+    "x": 164,
+    "y": 966,
+    "p": 1,
+    "layer": 6
+   },
+   {
+    "type": "49",
+    "x": 164,
+    "y": 1366,
+    "p": 1,
+    "layer": 7
+   },
+   {
+    "type": "49",
+    "x": 164,
+    "y": 1766,
+    "p": 1,
+    "layer": 8
+   }
+  ],
+  "lensflares": [
+   {
+    "id": "3",
+    "x": 1770,
+    "y": 1660,
+    "p": 10,
+    "star": true
+   }
+  ],
+  "type": "pirate",
+  "home": null,
+  "minimap": "93",
+  "music": "5",
+  "portals": [
+   {
+    "id": 1,
+    "x": 5000,
+    "y": 7000,
+    "to": 20,
+    "tx": 1000,
+    "ty": 6400
+   },
+   {
+    "id": 2,
+    "x": 5000,
+    "y": 11000,
+    "to": 24,
+    "tx": 10000,
+    "ty": 1000
+   },
+   {
+    "id": 3,
+    "x": 5000,
+    "y": 16000,
+    "to": 28,
+    "tx": 18500,
+    "ty": 6400
+   },
+   {
+    "id": 4,
+    "x": 37500,
+    "y": 9000,
+    "to": 92,
+    "tx": 2200,
+    "ty": 11000
+   },
+   {
+    "id": 5,
+    "x": 37500,
+    "y": 11000,
+    "to": 92,
+    "tx": 2200,
+    "ty": 3600
+   },
+   {
+    "id": 6,
+    "x": 37500,
+    "y": 13000,
+    "to": 92,
+    "tx": 700,
+    "ty": 6800
+   }
+  ],
+  "stations": [],
+  "npcs": [
+   {
+    "id": "interceptor",
+    "count": 40
+   },
+   {
+    "id": "barracuda",
+    "count": 20
+   },
+   {
+    "id": "saboteur",
+    "count": 20
+   },
+   {
+    "id": "annihilator",
+    "count": 10
+   }
+  ],
+  "npcSource": "research",
+  "pvp": false,
+  "starter": false,
+  "source": "research"
+ }
+]

@@ -1,0 +1,13 @@
+extracted/
+.venv/
+client/public/assets/
+client/node_modules/
+client/dist/
+server/target/
+client/public/assets3d/
+research/_build/
+video/out/
+video/clips/
+video/frames/
+video/node_modules/
+__pycache__/

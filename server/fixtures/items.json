@@ -1,0 +1,623 @@
+{
+ "_note": "Equipment + modern (Unity-era) damage model. Owned by the server agent. Everything is free/unlimited. Sources per section in `_src`; `guess` marks values not found in a source. See research/damage_model.md.",
+ "lasers": [
+  {
+   "id": "lf1",
+   "name": "LF-1",
+   "damage": 65,
+   "_src": "wiki Laser cannon (current)"
+  },
+  {
+   "id": "mp1",
+   "name": "MP-1",
+   "damage": 75,
+   "_src": "wiki Laser cannon"
+  },
+  {
+   "id": "lf2",
+   "name": "LF-2",
+   "damage": 140,
+   "_src": "wiki Laser cannon"
+  },
+  {
+   "id": "lf3",
+   "name": "LF-3",
+   "damage": 175,
+   "pve": 0.15,
+   "_src": "wiki LF-3: +15% vs aliens"
+  },
+  {
+   "id": "lf4",
+   "name": "LF-4",
+   "damage": 200,
+   "_src": "wiki LF-4"
+  },
+  {
+   "id": "lf4-u",
+   "name": "Unstable LF-4",
+   "damage": 220,
+   "_src": "wiki: 128-220 random (max used)"
+  },
+  {
+   "id": "lf4-md",
+   "name": "LF-4 Magmadrill",
+   "damage": 230,
+   "flatPvp": 5,
+   "_src": "wiki LF-4 Magmadrill: +5 PvP flat after ammo"
+  },
+  {
+   "id": "lf4-pd",
+   "name": "LF-4 Paritydrill",
+   "damage": 230,
+   "flatPve": 5,
+   "_src": "wiki LF-4 Paritydrill"
+  },
+  {
+   "id": "lf4-hp",
+   "name": "LF-4 Hyperplasmoid",
+   "damage": 225,
+   "hpPerLaser": 0.005,
+   "_src": "wiki LF-4 Hyperplasmoid"
+  },
+  {
+   "id": "lf5",
+   "name": "LF-5",
+   "damage": 245,
+   "upgradePerLevel": 0.005,
+   "maxLevel": 20,
+   "_src": "board-en FAQ New lasers LF-5 (2025): 245, lvl 20, +0.5%/lvl"
+  },
+  {
+   "id": "lf5-al",
+   "name": "LF-5 Anchorlock",
+   "damage": 245,
+   "upgradePerLevel": 0.005,
+   "maxLevel": 20,
+   "pvp": 0.22,
+   "_src": "board-en FAQ: PvP bonus scales with count, 16 equipped = 22% (flat 22% used, guess)"
+  },
+  {
+   "id": "prometheus",
+   "name": "Prometheus",
+   "damage": 210,
+   "overdrive": 200,
+   "upgradePerLevel": 0.0046875,
+   "_src": "wiki Prometheus Laser: 210 + 200 overdrive every 5 s; lvl16 +7.5% (wiki Maximum Prometheus Damage)"
+  },
+  {
+   "id": "caucasus",
+   "name": "Caucasus",
+   "damage": 200,
+   "overdrive": 100,
+   "pve": 0.15,
+   "_src": "wiki Laser cannon"
+  },
+  {
+   "id": "odysseus",
+   "name": "Odysseus",
+   "damage": 220,
+   "_src": "wiki Odysseus Laser (crit chance not modelled)"
+  },
+  {
+   "id": "asmodeus",
+   "name": "Asmodeus",
+   "damage": 205,
+   "pve": 0.25,
+   "_src": "wiki Asmodeus: set bonus +25% (fervor stacks not modelled)"
+  },
+  {
+   "id": "lf-p01",
+   "name": "LF-P01",
+   "damage": 280,
+   "petOnly": true,
+   "_src": "wiki LF-P01 (P.E.T. only)"
+  }
+ ],
+ "shieldGens": [
+  {
+   "id": "sg3n-a01",
+   "name": "SG3N-A01",
+   "shield": 1000,
+   "absorb": 0.4
+  },
+  {
+   "id": "sg3n-a02",
+   "name": "SG3N-A02",
+   "shield": 2000,
+   "absorb": 0.5
+  },
+  {
+   "id": "sg3n-a03",
+   "name": "SG3N-A03",
+   "shield": 5000,
+   "absorb": 0.6
+  },
+  {
+   "id": "sg3n-b01",
+   "name": "SG3N-B01",
+   "shield": 9500,
+   "absorb": 0.7
+  },
+  {
+   "id": "sg3n-b02",
+   "name": "SG3N-B02",
+   "shield": 10000,
+   "absorb": 0.8
+  },
+  {
+   "id": "sg3n-b00",
+   "name": "SG3N-B00",
+   "shield": 9000,
+   "absorb": 0.7
+  },
+  {
+   "id": "sg3n-b03",
+   "name": "SG3N-B03",
+   "shield": 11450,
+   "absorb": 0.8
+  },
+  {
+   "id": "fs-01",
+   "name": "FS-01",
+   "shield": 3200,
+   "absorb": 0.7
+  },
+  {
+   "id": "fs-02",
+   "name": "FS-02",
+   "shield": 5600,
+   "absorb": 0.75
+  },
+  {
+   "id": "fs-03",
+   "name": "FS-03",
+   "shield": 8000,
+   "absorb": 0.8
+  }
+ ],
+ "speedGens": [
+  {
+   "id": "g3n-1010",
+   "name": "G3N-1010",
+   "speed": 2
+  },
+  {
+   "id": "g3n-2010",
+   "name": "G3N-2010",
+   "speed": 3
+  },
+  {
+   "id": "g3n-3210",
+   "name": "G3N-3210",
+   "speed": 4
+  },
+  {
+   "id": "g3n-3310",
+   "name": "G3N-3310",
+   "speed": 5
+  },
+  {
+   "id": "g3n-6900",
+   "name": "G3N-6900",
+   "speed": 7
+  },
+  {
+   "id": "g3n-7900",
+   "name": "G3N-7900",
+   "speed": 10
+  }
+ ],
+ "extras": [
+  {
+   "id": "rep-1",
+   "name": "REP-1",
+   "repair": 1000,
+   "desc": "Repair bot (guess rate)"
+  },
+  {
+   "id": "rep-2",
+   "name": "REP-2",
+   "repair": 2000,
+   "desc": "Repair bot (guess rate)"
+  },
+  {
+   "id": "rep-3",
+   "name": "REP-3",
+   "repair": 3500,
+   "desc": "Repair bot (guess rate)"
+  },
+  {
+   "id": "rep-4",
+   "name": "REP-4",
+   "repair": 5000,
+   "desc": "Repair bot (guess rate)"
+  },
+  {
+   "id": "aim-01",
+   "name": "AIM-01",
+   "missMult": 0.5,
+   "desc": "Targeting CPU: halves laser miss chance"
+  },
+  {
+   "id": "aim-02",
+   "name": "AIM-02",
+   "missMult": 0.0,
+   "desc": "Targeting CPU: lasers never miss"
+  },
+  {
+   "id": "arol-x",
+   "name": "AROL-X",
+   "autoRocket": true,
+   "desc": "Auto rocket launcher"
+  }
+ ],
+ "drones": [
+  {
+   "id": "flax",
+   "name": "Flax",
+   "slots": 1
+  },
+  {
+   "id": "iris",
+   "name": "Iris",
+   "slots": 2
+  },
+  {
+   "id": "apis",
+   "name": "Apis",
+   "slots": 2
+  },
+  {
+   "id": "zeus",
+   "name": "Zeus",
+   "slots": 2
+  }
+ ],
+ "droneDesigns": [
+  {
+   "id": "havoc",
+   "name": "Havoc",
+   "damage": 0.1,
+   "shield": 0,
+   "hp": 0,
+   "minDrones": 10,
+   "desc": "+10% drone laser damage (wiki Havoc)"
+  },
+  {
+   "id": "hercules",
+   "name": "Hercules",
+   "damage": 0,
+   "shield": 0.15,
+   "hp": 0.2,
+   "minDrones": 10,
+   "desc": "+15% drone shield, +20% HP (wiki Hercules)"
+  },
+  {
+   "id": "spartan",
+   "name": "Spartan",
+   "damage": 0.1,
+   "shield": 0.1,
+   "hp": 0.15,
+   "minDrones": 10,
+   "desc": "+10% damage, +10% shield, +15% HP (wiki Spartan)"
+  }
+ ],
+ "maxDrones": 10,
+ "formations": [
+  {
+   "id": "standard",
+   "name": "Standard",
+   "desc": "No bonus"
+  },
+  {
+   "id": "drill",
+   "name": "Drill",
+   "laser": 0.2,
+   "speed": -0.05,
+   "desc": "+20% laser damage, -5% speed"
+  },
+  {
+   "id": "pincer",
+   "name": "Pincer",
+   "pvp": 0.03,
+   "penetration": -0.1,
+   "desc": "+3% damage vs players, -10% shield penetration"
+  },
+  {
+   "id": "heart",
+   "name": "Heart",
+   "shield": 0.2,
+   "hp": 0.2,
+   "laser": -0.05,
+   "desc": "+20% shield, +20% HP, -5% laser damage"
+  },
+  {
+   "id": "turtle",
+   "name": "Turtle",
+   "shield": 0.1,
+   "laser": -0.075,
+   "rocket": -0.075,
+   "desc": "+10% shield, -7.5% damage"
+  },
+  {
+   "id": "arrow",
+   "name": "Arrow",
+   "rocket": 0.2,
+   "laser": -0.03,
+   "desc": "+20% rocket damage, -3% laser damage"
+  },
+  {
+   "id": "star",
+   "name": "Star",
+   "rocket": 0.25,
+   "rocketCooldown": 0.33,
+   "desc": "+25% rocket damage, +33% rocket reload"
+  },
+  {
+   "id": "double_arrow",
+   "name": "Double Arrow",
+   "penetration": 0.1,
+   "shield": -0.2,
+   "desc": "+10% shield penetration, -20% shield"
+  },
+  {
+   "id": "diamond",
+   "name": "Diamond",
+   "shieldRegen": 0.01,
+   "hp": -0.3,
+   "desc": "Shield regen 1%/s, -30% HP"
+  },
+  {
+   "id": "chevron",
+   "name": "Chevron",
+   "rocket": 0.65,
+   "hp": -0.2,
+   "desc": "+65% rocket damage, -20% HP"
+  },
+  {
+   "id": "moth",
+   "name": "Moth",
+   "penetration": 0.2,
+   "hp": 0.2,
+   "shieldDrain": 0.05,
+   "desc": "+20% penetration, +20% HP, -5% shield/s"
+  },
+  {
+   "id": "crab",
+   "name": "Crab",
+   "absorb": 0.2,
+   "speed": -0.15,
+   "desc": "+20% shield absorption, -15% speed"
+  },
+  {
+   "id": "barrage",
+   "name": "Barrage",
+   "pve": 0.05,
+   "absorb": -0.15,
+   "desc": "+5% laser damage vs aliens, -15% absorption"
+  },
+  {
+   "id": "bat",
+   "name": "Bat",
+   "pve": 0.08,
+   "speed": -0.15,
+   "desc": "+8% damage vs aliens, -15% speed"
+  },
+  {
+   "id": "dome",
+   "name": "Dome",
+   "shield": 0.3,
+   "shieldRegen": 0.005,
+   "rocketCooldown": -0.25,
+   "laser": -0.5,
+   "speed": -0.5,
+   "desc": "+30% shield, 0.5%/s regen, -25% rocket cd, -50% laser and speed"
+  },
+  {
+   "id": "ring",
+   "name": "Ring",
+   "shield": 0.85,
+   "speed": -0.05,
+   "laser": -0.25,
+   "rocketCooldown": 0.25,
+   "desc": "+85% shield, -5% speed, -25% laser, +25% rocket cd"
+  },
+  {
+   "id": "veteran",
+   "name": "Veteran",
+   "laser": -0.2,
+   "hp": -0.2,
+   "shield": -0.2,
+   "desc": "+20% honour, -20% laser/HP/shield"
+  },
+  {
+   "id": "wheel",
+   "name": "Wheel",
+   "speed": 0.05,
+   "laser": -0.2,
+   "shieldDrain": 0.05,
+   "desc": "+5% speed, -20% laser, -5% shield/s"
+  }
+ ],
+ "boosters": [
+  {
+   "id": "dmg-b01",
+   "name": "DMG-B01",
+   "damage": 0.1,
+   "_src": "wiki DMG-B01: +10% lasers, rockets, P.E.T."
+  },
+  {
+   "id": "dmg-b02",
+   "name": "DMG-B02",
+   "damage": 0.1,
+   "_src": "wiki DMG-B02"
+  },
+  {
+   "id": "mul-b03",
+   "name": "MUL-B03 (ex KAPPA-B01)",
+   "damage": 0.05,
+   "shield": 0.05,
+   "_src": "wiki KAPPA-B01"
+  },
+  {
+   "id": "shd-b01",
+   "name": "SHD-B01",
+   "shield": 0.25,
+   "_src": "wiki SHD-B01"
+  },
+  {
+   "id": "shd-b02",
+   "name": "SHD-B02",
+   "shield": 0.25,
+   "_src": "guess: same as SHD-B01"
+  },
+  {
+   "id": "hp-b01",
+   "name": "HP-B01",
+   "hp": 0.1,
+   "_src": "wiki HP-B01"
+  },
+  {
+   "id": "hp-b02",
+   "name": "HP-B02",
+   "hp": 0.1,
+   "_src": "guess: same as HP-B01"
+  },
+  {
+   "id": "rep-b01",
+   "name": "REP-B01",
+   "repair": 0.1,
+   "_src": "guess"
+  }
+ ],
+ "skills": {
+  "_src": "wiki Skill tree / Alien Hunter / Bounty Hunter (all maxed; the real game caps research points at 50)",
+  "alienHunter": 0.12,
+  "bountyHunter": 0.16,
+  "rocketFusion": 0.15,
+  "shieldEngineering": 0.25,
+  "shipHull": 50000,
+  "engineering": 0.3,
+  "electroOptics": 0.25
+ },
+ "refining": {
+  "_src": "wiki Refining Upgrade: Seprom +60% laser/rocket, +40% shield; Promerium +20% speed",
+  "laser": 0.6,
+  "rocket": 0.6,
+  "shield": 0.4,
+  "speed": 0.2
+ },
+ "pet": {
+  "_src": "wiki P.E.T. 10 / LF-P01; 4 lasers (guess, Equipment Package L = 4 LF-P01)",
+  "lasers": 4,
+  "laser": "lf-p01"
+ },
+ "damageModel": {
+  "_src": "variance: wiki Laser Damage Charts (75-100%); overdrive: wiki Overdrive Mechanism; drone level: wiki Drone/Iris; drone upgrade: wiki Maximum Prometheus Damage (lvl16 +6%); booster cap: wiki Booster",
+  "variance": 0.25,
+  "overdriveMs": 5000,
+  "droneLevelLaser": 0.1,
+  "droneLevelGen": 0.2,
+  "droneUpgradePerLevel": 0.00375,
+  "boosterCap": 0.5
+ },
+ "shipBonuses": {
+  "ship_goliath": {
+   "module": "DMG-SG01",
+   "moduleDamage": 0.05
+  },
+  "ship_goliath-x": {
+   "module": "DMG-SG01",
+   "moduleDamage": 0.05
+  },
+  "ship_g-enforcer": {
+   "damage": 0.05
+  },
+  "ship_g-referee": {
+   "damage": 0.05
+  },
+  "ship_g-champion": {
+   "damage": 0.05
+  },
+  "ship_g-surgeon": {
+   "damage": 0.06
+  },
+  "ship_g-vanquisher": {
+   "pvp": 0.07
+  },
+  "ship_g-sovereign": {
+   "pvp": 0.07
+  },
+  "ship_g-peacemaker": {
+   "pvp": 0.07
+  },
+  "ship_g-bastion": {
+   "shield": 0.1
+  },
+  "ship_g-kick": {
+   "shield": 0.1
+  },
+  "ship_g-saturn": {
+   "hp": 0.2
+  },
+  "ship_g-centaur": {
+   "hp": 0.1
+  },
+  "ship_cyborg": {
+   "damage": 0.1
+  },
+  "ship_diminisher": {
+   "damage": 0.05
+  },
+  "ship_venom": {
+   "damage": 0.05
+  },
+  "ship_hecate": {
+   "damage": 0.07,
+   "shield": 0.1
+  },
+  "ship_hecate-plus": {
+   "damage": 0.07,
+   "shield": 0.1
+  },
+  "ship_centurion": {
+   "module": "UC-DMG2 design",
+   "moduleDamage": 0.12
+  },
+  "ship_solace": {
+   "shield": 0.1,
+   "module": "DMG-NPC01",
+   "moduleDamage": 0.0,
+   "pve": 0.15
+  },
+  "ship_sentinel": {
+   "shield": 0.1,
+   "module": "DMG-NPC01",
+   "pve": 0.15
+  },
+  "ship_spectrum": {
+   "shield": 0.25
+  },
+  "ship_mimesis": {
+   "shield": 0.1,
+   "penetration": 0.05,
+   "module": "DMG-MS01",
+   "moduleDamage": 0.1
+  },
+  "ship_hammerclaw": {
+   "hp": 0.25
+  },
+  "ship_hammerclaw-plus": {
+   "hp": 0.25
+  },
+  "ship_tartarus": {
+   "module": "DMG-T02",
+   "moduleDamage": 0.12
+  },
+  "ship_vengeance": {
+   "module": "DMG-VP01",
+   "moduleDamage": 0.1
+  }
+ },
+ "_shipBonusesSrc": "wiki Designs / ship pages (passives). moduleDamage = default ship upgrade module (wiki Ship Upgrade Modules)"
+}

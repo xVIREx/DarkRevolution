@@ -1,0 +1,6 @@
+[
+  { "id": "ship_goliath", "name": "Goliath", "hp": 256000, "speed": 300, "lasers": 15, "generators": 15,
+    "extras": 3, "cargo": 1500, "sheet": "ship_goliath",
+    "designs": [{ "id": "ship_goliath-phantasm", "name": "Goliath Phantasm", "sheet": "ship_goliath-phantasm" }] },
+  { "id": "ship_phoenix", "name": "Phoenix", "hp": 4000, "speed": 320, "lasers": 1, "generators": 1, "sheet": "ship_phoenix", "designs": [] }
+]

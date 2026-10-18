@@ -1,0 +1,10 @@
+[
+  { "id": 1, "name": "1-1", "faction": "mmo", "w": 21000, "h": 13100, "background": "1", "planets": [],
+    "portals": [{ "id": 1, "x": 18500, "y": 11500, "to": 2, "tx": 2000, "ty": 2000 }],
+    "stations": [{ "faction": "mmo", "x": 2000, "y": 2000 }],
+    "npcs": [{ "id": "streuner", "count": 10 }] },
+  { "id": 2, "name": "1-2", "faction": "mmo", "w": 21000, "h": 13100, "background": "1", "planets": [],
+    "portals": [{ "id": 2, "x": 2000, "y": 2000, "to": 1, "tx": 18500, "ty": 11500 }],
+    "stations": [],
+    "npcs": [{ "id": "streuner", "count": 5 }, { "id": "lordakia", "count": 5 }] }
+]

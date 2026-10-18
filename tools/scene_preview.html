@@ -1,0 +1,102 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Scene Preview</title>
+<style>html,body{margin:0;background:#000;overflow:hidden}#info{position:fixed;left:6px;top:4px;color:#8cf;font:12px monospace}</style>
+<script type="importmap">{"imports":{"three":"/client/node_modules/three/build/three.module.js","three/addons/":"/client/node_modules/three/examples/jsm/"}}</script>
+</head><body><div id="info"></div>
+<script type="module">
+// Reference implementation / visual check of manifest3d.maps.json (scene agent). Served from repo root:
+//   python -m http.server 8765  ->  http://localhost:8765/tools/scene_preview.html?map=1&x=10400&y=6400
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+const P = new URLSearchParams(location.search);
+const base = '/client/public/assets3d/';
+const man = await (await fetch(base + 'manifest3d.maps.json')).json();
+const M = man.maps[P.get('map') || '1'];
+const hx = +(P.get('x') || 10400), hy = +(P.get('y') || 6400), zoom = +(P.get('zoom') || 1);
+const HIDE = (P.get('hide') || '').split(',');
+const W = +(P.get("w") || innerWidth), H = +(P.get("h") || innerHeight);
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setSize(W, H); renderer.outputColorSpace = THREE.SRGBColorSpace; document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene(); scene.background = new THREE.Color(0x000000);
+const C = man.camera;
+const cam = new THREE.PerspectiveCamera(+(P.get('fov') || C.fov), W / H, C.near, C.far * 2);
+const h = C.height * zoom;
+cam.position.set(hx, h, hy + h); cam.lookAt(hx, 0, hy);
+const tl = new THREE.TextureLoader();
+const tex = (u, srgb = true) => { const t = tl.load(base + u); if (srgb) t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; return t; };
+const L = M.light || { color: '#ffffff', diffuse: 1, ambientColor: '#404040', ambient: 0.5, dir: [0, -1, 0] };
+scene.add(new THREE.AmbientLight(L.ambientColor, L.ambient * Math.PI));
+const dl = new THREE.DirectionalLight(L.color, L.diffuse * Math.PI); dl.position.set(-L.dir[0], -L.dir[1], -L.dir[2]); scene.add(dl);
+const BD = M.backdrop, mc = [M.unityMapSize[0] / 2, M.unityMapSize[1] / 2];
+const setT = (o, e) => {
+  o.position.fromArray(e.pos); o.quaternion.fromArray(e.quat); o.scale.fromArray(e.scale);
+  if (e.backdrop && BD) { // backdrop parallax rule (see manifest maps[].backdrop.rule)
+    const pv = new THREE.Vector3().fromArray(BD.pivot);
+    o.position.sub(pv).multiplyScalar(BD.fitScale).add(pv); o.scale.multiplyScalar(BD.fitScale);
+    o.position.x += BD.follow * (hx - mc[0]); o.position.z += BD.follow * (hy - mc[1]);
+  }
+};
+const quadGeo = (uvr) => { const g = new THREE.PlaneGeometry(1, 1); if (uvr) { const uv = g.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) ? uvr[2] : uvr[0], uv.getY(i) ? uvr[3] : uvr[1]); } return g; };
+let ro = 0;
+const quads = [...(HIDE.includes('bg') ? [] : M.backgrounds), ...(HIDE.includes('planes') ? [] : M.planes)].sort((a, b) => a.pos[1] - b.pos[1]); // deepest first
+for (const e of quads) {
+  const m = new THREE.Mesh(quadGeo(e.uvRect), new THREE.MeshBasicMaterial({ map: tex(e.tex), transparent: true,
+    blending: e.blend === 'add' ? THREE.AdditiveBlending : THREE.NormalBlending, depthWrite: false, side: THREE.DoubleSide }));
+  setT(m, e); m.renderOrder = ro++; scene.add(m);
+}
+for (const f of M.lensflares) if (f.sprite) {
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(f.spriteSize[0], f.spriteSize[1]), new THREE.MeshBasicMaterial({ map: tex(f.sprite), transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide }));
+  setT(m, f); m.renderOrder = ro++; scene.add(m);
+}
+const gl = new GLTFLoader(); const jobs = [];
+for (const e of (HIDE.includes('meshes') ? [] : M.meshes)) jobs.push(new Promise(res => gl.load(base + e.glb, g => {
+  const mat = new THREE.MeshPhongMaterial({ map: e.tex.diffuse ? tex(e.tex.diffuse) : null, normalMap: e.tex.normal ? tex(e.tex.normal, false) : null,
+    specularMap: e.tex.specular ? tex(e.tex.specular, false) : null, emissiveMap: e.tex.glow ? tex(e.tex.glow) : null,
+    emissive: e.tex.glow ? 0xffffff : 0x000000, specular: 0x666666, shininess: 20, side: e.material.doubleSided ? THREE.DoubleSide : THREE.FrontSide,
+    alphaMap: e.tex.alpha ? tex(e.tex.alpha, false) : null, alphaTest: e.tex.alpha ? 0.5 : 0 });
+  g.scene.traverse(o => { if (o.isMesh) o.material = mat; });
+  setT(g.scene, e); if (e.randomRotYDeg) g.scene.rotateY(Math.random() * Math.PI * 2);
+  g.scene.renderOrder = 1000; scene.add(g.scene); res();
+}, undefined, () => res())));
+for (const Lr of (HIDE.includes('tiles') ? [] : M.tileLayers)) {
+  const t = tex(Lr.atlas);
+  const mat = new THREE.MeshBasicMaterial({ map: t, transparent: true, depthWrite: false, blending: Lr.blend === 'add' ? THREE.AdditiveBlending : THREE.NormalBlending, side: THREE.DoubleSide });
+  const grp = new THREE.Group();
+  for (const [x, z, ri, w, hh, rot, a] of Lr.tiles) {
+    const r = Lr.rects[ri], [AW, AH] = Lr.atlasSize;
+    const g = new THREE.PlaneGeometry(1, 1); const uv = g.attributes.uv;
+    const u0 = r[0] / AW, u1 = (r[0] + r[2]) / AW, v1 = 1 - r[1] / AH, v0 = 1 - (r[1] + r[3]) / AH;
+    for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) ? u1 : u0, uv.getY(i) ? v1 : v0);
+    const m = new THREE.Mesh(g, a < 1 ? mat.clone() : mat); if (a < 1) m.material.opacity = a;
+    m.rotation.set(-Math.PI / 2, 0, rot); m.scale.set(w, hh, 1); m.position.set(x, Lr.y, z); m.renderOrder = ro + 500 + Lr.layerIndex; grp.add(m);
+  }
+  scene.add(grp);
+}
+if (M.starfield && !HIDE.includes('stars')) {
+  const em = M.starfield.emitter, pts = [], cols = [];
+  const grad = em.colorOverLife?.gradient?.color || [[0, 1, 1, 1]];
+  for (const c of M.starfield.centers) for (let i = 0; i < 300; i++) {
+    pts.push(c[0] + (Math.random() - .5) * 2000, c[1] + (Math.random() - .5) * 500, c[2] + (Math.random() - .5) * 2000);
+    const g = grad[1 + Math.floor(Math.random() * (grad.length - 2))] || grad[0]; cols.push(g[1], g[2], g[3]);
+  }
+  const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.Float32BufferAttribute(pts, 3)); geo.setAttribute('color', new THREE.Float32BufferAttribute(cols, 3));
+  const pts_ = (new THREE.Points(geo, new THREE.PointsMaterial({ size: em.size[1], vertexColors: true, blending: THREE.AdditiveBlending, transparent: true, depthWrite: false, opacity: 0.75 }))); pts_.renderOrder = 900; scene.add(pts_);
+}
+// hero marker (ship-sized box) + map border
+const hero = new THREE.Mesh(new THREE.ConeGeometry(60, 200, 4), new THREE.MeshPhongMaterial({ color: 0x88aaff })); hero.rotation.z = -Math.PI / 2; hero.position.set(hx, 0, hy); scene.add(hero);
+const gw = M.gameSize[0], gh = M.gameSize[1];
+scene.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints([[0, 0], [gw, 0], [gw, gh], [0, gh]].map(p => new THREE.Vector3(p[0], 0, p[1]))), new THREE.LineBasicMaterial({ color: 0x335533 })));
+if (P.get('demo')) { // laser + rocket conventions check: travel direction +x from the hero
+  const flat = (t, size, x, color) => { const tx = tex(t); tx.wrapS = THREE.RepeatWrapping; tx.repeat.x = -1; tx.offset.x = 1; // u=0 (head) at the front
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(size[0], size[1]), new THREE.MeshBasicMaterial({ map: tx, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide }));
+    m.rotation.x = -Math.PI / 2; m.position.set(x + size[0] / 2, 5, hy); m.renderOrder = 2000; scene.add(m); return m; };
+  ['red', 'blue', 'green', 'rsb'].forEach((k, i) => { const L_ = man.lasers[k]; const m = flat(L_.tex, L_.size, hx + 150 + i * 120, 0); m.position.z += (i - 1.5) * 40; });
+  const R = man.rockets.plt2021; const r1 = flat(R.tex, R.size, hx + 150, 0); r1.position.z += 120;
+  const r2 = r1.clone(); r2.rotation.set(0, 0, 0); scene.add(r2);
+}
+await Promise.all(jobs);
+await new Promise(r => setTimeout(r, 1500));
+renderer.render(scene, cam);
+document.getElementById('info').textContent = `map ${M.name} hero ${hx},${hy} zoom ${zoom}`;
+document.title = 'READY';
+</script></body></html>

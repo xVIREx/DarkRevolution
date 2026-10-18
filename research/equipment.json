@@ -1,0 +1,439 @@
+{
+ "lasers": [
+  {
+   "id": "lf1",
+   "name": "LF-1",
+   "damage": 40,
+   "damage_current_wiki": 65,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/LF-1",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql",
+    "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  },
+  {
+   "id": "mp1",
+   "name": "MP-1",
+   "damage": 60,
+   "damage_current_wiki": 75,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/MP-1",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql",
+    "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  },
+  {
+   "id": "lf2",
+   "name": "LF-2",
+   "damage": 100,
+   "damage_current_wiki": 140,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/LF-2",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql",
+    "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  },
+  {
+   "id": "lf3",
+   "name": "LF-3",
+   "damage": 150,
+   "damage_current_wiki": 175,
+   "note": "current wiki: +15% vs NPCs",
+   "source": [
+    "https://darkorbit.fandom.com/wiki/LF-3",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql",
+    "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  },
+  {
+   "id": "lf4",
+   "name": "LF-4",
+   "damage": 200,
+   "damage_current_wiki": 200,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/LF-4",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql",
+    "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  },
+  {
+   "id": "prometheus",
+   "name": "Prometheus",
+   "damage": 210,
+   "overdrive_bonus": 200,
+   "note": "x3.5 vs Black Light aliens; modern item, wiki only",
+   "source": [
+    "https://darkorbit.fandom.com/wiki/Prometheus_Laser"
+   ]
+  }
+ ],
+ "laserRange": {
+  "value": 700,
+  "note": "not found explicitly in sources fetched; CONTRACT value kept"
+ },
+ "ammo": [
+  {
+   "id": "x1",
+   "name": "LCB-10",
+   "mult": 1,
+   "color": "red",
+   "cooldown_ms": 1000,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/LCB-10",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  },
+  {
+   "id": "x2",
+   "name": "MCB-25",
+   "mult": 2,
+   "color": "blue",
+   "cooldown_ms": 1000,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/MCB-25",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  },
+  {
+   "id": "x3",
+   "name": "MCB-50",
+   "mult": 3,
+   "color": "green",
+   "cooldown_ms": 1000,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/MCB-50",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  },
+  {
+   "id": "x4",
+   "name": "UCB-100",
+   "mult": 4,
+   "color": "white",
+   "cooldown_ms": 1000,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/UCB-100",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  },
+  {
+   "id": "sab",
+   "name": "SAB-50",
+   "mult": 0,
+   "shield_drain_mult": 2,
+   "color": "sab",
+   "cooldown_ms": 1000,
+   "note": "no hull damage; drains target shield (~MCB-25 strength = x2) and gives it to the shooter",
+   "source": [
+    "https://darkorbit.fandom.com/wiki/SAB-50",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql"
+   ]
+  },
+  {
+   "id": "rsb",
+   "name": "RSB-75",
+   "mult": 6,
+   "color": "rsb",
+   "cooldown_ms": 3000,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/RSB-75",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  },
+  {
+   "id": "cbo",
+   "name": "CBO-100",
+   "mult": 3,
+   "shield_drain_mult": 1,
+   "note": "EpicOrbit: x3 dmg + x1 SAB",
+   "source": [
+    "https://darkorbit.fandom.com/wiki/CBO-100",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  },
+  {
+   "id": "pib",
+   "name": "PIB-100",
+   "mult": 4,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/PIB-100",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  }
+ ],
+ "rockets": [
+  {
+   "id": "r310",
+   "name": "R-310",
+   "damage": 1000,
+   "range": 400,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/R-310",
+    "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql"
+   ]
+  },
+  {
+   "id": "plt2026",
+   "name": "PLT-2026",
+   "damage": 2000,
+   "range": 550,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/PLT-2026",
+    "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql"
+   ]
+  },
+  {
+   "id": "plt2021",
+   "name": "PLT-2021",
+   "damage": 4000,
+   "range": 600,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/PLT-2021",
+    "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql"
+   ]
+  },
+  {
+   "id": "plt3030",
+   "name": "PLT-3030",
+   "damage": 6000,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/PLT-3030",
+    "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql"
+   ]
+  }
+ ],
+ "rocketCooldownMs": {
+  "value": 1000,
+  "src": "kalaazu items.cooldown",
+  "source": [
+   "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql"
+  ]
+ },
+ "shieldGenerators": [
+  {
+   "id": "sg3n-a01",
+   "name": "SG3N-A01",
+   "shield": 1000,
+   "absorption": 0.4,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/SG3N-A01",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql",
+    "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  },
+  {
+   "id": "sg3n-a02",
+   "name": "SG3N-A02",
+   "shield": 2000,
+   "absorption": 0.5,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/SG3N-A02",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql",
+    "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  },
+  {
+   "id": "sg3n-a03",
+   "name": "SG3N-A03",
+   "shield": 5000,
+   "absorption": 0.6,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/SG3N-A03",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql",
+    "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  },
+  {
+   "id": "sg3n-b01",
+   "name": "SG3N-B01",
+   "shield": 4000,
+   "absorption": 0.7,
+   "shield_current_wiki": 9500,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/SG3N-B01",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql",
+    "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  },
+  {
+   "id": "sg3n-b02",
+   "name": "SG3N-B02",
+   "shield": 10000,
+   "absorption": 0.8,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/SG3N-B02",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql",
+    "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  },
+  {
+   "id": "sg3n-b00",
+   "name": "SG3N-B00",
+   "shield": 9000,
+   "absorption": 0.7,
+   "note": "modern",
+   "source": [
+    "https://darkorbit.fandom.com/wiki/SG3N-B00"
+   ]
+  },
+  {
+   "id": "sg3n-b03",
+   "name": "SG3N-B03",
+   "shield": 11450,
+   "absorption": 0.8,
+   "note": "modern",
+   "source": [
+    "https://darkorbit.fandom.com/wiki/Shield_generator"
+   ]
+  },
+  {
+   "id": "fs-01",
+   "name": "FS-01",
+   "shield": 3200,
+   "absorption": 0.7,
+   "regen_bonus": 0.0625,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/Shield_generator",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  },
+  {
+   "id": "fs-02",
+   "name": "FS-02",
+   "shield": 5600,
+   "absorption": 0.75,
+   "regen_bonus": 0.0625,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/Shield_generator",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  },
+  {
+   "id": "fs-03",
+   "name": "FS-03",
+   "shield": 8000,
+   "absorption": 0.8,
+   "regen_bonus": 0.0625,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/Shield_generator",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  }
+ ],
+ "speedGenerators": [
+  {
+   "id": "g3n-1010",
+   "name": "G3N-1010",
+   "speed": 2,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/Speed_generator",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql",
+    "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  },
+  {
+   "id": "g3n-2010",
+   "name": "G3N-2010",
+   "speed": 3,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/Speed_generator",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql",
+    "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  },
+  {
+   "id": "g3n-3210",
+   "name": "G3N-3210",
+   "speed": 4,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/Speed_generator",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql",
+    "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  },
+  {
+   "id": "g3n-3310",
+   "name": "G3N-3310",
+   "speed": 5,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/Speed_generator",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql",
+    "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  },
+  {
+   "id": "g3n-6900",
+   "name": "G3N-6900",
+   "speed": 7,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/Speed_generator",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql",
+    "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  },
+  {
+   "id": "g3n-7900",
+   "name": "G3N-7900",
+   "speed": 10,
+   "source": [
+    "https://darkorbit.fandom.com/wiki/Speed_generator",
+    "https://github.com/manulaiko/Kalaazu/blob/develop/Persistence/database/items/dump.sql",
+    "https://github.com/MuffinMario/Old-Darkorbit-Project-2009-Cpp/blob/master/database/olddorps.sql",
+    "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+   ]
+  }
+ ],
+ "shieldRegen": {
+  "epicorbit_per_tick_fraction": {
+   "SG3N": 0.04,
+   "FS": 0.0425
+  },
+  "source": [
+   "https://github.com/designated-life/EpicOrbit-Private-Server/tree/master/epicorbit/Shared/EpicOrbit.Shared/Items"
+  ],
+  "note": "EpicOrbit emulator value, not confirmed by wiki"
+ },
+ "contractMapping": {
+  "laserDamage": {
+   "value": 150,
+   "note": "LF-3 classic; LF-4=200; CONTRACT uses 175 (= modern LF-3)"
+  },
+  "shieldPerGenerator": {
+   "value": 10000,
+   "note": "SG3N-B02, absorption 80%"
+  },
+  "speedPerGenerator": {
+   "value": 10,
+   "note": "G3N-7900"
+  }
+ }
+}

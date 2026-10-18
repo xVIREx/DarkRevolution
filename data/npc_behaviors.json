@@ -1,0 +1,56 @@
+{
+  "_note": "Special NPC behaviours, merged by the server onto npcs.json (key = npc id). Owned by the server agent. Fields: stationary, noAttack, spawns {npc, trigger: attacked|always, delayMs, everyMs, count, max, radius, despawnIdleMs}, escorts {npc, count, radius, despawnIdleMs}, invulnerableWithMinions, regen {hpPerSec, shieldPerSec, afterMs, whileMinions}, assist (radius), slowOnHit {speed, ms}, kamikaze {atHp, delayMs, radius, damage}.",
+  "_sources": "Cubikon/Protegit: emu-dark Mothership.cs/Daughter.cs (release after 2 s of combat, top up to 20 alive, 5 s cycle, circle mother at 550, despawn after 30 s idle), Flavio007 Cubikon.cs (cap 20, shield repair after 10 s), wiki Cubikon (no attack, heals up to 125,000 HP/s when not attacked; Protegits target top-damage attacker and roam after its death) + wiki Protegit (groups of 20-30). Battleray/Interceptors, Century Falcon/Vagrants, Ice Meteoroid/Icy, Boss Kucurbium escorts + insta-shield, Hitac-Mothership 6 minions + insta-shield, Saboteur slowdown to 200, Barracuda kamikaze at 20% HP after 5 s, Mordon calls other Mordons: darkorbit.fandom.com wiki pages of those aliens + 'Mothership'. Escort counts for Kristallon/Lordakium and kamikaze damage are design choices (not documented).",
+
+  "cubikon": {
+    "stationary": true, "noAttack": true,
+    "spawns": { "npc": "protegit", "trigger": "attacked", "delayMs": 2000, "everyMs": 5000, "count": 20, "max": 20, "radius": 550, "despawnIdleMs": 30000 },
+    "regen": { "hpPerSec": 125000, "shieldPerSec": 120000, "afterMs": 10000 }
+  },
+  "ice_meteoroid": {
+    "noAttack": true,
+    "spawns": { "npc": "icy", "trigger": "attacked", "delayMs": 2000, "everyMs": 5000, "count": 10, "max": 20, "radius": 500 }
+  },
+  "super_ice_meteoroid": {
+    "spawns": { "npc": "icy", "trigger": "attacked", "delayMs": 2000, "everyMs": 5000, "count": 10, "max": 20, "radius": 500 }
+  },
+  "battleray": {
+    "spawns": { "npc": "interceptor", "trigger": "attacked", "delayMs": 2000, "everyMs": 10000, "count": 6, "max": 6, "radius": 450 },
+    "invulnerableWithMinions": true,
+    "regen": { "hpPerSec": 600, "whileMinions": true }
+  },
+  "deadly_battleray": {
+    "spawns": { "npc": "interceptor", "trigger": "attacked", "delayMs": 2000, "everyMs": 10000, "count": 6, "max": 6, "radius": 450 },
+    "invulnerableWithMinions": true,
+    "regen": { "hpPerSec": 600, "whileMinions": true }
+  },
+  "uber_battleray": {
+    "spawns": { "npc": "uber_interceptor", "trigger": "attacked", "delayMs": 2000, "everyMs": 10000, "count": 6, "max": 6, "radius": 450 },
+    "invulnerableWithMinions": true,
+    "regen": { "hpPerSec": 600, "whileMinions": true }
+  },
+  "century_falcon": {
+    "spawns": { "npc": "vagrant", "trigger": "attacked", "delayMs": 2000, "everyMs": 8000, "count": 8, "max": 16, "radius": 600 }
+  },
+  "boss_kucurbium": {
+    "escorts": { "npc": "kucurbium", "count": 6, "radius": 450 },
+    "invulnerableWithMinions": true
+  },
+  "hitac_2_0": {
+    "escorts": { "npc": "minion", "count": 6, "radius": 400 },
+    "invulnerableWithMinions": true
+  },
+  "kristallon":        { "escorts": { "npc": "kristallin", "count": 3, "radius": 350 } },
+  "boss_kristallon":   { "escorts": { "npc": "kristallin", "count": 4, "radius": 380 } },
+  "uber_kristallon":   { "escorts": { "npc": "boss_kristallin", "count": 4, "radius": 400 } },
+  "lordakium":         { "escorts": { "npc": "lordakia", "count": 4, "radius": 350 } },
+  "boss_lordakium":    { "escorts": { "npc": "boss_lordakia", "count": 4, "radius": 380 } },
+  "uber_lordakium":    { "escorts": { "npc": "uber_lordakia", "count": 4, "radius": 400 } },
+  "mordon":            { "assist": 1200 },
+  "boss_mordon":       { "assist": 1200 },
+  "uber_mordon":       { "assist": 1200 },
+  "saboteur":          { "slowOnHit": { "speed": 200, "ms": 5000 } },
+  "uber_saboteur":     { "slowOnHit": { "speed": 200, "ms": 5000 } },
+  "barracuda":         { "kamikaze": { "atHp": 0.2, "delayMs": 5000, "radius": 500, "damage": 20000 } },
+  "uber_barracuda":    { "kamikaze": { "atHp": 0.2, "delayMs": 5000, "radius": 500, "damage": 80000 } }
+}

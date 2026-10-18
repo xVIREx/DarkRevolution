@@ -1,0 +1,10 @@
+.git
+.venv
+extracted
+research
+tools
+video
+client/node_modules
+client/dist
+server/target
+**/__pycache__
