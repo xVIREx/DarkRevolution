@@ -4,10 +4,12 @@ pub mod ai;
 pub mod combat;
 pub mod data;
 pub mod equipment;
+pub mod limits;
 pub mod net;
 pub mod protocol;
 pub mod world;
 
+use axum::middleware;
 use axum::routing::get;
 use axum::Router;
 use std::path::{Path, PathBuf};
@@ -27,9 +29,13 @@ pub fn router(world: SharedWorld, dist_dir: &Path, data_dir: &Path) -> Router {
     let spa = ServeDir::new(dist_dir).fallback(ServeFile::new(dist_dir.join("index.html")));
     Router::new()
         .route("/ws", get(net::ws_handler))
-        .nest_service("/data", ServeDir::new(data_dir))
-        .fallback_service(spa)
         .with_state(world)
+        .merge(
+            Router::new()
+                .nest_service("/data", ServeDir::new(data_dir))
+                .fallback_service(spa)
+                .layer(middleware::from_fn(limits::egress_guard)),
+        )
 }
 
 /// Run the fixed-rate simulation loop forever.

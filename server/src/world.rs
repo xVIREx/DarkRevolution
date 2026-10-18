@@ -15,6 +15,9 @@ use tracing::{debug, info};
 mod behavior;
 
 pub const TICK_HZ: f64 = 20.0;
+/// Max distance at which entities are included in a player's state snapshot
+/// (the client's farthest zoom on a wide screen sees ~5000 units).
+pub const VIEW_RADIUS: f64 = 6000.0;
 pub const INFINITE: f64 = 1e15;
 const YOU_INTERVAL: f64 = 1.0;
 const REGEN_DELAY: f64 = 5.0;
@@ -1254,6 +1257,8 @@ impl World {
                 self.ents[pid].send_raw(json);
             }
         }
+        // Interest management: each player only gets entities within VIEW_RADIUS (plus
+        // itself and its target); whole-map snapshots cost ~260 KB/s per player.
         for (map, pids) in &by_map {
             let ents: Vec<EntState> = self
                 .ents
@@ -1261,8 +1266,15 @@ impl World {
                 .filter(|e| e.map == *map && e.alive())
                 .map(|e| e.to_state())
                 .collect();
-            let json = ServerMsg::State { tick: self.tick, ents: &ents }.json();
             for pid in pids {
+                let me = &self.ents[pid];
+                let (mx, my, tg) = (me.x, me.y, me.target);
+                let near: Vec<EntState> = ents
+                    .iter()
+                    .filter(|e| e.id == *pid || Some(e.id) == tg || (e.x - mx).hypot(e.y - my) <= VIEW_RADIUS)
+                    .cloned()
+                    .collect();
+                let json = ServerMsg::State { tick: self.tick, ents: &near }.json();
                 self.ents[pid].send_raw(&json);
             }
         }

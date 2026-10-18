@@ -3,6 +3,14 @@ primary_region = "fra"
 
 [build]
 
+# Bandwidth guards (server/src/limits.rs), reset daily at 00:00 UTC. Fly has no spending
+# cap, so EGRESS_GB_PER_DAY bounds the bill: ~$0.02/GB -> 50 GB/day is at most ~$1/day.
+[env]
+  EGRESS_GB_PER_DAY = "50"
+  EGRESS_GB_PER_IP = "2"
+  WS_PER_IP = "4"
+  WS_TOTAL = "300"
+
 [http_service]
   internal_port = 8080
   force_https = true
