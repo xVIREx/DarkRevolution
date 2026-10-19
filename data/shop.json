@@ -1,6 +1,10 @@
 {
-  "_note": "Daily season economy (server/src/season.rs). Everyone starts from the `start` kit; everything resets at 00:00 UTC. Prices: c = credits, u = uridium. Ammo/rocket prices are per pack of `pack` rounds. Upgrade cost to reach level L of an item type = (c + u * upgrade.uriValue) * upgrade.perLevel * L credits. Remove this file or set enabled=false (or env SEASON=0) for the free sandbox.",
+  "_note": "Season economy (30-minute rounds by default) (server/src/season.rs). Everyone starts from the `start` kit; everything resets when the round ends (rounds start at multiples of roundMinutes, UTC). Prices: c = credits, u = uridium. Ammo/rocket prices are per pack of `pack` rounds. Upgrade cost to reach level L of an item type = (c + u * upgrade.uriValue) * upgrade.perLevel * L credits. Remove this file or set enabled=false (or env SEASON=0) for the free sandbox.",
   "enabled": true,
+  "roundMinutes": 30,
+  "deathDrop": 0.3,
+  "cargoLife": 90,
+  "bonusBoxes": { "perMap": 12, "credits": 2500, "uridium": 40, "ammo": 100, "respawn": 30 },
   "start": {
     "ship": "ship_phoenix",
     "credits": 15000,
@@ -8,11 +12,11 @@
     "items": { "lf1": 1, "sg3n-a01": 1 },
     "ammo": { "x2": 500 }
   },
-  "rewardMult": { "credits": 1, "uridium": 5, "exp": 1, "honor": 1 },
+  "rewardMult": { "credits": 20, "uridium": 100, "exp": 1, "honor": 1 },
   "underdogBonus": 0.25,
   "protectedMaps": ["1-1", "1-2", "2-1", "2-2", "3-1", "3-2"],
   "safeRadius": { "portal": 900, "station": 1600 },
-  "pvp": { "exp": 2000, "honor": 50, "uridium": 25, "cooldown": 900 },
+  "pvp": { "exp": 2000, "honor": 50, "uridium": 300, "cooldown": 300 },
   "upgrade": { "perLevel": 0.02, "uriValue": 400 },
   "ships": {
     "ship_yamato": { "c": 8000 },

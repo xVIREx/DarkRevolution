@@ -119,6 +119,11 @@ export class Minimap {
       const k = String(e.snap.id);
       if (k === s.myId) continue;
       // DO colours: NPC red, enemy player red, ally (same company) blue/green
+      if (e.snap.k === 'b') {
+        c.fillStyle = e.snap.s === 'box_cargo' ? '#ffb020' : '#ffe680';
+        c.fillRect(Math.round(e.x * sx - 1.5), Math.round(e.y * sy - 1.5), 3, 3);
+        continue;
+      }
       if (e.snap.k === 'n') c.fillStyle = '#ff2b2b';
       else c.fillStyle = e.snap.f && e.snap.f !== s.faction ? '#ff2bff' : '#2bd0ff';
       const r = k === s.selectedId ? 7 : 5;

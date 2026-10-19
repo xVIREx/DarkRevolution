@@ -254,7 +254,7 @@ export class Entities3D {
       e.visualKey = key;
       const ent = e;
       const color = v.snap.k === 'n' ? 0xff4040 : isMe ? 0xffe04a : new THREE.Color(FACTION_COLORS[v.snap.f ?? ''] ?? '#9fd0ff');
-      const vis = this.resolveVisual(v.snap.s, 110, color, (nv) => {
+      const vis = this.resolveVisual(v.snap.s, v.snap.k === 'b' ? 55 : 110, color, (nv) => {
         if (ent.visualKey === key) this.attachVisual(ent, nv);
         else this.disposeVisual(nv);
       }, () => !ent.disposed && ent.visualKey === key);
@@ -400,7 +400,8 @@ export class Entities3D {
       e.formation = typeof fm === 'string' ? fm : 'standard';
       this.syncDrones(e, Array.isArray(dr) ? dr.map(String) : []);
       this.updateDrones(e, dt, now, camera);
-      // overlay label + bars below the ship
+      // overlay label + bars below the ship (loot boxes have none)
+      if (v.snap.k === 'b') { e.overlay.group.visible = false; continue; }
       const s = project(e.root.position);
       if (s.z > 1) { e.overlay.group.visible = false; continue; }
       const edge = project(this.tmp.set(v.x, 0, v.y + e.radius));

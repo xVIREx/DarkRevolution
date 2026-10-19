@@ -1,6 +1,7 @@
-//! Daily season mode: everyone starts in a Phoenix with an LF-1, earns credits/uridium from
-//! kills and buys ships, equipment, ammo, upgrades and account bonuses from the shop
-//! (data/shop.json). Progress is kept per browser token and wiped at 00:00 UTC.
+//! Season mode (Starblast/diep-style rounds): everyone starts in a Phoenix with an LF-1, earns
+//! credits/uridium from kills and boxes and buys ships, equipment, ammo, upgrades and account
+//! bonuses from the shop (data/shop.json) or with the one-key "next upgrade". Rounds last
+//! `roundMinutes` (aligned to UTC); progress is kept per browser token until the round ends.
 //!
 //! This module is the pure economy (catalogue, inventory, pricing, auto-equip); the world
 //! glue (messages, rewards, PvP rules, the daily reset) lives in world/season.rs.
@@ -11,6 +12,17 @@ use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet, HashMap};
 
 pub const DAY_SECS: u64 = 86_400;
+/// One recommended purchase (`you.season.next`, bought with `buy` kind "next").
+#[derive(Serialize, Clone, Debug, PartialEq)]
+pub struct NextBuy {
+    pub kind: String,
+    pub id: String,
+    pub label: String,
+    pub c: f64,
+    pub u: f64,
+    /// Affordable right now.
+    pub ok: bool,
+}
 /// Unlock ids for the account-wide bonuses (`tech` in shop.json).
 pub const TECH_PET: &str = "tech:pet";
 pub const TECH_REFINING: &str = "tech:refining";
@@ -109,10 +121,35 @@ impl Default for UpgradeRule {
     }
 }
 
+/// Random DO bonus boxes on maps: value × map tier (x-1 = 1 ... 5-x = 7).
+#[derive(Deserialize, Clone, Debug, Default)]
+#[serde(default)]
+pub struct BonusBoxRule {
+    #[serde(rename = "perMap")]
+    pub per_map: u32,
+    pub credits: f64,
+    pub uridium: f64,
+    /// MCB-25 rounds in an ammo box.
+    pub ammo: u64,
+    /// Seconds until a collected box reappears elsewhere.
+    pub respawn: f64,
+}
+
 #[derive(Deserialize, Clone, Debug, Default)]
 #[serde(default)]
 pub struct Shop {
     pub enabled: bool,
+    /// Round length in minutes (rounds start at multiples of it since the epoch, UTC). 1440 = daily.
+    #[serde(rename = "roundMinutes")]
+    pub round_minutes: f64,
+    /// Fraction of unspent credits/uridium dropped in a cargo box on death.
+    #[serde(rename = "deathDrop")]
+    pub death_drop: f64,
+    /// Seconds a dropped cargo box stays.
+    #[serde(rename = "cargoLife")]
+    pub cargo_life: f64,
+    #[serde(rename = "bonusBoxes")]
+    pub bonus_boxes: BonusBoxRule,
     pub start: StartKit,
     #[serde(rename = "rewardMult")]
     pub reward_mult: RewardMult,
@@ -135,6 +172,14 @@ pub struct Shop {
 }
 
 impl Shop {
+    pub fn round_secs(&self) -> u64 {
+        if self.round_minutes >= 1.0 {
+            (self.round_minutes * 60.0) as u64
+        } else {
+            DAY_SECS
+        }
+    }
+
     /// Credits needed to raise item type `id` from `lvl` to `lvl + 1`.
     pub fn upgrade_cost(&self, id: &str, lvl: u8) -> Option<f64> {
         let p = self.items.get(id)?;
@@ -449,14 +494,28 @@ pub struct TopRow {
 #[derive(Serialize, Deserialize, Clone, Debug, Default)]
 #[serde(default)]
 pub struct SaveFile {
-    pub day: u64,
+    #[serde(alias = "day")]
+    pub round: u64,
     pub profiles: HashMap<String, Profile>,
     pub champions: Vec<TopRow>,
 }
 
-/// Whole days since the Unix epoch (UTC).
-pub fn day_of(secs: f64) -> u64 {
-    (secs.max(0.0) as u64) / DAY_SECS
+/// Index of the round containing `secs` (rounds of `period` seconds since the Unix epoch).
+pub fn round_of(secs: f64, period: u64) -> u64 {
+    (secs.max(0.0) as u64) / period.max(1)
+}
+
+/// Map tier for box values: x-1..x-8 -> 1..8 capped at 4 for x-1..x-4 home sectors, 4-x -> 5, 5-x -> 7.
+pub fn map_tier(name: &str) -> f64 {
+    let mut it = name.split('-');
+    let (a, b) = (it.next().and_then(|x| x.parse::<u32>().ok()), it.next().and_then(|x| x.parse::<u32>().ok()));
+    match (a, b) {
+        (Some(5), _) => 7.0,
+        (Some(4), _) => 5.0,
+        (Some(_), Some(n)) if n >= 5 => 6.0,
+        (Some(_), Some(n)) => n as f64,
+        _ => 1.0,
+    }
 }
 
 pub fn now_secs() -> f64 {
@@ -552,8 +611,13 @@ mod tests {
         assert_eq!(s.upgrade_cost("lf4", 0), Some(5000.0));
         assert_eq!(s.upgrade_cost("lf4", 15), Some(80000.0));
         assert_eq!(big(1234567.0), "1,234,567");
-        assert_eq!(day_of(86_399.0), 0);
-        assert_eq!(day_of(86_400.0), 1);
+        assert_eq!(round_of(86_399.0, DAY_SECS), 0);
+        assert_eq!(round_of(86_400.0, DAY_SECS), 1);
+        assert_eq!(round_of(3_599.0, 1800), 1);
+        assert_eq!(map_tier("1-1"), 1.0);
+        assert_eq!(map_tier("3-7"), 6.0);
+        assert_eq!(map_tier("4-5"), 5.0);
+        assert_eq!(map_tier("5-2"), 7.0);
         assert!(valid_token("abcDEF12_-"));
         assert!(!valid_token("short"));
     }

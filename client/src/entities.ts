@@ -54,6 +54,7 @@ export class EntityView {
 
     this.label = this.buildLabel(snap, myFaction);
     this.hud.add(this.label);
+    this.hud.visible = snap.k !== 'b';
   }
 
   private labelColor(snap: EntSnap, myFaction: string | null): string {
@@ -288,7 +289,7 @@ export class EntityManager {
     let bestD = Infinity;
     const slack = slackPx / zoom;
     for (const [k, v] of this.views) {
-      if (k === this.myId) continue;
+      if (k === this.myId || v.snap.k === 'b') continue; // boxes: clicking flies there (collect by flying over)
       const d = Math.hypot(v.x - x, v.y - y);
       if (d < v.radius + slack && d < bestD) {
         best = v;

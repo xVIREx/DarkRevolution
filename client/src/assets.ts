@@ -91,6 +91,13 @@ export class Assets {
     ]);
     this.manifestOk = !!m;
     this.manifest = normaliseManifest(m);
+    // season loot boxes are sent as entities with sheet ids box_cargo / box_bonus (single frame)
+    const box = this.manifest.box ?? {};
+    const addBox = (k: string, url: string | undefined, cw: number, ch: number) => {
+      if (url && !this.manifest.sheets[k]) this.manifest.sheets[k] = { url, frames: 1, cols: 1, cw, ch };
+    };
+    addBox('box_cargo', box.cargo, 128, 128);
+    addBox('box_bonus', box.bonus, 96, 70);
     if (Array.isArray(ships) && ships.length) {
       this.ships = ships.map((s) => ({ ...s, designs: Array.isArray(s.designs) ? s.designs : [] }));
       this.shipsOk = true;

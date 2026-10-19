@@ -163,3 +163,14 @@ Additional messages — client → server: `buy` {`kind`: ship|item|design|ammo|
 `id`, `qty`}, `autoequip`. Server → client: `you.season` {resetAt, bonus, ships, items, levels, unlocks, ammo, pilot
 (stats), rank, safe}, `you.faction`, `top` {rows, factions, champions, rank, pilots} every 5 s. HTTP `GET
 /api/season?token=` returns the login-screen summary (reset time, company sizes/bonus, your locked company, champions).
+
+Rounds (Starblast-style): `roundMinutes` (30) sets the round length; rounds start at multiples of it since the epoch
+(UTC), so with 30 they end at :00 and :30. At the end every season pilot gets `roundEnd` {rows, rank, pilots, ep} and
+starts over. `buy` kind `next` buys `you.season.next` (the one-key upgrade, U): empty laser slots → empty generator
+slots → next bigger ship (cheap improvements while saving) → better lasers/shields/drones → upgrade levels. Dying spills
+`deathDrop` (30%) of unspent credits/uridium into a cargo box; maps keep `bonusBoxes.perMap` bonus boxes (credits /
+uridium / MCB-25 scaled by map tier). Boxes are state entities with `k: "b"` and sheet `box_cargo` / `box_bonus`;
+fly within 140 units to collect. Groups: `group` {action: invite|accept|decline|leave|kick|lead, name?, id?};
+server sends `group` {id, leader, members:[{id,n,f,map,x,y,hp,mhp,sh,msh,lvl,ship,dead,active}]} and `groupInvite`
+{from, id}. Members can't attack each other; alien rewards are split between members on the same map who hit an alien
+in the last 20 s (+5% pot per extra member).

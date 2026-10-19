@@ -5,9 +5,10 @@ use super::{Entity, Kind, PlayerData, World};
 use crate::combat::{self, dist};
 use crate::data::Data;
 use crate::equipment::{self, Loadout};
-use crate::protocol::{ClientMsg, FactionRow, ServerMsg, TopMsg};
+use crate::protocol::{ClientMsg, EntState, FactionRow, ServerMsg, TopMsg};
+use crate::season::Price;
 use crate::season::{
-    big, day_of, display_name, now_secs, valid_token, Eco, Profile, SaveFile, TopRow, DAY_SECS,
+    big, display_name, map_tier, now_secs, round_of, valid_token, Eco, NextBuy, Profile, SaveFile, TopRow,
 };
 use rand::distributions::Alphanumeric;
 use rand::Rng;
@@ -22,12 +23,18 @@ const TOP_ROWS: usize = 10;
 const SHARE_PCT: f64 = super::group::SHARE_BONUS * 100.0;
 
 pub struct SeasonState {
-    /// Current UTC day (days since the epoch).
-    pub day: u64,
-    /// Saved pilots of today, by token (offline ones; online ones are snapshotted on save).
+    /// Current round (`round_of(now, period)`).
+    pub round: u64,
+    /// Round length in seconds.
+    pub period: u64,
+    /// Saved pilots of this round, by token (offline ones; online ones are snapshotted on save).
     pub profiles: HashMap<String, Profile>,
-    /// Top 3 of the previous day.
+    /// Top 3 of the previous round.
     pub champions: Vec<TopRow>,
+    /// Bonus boxes and dropped cargo boxes lying around.
+    pub boxes: Vec<LootBox>,
+    /// Bonus boxes waiting to respawn: (map, at world time).
+    box_respawn: Vec<(u32, f64)>,
     /// Reward bonus per company (underdog bonus), refreshed with the leaderboard.
     bonus: BTreeMap<String, f64>,
     save_path: Option<PathBuf>,
@@ -39,11 +46,14 @@ pub struct SeasonState {
 }
 
 impl SeasonState {
-    pub fn new(save_path: Option<PathBuf>) -> SeasonState {
+    pub fn new(save_path: Option<PathBuf>, period: u64) -> SeasonState {
         SeasonState {
-            day: day_of(now_secs()),
+            round: round_of(now_secs(), period),
+            period,
             profiles: HashMap::new(),
             champions: vec![],
+            boxes: vec![],
+            box_respawn: vec![],
             bonus: BTreeMap::new(),
             save_path,
             save_timer: 0.0,
@@ -54,15 +64,15 @@ impl SeasonState {
     }
 
     /// Season on when data/shop.json enables it and SEASON != 0. Progress is saved to
-    /// SEASON_SAVE (default ./season-save.json) so restarts within the day keep it.
+    /// SEASON_SAVE (default ./season-save.json) so restarts within a round keep it.
     pub fn from_env(data: &Data) -> Option<SeasonState> {
         if !data.shop.enabled || std::env::var("SEASON").is_ok_and(|v| v == "0") {
             return None;
         }
         let path = std::env::var("SEASON_SAVE").map(PathBuf::from).unwrap_or_else(|_| PathBuf::from("season-save.json"));
-        let mut s = SeasonState::new(Some(path));
+        let mut s = SeasonState::new(Some(path), data.shop.round_secs());
         s.load();
-        info!("daily season on: day {}, {} saved pilots, save file {:?}", s.day, s.profiles.len(), s.save_path);
+        info!("season on: {} min rounds, round {}, {} saved pilots, save file {:?}", s.period / 60, s.round, s.profiles.len(), s.save_path);
         Some(s)
     }
 
@@ -71,19 +81,19 @@ impl SeasonState {
     }
 
     pub fn reset_at_ms(&self) -> u64 {
-        (self.day + 1) * DAY_SECS * 1000
+        (self.round + 1) * self.period * 1000
     }
 
     fn load(&mut self) {
         let Some(path) = &self.save_path else { return };
         let Ok(text) = std::fs::read_to_string(path) else { return };
         match serde_json::from_str::<SaveFile>(&text) {
-            Ok(f) if f.day == self.day => {
+            Ok(f) if f.round == self.round => {
                 self.profiles = f.profiles;
                 self.champions = f.champions;
             }
-            Ok(f) if f.day + 1 == self.day => {
-                // the server was down over midnight: yesterday's save decides the champions
+            Ok(f) if f.round + 1 == self.round => {
+                // the server was down over the round change: the last save decides the champions
                 let mut rows: Vec<TopRow> = f.profiles.values().map(|p| row_of(p, false)).collect();
                 sort_rows(&mut rows);
                 self.champions = rows.into_iter().filter(|r| r.ep > 0.0).take(3).collect();
@@ -372,14 +382,15 @@ impl World {
         let returning = eco.stats.online > 0.0 || eco.stats.npc_kills > 0;
         let bonus = self.season.as_ref().and_then(|s| s.bonus.get(&e.faction).copied()).unwrap_or(0.0);
         if returning {
-            self.send_log(id, "Welcome back! Your progress today is saved.");
+            self.send_log(id, "Welcome back! Your progress this round is saved.");
         } else {
-            self.send_log(id, "DAILY SEASON: everyone starts in a Phoenix. Kill aliens for credits and uridium,");
-            self.send_log(id, "buy ships, lasers, shields, drones and ammo in the Hangar [H] > Shop. Resets at 00:00 UTC.");
-            self.send_log(id, "Tip: buy a Yamato and a second LF-1 right away, and shoot with MCB-25 (key 2) for double damage.");
+            let mins = self.season.as_ref().map_or(30, |s| s.period / 60);
+            self.send_log(id, &format!("{}-MINUTE ROUNDS: everyone starts in a Phoenix. Kill aliens and grab boxes for credits and uridium.", mins));
+            self.send_log(id, "Press U to buy the next upgrade (or browse the Hangar [H] > Shop). Dying drops part of your unspent loot!");
+            self.send_log(id, "Tip: press U right away - your first upgrade is a Yamato. Shoot with MCB-25 (key 2) for double damage.");
         }
         if bonus > 0.0 {
-            self.send_log(id, &format!("Your company is outnumbered today: +{}% rewards!", (bonus * 100.0).round()));
+            self.send_log(id, &format!("Your company is outnumbered this round: +{}% rewards!", (bonus * 100.0).round()));
         }
         self.season_board();
     }
@@ -393,13 +404,13 @@ impl World {
         }
     }
 
-    /// (reset time, company bonus, PvP-free spot) for `you.season`.
-    pub(super) fn season_you_ctx(&self, id: u32) -> Option<(u64, f64, bool)> {
+    /// (reset time, company bonus, PvP-free spot, next upgrade) for `you.season`.
+    pub(super) fn season_you_ctx(&self, id: u32) -> Option<(u64, f64, bool, Option<NextBuy>)> {
         let s = self.season.as_ref()?;
         let e = self.ents.get(&id)?;
         e.player()?.eco.as_ref()?;
         let safe = self.protected_map(e.map) || self.in_safe_zone(e);
-        Some((s.reset_at_ms(), s.bonus.get(&e.faction).copied().unwrap_or(0.0), safe))
+        Some((s.reset_at_ms(), s.bonus.get(&e.faction).copied().unwrap_or(0.0), safe, self.recommend(id)))
     }
 
     fn protected_map(&self, map: u32) -> bool {
@@ -475,7 +486,7 @@ impl World {
             true
         };
         match msg {
-            ClientMsg::Warp { .. } => refuse(self, "The Jump CPU is disabled in the daily season - fly through the portals [J]".into()),
+            ClientMsg::Warp { .. } => refuse(self, "The Jump CPU is disabled in the season - fly through the portals [J]".into()),
             ClientMsg::Cheat { .. } => true,
             ClientMsg::Upgrade { .. } => refuse(self, "Upgrades are bought per item type in the Shop".into()),
             ClientMsg::Ammo { id: a } if eco.stock(a) == Some(0) => {
@@ -499,6 +510,16 @@ impl World {
             },
             ClientMsg::Ship { ship, design } => {
                 self.season_ship(id, ship, design.clone());
+                true
+            }
+            ClientMsg::Buy { kind, id: item, qty } if kind == "next" => {
+                let _ = item;
+                let _ = qty;
+                match self.recommend(id) {
+                    Some(n) if n.ok => self.season_buy(id, &n.kind, &n.id, 1),
+                    Some(n) => self.send_log(id, &format!("Next upgrade: {} - not enough yet", n.label)),
+                    None => self.send_log(id, "You have the best gear there is - spend on the Shop extras!"),
+                }
                 true
             }
             ClientMsg::Buy { kind, id: item, qty } => {
@@ -686,11 +707,21 @@ impl World {
         }
         let data = self.data.clone();
         let now = self.time;
+        let drop_frac = data.shop.death_drop.clamp(0.0, 1.0);
         let Some(v) = self.ents.get_mut(&victim) else { return };
         let (v_name, v_faction, v_level) = (v.name.clone(), v.faction.clone(), v.player().map_or(1, |p| combat::level_for_exp(p.exp)));
+        let (v_map, v_x, v_y) = (v.map, v.x, v.y);
         let Some(v_eco) = v.player_mut().and_then(|p| p.eco.as_mut()) else { return };
         v_eco.stats.deaths += 1;
         let v_token = v_eco.token.clone();
+        // Starblast-style: dying spills part of your unspent loot for others to grab
+        let (dc, du) = ((v_eco.credits * drop_frac).floor(), (v_eco.uridium * drop_frac).floor());
+        if dc + du > 0.0 {
+            v_eco.pay(dc, du);
+            self.spawn_box(v_map, v_x, v_y, BoxKind::Cargo, dc, du, 0, data.shop.cargo_life.max(10.0));
+            self.send_log(victim, &format!("You dropped {} credits and {} uridium in a cargo box where you died", big(dc), big(du)));
+        }
+        let Some(_) = self.ents.get(&victim) else { return };
         let Some(k) = self.ents.get_mut(&killer) else { return };
         if k.faction == v_faction {
             return;
@@ -719,10 +750,11 @@ impl World {
     /// Every tick: daily reset, online time, leaderboard and periodic save.
     pub(super) fn season_step(&mut self, dt: f64) {
         let Some(s) = self.season.as_ref() else { return };
-        let today = day_of(s.now());
-        if today != s.day {
-            self.daily_reset(today);
+        let now_round = round_of(s.now(), s.period);
+        if now_round != s.round {
+            self.round_reset(now_round);
         }
+        self.boxes_step();
         for e in self.ents.values_mut() {
             if let Some(p) = e.player_mut().filter(|p| !p.tx.is_closed()) {
                 if let Some(eco) = p.eco.as_mut() {
@@ -802,20 +834,28 @@ impl World {
     }
 
     /// 00:00 UTC: crown yesterday's top 3 and send everyone back to the start.
-    fn daily_reset(&mut self, today: u64) {
+    fn round_reset(&mut self, round: u64) {
         let (rows, _) = self.standings();
+        let top: Vec<TopRow> = rows.iter().take(10).map(|r| r.1.clone()).collect();
+        for e in self.ents.values() {
+            let Some(eco) = e.player().and_then(|p| p.eco.as_ref()) else { continue };
+            let rank = rows.iter().position(|r| r.0 == eco.token).map_or(0, |i| i as u32 + 1);
+            let ep = rows.get(rank.saturating_sub(1) as usize).map_or(0.0, |r| r.1.ep);
+            e.send(&ServerMsg::RoundEnd { rows: top.clone(), rank, pilots: rows.len() as u32, ep });
+        }
         let champions: Vec<TopRow> = rows.iter().filter(|r| r.1.ep > 0.0).take(3).map(|r| r.1.clone()).collect();
         let text = if champions.is_empty() {
-            "A new day begins! Everyone starts from scratch.".to_string()
+            "A new round begins! Everyone starts from scratch.".to_string()
         } else {
             let list: Vec<String> = champions.iter().enumerate().map(|(i, c)| format!("{}. {} ({} EP)", i + 1, c.n, big(c.ep))).collect();
-            format!("The day is over! Champions: {}. A new day begins - everyone starts from scratch.", list.join(", "))
+            format!("Round over! Winners: {}. A new round begins - everyone starts from scratch.", list.join(", "))
         };
-        info!("season reset (day {}): {}", today, text);
+        info!("season reset (round {}): {}", round, text);
         if let Some(s) = self.season.as_mut() {
-            s.day = today;
+            s.round = round;
             s.profiles.clear();
             s.champions = champions;
+            s.boxes.retain(|b| b.kind == BoxKind::Bonus);
             s.dirty = true;
         }
         let ids: Vec<u32> = self.ents.values().filter(|e| e.player().is_some_and(|p| p.eco.is_some())).map(|e| e.id).collect();
@@ -847,7 +887,7 @@ impl World {
         self.send_map(e);
         self.clear_targeting(id);
         self.send_you(id, true);
-        self.send_log(id, "New day: back in the Phoenix. Good luck, pilot!");
+        self.send_log(id, "New round: back in the Phoenix. Good luck, pilot!");
     }
 
     fn season_save(&mut self) {
@@ -857,7 +897,7 @@ impl World {
         let Some(path) = s.save_path.clone() else { return };
         let mut profiles = s.profiles.clone();
         profiles.extend(online);
-        let file = SaveFile { day: s.day, profiles, champions: s.champions.clone() };
+        let file = SaveFile { round: s.round, profiles, champions: s.champions.clone() };
         let tmp = path.with_extension("tmp");
         let res = serde_json::to_vec(&file)
             .map_err(|e| e.to_string())
@@ -926,12 +966,13 @@ mod tests {
         let mut d = Data::from_parts(ships, npcs, vec![home, open, eic], Lasers::default());
         d.shop = serde_json::from_str(include_str!("../../../data/shop.json")).unwrap();
         d.shop.protected_maps = vec!["1-1".into(), "2-1".into()];
+        d.shop.bonus_boxes.per_map = 0;
         Arc::new(d)
     }
 
     fn world() -> World {
         let mut w = World::new(data());
-        w.season = Some(SeasonState::new(None));
+        w.season = Some(SeasonState::new(None, 1800));
         w
     }
 
@@ -1009,10 +1050,10 @@ mod tests {
         w.reward(id, w.ents[&npc].npc().unwrap().def);
         let e = eco(&w, id);
         // eic and vru have no pilots yet, so mmo gets no underdog bonus
-        assert_eq!(e.credits, 15_400.0);
-        assert_eq!(e.uridium, 5.0);
+        assert_eq!(e.credits, 15_000.0 + 400.0 * 20.0);
+        assert_eq!(e.uridium, 100.0);
         assert_eq!(e.stats.npc_kills, 1);
-        assert!(logs(&mut rx).contains("You received 400 credits"));
+        assert!(logs(&mut rx).contains("You received 8,000 credits"));
 
         // x2 runs dry -> back to x1
         w.ents.get_mut(&id).unwrap().player_mut().unwrap().eco.as_mut().unwrap().ammo.insert("x2".into(), 1);
@@ -1064,7 +1105,10 @@ mod tests {
         // bounty once, then not again within the cooldown
         w.kill(b, a);
         let u = eco(&w, a).uridium;
-        assert_eq!(u, 25.0);
+        assert_eq!(u, 300.0);
+        // the victim spilled 30% of its unspent credits into a cargo box
+        assert_eq!(eco(&w, b).credits, 15_000.0 * 0.7);
+        assert_eq!(w.season.as_ref().unwrap().boxes.len(), 1);
         assert_eq!(eco(&w, b).stats.deaths, 1);
         w.handle(b, ClientMsg::Revive);
         w.kill(b, a);
@@ -1073,7 +1117,7 @@ mod tests {
     }
 
     #[test]
-    fn underdog_bonus_and_daily_reset() {
+    fn underdog_bonus_and_round_reset() {
         let mut w = world();
         let (a, _) = join(&mut w, "token-mmo1", "mmo");
         let (_b, _) = join(&mut w, "token-mmo2", "mmo");
@@ -1091,8 +1135,8 @@ mod tests {
         w.ents.get_mut(&a).unwrap().player_mut().unwrap().exp = 50_000.0;
         w.ents.get_mut(&a).unwrap().player_mut().unwrap().eco.as_mut().unwrap().credits = 1e9;
         w.ents.get_mut(&a).unwrap().map = 2;
-        // next day
-        w.season.as_mut().unwrap().clock_offset = DAY_SECS as f64;
+        // next round
+        w.season.as_mut().unwrap().clock_offset = 1800.0;
         w.step(0.05);
         let s = w.season.as_ref().unwrap();
         assert_eq!(s.champions[0].n, "pilot");
@@ -1101,7 +1145,8 @@ mod tests {
         assert_eq!(e.map, 1, "sent home");
         assert_eq!(e.player().unwrap().exp, 0.0);
         assert_eq!(eco(&w, a).credits, 15_000.0);
-        assert!(logs(&mut rxv).contains("Champions"));
+        let l = logs(&mut rxv);
+        assert!(l.contains("Winners") && l.contains("roundEnd"));
         let _ = v;
     }
 
@@ -1137,18 +1182,18 @@ mod tests {
         let npc = *w.ents.keys().find(|k| w.ents[k].npc().is_some()).unwrap();
         let def = w.ents[&npc].npc().unwrap().def;
         w.reward(a, def);
-        assert_eq!(eco(&w, a).credits, 15_400.0);
+        assert_eq!(eco(&w, a).credits, 23_000.0);
         assert_eq!(eco(&w, b).credits, 15_000.0);
         w.ents.get_mut(&b).unwrap().player_mut().unwrap().last_alien_hit = w.time;
         w.reward(a, def);
-        assert_eq!(eco(&w, a).credits, 15_400.0 + 210.0);
-        assert_eq!(eco(&w, b).credits, 15_000.0 + 210.0);
+        assert_eq!(eco(&w, a).credits, 23_000.0 + 4_200.0);
+        assert_eq!(eco(&w, b).credits, 15_000.0 + 4_200.0);
         assert_eq!(eco(&w, a).stats.npc_kills, 2);
         assert_eq!(eco(&w, b).stats.npc_kills, 0);
         // different map: no share
         w.ents.get_mut(&b).unwrap().map = 1;
         w.reward(a, def);
-        assert_eq!(eco(&w, b).credits, 15_210.0);
+        assert_eq!(eco(&w, b).credits, 19_200.0);
 
         // leaving a 2-pilot group disbands it; disconnecting also leaves
         w.handle(b, grp("leave", None, None));
@@ -1158,5 +1203,260 @@ mod tests {
         assert!(w.same_group(a, c));
         w.remove(a);
         assert!(w.group_of(c).is_none());
+    }
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum BoxKind {
+    /// Random DO bonus box (respawns).
+    Bonus,
+    /// Loot spilled by a destroyed pilot (expires).
+    Cargo,
+}
+
+pub struct LootBox {
+    pub id: u32,
+    pub map: u32,
+    pub x: f64,
+    pub y: f64,
+    pub kind: BoxKind,
+    pub credits: f64,
+    pub uridium: f64,
+    /// MCB-25 (x2) rounds.
+    pub ammo: u64,
+    /// Expires at this world time (cargo); bonus boxes live forever.
+    pub until: f64,
+}
+
+/// Highest entry of a cheapest-first list that `eco` can pay for, else the cheapest one.
+fn best_affordable<'a>(eco: &Eco, list: Vec<(String, String, &'a Price)>) -> Option<(String, String, &'a Price)> {
+    list.iter().rev().find(|(_, _, pr)| eco.can_pay(pr.c, pr.u)).cloned().or_else(|| list.first().cloned())
+}
+
+/// Fly within this distance of a box to collect it.
+const PICKUP_RANGE: f64 = 140.0;
+
+impl World {
+    #[allow(clippy::too_many_arguments)]
+    fn spawn_box(&mut self, map: u32, x: f64, y: f64, kind: BoxKind, credits: f64, uridium: f64, ammo: u64, life: f64) {
+        let id = self.alloc_id();
+        let until = if kind == BoxKind::Cargo { self.time + life } else { f64::INFINITY };
+        if let Some(s) = self.season.as_mut() {
+            s.boxes.push(LootBox { id, map, x, y, kind, credits, uridium, ammo, until });
+        }
+    }
+
+    /// Keep each map stocked with bonus boxes, expire cargo, hand boxes to pilots flying over them.
+    pub(super) fn boxes_step(&mut self) {
+        let data = self.data.clone();
+        let rule = &data.shop.bonus_boxes;
+        let now = self.time;
+        let Some(s) = self.season.as_mut() else { return };
+        s.boxes.retain(|b| b.until > now);
+        // refill bonus boxes (once per second is plenty)
+        if self.tick % 20 == 0 && rule.per_map > 0 {
+            s.box_respawn.retain(|(_, at)| *at > now);
+            let mut want: Vec<(u32, u32)> = vec![];
+            for m in &data.maps {
+                if m.npcs.is_empty() {
+                    continue;
+                }
+                let have = s.boxes.iter().filter(|b| b.map == m.id && b.kind == BoxKind::Bonus).count() as u32;
+                let pending = s.box_respawn.iter().filter(|(mm, _)| *mm == m.id).count() as u32;
+                let n = rule.per_map.saturating_sub(have + pending);
+                if n > 0 {
+                    want.push((m.id, n));
+                }
+            }
+            for (map, n) in want {
+                let Some(m) = data.map(map) else { continue };
+                let tier = map_tier(&m.name);
+                for _ in 0..n {
+                    let (x, y) = (self.rng.gen_range(m.w * 0.05..m.w * 0.95), self.rng.gen_range(m.h * 0.05..m.h * 0.95));
+                    let roll: f64 = self.rng.gen();
+                    let k = self.rng.gen_range(0.6..1.4) * tier;
+                    let (c, u, a) = if roll < 0.6 {
+                        ((rule.credits * k).round(), 0.0, 0)
+                    } else if roll < 0.85 {
+                        (0.0, (rule.uridium * k).round(), 0)
+                    } else {
+                        (0.0, 0.0, (rule.ammo as f64 * k).round() as u64)
+                    };
+                    self.spawn_box(map, x, y, BoxKind::Bonus, c, u, a, 0.0);
+                }
+            }
+        }
+        // pickups
+        let s = self.season.as_ref().unwrap();
+        let pilots: Vec<(u32, u32, f64, f64)> = self
+            .ents
+            .values()
+            .filter(|e| e.alive() && e.player().is_some_and(|p| p.eco.is_some()))
+            .map(|e| (e.id, e.map, e.x, e.y))
+            .collect();
+        let mut taken: Vec<(usize, u32)> = vec![];
+        if !pilots.is_empty() {
+            for (i, b) in s.boxes.iter().enumerate() {
+                let who = pilots.iter().find(|(_, m, x, y)| *m == b.map && dist(*x, *y, b.x, b.y) <= PICKUP_RANGE);
+                if let Some((w, ..)) = who {
+                    taken.push((i, *w));
+                }
+            }
+        }
+        for (i, who) in taken.into_iter().rev() {
+            let s = self.season.as_mut().unwrap();
+            let b = s.boxes.remove(i);
+            if b.kind == BoxKind::Bonus {
+                s.box_respawn.push((b.map, now + rule.respawn.max(5.0)));
+            }
+            let Some(eco) = self.ents.get_mut(&who).and_then(|e| e.player_mut()).and_then(|p| p.eco.as_mut()) else { continue };
+            eco.credits += b.credits;
+            eco.uridium += b.uridium;
+            eco.stats.earned_c += b.credits;
+            eco.stats.earned_u += b.uridium;
+            if b.ammo > 0 {
+                *eco.ammo.entry("x2".into()).or_default() += b.ammo;
+            }
+            let what = [(b.credits, "credits"), (b.uridium, "uridium")]
+                .iter()
+                .filter(|(v, _)| *v > 0.0)
+                .map(|(v, w)| format!("{} {}", big(*v), w))
+                .chain((b.ammo > 0).then(|| format!("{} MCB-25", big(b.ammo as f64))))
+                .collect::<Vec<_>>()
+                .join(" + ");
+            let label = if b.kind == BoxKind::Cargo { "cargo box" } else { "bonus box" };
+            self.send_log(who, &format!("You collected a {}: {}", label, what));
+            if b.kind == BoxKind::Cargo {
+                info!("player {} picked up a cargo box ({})", who, what);
+            }
+        }
+    }
+
+    /// Boxes on `map` as state entities (`k: "b"`).
+    pub(super) fn box_states(&self, map: u32) -> Vec<EntState> {
+        let Some(s) = self.season.as_ref() else { return vec![] };
+        s.boxes
+            .iter()
+            .filter(|b| b.map == map)
+            .map(|b| EntState {
+                id: b.id,
+                k: "b",
+                n: if b.kind == BoxKind::Cargo { "Cargo".into() } else { String::new() },
+                s: if b.kind == BoxKind::Cargo { "box_cargo".into() } else { "box_bonus".into() },
+                x: b.x.round(),
+                y: b.y.round(),
+                a: 0.0,
+                hp: 0.0,
+                mhp: 0.0,
+                sh: 0.0,
+                msh: 0.0,
+                f: String::new(),
+                tg: None,
+                atk: false,
+                dr: vec![],
+                dd: None,
+                fm: None,
+            })
+            .collect()
+    }
+
+    /// The one-key upgrade: fill empty slots, then the next bigger ship, then better lasers /
+    /// shields, drones, and finally upgrade levels. `ok` = affordable now.
+    pub(super) fn recommend(&self, id: u32) -> Option<NextBuy> {
+        let data = &self.data;
+        let (shop, items) = (&data.shop, &data.items);
+        let p = self.ents.get(&id)?.player()?;
+        let eco = p.eco.as_ref()?;
+        let ship = World::ship_of(data, p);
+        let sl = equipment::slots(ship, items);
+        let val = |pr: &Price| pr.c + pr.u * shop.upgrade.uri_value;
+        let mk = |kind: &str, id: &str, label: String, pr: &Price| NextBuy {
+            kind: kind.into(),
+            id: id.into(),
+            label,
+            c: pr.c,
+            u: pr.u,
+            ok: eco.can_pay(pr.c, pr.u),
+        };
+        let mut lasers: Vec<(&crate::data::LaserItem, &Price)> =
+            items.lasers.iter().filter(|l| !l.pet_only).filter_map(|l| shop.items.get(&l.id).map(|p| (l, p))).collect();
+        lasers.sort_by(|a, b| a.0.damage.total_cmp(&b.0.damage));
+        let mut shields: Vec<(&crate::data::ShieldGen, &Price)> =
+            items.shield_gens.iter().filter_map(|g| shop.items.get(&g.id).map(|p| (g, p))).collect();
+        shields.sort_by(|a, b| (a.0.shield * a.0.absorb).total_cmp(&(b.0.shield * b.0.absorb)));
+
+        let owned_lasers: u32 = lasers.iter().map(|(l, _)| eco.owns(&l.id)).sum();
+        let owned_gens: u32 = items.shield_gens.iter().map(|g| eco.owns(&g.id)).chain(items.speed_gens.iter().map(|g| eco.owns(&g.id))).sum();
+        // 1/2: empty ship slots
+        if owned_lasers < sl.lasers {
+            let l: Vec<_> = lasers.iter().map(|(l, p)| (l.id.clone(), l.name.clone(), *p)).collect();
+            return best_affordable(eco, l).map(|(i, n, p)| mk("item", &i, format!("Laser {}", n), p));
+        }
+        if owned_gens < sl.gens {
+            let g: Vec<_> = shields.iter().map(|(g, p)| (g.id.clone(), g.name.clone(), *p)).collect();
+            return best_affordable(eco, g).map(|(i, n, p)| mk("item", &i, format!("Shield {}", n), p));
+        }
+        // improvements: a laser / shield better than your weakest one, drones, levels
+        let mut improve: Vec<NextBuy> = vec![];
+        let weakest_laser = lasers.iter().filter(|(l, _)| eco.owns(&l.id) > 0).map(|(l, _)| l.damage).fold(f64::INFINITY, f64::min);
+        let better_l: Vec<_> = lasers.iter().filter(|(l, _)| l.damage > weakest_laser).map(|(l, p)| (l.id.clone(), l.name.clone(), *p)).collect();
+        if let Some((i, n, p)) = best_affordable(eco, better_l) {
+            improve.push(mk("item", &i, format!("Laser {}", n), p));
+        }
+        let sv = |g: &crate::data::ShieldGen| g.shield * g.absorb;
+        let weakest_shield = shields.iter().filter(|(g, _)| eco.owns(&g.id) > 0).map(|(g, _)| sv(g)).fold(f64::INFINITY, f64::min);
+        let better_s: Vec<_> = shields.iter().filter(|(g, _)| sv(g) > weakest_shield).map(|(g, p)| (g.id.clone(), g.name.clone(), *p)).collect();
+        if let Some((i, n, p)) = best_affordable(eco, better_s) {
+            improve.push(mk("item", &i, format!("Shield {}", n), p));
+        }
+        let drones: u32 = items.drones.iter().map(|d| eco.owns(&d.id)).sum();
+        if drones < items.max_drones {
+            let d: Vec<_> = items.drones.iter().filter_map(|d| shop.items.get(&d.id).map(|p| (d.id.clone(), d.name.clone(), p))).collect();
+            if let Some((i, n, p)) = best_affordable(eco, d) {
+                improve.push(mk("item", &i, format!("Drone {}", n), p));
+            }
+        }
+        // next bigger ship
+        let slots_of = |s: &crate::data::Ship| s.lasers + s.generators;
+        let mut ships: Vec<(&crate::data::Ship, &Price)> = shop
+            .ships
+            .iter()
+            .filter(|(i, _)| !eco.ships.contains(*i))
+            .filter_map(|(i, p)| data.ship(i).map(|s| (s, p)))
+            .filter(|(s, _)| slots_of(s) > slots_of(ship) || (slots_of(s) == slots_of(ship) && s.hp > ship.hp * 1.5))
+            .collect();
+        ships.sort_by(|a, b| val(a.1).total_cmp(&val(b.1)));
+        let next_ship = ships.first().map(|(s, p)| mk("ship", &s.id, format!("Ship {}", s.name), p));
+        if let Some(ns) = &next_ship {
+            if ns.ok {
+                return next_ship;
+            }
+            // while saving up, only suggest cheap improvements (<= 25% of the ship)
+            let cap = (ns.c + ns.u * shop.upgrade.uri_value) * 0.25;
+            if let Some(i) = improve.iter().find(|i| i.ok && i.c + i.u * shop.upgrade.uri_value <= cap) {
+                return Some(i.clone());
+            }
+            return next_ship;
+        }
+        if let Some(i) = improve.iter().find(|i| i.ok).or(improve.first()) {
+            return Some(i.clone());
+        }
+        // finally: the lowest upgrade level of an owned laser / shield / drone type
+        let mut lv: Vec<(&str, u8, u8)> = vec![];
+        for (l, _) in &lasers {
+            if eco.owns(&l.id) > 0 {
+                lv.push((&l.id, eco.level(&l.id), l.max_level));
+            }
+        }
+        for (g, _) in &shields {
+            if eco.owns(&g.id) > 0 {
+                lv.push((&g.id, eco.level(&g.id), g.max_level));
+            }
+        }
+        lv.retain(|(_, l, m)| l < m);
+        lv.sort_by_key(|(_, l, _)| *l);
+        let (uid, l, _) = lv.first()?;
+        let cost = shop.upgrade_cost(uid, *l)?;
+        Some(mk("upgrade", uid, format!("Upgrade {} to lvl {}", display_name(items, uid), l + 1), &Price { c: cost, u: 0.0, pack: 0 }))
     }
 }

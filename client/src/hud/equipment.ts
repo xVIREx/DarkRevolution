@@ -448,7 +448,7 @@ export class EquipmentPanel {
     el('div', 'eq-rowhead', '<span>Boosters <small>click to toggle</small></span>', this.extraEl);
     const bg = el('div', 'eq-boosters', undefined, this.extraEl);
     const boosters = (ITEMS.boosters ?? []).filter((b) => !this.season || unlocked(this.you?.season ?? null, 'booster', b.id));
-    if (!boosters.length) el('span', 'hint', this.season ? 'No boosters yet - buy them in the Shop (they last until the daily reset)' : 'No boosters in items.json yet', bg);
+    if (!boosters.length) el('span', 'hint', this.season ? 'No boosters yet - buy them in the Shop (they last until the round ends)' : 'No boosters in items.json yet', bg);
     for (const b of boosters) {
       const on = !!this.boostLocal[b.id];
       const c = el('div', `eq-boost${on ? ' on' : ''}`, `<img src="${boosterIcon(b.id, String(b.icon ?? ''))}" draggable="false"><div><b>${esc(b.name ?? b.id)}</b><span>${esc(String(b.desc ?? b.effect ?? effectText(b)))}</span></div><i class="led"></i>`, bg);

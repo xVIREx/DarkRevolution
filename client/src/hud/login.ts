@@ -75,17 +75,17 @@ export class LoginScreen {
     const champs = (info.champions ?? []).map((c, i) => `${['🥇', '🥈', '🥉'][i] ?? ''} ${esc(c.n)} <small>${fmtBig(c.ep)} EP</small>`).join(' &nbsp; ');
     const top = (info.top ?? []).slice(0, 3).map((c, i) => `${i + 1}. ${esc(c.n)} <small>lvl ${c.lvl}</small>`).join(' &nbsp; ');
     this.seasonEl.innerHTML =
-      `<div class="si-title">DAILY SEASON <span>resets in <b class="si-clock">${fmtClock(left)}</b></span></div>` +
-      '<div class="si-text">Everyone starts in a Phoenix. Hunt aliens, buy ships &amp; gear, climb the ranking. At 00:00 UTC the universe resets.</div>' +
-      (top ? `<div class="si-row">Today: ${top}</div>` : '') +
-      (champs ? `<div class="si-row">Yesterday: ${champs}</div>` : '');
+      `<div class="si-title">ROUND <span>ends in <b class="si-clock">${fmtClock(left)}</b></span></div>` +
+      '<div class="si-text">Everyone starts in a Phoenix. Hunt aliens, grab boxes, press U to upgrade, climb the ranking. When the round ends, everyone starts over.</div>' +
+      (top ? `<div class="si-row">Leading: ${top}</div>` : '') +
+      (champs ? `<div class="si-row">Last round: ${champs}</div>` : '');
     const clock = this.seasonEl.querySelector<HTMLElement>('.si-clock');
     const end = Date.now() + left;
     window.setInterval(() => { if (clock) clock.textContent = fmtClock(end - Date.now()); }, 1000);
     for (const [f, c] of this.cards) {
       const r = info.factions?.[f];
       const tag = c.querySelector('em')!;
-      tag.innerHTML = r ? `${r.pilots} pilot${r.pilots === 1 ? '' : 's'} today${r.bonus > 0 ? ` · <i>+${Math.round(r.bonus * 100)}% rewards</i>` : ''}` : '';
+      tag.innerHTML = r ? `${r.pilots} pilot${r.pilots === 1 ? '' : 's'} this round${r.bonus > 0 ? ` · <i>+${Math.round(r.bonus * 100)}% rewards</i>` : ''}` : '';
     }
     const lock = info.locked as Faction | null | undefined;
     if (lock && this.cards.has(lock)) {
@@ -95,7 +95,7 @@ export class LoginScreen {
         c.classList.toggle('sel', f === lock);
         c.classList.toggle('disabled', f !== lock);
       }
-      el('div', 'si-lock', `You fly for <b>${lock.toUpperCase()}</b> until the reset${info.level ? ` (level ${info.level})` : ''} - your progress is waiting.`, this.seasonEl);
+      el('div', 'si-lock', `You fly for <b>${lock.toUpperCase()}</b> until the round ends${info.level ? ` (level ${info.level})` : ''} - your progress is waiting.`, this.seasonEl);
       if (info.name) this.nameInput.value = info.name;
     }
   }

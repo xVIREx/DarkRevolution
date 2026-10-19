@@ -81,7 +81,8 @@ export interface MapDef {
 
 export interface EntSnap {
   id: number | string;
-  k: 'p' | 'n';
+  /** player / NPC / loot box (season) */
+  k: 'p' | 'n' | 'b';
   n: string;
   s: string;
   x: number;
@@ -144,6 +145,9 @@ export interface SeasonYou {
   rank: number;
   /** PvP impossible where you are (protected map / safe zone) */
   safe: boolean;
+  /** one-key upgrade (U): what `buy` kind "next" would buy */
+  next?: { kind: string; id: string; label: string; c: number; u: number; ok: boolean } | null;
+  roundMinutes?: number;
 }
 
 export interface TopRow { n: string; f: string; lvl: number; ep: number; hon: number; k: number; pk: number; on: boolean }
@@ -164,7 +168,8 @@ export type ServerMsg =
   | { t: 'chat'; from: string; text: string }
   | ({ t: 'top' } & TopMsg)
   | ({ t: 'group' } & GroupMsg)
-  | { t: 'groupInvite'; from: string; id: number };
+  | { t: 'groupInvite'; from: string; id: number }
+  | { t: 'roundEnd'; rows: TopRow[]; rank: number; pilots: number; ep: number };
 
 export type ClientMsg =
   | { t: 'login'; name: string; faction: Faction; token?: string }

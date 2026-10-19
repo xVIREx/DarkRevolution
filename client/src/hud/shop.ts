@@ -173,7 +173,7 @@ function boostText(b: ItemDef): string {
   return Object.entries(b)
     .filter(([k, v]) => typeof v === 'number' && !k.startsWith('_'))
     .map(([k, v]) => `+${Math.round((v as number) * 100)}% ${k}`)
-    .join(', ') + ' for the rest of the day';
+    .join(', ') + ' until the round ends';
 }
 
 function techIcon(id: string): string {

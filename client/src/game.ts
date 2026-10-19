@@ -15,7 +15,7 @@ import { Dialog } from './hud/dialogs';
 import { esc } from './hud/dom';
 import { VolumePanel } from './hud/volume';
 import { WarpWindow } from './hud/warp';
-import { RankWindow, SeasonBar } from './hud/season';
+import { MiniBoard, RankWindow, roundEndHtml, SeasonBar, toast, UpgradeButton } from './hud/season';
 import { GroupWindow } from './hud/group';
 import { AudioSystem } from './audio';
 import type { EntId, EntSnap, Faction, MapDef, ServerMsg, YouMsg } from './types';
@@ -36,6 +36,9 @@ export class Game implements Actions {
   private warpWin: WarpWindow | null = null;
   private seasonBar: SeasonBar | null = null;
   private rankWin: RankWindow | null = null;
+  private upgradeBtn: UpgradeButton | null = null;
+  private miniBoard: MiniBoard | null = null;
+  private roundOver: Dialog | null = null;
   private groupWin: GroupWindow;
   private input: Input;
   private touch: TouchControls | null = null;
@@ -79,7 +82,10 @@ export class Game implements Actions {
       this.rankWin = new RankWindow(() => this.ents.me()?.snap.n ?? this.name);
       this.seasonBar = new SeasonBar(this.hud.root, () => { this.rankWin!.win.open(); this.rankWin!.win.front(); });
       this.seasonBar.setSkew(season.skew);
-      this.hud.rightMenu.add({ icon: 'rankings', title: 'Daily ranking', win: 'win-rank' });
+      this.hud.rightMenu.add({ icon: 'rankings', title: 'Round ranking', win: 'win-rank' });
+      this.upgradeBtn = new UpgradeButton(this.hud.root, this, () => this.you);
+      this.miniBoard = new MiniBoard(this.hud.root, () => { this.rankWin!.win.open(); this.rankWin!.win.front(); }, () => this.ents.me()?.snap.n ?? this.name);
+      this.roundOver = new Dialog('Round over', 'Next round', () => this.roundOver?.hide());
       this.hud.rightMenu.add({ icon: 'shop', title: 'Shop [H]', onClick: () => this.hangar.show('Shop'), isOpen: () => false });
     } else {
       this.warpWin = new WarpWindow(this);
@@ -134,6 +140,7 @@ export class Game implements Actions {
         if (this.lastLevel !== null && y.level > this.lastLevel) {
           this.audio.play('levelup');
           this.log.add(`Level up! You are now level ${y.level}`, true);
+          if (this.season) toast(`LEVEL ${y.level}`, 'Level up!');
         }
         this.lastLevel = y.level;
         if (y.id !== undefined && y.id !== null) this.ents.myId = String(y.id);
@@ -147,6 +154,7 @@ export class Game implements Actions {
         if (y.season) {
           this.seasonBar?.update(y.season, this.rankWin?.pilots ?? 0);
           this.rankWin?.setYou(y);
+          this.upgradeBtn?.update();
         }
         this.hangar.setYou(y);
         break;
@@ -167,7 +175,7 @@ export class Game implements Actions {
       case 'dead':
         this.dead = true;
         this.respawn.show(`You were destroyed by <b>${esc(m.by || 'unknown')}</b>.<br><span class="hint">${this.season
-          ? 'Repairs are free - you keep your ship, gear and credits.'
+          ? 'Repairs are free and you keep your ship and gear - but part of your unspent credits and uridium was dropped where you died. Go get it back!'
           : 'You lose nothing - resources are infinite.'}</span>`);
         break;
       case 'log':
@@ -183,6 +191,9 @@ export class Game implements Actions {
         this.groupWin.setGroup(g);
         break;
       }
+      case 'roundEnd':
+        this.roundOver?.show(roundEndHtml(m, this.ents.me()?.snap.n ?? this.name), 'Round over');
+        break;
       case 'groupInvite':
         this.groupWin.onInvite(m.from, m.id);
         this.audio.play('select');
@@ -191,6 +202,7 @@ export class Game implements Actions {
         const { t: _t, ...top } = m;
         void _t;
         this.rankWin?.setTop(top);
+        this.miniBoard?.update(top);
         if (this.you?.season) this.seasonBar?.update(this.you.season, top.pilots);
         break;
       }

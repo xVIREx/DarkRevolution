@@ -2,7 +2,7 @@
 
 use crate::equipment::{DroneCfg, EquipConfig, Slots, Stats};
 use serde::{Deserialize, Serialize};
-use crate::season::{PilotStats, TopRow};
+use crate::season::{NextBuy, PilotStats, TopRow};
 use serde_json::Value;
 use std::collections::BTreeMap;
 
@@ -195,6 +195,14 @@ pub enum ServerMsg<'a> {
         from: String,
         id: u32,
     },
+    /// The round is over: final standings and your place (sent just before the reset).
+    #[serde(rename = "roundEnd")]
+    RoundEnd {
+        rows: Vec<TopRow>,
+        rank: u32,
+        pilots: u32,
+        ep: f64,
+    },
     Shot {
         from: u32,
         to: u32,
@@ -284,6 +292,11 @@ pub struct SeasonYou {
     pub rank: u32,
     /// PvP is impossible here (protected map / safe zone) — shown on the HUD.
     pub safe: bool,
+    /// The one-key upgrade (U).
+    pub next: Option<NextBuy>,
+    /// Round length in minutes.
+    #[serde(rename = "roundMinutes")]
+    pub round_minutes: f64,
 }
 
 /// Leaderboard broadcast (season only, every few seconds).

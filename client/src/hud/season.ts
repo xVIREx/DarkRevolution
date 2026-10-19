@@ -2,7 +2,8 @@
 // the reset countdown bar and the Rankings window (today / companies / my stats / champions).
 import type { FactionRow, SeasonYou, TopMsg, TopRow, YouMsg } from '../types';
 import { FACTION_COLORS } from '../types';
-import { el, esc, fmt } from './dom';
+import { el, esc, fmt, isTyping } from './dom';
+import type { Actions } from '../actions';
 import { DOWindow, ui } from './ui';
 
 export interface Price { c?: number; u?: number; pack?: number; name?: string; desc?: string }
@@ -121,8 +122,8 @@ export class SeasonBar {
 
   constructor(parent: HTMLElement, onClick: () => void) {
     this.root = el('div', 'season-bar', undefined, parent);
-    this.root.title = 'Daily season: everyone starts from zero, the universe resets at 00:00 UTC. Click for rankings.';
-    el('b', undefined, 'DAILY SEASON', this.root);
+    this.root.title = 'Rounds: everyone starts from zero and the universe resets when the round ends. Click for rankings.';
+    el('b', undefined, 'ROUND', this.root);
     this.clock = el('span', 'sb-clock', '--:--:--', this.root);
     this.rank = el('span', 'sb-rank', '', this.root);
     this.bonus = el('span', 'sb-bonus', '', this.root);
@@ -148,8 +149,8 @@ export class SeasonBar {
   private tick(): void {
     if (!this.resetAt) return;
     const left = this.resetAt - (Date.now() + this.skew);
-    setText(this.clock, `resets in ${fmtClock(left)}`);
-    this.root.classList.toggle('soon', left < 3600_000);
+    setText(this.clock, `ends in ${fmtClock(left)}`);
+    this.root.classList.toggle('soon', left < 300_000);
   }
 }
 
@@ -164,9 +165,9 @@ export class RankWindow {
   private sig = '';
 
   constructor(private readonly myName: () => string) {
-    this.win = new DOWindow({ id: 'win-rank', title: 'Daily ranking', icon: 'rankings', w: 330, anchor: 'tr', x: 8, y: 236, open: false, cls: 'win-rank' });
+    this.win = new DOWindow({ id: 'win-rank', title: 'Round ranking', icon: 'rankings', w: 330, anchor: 'tr', x: 8, y: 236, open: false, cls: 'win-rank' });
     const head = el('div', 'rk-tabs', undefined, this.win.body);
-    ['Today', 'Companies', 'My stats', 'Yesterday'].forEach((t, i) => {
+    ['This round', 'Companies', 'My stats', 'Last round'].forEach((t, i) => {
       const b = el('div', `rk-tab${i === 0 ? ' on' : ''}`, t, head);
       b.addEventListener('click', () => { this.tab = i; this.tabs.forEach((x, j) => x.classList.toggle('on', j === i)); this.render(true); });
       this.tabs.push(b);
@@ -197,7 +198,7 @@ export class RankWindow {
     const t = this.top;
     let h = '';
     if (this.tab === 0) {
-      if (!t?.rows.length) h = '<div class="hint">No pilots yet today. Be the first!</div>';
+      if (!t?.rows.length) h = '<div class="hint">No pilots yet this round. Be the first!</div>';
       else {
         h = '<table class="rk-table"><tr><th>#</th><th>Pilot</th><th>Lvl</th><th>EP</th><th>Kills</th><th>PvP</th></tr>';
         t.rows.forEach((r, i) => { h += this.row(i + 1, r); });
@@ -206,7 +207,7 @@ export class RankWindow {
       }
     } else if (this.tab === 1) {
       const fs = Object.entries(t?.factions ?? {}).sort((a, b) => b[1].ep - a[1].ep);
-      h = '<div class="hint">Total EP of every pilot who flew today. The company with the fewest pilots earns bonus rewards.</div>';
+      h = '<div class="hint">Total EP of every pilot this round. The company with the fewest pilots earns bonus rewards.</div>';
       for (const [f, r] of fs) {
         h += `<div class="rk-fac" style="--fc:${fcol(f)}"><img src="${ui(`win/faction_logo_small_${f}`)}" draggable="false"><b>${fname(f)}</b>` +
           `<span>${r.pilots} pilot${r.pilots === 1 ? '' : 's'} · ${r.online} online</span><span class="rk-ep">${fmtBig(r.ep)} EP</span>` +
@@ -229,7 +230,7 @@ export class RankWindow {
       const c = t?.champions ?? [];
       h = c.length
         ? `<table class="rk-table"><tr><th>#</th><th>Pilot</th><th>Lvl</th><th>EP</th><th>Kills</th><th>PvP</th></tr>${c.map((r, i) => this.row(i + 1, r)).join('')}</table>`
-        : '<div class="hint">No champions recorded yet. Tomorrow it could be you.</div>';
+        : '<div class="hint">No winners recorded yet. Next round it could be you.</div>';
     }
     this.page.innerHTML = h;
   }
@@ -244,4 +245,99 @@ export class RankWindow {
 
 function setText(e: HTMLElement, v: string): void {
   if (e.textContent !== v) e.textContent = v;
+}
+
+/** One-key upgrade (U): shows the server's recommendation (`you.season.next`) above the action bar. */
+export class UpgradeButton {
+  private root: HTMLDivElement;
+  private label: HTMLElement;
+  private price: HTMLElement;
+  private fill: HTMLElement;
+  private next: SeasonYou['next'] = null;
+  private wasOk = false;
+
+  constructor(parent: HTMLElement, private readonly actions: Actions, private readonly you: () => YouMsg | null) {
+    this.root = el('div', 'upg-btn', undefined, parent);
+    el('kbd', undefined, 'U', this.root);
+    const t = el('div', 'upg-txt', undefined, this.root);
+    this.label = el('b', undefined, '', t);
+    this.price = el('span', undefined, '', t);
+    this.fill = el('i', 'upg-fill', undefined, this.root);
+    this.root.addEventListener('click', () => this.buy());
+    window.addEventListener('keydown', (e) => {
+      if (e.code === 'KeyU' && !e.repeat && !isTyping() && !e.ctrlKey && !e.metaKey) this.buy();
+    });
+    this.root.style.display = 'none';
+  }
+
+  private buy(): void {
+    if (this.next) this.actions.sendRaw({ t: 'buy', kind: 'next', id: '' });
+  }
+
+  update(): void {
+    const y = this.you();
+    const n = y?.season?.next ?? null;
+    this.next = n;
+    this.root.style.display = n ? '' : 'none';
+    if (!n || !y) return;
+    setText(this.label, `Next: ${n.label}`);
+    const parts: string[] = [];
+    if (n.c) parts.push(`${fmtBig(n.c)} C`);
+    if (n.u) parts.push(`${fmtBig(n.u)} U`);
+    setText(this.price, parts.join(' + '));
+    // progress towards the price (the scarcer of credits / uridium)
+    const k = Math.min(n.c ? y.credits / n.c : 1, n.u ? y.uridium / n.u : 1);
+    this.fill.style.width = `${Math.round(Math.max(0, Math.min(1, k)) * 100)}%`;
+    this.root.classList.toggle('ok', n.ok);
+    if (n.ok && !this.wasOk) {
+      this.root.classList.remove('pulse');
+      void this.root.offsetWidth;
+      this.root.classList.add('pulse');
+    }
+    this.wasOk = n.ok;
+    this.root.title = n.ok ? 'Buy it now [U]' : 'Keep hunting - the bar fills as you earn';
+  }
+}
+
+/** Starblast-style always-visible top 5 (+ your own line). */
+export class MiniBoard {
+  private root: HTMLDivElement;
+  private sig = '';
+
+  constructor(parent: HTMLElement, onClick: () => void, private readonly myName: () => string) {
+    this.root = el('div', 'mini-board', '', parent);
+    this.root.title = 'Round ranking - click for details';
+    this.root.addEventListener('click', onClick);
+  }
+
+  update(t: TopMsg): void {
+    const me = this.myName();
+    const sig = JSON.stringify([t.rows.slice(0, 5), t.rank, me]);
+    if (sig === this.sig) return;
+    this.sig = sig;
+    let h = '';
+    t.rows.slice(0, 5).forEach((r, i) => {
+      h += `<div class="${r.n === me ? 'me' : ''}"><span>${i + 1}.</span><b style="color:${fcol(r.f)}">${esc(r.n)}</b><em>${fmtBig(r.ep)}</em></div>`;
+    });
+    if (t.rank > 5) h += `<div class="me"><span>${t.rank}.</span><b>${esc(me)}</b><em>${fmtBig(t.rows.find((r) => r.n === me)?.ep ?? 0)}</em></div>`;
+    this.root.innerHTML = h || '<div class="hint">No pilots yet</div>';
+  }
+}
+
+/** Big centred announcement (level up, round over...). */
+export function toast(text: string, sub = ''): void {
+  const host = document.getElementById('hud') ?? document.body;
+  const t = el('div', 'big-toast', `<b>${esc(text)}</b>${sub ? `<span>${esc(sub)}</span>` : ''}`, host);
+  window.setTimeout(() => t.classList.add('out'), 1800);
+  window.setTimeout(() => t.remove(), 2500);
+}
+
+/** Final standings when a round ends. */
+export function roundEndHtml(m: { rows: TopRow[]; rank: number; pilots: number; ep: number }, me: string): string {
+  const place = m.rank ? `You finished <b>#${m.rank}</b> of ${m.pilots} with <b>${fmtBig(m.ep)} EP</b>.` : 'You did not score this round.';
+  let h = `<div class="re-place">${place}</div><table class="rk-table">`;
+  m.rows.forEach((r, i) => {
+    h += `<tr class="${r.n === me ? 'me' : ''}"><td>${i < 3 ? ['🥇', '🥈', '🥉'][i] : i + 1}</td><td style="color:${fcol(r.f)}">${esc(r.n)}</td><td>lvl ${r.lvl}</td><td>${fmtBig(r.ep)} EP</td></tr>`;
+  });
+  return `${h}</table><div class="hint">A new round starts now - everyone is back in a Phoenix.</div>`;
 }

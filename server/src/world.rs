@@ -569,10 +569,10 @@ impl World {
         }
     }
 
-    fn you_of(data: &Data, e: &Entity, ctx: Option<(u64, f64, bool)>) -> Option<YouMsg> {
+    fn you_of(data: &Data, e: &Entity, ctx: Option<(u64, f64, bool, Option<crate::season::NextBuy>)>) -> Option<YouMsg> {
         let p = e.player()?;
         let ship = Self::ship_of(data, p);
-        let season = p.eco.as_ref().zip(ctx).map(|(eco, (reset_at, bonus, safe))| SeasonYou {
+        let season = p.eco.as_ref().zip(ctx).map(|(eco, (reset_at, bonus, safe, next))| SeasonYou {
             reset_at,
             bonus,
             ships: eco.ships.iter().cloned().collect(),
@@ -583,6 +583,8 @@ impl World {
             pilot: crate::season::pilot_view(&eco.stats),
             rank: eco.rank,
             safe,
+            next,
+            round_minutes: (data.shop.round_secs() / 60) as f64,
         });
         Some(YouMsg {
             ship: p.ship.clone(),
@@ -1361,12 +1363,13 @@ impl World {
         // Interest management: each player only gets entities within VIEW_RADIUS (plus
         // itself and its target); whole-map snapshots cost ~260 KB/s per player.
         for (map, pids) in &by_map {
-            let ents: Vec<EntState> = self
+            let mut ents: Vec<EntState> = self
                 .ents
                 .values()
                 .filter(|e| e.map == *map && e.alive())
                 .map(|e| e.to_state())
                 .collect();
+            ents.extend(self.box_states(*map));
             for pid in pids {
                 let me = &self.ents[pid];
                 let (mx, my, tg) = (me.x, me.y, me.target);
