@@ -87,10 +87,11 @@ export class Game implements Actions {
       this.miniBoard = new MiniBoard(this.hud.root, () => { this.rankWin!.win.open(); this.rankWin!.win.front(); }, () => this.ents.me()?.snap.n ?? this.name);
       this.roundOver = new Dialog('Round over', 'Next round', () => this.roundOver?.hide());
       this.hud.rightMenu.add({ icon: 'shop', title: 'Shop [H]', onClick: () => this.hangar.show('Shop'), isOpen: () => false });
-    } else {
-      this.warpWin = new WarpWindow(this);
-      this.hud.rightMenu.add({ icon: 'spacemap', title: 'Jump CPU [G]', win: 'win-warp' });
     }
+    this.warpWin = new WarpWindow(this, season
+      ? 'Jump to any map. Recharges for 60 s after each jump and does not work while you are under fire.'
+      : undefined);
+    this.hud.rightMenu.add({ icon: 'spacemap', title: 'Jump CPU [G]', win: 'win-warp' });
     this.hud.setShipNames(this.hangar.shipNameMap());
     this.groupWin = new GroupWindow(this, () => this.state());
     this.hud.leftMenu.add({ icon: 'contacts', title: 'Group', win: 'win-group' });
@@ -376,8 +377,7 @@ export class Game implements Actions {
   }
 
   toggleWarp(): void {
-    if (this.warpWin) this.warpWin.toggle();
-    else this.log.add('The Jump CPU is disabled in the daily season - fly through the portals [J]', true);
+    this.warpWin?.toggle();
   }
 
   revive(): void {

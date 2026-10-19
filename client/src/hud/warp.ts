@@ -13,10 +13,14 @@ export class WarpWindow {
   readonly win: DOWindow;
   private btns = new Map<number, HTMLButtonElement>();
   private shownMap: number | null = null;
+  private status: HTMLElement;
+  private seasonSig = '';
+  private ready = true;
 
-  constructor(private readonly actions: Actions) {
+  constructor(private readonly actions: Actions, hint = 'Instant jump to any map. Free and unlimited.') {
     this.win = new DOWindow({ id: 'win-warp', title: 'Jump CPU [G]', icon: 'ship_warp', w: 360, anchor: 'tc', x: 0, y: 140, open: false, cls: 'win-warp' });
-    el('div', 'warp-hint', 'Instant jump to any map. Free and unlimited.', this.win.body);
+    el('div', 'warp-hint', hint, this.win.body);
+    this.status = el('div', 'warp-hint warp-status', '', this.win.body);
     const list = el('div', 'warp-list', 'Loading maps…', this.win.body);
     void fetch('/data/maps.json')
       .then((r) => r.json() as Promise<MapDef[]>)
@@ -39,6 +43,7 @@ export class WarpWindow {
       const ms = groups.get(sector)!.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
       for (const m of ms) {
         const b = button(m.name, cells, 'blue', () => {
+          if (!this.ready) return;
           this.actions.warp(m.id);
           this.win.close();
         });
@@ -52,6 +57,23 @@ export class WarpWindow {
 
   /** Highlight the current map; call every frame (cheap: only touches the DOM on change). */
   update(s: GameState): void {
+    // season: only maps reached this round, with a cooldown
+    const sea = s.you?.season;
+    if (sea && this.btns.size) {
+      const cd = sea.warpCd ?? 0;
+      const sig = JSON.stringify([sea.visited, cd]);
+      if (sig !== this.seasonSig) {
+        this.seasonSig = sig;
+        const seen = new Set(sea.visited ?? []);
+        for (const [id, b] of this.btns) {
+          b.disabled = !seen.has(id);
+          b.title = seen.has(id) ? `Warp to ${b.textContent}` : 'Not reached yet this round - fly there through the portals first';
+        }
+        this.ready = cd <= 0;
+        this.status.textContent = cd > 0 ? `Recharging: ${cd} s` : 'Ready';
+        this.status.classList.toggle('cd', cd > 0);
+      }
+    }
     const cur = s.map?.id ?? null;
     if (cur === this.shownMap || this.btns.size === 0) return;
     if (this.shownMap !== null) this.btns.get(this.shownMap)?.classList.remove('current');

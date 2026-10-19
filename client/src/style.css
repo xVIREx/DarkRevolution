@@ -490,3 +490,6 @@ html.touch .upg-btn { bottom: 76px; min-width: 0; }
 @keyframes toastIn { from { opacity: 0; transform: translate(-50%, -30%) scale(0.8); } }
 .re-place { margin-bottom: 8px; font-size: 13px; }
 @media (max-width: 640px) { .mini-board { top: 40px; min-width: 130px; font-size: 9px; } }
+.win-warp .warp-status { color: #8dff9a; font-weight: bold; }
+.win-warp .warp-status.cd { color: #ff9a4a; }
+.win-warp .warp-status:empty { display: none; }

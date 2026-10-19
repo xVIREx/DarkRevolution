@@ -569,10 +569,10 @@ impl World {
         }
     }
 
-    fn you_of(data: &Data, e: &Entity, ctx: Option<(u64, f64, bool, Option<crate::season::NextBuy>)>) -> Option<YouMsg> {
+    fn you_of(data: &Data, e: &Entity, ctx: Option<(u64, f64, bool, Option<crate::season::NextBuy>, f64)>) -> Option<YouMsg> {
         let p = e.player()?;
         let ship = Self::ship_of(data, p);
-        let season = p.eco.as_ref().zip(ctx).map(|(eco, (reset_at, bonus, safe, next))| SeasonYou {
+        let season = p.eco.as_ref().zip(ctx).map(|(eco, (reset_at, bonus, safe, next, now))| SeasonYou {
             reset_at,
             bonus,
             ships: eco.ships.iter().cloned().collect(),
@@ -585,6 +585,8 @@ impl World {
             safe,
             next,
             round_minutes: (data.shop.round_secs() / 60) as f64,
+            visited: eco.visited.iter().copied().collect(),
+            warp_cd: (eco.warp_ready - now).max(0.0).ceil(),
         });
         Some(YouMsg {
             ship: p.ship.clone(),

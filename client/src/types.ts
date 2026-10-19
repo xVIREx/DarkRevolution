@@ -148,6 +148,10 @@ export interface SeasonYou {
   /** one-key upgrade (U): what `buy` kind "next" would buy */
   next?: { kind: string; id: string; label: string; c: number; u: number; ok: boolean } | null;
   roundMinutes?: number;
+  /** maps the Jump CPU can reach (visited this round) */
+  visited?: number[];
+  /** seconds until the Jump CPU is ready */
+  warpCd?: number;
 }
 
 export interface TopRow { n: string; f: string; lvl: number; ep: number; hon: number; k: number; pk: number; on: boolean }

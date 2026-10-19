@@ -297,6 +297,10 @@ pub struct SeasonYou {
     /// Round length in minutes.
     #[serde(rename = "roundMinutes")]
     pub round_minutes: f64,
+    /// Maps the Jump CPU can reach (visited this round) and seconds until it is ready.
+    pub visited: Vec<u32>,
+    #[serde(rename = "warpCd")]
+    pub warp_cd: f64,
 }
 
 /// Leaderboard broadcast (season only, every few seconds).

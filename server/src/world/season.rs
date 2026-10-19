@@ -8,7 +8,7 @@ use crate::equipment::{self, Loadout};
 use crate::protocol::{ClientMsg, EntState, FactionRow, ServerMsg, TopMsg};
 use crate::season::Price;
 use crate::season::{
-    big, display_name, map_tier, now_secs, round_of, valid_token, Eco, NextBuy, Profile, SaveFile, TopRow,
+    big, display_name, is_bot_token, map_tier, now_secs, round_of, valid_token, Eco, NextBuy, Profile, SaveFile, TopRow,
 };
 use rand::distributions::Alphanumeric;
 use rand::Rng;
@@ -20,6 +20,9 @@ const FACTIONS: [&str; 3] = ["mmo", "eic", "vru"];
 const BOARD_EVERY: f64 = 5.0;
 const SAVE_EVERY: f64 = 30.0;
 const TOP_ROWS: usize = 10;
+/// Jump CPU in the season: cooldown and "not under fire" window.
+pub const WARP_COOLDOWN_SECS: f64 = 60.0;
+const WARP_COMBAT_SECS: f64 = 10.0;
 const SHARE_PCT: f64 = super::group::SHARE_BONUS * 100.0;
 
 pub struct SeasonState {
@@ -398,19 +401,25 @@ impl World {
     /// Remember a leaving pilot's progress.
     pub(super) fn season_store(&mut self, e: &Entity) {
         let Some(s) = self.season.as_mut() else { return };
-        if let Some((tok, prof)) = profile_of(e) {
+        if let Some((tok, prof)) = profile_of(e).filter(|(t, _)| !is_bot_token(t)) {
             s.profiles.insert(tok, prof);
             s.dirty = true;
         }
     }
 
     /// (reset time, company bonus, PvP-free spot, next upgrade) for `you.season`.
-    pub(super) fn season_you_ctx(&self, id: u32) -> Option<(u64, f64, bool, Option<NextBuy>)> {
+    pub(super) fn season_you_ctx(&self, id: u32) -> Option<(u64, f64, bool, Option<NextBuy>, f64)> {
         let s = self.season.as_ref()?;
         let e = self.ents.get(&id)?;
         e.player()?.eco.as_ref()?;
         let safe = self.protected_map(e.map) || self.in_safe_zone(e);
-        Some((s.reset_at_ms(), s.bonus.get(&e.faction).copied().unwrap_or(0.0), safe, self.recommend(id)))
+        Some((s.reset_at_ms(), s.bonus.get(&e.faction).copied().unwrap_or(0.0), safe, self.recommend(id), self.time))
+    }
+
+    /// Season bots carry a `bot:` token (never the outbox state: a stalled human connection
+    /// also has a closed outbox).
+    pub(super) fn is_bot(&self, id: u32) -> bool {
+        self.ents.get(&id).and_then(|e| e.player()).and_then(|p| p.eco.as_ref()).is_some_and(|x| is_bot_token(&x.token))
     }
 
     fn protected_map(&self, map: u32) -> bool {
@@ -486,7 +495,31 @@ impl World {
             true
         };
         match msg {
-            ClientMsg::Warp { .. } => refuse(self, "The Jump CPU is disabled in the season - fly through the portals [J]".into()),
+            ClientMsg::Warp { map } => {
+                // Jump CPU: free, but not under fire and with a cooldown, so it saves travel
+                // time without being an escape button
+                let (ready, since_hit, here) = (eco.warp_ready, e.since_hit, e.map);
+                if *map == here {
+                    true
+                } else if p.dead {
+                    true
+                } else if !eco.visited.contains(map) {
+                    refuse(self, "The Jump CPU only reaches maps you've already flown to this round - use the portals [J]".into())
+                } else if since_hit < WARP_COMBAT_SECS {
+                    refuse(self, "The Jump CPU can't be used while under fire".into())
+                } else if ready > self.time {
+                    refuse(self, format!("The Jump CPU is recharging: {} s", (ready - self.time).ceil()))
+                } else if data.map(*map).is_none() {
+                    refuse(self, "Unknown map".into())
+                } else {
+                    let now = self.time;
+                    if let Some(eco) = self.ents.get_mut(&id).and_then(|e| e.player_mut()).and_then(|p| p.eco.as_mut()) {
+                        eco.warp_ready = now + WARP_COOLDOWN_SECS;
+                    }
+                    self.warp(id, *map);
+                    true
+                }
+            }
             ClientMsg::Cheat { .. } => true,
             ClientMsg::Upgrade { .. } => refuse(self, "Upgrades are bought per item type in the Shop".into()),
             ClientMsg::Ammo { id: a } if eco.stock(a) == Some(0) => {
@@ -552,7 +585,7 @@ impl World {
             self.send_log(id, &format!("You don't own the {} - buy it in the Shop", s.name));
             return;
         }
-        if !self.near_station(e) {
+        if !self.near_station(e) && !self.is_bot(id) {
             self.send_log(id, "Ships can only be changed at a space station");
             return;
         }
@@ -609,7 +642,7 @@ impl World {
                     }
                     Effect::Ship(ship) => {
                         self.send_log(id, &text);
-                        let docked = self.near_station(&self.ents[&id]);
+                        let docked = self.near_station(&self.ents[&id]) || self.is_bot(id);
                         if docked {
                             self.season_ship(id, &ship, None);
                         } else {
@@ -621,7 +654,9 @@ impl World {
                     }
                 }
                 self.send_log(id, &text);
-                self.season_mark_dirty();
+                if !self.is_bot(id) {
+                    self.season_mark_dirty();
+                }
             }
         }
         self.send_you(id, true);
@@ -756,6 +791,10 @@ impl World {
         }
         self.boxes_step();
         for e in self.ents.values_mut() {
+            let map = e.map;
+            if let Some(eco) = e.player_mut().and_then(|p| p.eco.as_mut()) {
+                eco.visited.insert(map);
+            }
             if let Some(p) = e.player_mut().filter(|p| !p.tx.is_closed()) {
                 if let Some(eco) = p.eco.as_mut() {
                     eco.stats.online += dt;
@@ -772,7 +811,7 @@ impl World {
         let s = self.season.as_mut().unwrap();
         if s.save_timer >= SAVE_EVERY {
             s.save_timer = 0.0;
-            let online = self.ents.values().any(|e| e.player().is_some_and(|p| p.eco.is_some()));
+            let online = self.ents.values().any(|e| e.player().and_then(|p| p.eco.as_ref()).is_some_and(|x| !is_bot_token(&x.token)));
             if online || self.season.as_ref().unwrap().dirty {
                 self.season_save();
             }
@@ -784,7 +823,7 @@ impl World {
         let Some(s) = self.season.as_ref() else { return (vec![], BTreeMap::new()) };
         let mut rows: HashMap<String, TopRow> = s.profiles.iter().map(|(t, p)| (t.clone(), row_of(p, false))).collect();
         for e in self.ents.values() {
-            if let Some((tok, prof)) = profile_of(e) {
+            if let Some((tok, prof)) = profile_of(e).filter(|(t, _)| !is_bot_token(t)) {
                 let on = e.player().is_some_and(|p| !p.tx.is_closed());
                 rows.insert(tok, row_of(&prof, on));
             }
@@ -865,6 +904,15 @@ impl World {
                 e.send(&ServerMsg::Chat { from: "SEASON".into(), text: text.clone() });
             }
         }
+        // bots: scatter again instead of stacking on the station with every respawned human
+        for i in 0..self.bots.len() {
+            let (id, home) = (self.bots[i].id, self.bots[i].home);
+            let Some(map) = self.ents.get(&id).map(|e| e.map) else { continue };
+            let (x, y) = self.roam_point(map, home);
+            if let Some(e) = self.ents.get_mut(&id) {
+                (e.x, e.y) = (x, y);
+            }
+        }
         self.season_board();
     }
 
@@ -891,7 +939,7 @@ impl World {
     }
 
     fn season_save(&mut self) {
-        let online: Vec<(String, Profile)> = self.ents.values().filter_map(profile_of).collect();
+        let online: Vec<(String, Profile)> = self.ents.values().filter_map(profile_of).filter(|(t, _)| !is_bot_token(t)).collect();
         let Some(s) = self.season.as_mut() else { return };
         s.dirty = false;
         let Some(path) = s.save_path.clone() else { return };
@@ -1006,8 +1054,9 @@ mod tests {
         let dmg0 = p.stats.damage;
         assert!(dmg0 > 50.0 && dmg0 < 100.0, "bare LF-1: {}", dmg0);
 
-        // cheats and the jump CPU are refused, unowned gear is rejected
+        // cheats are refused, the jump CPU too while under fire, unowned gear is rejected
         w.handle(id, ClientMsg::Cheat { god: Some(true), dmg_mult: Some(100.0) });
+        w.ents.get_mut(&id).unwrap().since_hit = 0.0;
         w.handle(id, ClientMsg::Warp { map: 2 });
         assert!(!w.ents[&id].player().unwrap().god);
         assert_eq!(w.ents[&id].map, 1);
@@ -1204,6 +1253,58 @@ mod tests {
         w.remove(a);
         assert!(w.group_of(c).is_none());
     }
+
+    #[test]
+    fn jump_cpu_cooldown() {
+        let mut w = world();
+        let (id, mut rx) = join(&mut w, "token-warp1", "mmo");
+        w.step(0.05);
+        // never been to 4-1: refused
+        w.handle(id, ClientMsg::Warp { map: 2 });
+        assert_eq!(w.ents[&id].map, 1);
+        assert!(logs(&mut rx).contains("already flown to"));
+        // reached via the portal -> remembered
+        {
+            let e = w.ents.get_mut(&id).unwrap();
+            (e.x, e.y) = (15000.0, 15000.0);
+        }
+        w.handle(id, ClientMsg::Jump);
+        assert_eq!(w.ents[&id].map, 2);
+        w.step(0.05);
+        w.handle(id, ClientMsg::Warp { map: 1 });
+        assert_eq!(w.ents[&id].map, 1);
+        w.handle(id, ClientMsg::Warp { map: 2 });
+        assert_eq!(w.ents[&id].map, 1, "cooldown");
+        assert!(logs(&mut rx).contains("recharging"));
+        w.time += WARP_COOLDOWN_SECS + 1.0;
+        w.handle(id, ClientMsg::Warp { map: 2 });
+        assert_eq!(w.ents[&id].map, 2);
+        // dead pilots can't jump
+        w.time += WARP_COOLDOWN_SECS + 1.0;
+        w.ents.get_mut(&id).unwrap().player_mut().unwrap().dead = true;
+        w.handle(id, ClientMsg::Warp { map: 1 });
+        assert_eq!(w.ents[&id].map, 2);
+    }
+
+    #[test]
+    fn bots_play_the_season_but_stay_off_the_board() {
+        let mut w = world();
+        w.spawn_bots(2);
+        let bot = w.bots[0].id;
+        let p = w.ents[&bot].player().unwrap();
+        assert_eq!(p.ship, "ship_phoenix");
+        assert!(p.eco.as_ref().unwrap().token.starts_with("bot:"));
+        assert!(w.is_bot(bot));
+        // once it can afford the next ship (here the Liberator) it buys it without docking
+        w.bot_auto_upgrade(bot);
+        assert_eq!(w.ents[&bot].player().unwrap().ship, "ship_phoenix", "can't afford 30k yet");
+        w.ents.get_mut(&bot).unwrap().player_mut().unwrap().eco.as_mut().unwrap().credits = 50_000.0;
+        w.bot_auto_upgrade(bot);
+        assert_eq!(w.ents[&bot].player().unwrap().ship, "ship_liberator");
+        let (rows, factions) = w.standings();
+        assert!(rows.is_empty());
+        assert_eq!(factions.values().map(|f| f.pilots).sum::<u32>(), 0);
+    }
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -1291,7 +1392,8 @@ impl World {
         let pilots: Vec<(u32, u32, f64, f64)> = self
             .ents
             .values()
-            .filter(|e| e.alive() && e.player().is_some_and(|p| p.eco.is_some()))
+            // bots don't take boxes: they roam the starter maps where newcomers spawn
+            .filter(|e| e.alive() && e.player().and_then(|p| p.eco.as_ref()).is_some_and(|x| !is_bot_token(&x.token)))
             .map(|e| (e.id, e.map, e.x, e.y))
             .collect();
         let mut taken: Vec<(usize, u32)> = vec![];
@@ -1458,5 +1560,28 @@ impl World {
         let (uid, l, _) = lv.first()?;
         let cost = shop.upgrade_cost(uid, *l)?;
         Some(mk("upgrade", uid, format!("Upgrade {} to lvl {}", display_name(items, uid), l + 1), &Price { c: cost, u: 0.0, pack: 0 }))
+    }
+}
+
+impl World {
+    /// Season bots: same start and rules as players (so they don't out-gear newcomers on the
+    /// starter maps); they buy their next upgrade on their own.
+    pub(super) fn season_bot_setup(&mut self, id: u32) {
+        let data = self.data.clone();
+        let Some(e) = self.ents.get_mut(&id) else { return };
+        let token = format!("bot:{}:{}", id, e.name);
+        let Some(p) = e.player_mut() else { return };
+        reset_player(&data, p, &token);
+        Self::apply_ship(&data, e, true);
+    }
+
+    pub(super) fn bot_auto_upgrade(&mut self, id: u32) {
+        if !self.ents.get(&id).is_some_and(|e| e.alive()) {
+            return;
+        }
+        let Some(n) = self.recommend(id) else { return };
+        if n.ok {
+            self.season_buy(id, &n.kind, &n.id, 1);
+        }
     }
 }

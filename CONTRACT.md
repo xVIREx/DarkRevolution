@@ -154,10 +154,10 @@ ships, items (owned counts; both configs share them), per-item-type upgrade leve
 unlimited), drone designs, formations, boosters and tech (P.E.T., Seprom refining, skill tree) in the shop. Progress is
 keyed by a browser token (`login.token`, localStorage `do.token`), the company is locked for the day, and everything
 resets at 00:00 UTC (top 3 become "champions"). Saved to `SEASON_SAVE` (default `./season-save.json`) every 30 s.
-Rules: no Jump CPU (`warp`), no `cheat`, no `upgrade` (levels come from purchases), ships change only near a station,
+Rules: Jump CPU (`warp`) only to maps already reached this round (`you.season.visited`), with a 60 s cooldown (`warpCd`), not while dead or within 10 s of taking damage, no `cheat`, no `upgrade` (levels come from purchases), ships change only near a station,
 no PvP vs your own company, on `protectedMaps` (x-1/x-2) or within `safeRadius` of portals/stations; PvP kills pay a
 bounty per victim level (once per victim per `pvp.cooldown` s). The company with the fewest pilots today gets
-`underdogBonus` extra rewards. Bots stay sandbox players (free gear) on their protected home maps.
+`underdogBonus` extra rewards. Bots play the season too (Phoenix start, auto-buy the next upgrade every 20 s) but are left out of rankings and saves.
 
 Additional messages — client → server: `buy` {`kind`: ship|item|design|ammo|rocket|formation|booster|tech|upgrade,
 `id`, `qty`}, `autoequip`. Server → client: `you.season` {resetAt, bonus, ships, items, levels, unlocks, ammo, pilot

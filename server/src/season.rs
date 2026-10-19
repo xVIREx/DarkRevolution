@@ -233,6 +233,11 @@ pub struct Eco {
     /// Leaderboard rank (1-based, 0 = unranked); refreshed with the leaderboard.
     #[serde(skip)]
     pub rank: u32,
+    /// World time when the Jump CPU is ready again.
+    #[serde(skip)]
+    pub warp_ready: f64,
+    /// Maps reached this round; the Jump CPU only goes to these (keeps the tier progression).
+    pub visited: BTreeSet<u32>,
 }
 
 impl Eco {
@@ -498,6 +503,11 @@ pub struct SaveFile {
     pub round: u64,
     pub profiles: HashMap<String, Profile>,
     pub champions: Vec<TopRow>,
+}
+
+/// Bots play the season too but never appear in rankings or saves.
+pub fn is_bot_token(t: &str) -> bool {
+    t.starts_with("bot:")
 }
 
 /// Index of the round containing `secs` (rounds of `period` seconds since the Unix epoch).

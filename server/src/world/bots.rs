@@ -27,16 +27,20 @@ const HUNT_RADIUS: f64 = 3500.0;
 const ROAM_RADIUS: f64 = 4500.0;
 /// Below this hp fraction a bot breaks off and runs.
 const FLEE_HP: f64 = 0.3;
+/// Season bots buy their next upgrade this often (seconds).
+const BOT_SHOP_EVERY: f64 = 20.0;
 
 pub(super) struct Bot {
-    id: u32,
-    home: (f64, f64),
+    pub(super) id: u32,
+    pub(super) home: (f64, f64),
     think_at: f64,
     revive_at: Option<f64>,
     flee_until: f64,
     /// After a kill the bot cruises around for a bit instead of chain-killing.
     rest_until: f64,
     had_target: bool,
+    /// Season: next time this bot presses "U".
+    shop_at: f64,
 }
 
 impl World {
@@ -48,9 +52,14 @@ impl World {
             let faction = FACTIONS[i % FACTIONS.len()];
             let (tx, _) = mpsc::channel(1); // receiver dropped: everything sent is discarded
             let id = self.login(tx, name, faction);
-            let ship = SHIPS.choose(&mut self.rng).copied().unwrap_or("ship_goliath");
-            if self.data.ship(ship).is_some() {
-                self.handle(id, ClientMsg::Ship { ship: ship.to_string(), design: None });
+            if self.season.is_some() {
+                // play the round like everyone else: Phoenix, earn, upgrade
+                self.season_bot_setup(id);
+            } else {
+                let ship = SHIPS.choose(&mut self.rng).copied().unwrap_or("ship_goliath");
+                if self.data.ship(ship).is_some() {
+                    self.handle(id, ClientMsg::Ship { ship: ship.to_string(), design: None });
+                }
             }
             // scatter them over the map instead of stacking on the station
             let (map, hx, hy) = self.home(faction);
@@ -59,7 +68,8 @@ impl World {
                 (e.x, e.y) = (x, y);
             }
             let think_at = self.time + self.rng.gen_range(0.0..2.0);
-            self.bots.push(Bot { id, home: (hx, hy), think_at, revive_at: None, flee_until: 0.0, rest_until: 0.0, had_target: false });
+            let shop_at = self.time + self.rng.gen_range(5.0..BOT_SHOP_EVERY);
+            self.bots.push(Bot { id, home: (hx, hy), think_at, revive_at: None, flee_until: 0.0, rest_until: 0.0, had_target: false, shop_at });
         }
         if count > 0 {
             info!("spawned {} bot pilots", count);
@@ -67,7 +77,7 @@ impl World {
     }
 
     /// Random point within ROAM_RADIUS of `home`, kept inside the map.
-    fn roam_point(&mut self, map: u32, home: (f64, f64)) -> (f64, f64) {
+    pub(super) fn roam_point(&mut self, map: u32, home: (f64, f64)) -> (f64, f64) {
         let (w, h) = self.data.map(map).map(|m| (m.w, m.h)).unwrap_or((10000.0, 10000.0));
         let a = self.rng.gen_range(0.0..std::f64::consts::TAU);
         let r = ROAM_RADIUS * self.rng.gen::<f64>().sqrt();
@@ -82,6 +92,11 @@ impl World {
             }
             self.bots[i].think_at = now + self.rng.gen_range(0.4..1.2);
             self.think(i);
+            if self.season.is_some() && self.bots[i].shop_at <= now {
+                self.bots[i].shop_at = now + BOT_SHOP_EVERY;
+                let id = self.bots[i].id;
+                self.bot_auto_upgrade(id);
+            }
         }
     }
 
