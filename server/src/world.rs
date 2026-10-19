@@ -1209,19 +1209,20 @@ impl World {
                 self.send_you(id, true);
             }
             Kind::Npc(n) => {
-                let (def, respawns) = (n.def, n.respawns);
+                let (def, respawns, dmg) = (n.def, n.respawns, std::mem::take(&mut n.attackers));
                 self.ents.remove(&id);
                 if respawns {
                     self.respawns.push(Respawn { at: self.time + combat::NPC_RESPAWN, map, def });
                 }
-                self.reward(killer, def);
+                self.reward(killer, def, (map, x, y), &dmg);
             }
         }
         self.clear_targeting(id);
     }
 
-    fn reward(&mut self, killer: u32, def: usize) {
-        if self.season_reward(killer, def) {
+    /// `at` = where the alien died, `dmg` = damage it took per attacker (season loot split).
+    fn reward(&mut self, killer: u32, def: usize, at: (u32, f64, f64), dmg: &HashMap<u32, f64>) {
+        if self.season_reward(killer, def, at, dmg) {
             return;
         }
         let d = self.data.npcs[def].clone();

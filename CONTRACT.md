@@ -174,10 +174,10 @@ counts what you can afford. Ships change anywhere unless under fire (10 s), keep
 bought under fire switches once out of combat. Dying spills
 `deathDrop` (30%) of unspent credits/uridium into a cargo box; maps keep `bonusBoxes.perMap` bonus boxes (credits /
 uridium / MCB-25 scaled by map tier). Boxes are state entities with `k: "b"` and sheet `box_cargo` / `box_bonus`;
-fly within 140 units to collect. Company = one big party (no
-custom groups): with company mates within 2000 units on the map who fired or were hit in the last 60 s, the killer
-keeps 70% of an alien's loot and the other 30% is split between them, weighted by level gap (killer level / mate level,
-clamped 0.25..4) so late joiners catch up; alone, the killer keeps 100%. Bots never take a cut from humans.
+fly within 140 units to collect. Alien loot: the killing blow takes 70%; the other
+30% is split equally between the killer, everyone else who shot it (any company) and the killer's company mates within
+2000 units who fired or were hit in the last 60 s (the company is one big party, no custom groups). Alone = 100%.
+Bots get a slice only for shooting.
 Company objective (`objectives` in shop.json, server world/objectives.rs): a beacon on each neutral 4-x map (4-5 counts
 double). It is captured while pilots of exactly one company are within `radius` (`captureSecs`, up to 2x faster with
 more pilots); another company first drains it to neutral; with several companies inside it is contested (frozen).

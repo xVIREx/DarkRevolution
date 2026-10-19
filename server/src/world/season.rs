@@ -24,9 +24,9 @@ const SWITCH_COMBAT_SECS: f64 = 10.0;
 /// Jump CPU in the season: cooldown and "not under fire" window.
 pub const WARP_COOLDOWN_SECS: f64 = 30.0;
 const WARP_COMBAT_SECS: f64 = 10.0;
-/// Company kill share: with company mates nearby the killer keeps this much of an alien's loot
-/// and the rest is split between them (weighted towards pilots who are behind). Alone = 100%.
-const KILLER_KEEPS: f64 = 0.7;
+/// Alien loot split: the killing blow takes this jackpot; the rest is split equally between
+/// everyone who shot it and the killer's active company mates around it. Alone = 100%.
+const KILLER_SHARE: f64 = 0.7;
 const SHARE_RADIUS: f64 = 2000.0;
 /// A mate must have fired or been hit this recently to get a share (no AFK leeching).
 const SHARE_ACTIVE_SECS: f64 = 60.0;
@@ -694,7 +694,7 @@ impl World {
 
     /// Season NPC kill rewards (credits/uridium/EP/honor with multipliers and the company
     /// bonus). False if the killer is not a season pilot (sandbox reward path runs instead).
-    pub(super) fn season_reward(&mut self, killer: u32, def: usize) -> bool {
+    pub(super) fn season_reward(&mut self, killer: u32, def: usize, at: (u32, f64, f64), dmg: &HashMap<u32, f64>) -> bool {
         let data = self.data.clone();
         let Some(s) = self.season.as_ref() else { return false };
         let Some(k) = self.ents.get(&killer) else { return false };
@@ -704,10 +704,11 @@ impl World {
         let d = &data.npcs[def];
         let m = &data.shop.reward_mult;
         let killer_name = k.name.clone();
-        let share = self.kill_share(killer);
+        let share = self.kill_share(killer, at, dmg);
         let mates = share.len() - 1;
+        let helpers = share.iter().filter(|x| x.2 && x.0 != killer).count();
         let mut info_line = None;
-        for &(r, frac) in &share {
+        for &(r, frac, shot) in &share {
             let e = self.ents.get_mut(&r).unwrap();
             let f = (1.0 + s.bonus.get(&e.faction).copied().unwrap_or(0.0)) * frac;
             let (ep, hon, cr, uri) = (d.exp * m.exp * f, d.honor * m.honor * f, d.credits * m.credits * f, d.uridium * m.uridium * f);
@@ -728,6 +729,8 @@ impl World {
                 }
                 info_line = Some((ep, hon, cr, uri));
                 lines.push(format!("You destroyed {}", d.name));
+            } else if shot {
+                lines.push(format!("{} got the killing blow on {} - your share for helping:", killer_name, d.name));
             } else {
                 lines.push(format!("Company share: {} destroyed {} nearby", killer_name, d.name));
             }
@@ -738,10 +741,11 @@ impl World {
             }
             if r == killer && mates > 0 {
                 lines.push(format!(
-                    "({}% shared with {} company pilot{} nearby - hunt alone to keep it all)",
-                    ((1.0 - KILLER_KEEPS) * 100.0).round(),
-                    mates,
-                    if mates > 1 { "s" } else { "" }
+                    "(killing blow: {}%; {}% split between {} pilots{} - hunt alone to keep it all)",
+                    (KILLER_SHARE * 100.0).round(),
+                    ((1.0 - KILLER_SHARE) * 100.0).round(),
+                    share.len(),
+                    if helpers > 0 { format!(", {} helped shoot it", helpers) } else { String::new() }
                 ));
             }
             if s.bonus.get(&self.ents[&r].faction).copied().unwrap_or(0.0) > 0.0 && r == killer {
@@ -758,36 +762,36 @@ impl World {
         true
     }
 
-    /// Who gets a cut of `killer`'s alien kill, as (pilot, fraction): the whole company is one
-    /// big party. Active mates within SHARE_RADIUS on the map split 1 - KILLER_KEEPS, weighted by
-    /// how far behind the killer they are (late joiners catch up, equals split evenly, stronger
-    /// pilots get less). Bots never take a cut from humans. Nobody near = the killer keeps all.
-    pub(super) fn kill_share(&self, killer: u32) -> Vec<(u32, f64)> {
-        let Some(k) = self.ents.get(&killer) else { return vec![] };
-        let lvl = |e: &Entity| e.player().map_or(1, |p| combat::level_for_exp(p.exp)).max(1) as f64;
-        let k_lvl = lvl(k);
-        let mates: Vec<(u32, f64)> = self
+    /// Who gets a cut of an alien kill, as (pilot, fraction of the loot, helped = shot it).
+    /// The killing blow takes KILLER_SHARE (racing for the last hit is part of the game); the
+    /// rest is split equally between the killer, everyone else who shot it (any company) and the
+    /// killer's active company mates within SHARE_RADIUS - the company is one big party, and
+    /// late joiners flying with veterans catch up. Bots only get a slice for shooting.
+    pub(super) fn kill_share(&self, killer: u32, at: (u32, f64, f64), dmg: &HashMap<u32, f64>) -> Vec<(u32, f64, bool)> {
+        let Some(k) = self.ents.get(&killer).filter(|e| e.player().is_some_and(|p| p.eco.is_some())) else { return vec![] };
+        let (map, x, y) = at;
+        let mut slice: Vec<(u32, bool)> = self
             .ents
             .iter()
-            .filter(|(id, e)| {
-                **id != killer
-                    && e.map == k.map
-                    && e.faction == k.faction
-                    && dist(e.x, e.y, k.x, k.y) <= SHARE_RADIUS
-                    && e.player().is_some_and(|p| {
-                        !p.dead
-                            && p.eco.as_ref().is_some_and(|x| !is_bot_token(&x.token))
-                            && self.time - p.last_shot.max(p.last_alien_hit) <= SHARE_ACTIVE_SECS
-                    })
+            .filter(|(id, e)| **id != killer && e.player().is_some_and(|p| p.eco.is_some()))
+            .filter_map(|(id, e)| {
+                let p = e.player()?;
+                let shot = dmg.get(id).is_some_and(|v| *v > 0.0);
+                let mate = e.faction == k.faction
+                    && e.map == map
+                    && dist(e.x, e.y, x, y) <= SHARE_RADIUS
+                    && !p.dead
+                    && p.eco.as_ref().is_some_and(|x| !is_bot_token(&x.token))
+                    && self.time - p.last_shot.max(p.last_alien_hit) <= SHARE_ACTIVE_SECS;
+                (shot || mate).then_some((*id, shot))
             })
-            .map(|(id, e)| (*id, (k_lvl / lvl(e)).clamp(0.25, 4.0)))
             .collect();
-        let total: f64 = mates.iter().map(|m| m.1).sum();
-        if mates.is_empty() {
-            return vec![(killer, 1.0)];
+        if slice.is_empty() {
+            return vec![(killer, 1.0, true)];
         }
-        let pot = 1.0 - KILLER_KEEPS;
-        std::iter::once((killer, KILLER_KEEPS)).chain(mates.into_iter().map(|(id, w)| (id, pot * w / total))).collect()
+        slice.push((killer, true));
+        let each = (1.0 - KILLER_SHARE) / slice.len() as f64;
+        slice.into_iter().map(|(id, shot)| (id, each + if id == killer { KILLER_SHARE } else { 0.0 }, shot)).collect()
     }
 
     /// A player died to `killer`: count it and pay the PvP bounty (once per victim per cooldown).
@@ -1185,7 +1189,8 @@ mod tests {
         let mut w = world();
         let (id, mut rx) = join(&mut w, "token-bbbb", "mmo");
         let npc = *w.ents.keys().find(|k| **k != id).unwrap();
-        w.reward(id, w.ents[&npc].npc().unwrap().def);
+        let def = w.ents[&npc].npc().unwrap().def;
+        solo_kill(&mut w, id, def);
         let e = eco(&w, id);
         // eic and vru have no pilots yet, so mmo gets no underdog bonus
         assert_eq!(e.credits, 15_000.0 + 400.0 * 20.0);
@@ -1288,12 +1293,19 @@ mod tests {
         let _ = v;
     }
 
+    /// The pilot killed an alien alone, where it stands.
+    fn solo_kill(w: &mut World, id: u32, def: usize) {
+        let e = &w.ents[&id];
+        let at = (e.map, e.x, e.y);
+        w.reward(id, def, at, &HashMap::new());
+    }
+
     #[test]
     fn company_kill_share() {
         let mut w = world();
         let (a, mut rxa) = join(&mut w, "token-share-a", "mmo");
         let (b, mut rxb) = join(&mut w, "token-share-b", "mmo");
-        let (c, _rxc) = join(&mut w, "token-share-c", "eic");
+        let (c, mut rxc) = join(&mut w, "token-share-c", "eic");
         let (d, _rxd) = join(&mut w, "token-share-d", "mmo");
         for (id, x) in [(a, 5000.0), (b, 5500.0), (c, 5200.0), (d, 9000.0)] {
             let e = w.ents.get_mut(&id).unwrap();
@@ -1301,37 +1313,44 @@ mod tests {
         }
         let npc = *w.ents.keys().find(|k| w.ents[k].npc().is_some()).unwrap();
         let def = w.ents[&npc].npc().unwrap().def;
+        let at = (2, 5000.0, 5000.0);
         // alone (b idle, c other company, d too far): the killer keeps everything
-        w.reward(a, def);
+        solo_kill(&mut w, a, def);
         assert_eq!(eco(&w, a).credits, 23_000.0);
         assert_eq!(eco(&w, b).credits, 15_000.0);
-        // b active nearby: 70/30
+        // b active nearby: a 70% + 15%, b 15%
         w.ents.get_mut(&b).unwrap().player_mut().unwrap().last_shot = w.time;
-        w.reward(a, def);
-        assert_eq!(eco(&w, a).credits, 23_000.0 + 5_600.0);
-        assert_eq!(eco(&w, b).credits, 15_000.0 + 2_400.0);
+        solo_kill(&mut w, a, def);
+        assert_eq!(eco(&w, a).credits, 23_000.0 + 6_800.0);
+        assert_eq!(eco(&w, b).credits, 15_000.0 + 1_200.0);
         assert_eq!(eco(&w, c).credits, 15_000.0);
         assert_eq!(eco(&w, b).stats.npc_kills, 0);
         assert!(logs(&mut rxa).contains("hunt alone"));
         assert!(logs(&mut rxb).contains("Company share"));
-        // no friendly fire inside the company, enemies still fair game off the safe zones
         assert!(w.pvp_block(a, b).is_some());
-        // a veteran killer feeds a newcomer more than an equal: weights by level gap
-        w.ents.get_mut(&a).unwrap().player_mut().unwrap().exp = 1e7;
+
+        // c (other company) shot it too but a got the killing blow: a 70% + 10%, b and c 10% each
+        let dmg = HashMap::from([(a, 300.0), (c, 100.0)]);
+        let sh = w.kill_share(a, at, &dmg);
+        let get = |id| sh.iter().find(|x| x.0 == id).map_or(0.0, |x| x.1);
+        assert!((sh.iter().map(|x| x.1).sum::<f64>() - 1.0).abs() < 1e-9);
+        assert!((get(a) - 0.8).abs() < 1e-9);
+        assert!((get(b) - 0.1).abs() < 1e-9 && (get(c) - 0.1).abs() < 1e-9);
+        assert_eq!(get(d), 0.0, "too far away");
+        w.reward(a, def, at, &dmg);
+        assert!(logs(&mut rxc).contains("killing blow"));
+        assert_eq!(eco(&w, c).stats.npc_kills, 0);
+        assert_eq!(eco(&w, a).stats.npc_kills, 3);
+
+        // bots never take an area cut, only a slice for shooting
         {
             let e = w.ents.get_mut(&d).unwrap();
             e.x = 5300.0;
             let p = e.player_mut().unwrap();
-            (p.last_shot, p.exp) = (w.time, 1e7);
+            p.last_shot = w.time;
+            p.eco.as_mut().unwrap().token = "bot:x".into();
         }
-        let sh = w.kill_share(a);
-        let get = |id| sh.iter().find(|x| x.0 == id).unwrap().1;
-        assert!((sh.iter().map(|x| x.1).sum::<f64>() - 1.0).abs() < 1e-9);
-        assert_eq!(get(a), KILLER_KEEPS);
-        assert!(get(b) > get(d) * 2.0, "newcomer b gets more than equal-level d");
-        // bots never take a cut from a human kill
-        w.ents.get_mut(&d).unwrap().player_mut().unwrap().eco.as_mut().unwrap().token = "bot:x".into();
-        assert!(w.kill_share(a).iter().all(|x| x.0 != d));
+        assert!(w.kill_share(a, at, &dmg).iter().all(|x| x.0 != d));
     }
 
     #[test]
