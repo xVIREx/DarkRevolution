@@ -156,6 +156,14 @@ fn row_of(p: &Profile, on: bool) -> TopRow {
     }
 }
 
+/// Nothing earned or spent this round (e.g. online over the round change): such a pilot isn't
+/// bound to their company yet and may pick another one at login.
+fn fresh(p: &Profile, start_c: f64, start_u: f64) -> bool {
+    let st = &p.eco.stats;
+    p.exp <= 0.0 && st.npc_kills == 0 && st.pvp_kills == 0 && st.earned_c <= 0.0 && st.earned_u <= 0.0 && p.eco.credits >= start_c && p.eco.uridium >= start_u
+        && p.eco.ships.len() <= 1 && p.eco.levels.is_empty()
+}
+
 fn sort_rows(rows: &mut [TopRow]) {
     rows.sort_by(|a, b| b.ep.total_cmp(&a.ep).then_with(|| a.n.cmp(&b.n)));
 }
@@ -391,6 +399,10 @@ impl World {
             self.remove(old);
         }
         let profile = self.season.as_ref()?.profiles.get(&tok).cloned();
+        // nothing earned this round yet (e.g. online over the round change): no lock, the pilot
+        // may pick another company
+        let start = &self.data.shop.start;
+        let profile = profile.filter(|p| !fresh(p, start.credits, start.uridium));
         Some((tok, profile))
     }
 
@@ -1130,12 +1142,14 @@ impl World {
         let Some(s) = self.season.as_ref() else { return serde_json::json!({ "enabled": false }) };
         let (rows, factions) = self.standings();
         let me = token.and_then(|t| rows.iter().find(|(k, _)| k == t)).map(|(_, r)| r);
+        let start = &self.data.shop.start;
+        let my_fresh = token.and_then(|t| s.profiles.get(t)).is_some_and(|p| fresh(p, start.credits, start.uridium));
         serde_json::json!({
             "enabled": true,
             "now": (self.season_now() * 1000.0) as u64,
             "resetAt": s.reset_at_ms(),
             "factions": factions,
-            "locked": me.map(|r| r.f.clone()),
+            "locked": me.filter(|_| !my_fresh).map(|r| r.f.clone()),
             "name": me.map(|r| r.n.clone()),
             "level": me.map(|r| r.lvl),
             "champions": s.champions,
@@ -1260,6 +1274,12 @@ mod tests {
         assert_eq!(e.faction, "mmo");
         assert_eq!(e.player().unwrap().ship, "ship_liberator");
         assert_eq!(eco(&w, id2).level("lf2"), 3);
+        // a pilot who hasn't earned or spent anything this round isn't locked
+        let (f1, _rf) = join(&mut w, "token-fresh-1", "mmo");
+        w.remove(f1);
+        assert_eq!(w.season_info(Some("token-fresh-1"))["locked"], serde_json::Value::Null);
+        let (f2, _rf2) = join(&mut w, "token-fresh-1", "eic");
+        assert_eq!(w.ents[&f2].faction, "eic");
         // a second window with the same token takes over
         let (id3, _rx3) = join(&mut w, "token-aaaa", "mmo");
         assert!(!w.ents.contains_key(&id2));
