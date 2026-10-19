@@ -1,4 +1,4 @@
-import type { EntId, EntSnap, Faction, MapDef, ObjMsg, YouMsg } from './types';
+import type { EntId, EntSnap, Faction, MapDef, Mate, ObjMsg, YouMsg } from './types';
 
 /** Things HUD/input can ask the game to do. */
 export interface Actions {
@@ -68,4 +68,6 @@ export interface GameState {
   selectedId: string | null;
   /** company objective (season) */
   obj?: ObjMsg | null;
+  /** company mates on this map (season, any distance) */
+  mates?: { map: number; list: Mate[] } | null;
 }

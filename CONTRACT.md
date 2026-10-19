@@ -178,7 +178,9 @@ uridium / MCB-25 scaled by map tier, `jackpot` chance of `jackpotMult`x). Boxes 
 fly on top of one (60 units) to collect. Alien loot: the killing blow takes 70%; the other
 30% is split equally between the killer, everyone else who shot it (any company) and the killer's company mates within
 2000 units who fired or were hit in the last 60 s (the company is one big party, no custom groups). Alone = 100%.
-Bots get a slice only for shooting.
+Bots get a slice only for shooting. Every second each human pilot gets `mates` {map, list:[{id,n,x,y}]}: their company's
+other human pilots on the same map at any distance (minimap); `top` rows carry `m` (map name) for your own company's
+online pilots only.
 Company objective (`objectives` in shop.json, server world/objectives.rs): a beacon on each neutral 4-x map (4-5 counts
 double). It is captured while pilots of exactly one company are within `radius` (`captureSecs`, up to 2x faster with
 more pilots); another company first drains it to neutral; with several companies inside it is contested (frozen).

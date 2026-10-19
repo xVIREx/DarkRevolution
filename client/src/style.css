@@ -530,4 +530,4 @@ html.season.objectives #win-target { margin-top: 44px; }
 @media (max-width: 640px) { .up-row { grid-template-columns: 28px 1fr; } .up-row .dobtn { grid-column: 2; } }
 
 /* map of company mates on the boards */
-.tb-map { margin-left: 4px; color: var(--dim); font-size: 9px; font-weight: normal; }
+.tb-map { margin-left: 4px; color: #8fd8ff; font-size: 9px; font-weight: normal; flex: none; }

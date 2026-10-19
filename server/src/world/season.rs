@@ -920,6 +920,7 @@ impl World {
                     self.season_ship(id, &ship, None);
                 }
             }
+            self.send_mates();
         }
         let s = self.season.as_mut().unwrap();
         s.board_timer += dt;
@@ -979,6 +980,23 @@ impl World {
         let (_, factions) = self.standings();
         if let Some(s) = self.season.as_mut() {
             s.bonus = factions.into_iter().map(|(k, f)| (k, f.bonus)).collect();
+        }
+    }
+
+    /// Every human pilot gets the positions of their company's other human pilots on the same map.
+    fn send_mates(&self) {
+        let pilots: Vec<&Entity> = self
+            .ents
+            .values()
+            .filter(|e| e.alive() && e.player().and_then(|p| p.eco.as_ref()).is_some_and(|x| !is_bot_token(&x.token)))
+            .collect();
+        for e in &pilots {
+            let list: Vec<crate::protocol::Mate> = pilots
+                .iter()
+                .filter(|o| o.id != e.id && o.map == e.map && o.faction == e.faction)
+                .map(|o| crate::protocol::Mate { id: o.id, n: o.name.clone(), x: o.x.round(), y: o.y.round() })
+                .collect();
+            e.send(&ServerMsg::Mates { map: e.map, list });
         }
     }
 

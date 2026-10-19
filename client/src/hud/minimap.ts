@@ -135,6 +135,18 @@ export class Minimap {
       }
     }
     for (const b of s.obj?.beacons ?? []) if (b.map === m.id) drawBeacon(c, b, sx, sy);
+    // company mates on this map (also out of view range): green diamonds with their name
+    if (s.mates?.map === m.id) {
+      c.font = '9px sans-serif';
+      c.textAlign = 'center';
+      for (const gm of s.mates.list) {
+        const x = gm.x * sx;
+        const y = gm.y * sy;
+        c.fillStyle = '#5cff6a';
+        c.beginPath(); c.moveTo(x, y - 5); c.lineTo(x + 5, y); c.lineTo(x, y + 5); c.lineTo(x - 5, y); c.closePath(); c.fill();
+        c.fillText(gm.n, x, y - 7);
+      }
+    }
     if (s.me) {
       const x = s.me.x * sx;
       const y = s.me.y * sy;

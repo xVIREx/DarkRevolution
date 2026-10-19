@@ -269,7 +269,7 @@ export class MiniBoard {
     this.sig = sig;
     let h = '';
     t.rows.slice(0, 5).forEach((r, i) => {
-      h += `<div class="${r.n === me ? 'me' : ''}"><span>${i + 1}.</span><b style="color:${fcol(r.f)}">${esc(r.n)}${r.m ? `<small class="tb-map">${esc(r.m)}</small>` : ''}</b><em>${fmtBig(r.ep)}</em></div>`;
+      h += `<div class="${r.n === me ? 'me' : ''}"><span>${i + 1}.</span><b style="color:${fcol(r.f)}">${esc(r.n)}</b>${r.m ? `<small class="tb-map">${esc(r.m)}</small>` : ''}<em>${fmtBig(r.ep)}</em></div>`;
     });
     if (t.rank > 5) h += `<div class="me"><span>${t.rank}.</span><b>${esc(me)}</b><em>${fmtBig(t.rows.find((r) => r.n === me)?.ep ?? 0)}</em></div>`;
     this.root.innerHTML = h || '<div class="hint">No pilots yet</div>';

@@ -156,6 +156,7 @@ export interface SeasonYou {
   warpCd?: number;
 }
 
+export interface Mate { id: number; n: string; x: number; y: number }
 export interface TopRow { n: string; f: string; lvl: number; ep: number; hon: number; k: number; pk: number; on: boolean; /** map, only for your own company's online pilots */ m?: string }
 export interface FactionRow { pilots: number; online: number; ep: number; bonus: number }
 export interface UpgradeOption { cat: string; kind: string; id: string; label: string; desc: string; c: number; u: number; ok: boolean; dmg: number; shd: number; hp: number; spd: number; value: number }
@@ -177,7 +178,8 @@ export type ServerMsg =
   | { t: 'roundEnd'; rows: TopRow[]; rank: number; pilots: number; ep: number; company: string | null; scores: Record<string, number> }
   | ({ t: 'obj' } & ObjMsg)
   | { t: 'upgrades'; options: UpgradeOption[] }
-  | { t: 'pickup'; x: number; y: number; by: number; cargo: boolean };
+  | { t: 'pickup'; x: number; y: number; by: number; cargo: boolean }
+  | { t: 'mates'; map: number; list: Mate[] };
 
 export type ClientMsg =
   | { t: 'login'; name: string; faction: Faction; token?: string }

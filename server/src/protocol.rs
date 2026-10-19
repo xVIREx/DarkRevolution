@@ -192,6 +192,11 @@ pub enum ServerMsg<'a> {
         company: Option<String>,
         scores: BTreeMap<String, f64>,
     },
+    /// Company mates (human pilots) on your map, wherever they are (minimap); every second.
+    Mates {
+        map: u32,
+        list: Vec<Mate>,
+    },
     /// A loot box was collected: clients animate it being pulled into the ship `by`.
     Pickup {
         x: f64,
@@ -349,4 +354,12 @@ pub struct FactionRow {
     pub online: u32,
     pub ep: f64,
     pub bonus: f64,
+}
+
+#[derive(Serialize, Debug, Clone)]
+pub struct Mate {
+    pub id: u32,
+    pub n: String,
+    pub x: f64,
+    pub y: f64,
 }

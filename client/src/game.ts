@@ -20,7 +20,7 @@ import { MiniBoard, RankWindow, roundEndHtml, SeasonBar, toast } from './hud/sea
 import { UpgradeButton, UpgradePanel } from './hud/upgrades';
 import { BeaconsView, ObjectiveBar } from './hud/objectives';
 import { AudioSystem } from './audio';
-import type { EntId, EntSnap, Faction, MapDef, ObjMsg, ServerMsg, YouMsg } from './types';
+import type { EntId, EntSnap, Faction, MapDef, Mate, ObjMsg, ServerMsg, YouMsg } from './types';
 import { IS_TOUCH, TouchControls } from './touch';
 
 const OPTIMISTIC_MS = 600;
@@ -45,6 +45,7 @@ export class Game implements Actions {
   private objBar: ObjectiveBar | null = null;
   private beacons: BeaconsView | null = null;
   private obj: ObjMsg | null = null;
+  private mates: { map: number; list: Mate[] } | null = null;
   private input: Input;
   private touch: TouchControls | null = null;
   private respawn: Dialog;
@@ -207,6 +208,9 @@ export class Game implements Actions {
       }
       case 'upgrades':
         this.upgradePanel?.setOptions(m.options);
+        break;
+      case 'mates':
+        this.mates = { map: m.map, list: m.list };
         break;
       case 'pickup':
         this.effects.pickup(m.x, m.y, m.by, m.cargo, now);
@@ -444,6 +448,7 @@ export class Game implements Actions {
       myId: this.ents.myId,
       selectedId: this.ents.selectedId,
       obj: this.obj,
+      mates: this.mates,
     };
   }
 
