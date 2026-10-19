@@ -152,11 +152,14 @@ impl World {
 
         // ---- drones (up to 10), each carries more lasers
         let drones: u32 = items.drones.iter().map(|d| eco.owns(&d.id)).sum();
-        if drones < items.max_drones {
-            for d in &items.drones {
-                if let Some(pr) = shop.items.get(&d.id) {
-                    out.push(Cand { cat: "drone", kind: "item", id: d.id.clone(), label: format!("{} drone ({}/{})", d.name, drones + 1, items.max_drones), desc: format!("{} slot(s) for lasers or shields", d.slots), price: pr.clone(), sim: Sim::Item(d.id.clone()) });
-                }
+        // at the cap a drone with more slots replaces your weakest one (Iris for a Flax)
+        let weakest_drone = items.drones.iter().filter(|d| eco.owns(&d.id) > 0).min_by_key(|d| d.slots);
+        for d in &items.drones {
+            let Some(pr) = shop.items.get(&d.id) else { continue };
+            if drones < items.max_drones {
+                out.push(Cand { cat: "drone", kind: "item", id: d.id.clone(), label: format!("{} drone ({}/{})", d.name, drones + 1, items.max_drones), desc: format!("{} slot(s) for lasers or shields", d.slots), price: pr.clone(), sim: Sim::Item(d.id.clone()) });
+            } else if let Some(w) = weakest_drone.filter(|w| w.slots < d.slots) {
+                out.push(Cand { cat: "drone", kind: "item", id: d.id.clone(), label: format!("{} drone (replaces a {})", d.name, w.name), desc: format!("{} slots instead of {}", d.slots, w.slots), price: pr.clone(), sim: Sim::Item(d.id.clone()) });
             }
         }
 

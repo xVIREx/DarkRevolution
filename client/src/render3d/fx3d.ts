@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { NPC_SHOT_KEYS } from '../npcshots';
 import { Assets } from '../assets';
 import type { EntId, SheetInfo } from '../types';
 import type { Ent3D, Entities3D } from './entities3d';
@@ -126,6 +127,11 @@ export class Fx3D {
       if (!tex) return false;
       const img = tex.image as { width: number; height: number };
       look.vertical = img.height > img.width;
+      if (NPC_SHOT_KEYS.has(ammo)) {
+        // alien projectiles keep their sprite's proportions instead of a stretched beam
+        look.length = img.width * 1.3;
+        look.width = img.height * 1.3;
+      }
       mat.map = tex;
       // 2D laser sprites are already coloured; 3D beam textures are tinted
       // 2D-style sprites (also the scene agent's flat lasers) are already coloured; beam textures get tinted
@@ -149,8 +155,8 @@ export class Fx3D {
     const color = this.assets.laserColorFor(ammo);
     const look = this.laserLook(color, ammo);
     const origins = src.laserOrigins();
-    const rsb = ammo === 'rsb';
-    // DO fires from alternating laser points; use two at a time
+    const rsb = ammo === 'rsb' || NPC_SHOT_KEYS.has(ammo);
+    // DO fires from alternating laser points; use two at a time (aliens' own projectiles: one)
     const shots = rsb ? [origins[src.laserIdx++ % origins.length]] : [origins[src.laserIdx++ % origins.length], origins[src.laserIdx++ % origins.length]];
     shots.forEach((o, i) => {
       this.fx.push(new Bolt(this.root, look, o.clone(), dst, now + i * 25, 1, i === shots.length - 1 ? () => {

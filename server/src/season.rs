@@ -662,6 +662,9 @@ pub struct TopRow {
     pub pk: u32,
     /// Currently online.
     pub on: bool,
+    /// Map the pilot is on (online pilots; only sent to their own company).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub m: Option<String>,
 }
 
 /// Saved season state (SEASON_SAVE file).

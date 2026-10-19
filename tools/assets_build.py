@@ -75,6 +75,16 @@ M["lasers"] = {}
 for k, n in LZ.items():
     shutil.copy(os.path.join(EX, f"laser/Texture2D/{n}.png"), out(f"lasers/{n}.png"))
     M["lasers"][k] = f"lasers/{n}.png"
+# alien shots (game.xml laserDefinitions: protegitShot, crystal_*, devolariumShot, lordakiumShot,
+# sibelonShot); devolarium's texture holds two frames side by side, the first one is used
+NPC_SHOTS = {"sibelonShot": "sibelonShot", "devolariumShot": "devolariumShot 001", "lordakiumShot": "lordakiumShot",
+             "protegitShot": "protegitShot", "crystal_blue": "crystal_blue", "crystal_red": "crystal_red"}
+for k, n in NPC_SHOTS.items():
+    im = Image.open(os.path.join(EX, f"laser/Texture2D/{n}.png")).convert("RGBA")
+    if k == "devolariumShot":
+        im = im.crop((0, 0, im.width // 2, im.height))
+    im.save(out(f"lasers/npc_{k}.png"))
+    M["lasers"][k] = f"lasers/npc_{k}.png"
 M["laserNote"] = "textures point along -x (head on the LEFT, like ship frame 0); rotate by (angle - pi); sab=laser4 is a cyan ring, rsb=laser5 orange"
 M["rockets"] = {}
 for f in os.listdir(os.path.join(EX, "rocket/Sprite")):

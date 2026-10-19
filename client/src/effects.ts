@@ -4,6 +4,7 @@ import { World } from './world';
 import { EntityManager } from './entities';
 import { SheetSprite, basicMat, makeCircle, toThreeY } from './sprites';
 import type { EntId } from './types';
+import { NPC_SHOT_KEYS } from './npcshots';
 
 interface Fx {
   update(now: number): boolean; // false = finished
@@ -50,9 +51,12 @@ export class Effects {
     const rel = this.assets.manifest.lasers[color] ?? this.assets.manifest.lasers[ammo] ?? this.assets.manifest.lasers.red;
     const dur = 150;
     const start = { ...p0 };
-    for (const side of ammo === 'rsb' ? [0] : [-1, 1]) {
-      this.fx.push(new Bolt(this.assets, this.world.effectLayer, rel, LASER_TINT[color] ?? 0xff3030, start, dst, now, dur, side * 9,
-        side === 1 || ammo === 'rsb' ? onHit : null, ammo === 'rsb' ? 1.4 : 1));
+    // alien projectiles: one shot, original colours
+    const single = ammo === 'rsb' || NPC_SHOT_KEYS.has(ammo);
+    const tint = NPC_SHOT_KEYS.has(ammo) ? 0xffffff : LASER_TINT[color] ?? 0xff3030;
+    for (const side of single ? [0] : [-1, 1]) {
+      this.fx.push(new Bolt(this.assets, this.world.effectLayer, rel, tint, start, dst, now, dur, side * 9,
+        side === 1 || single ? onHit : null, ammo === 'rsb' ? 1.4 : 1));
     }
   }
 

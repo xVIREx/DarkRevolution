@@ -242,7 +242,7 @@ export class RankWindow {
   private row(i: number, r: TopRow): string {
     const me = r.n === this.myName();
     const medal = i <= 3 ? ['🥇', '🥈', '🥉'][i - 1] : String(i);
-    return `<tr class="${me ? 'me' : ''}"><td>${medal}</td><td><i class="dot${r.on ? ' on' : ''}"></i><span style="color:${fcol(r.f)}">${esc(r.n)}</span></td>` +
+    return `<tr class="${me ? 'me' : ''}"><td>${medal}</td><td><i class="dot${r.on ? ' on' : ''}"></i><span style="color:${fcol(r.f)}">${esc(r.n)}</span>${r.m ? `<small class="tb-map">${esc(r.m)}</small>` : ''}</td>` +
       `<td>${r.lvl}</td><td>${fmtBig(r.ep)}</td><td>${fmt(r.k)}</td><td>${fmt(r.pk)}</td></tr>`;
   }
 }
@@ -269,7 +269,7 @@ export class MiniBoard {
     this.sig = sig;
     let h = '';
     t.rows.slice(0, 5).forEach((r, i) => {
-      h += `<div class="${r.n === me ? 'me' : ''}"><span>${i + 1}.</span><b style="color:${fcol(r.f)}">${esc(r.n)}</b><em>${fmtBig(r.ep)}</em></div>`;
+      h += `<div class="${r.n === me ? 'me' : ''}"><span>${i + 1}.</span><b style="color:${fcol(r.f)}">${esc(r.n)}${r.m ? `<small class="tb-map">${esc(r.m)}</small>` : ''}</b><em>${fmtBig(r.ep)}</em></div>`;
     });
     if (t.rank > 5) h += `<div class="me"><span>${t.rank}.</span><b>${esc(me)}</b><em>${fmtBig(t.rows.find((r) => r.n === me)?.ep ?? 0)}</em></div>`;
     this.root.innerHTML = h || '<div class="hint">No pilots yet</div>';

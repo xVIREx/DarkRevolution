@@ -40,10 +40,8 @@
     "escorts": { "npc": "minion", "count": 6, "radius": 400 },
     "invulnerableWithMinions": true
   },
-  "kristallon":        { "escorts": { "npc": "kristallin", "count": 3, "radius": 350 } },
   "boss_kristallon":   { "escorts": { "npc": "kristallin", "count": 4, "radius": 380 } },
   "uber_kristallon":   { "escorts": { "npc": "boss_kristallin", "count": 4, "radius": 400 } },
-  "lordakium":         { "escorts": { "npc": "lordakia", "count": 4, "radius": 350 } },
   "boss_lordakium":    { "escorts": { "npc": "boss_lordakia", "count": 4, "radius": 380 } },
   "uber_lordakium":    { "escorts": { "npc": "uber_lordakia", "count": 4, "radius": 400 } },
   "mordon":            { "assist": 1200 },

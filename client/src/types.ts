@@ -156,7 +156,7 @@ export interface SeasonYou {
   warpCd?: number;
 }
 
-export interface TopRow { n: string; f: string; lvl: number; ep: number; hon: number; k: number; pk: number; on: boolean }
+export interface TopRow { n: string; f: string; lvl: number; ep: number; hon: number; k: number; pk: number; on: boolean; /** map, only for your own company's online pilots */ m?: string }
 export interface FactionRow { pilots: number; online: number; ep: number; bonus: number }
 export interface UpgradeOption { cat: string; kind: string; id: string; label: string; desc: string; c: number; u: number; ok: boolean; dmg: number; shd: number; hp: number; spd: number; value: number }
 export interface BeaconState { map: number; name: string; x: number; y: number; r: number; owner: string | null; side: string | null; cap: number; contested: boolean; weight: number }

@@ -1,4 +1,5 @@
 import type { Actions, EquipMsg, EquipYou, GameState } from './actions';
+import { npcShot } from './npcshots';
 import { Assets } from './assets';
 import { EntityManager } from './entities';
 import { Effects } from './effects';
@@ -279,7 +280,7 @@ export class Game implements Actions {
     };
     const shieldHit = (m.shd || 0) > 0;
     if (m.kind === 'rocket') this.effects.rocket(m.from, m.to, m.ammo, hitWithSound, now, shieldHit);
-    else this.effects.laser(m.from, m.to, m.ammo, hitWithSound, now, shieldHit);
+    else this.effects.laser(m.from, m.to, (fv?.snap.k === 'n' && npcShot(fv.snap.n)) || m.ammo, hitWithSound, now, shieldHit);
   }
 
   reconnect(): void {

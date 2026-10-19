@@ -91,6 +91,16 @@ impl SeasonState {
         let mut s = SeasonState::new(Some(path), data.shop.round_secs());
         s.obj = Objectives::from_rule(&data.shop.objectives, data);
         s.load();
+        // one-off: SEASON_ROUND_END=<round>:<unix secs> moves that round's end (extend a live game)
+        if let Some((r, end)) = std::env::var("SEASON_ROUND_END").ok().and_then(|v| {
+            let (r, e) = v.split_once(':')?;
+            Some((r.trim().parse::<u64>().ok()?, e.trim().parse::<f64>().ok()?))
+        }) {
+            if r == s.round && end > s.now() {
+                s.round_end = end;
+                info!("round {} now ends at {}", r, end);
+            }
+        }
         info!("season on: {} min rounds, round {}, {} saved pilots, save file {:?}", s.period / 60, s.round, s.profiles.len(), s.save_path);
         Some(s)
     }
@@ -142,6 +152,7 @@ fn row_of(p: &Profile, on: bool) -> TopRow {
         k: p.eco.stats.npc_kills,
         pk: p.eco.stats.pvp_kills,
         on,
+        m: None,
     }
 }
 
@@ -255,11 +266,15 @@ fn buy(data: &Data, p: &mut PlayerData, kind: &str, id: &str, qty: u32) -> Resul
             let price = shop.items.get(id).ok_or_else(not_sold)?;
             let name = display_name(items, id);
             let have = eco.owns(id);
+            // a better drone bought at the drone cap replaces your weakest one (Iris for a Flax)
+            let mut free_drones = u32::MAX;
             let (cap, what) = if items.extra(id).is_some() {
                 (1, "of each extra")
-            } else if items.drone(id).is_some() {
+            } else if let Some(nd) = items.drone(id) {
                 let drones: u32 = items.drones.iter().map(|d| eco.owns(&d.id)).sum();
-                (items.max_drones.saturating_sub(drones) + have, "drones")
+                let worse: u32 = items.drones.iter().filter(|d| d.slots < nd.slots).map(|d| eco.owns(&d.id)).sum();
+                free_drones = items.max_drones.saturating_sub(drones);
+                (free_drones + worse + have, "drones")
             } else {
                 (60, "of one item")
             };
@@ -269,7 +284,22 @@ fn buy(data: &Data, p: &mut PlayerData, kind: &str, id: &str, qty: u32) -> Resul
             let (c, u) = price.times(qty);
             let paid = charge(eco, c, u)?;
             *eco.items.entry(id.to_string()).or_default() += qty;
-            Ok((format!("Bought {} × {} for {}", qty, name, paid), Effect::AutoEquip))
+            let mut replaced = vec![];
+            if let Some(nd) = items.drone(id) {
+                let mut left = qty.saturating_sub(free_drones);
+                let mut worse: Vec<_> = items.drones.iter().filter(|d| d.slots < nd.slots).collect();
+                worse.sort_by_key(|d| d.slots);
+                for d in worse {
+                    let n = left.min(eco.owns(&d.id));
+                    if n > 0 {
+                        *eco.items.entry(d.id.clone()).or_default() -= n;
+                        left -= n;
+                        replaced.push(format!("{} × {}", n, d.name));
+                    }
+                }
+            }
+            let swap = if replaced.is_empty() { String::new() } else { format!(" (replaces {})", replaced.join(", ")) };
+            Ok((format!("Bought {} × {} for {}{}", qty, name, paid, swap), Effect::AutoEquip))
         }
         "design" => {
             let name = items.drone_design(id).map(|d| d.name.clone()).ok_or_else(not_sold)?;
@@ -915,7 +945,9 @@ impl World {
         for e in self.ents.values() {
             if let Some((tok, prof)) = profile_of(e).filter(|(t, _)| !is_bot_token(t)) {
                 let on = e.player().is_some_and(|p| !p.tx.is_closed());
-                rows.insert(tok, row_of(&prof, on));
+                let mut row = row_of(&prof, on);
+                row.m = on.then(|| self.data.map(e.map).map(|m| m.name.clone())).flatten();
+                rows.insert(tok, row);
             }
         }
         let mut rows: Vec<(String, TopRow)> = rows.into_iter().collect();
@@ -955,15 +987,19 @@ impl World {
         let (rows, factions) = self.standings();
         let Some(s) = self.season.as_mut() else { return };
         s.bonus = factions.iter().map(|(k, f)| (k.clone(), f.bonus)).collect();
-        let champions = s.champions.clone();
+        let mut champions = s.champions.clone();
+        champions.iter_mut().for_each(|c| c.m = None);
         let rank: HashMap<&str, u32> = rows.iter().enumerate().map(|(i, (t, _))| (t.as_str(), i as u32 + 1)).collect();
         let top: Vec<TopRow> = rows.iter().take(TOP_ROWS).map(|(_, r)| r.clone()).collect();
-        let mut msg = TopMsg { rows: top, factions, champions, rank: 0, pilots: rows.len() as u32 };
+        let mut msg = TopMsg { rows: vec![], factions, champions, rank: 0, pilots: rows.len() as u32 };
         for e in self.ents.values_mut() {
+            let faction = e.faction.clone();
             let Some(p) = e.player_mut() else { continue };
             let Some(eco) = p.eco.as_mut() else { continue };
             eco.rank = rank.get(eco.token.as_str()).copied().unwrap_or(0);
             msg.rank = eco.rank;
+            // where pilots are is only shown to their own company
+            msg.rows = top.iter().map(|r| TopRow { m: if r.f == faction { r.m.clone() } else { None }, ..r.clone() }).collect();
             let _ = p.tx.try_send(ServerMsg::Top(&msg).json());
         }
     }
@@ -972,14 +1008,14 @@ impl World {
     fn round_reset(&mut self, round: u64) {
         let (rows, _) = self.standings();
         let (company, scores) = self.objectives_round_end();
-        let top: Vec<TopRow> = rows.iter().take(10).map(|r| r.1.clone()).collect();
+        let top: Vec<TopRow> = rows.iter().take(10).map(|r| TopRow { m: None, ..r.1.clone() }).collect();
         for e in self.ents.values() {
             let Some(eco) = e.player().and_then(|p| p.eco.as_ref()) else { continue };
             let rank = rows.iter().position(|r| r.0 == eco.token).map_or(0, |i| i as u32 + 1);
             let ep = rows.get(rank.saturating_sub(1) as usize).map_or(0.0, |r| r.1.ep);
             e.send(&ServerMsg::RoundEnd { rows: top.clone(), rank, pilots: rows.len() as u32, ep, company: company.clone(), scores: scores.clone() });
         }
-        let champions: Vec<TopRow> = rows.iter().filter(|r| r.1.ep > 0.0).take(3).map(|r| r.1.clone()).collect();
+        let champions: Vec<TopRow> = rows.iter().filter(|r| r.1.ep > 0.0).take(3).map(|r| TopRow { m: None, ..r.1.clone() }).collect();
         let text = if champions.is_empty() {
             "A new round begins! Everyone starts from scratch.".to_string()
         } else {
@@ -1085,7 +1121,8 @@ impl World {
             "name": me.map(|r| r.n.clone()),
             "level": me.map(|r| r.lvl),
             "champions": s.champions,
-            "top": rows.iter().take(5).map(|(_, r)| r).collect::<Vec<_>>(),
+            // public endpoint: no positions
+            "top": rows.iter().take(5).map(|(_, r)| TopRow { m: None, ..r.clone() }).collect::<Vec<_>>(),
             "pilots": rows.len(),
             "bonus": self.data.shop.underdog_bonus,
         })
@@ -1538,6 +1575,25 @@ mod tests {
         assert_eq!(s.round, 8);
         assert!(s.round_end > now_secs() + 3500.0);
         let _ = std::fs::remove_dir_all(dir);
+    }
+
+    #[test]
+    fn better_drone_replaces_the_weakest_at_the_cap() {
+        let mut w = world();
+        let (id, mut rx) = join(&mut w, "token-iris-1", "mmo");
+        {
+            let eco = w.ents.get_mut(&id).unwrap().player_mut().unwrap().eco.as_mut().unwrap();
+            eco.items.insert("flax".into(), 10);
+            eco.uridium = 1e6;
+        }
+        let opt = w.upgrade_options(id).into_iter().find(|o| o.id == "iris").expect("iris offered at the cap");
+        assert!(opt.label.contains("replaces a Flax"), "{}", opt.label);
+        w.handle(id, ClientMsg::Buy { kind: "item".into(), id: "iris".into(), qty: 1 });
+        assert!(logs(&mut rx).contains("replaces 1"));
+        assert_eq!((eco(&w, id).owns("flax"), eco(&w, id).owns("iris")), (9, 1));
+        // Flax never replaces an Iris: the cap holds
+        w.handle(id, ClientMsg::Buy { kind: "item".into(), id: "flax".into(), qty: 1 });
+        assert_eq!(eco(&w, id).owns("flax"), 9);
     }
 
     #[test]

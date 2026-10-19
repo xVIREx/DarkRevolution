@@ -528,3 +528,6 @@ html.season.objectives #win-target { margin-top: 44px; }
 .pickup-fx { position: absolute; left: 0; top: 0; width: 42px; height: 42px; object-fit: contain; pointer-events: none; z-index: 5; }
 .season-bar .sb-prot { color: #8dff9a; }
 @media (max-width: 640px) { .up-row { grid-template-columns: 28px 1fr; } .up-row .dobtn { grid-column: 2; } }
+
+/* map of company mates on the boards */
+.tb-map { margin-left: 4px; color: var(--dim); font-size: 9px; font-weight: normal; }
