@@ -202,7 +202,13 @@ pub enum ServerMsg<'a> {
         rank: u32,
         pilots: u32,
         ep: f64,
+        /// Winning company (most beacon points), if any, and the final company scores.
+        company: Option<String>,
+        scores: BTreeMap<String, f64>,
     },
+    /// Company objective: beacon states and company scores (every second + on events).
+    #[serde(rename = "obj")]
+    Objectives(&'a ObjMsg),
     Shot {
         from: u32,
         to: u32,
@@ -311,6 +317,29 @@ pub struct TopMsg {
     pub champions: Vec<TopRow>,
     pub rank: u32,
     pub pilots: u32,
+}
+
+#[derive(Serialize, Debug, Clone)]
+pub struct ObjMsg {
+    pub beacons: Vec<BeaconState>,
+    pub score: BTreeMap<String, f64>,
+    #[serde(rename = "lastWinner")]
+    pub last_winner: Option<String>,
+}
+
+#[derive(Serialize, Debug, Clone)]
+pub struct BeaconState {
+    pub map: u32,
+    pub name: String,
+    pub x: f64,
+    pub y: f64,
+    /// Capture radius.
+    pub r: f64,
+    pub owner: Option<String>,
+    pub side: Option<String>,
+    pub cap: f64,
+    pub contested: bool,
+    pub weight: f64,
 }
 
 #[derive(Serialize, Debug, Clone)]

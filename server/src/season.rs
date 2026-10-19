@@ -150,6 +150,8 @@ pub struct Shop {
     pub cargo_life: f64,
     #[serde(rename = "bonusBoxes")]
     pub bonus_boxes: BonusBoxRule,
+    /// Company objective: control beacons on the neutral maps.
+    pub objectives: ObjectiveRule,
     pub start: StartKit,
     #[serde(rename = "rewardMult")]
     pub reward_mult: RewardMult,
@@ -238,6 +240,9 @@ pub struct Eco {
     pub warp_ready: f64,
     /// Maps reached this round; the Jump CPU only goes to these (keeps the tier progression).
     pub visited: BTreeSet<u32>,
+    /// Beacon map -> world time of the last paid capture (rewards have a cooldown per beacon).
+    #[serde(skip)]
+    pub capture_paid: HashMap<u32, f64>,
 }
 
 impl Eco {
@@ -460,6 +465,129 @@ pub fn pilot_view(s: &PilotStats) -> PilotStats {
     }
 }
 
+// ---------------------------------------------------------------- company objective (beacons)
+
+#[derive(Deserialize, Clone, Debug, Default)]
+#[serde(default)]
+pub struct BeaconDef {
+    pub map: String,
+    pub x: f64,
+    pub y: f64,
+    /// Points multiplier (the central 4-5 beacon counts double).
+    pub weight: f64,
+}
+
+#[derive(Deserialize, Clone, Debug, Default)]
+#[serde(default)]
+pub struct ObjectiveRule {
+    pub radius: f64,
+    #[serde(rename = "captureSecs")]
+    pub capture_secs: f64,
+    #[serde(rename = "pointsPerSec")]
+    pub points_per_sec: f64,
+    /// Paid to every pilot of the capturing company inside the radius.
+    #[serde(rename = "captureExp")]
+    pub capture_exp: f64,
+    #[serde(rename = "captureUridium")]
+    pub capture_uridium: f64,
+    /// Reward bonus for the winning company's pilots during the next round.
+    #[serde(rename = "winBonus")]
+    pub win_bonus: f64,
+    pub beacons: Vec<BeaconDef>,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, Default)]
+#[serde(default)]
+pub struct Beacon {
+    pub map: u32,
+    pub name: String,
+    pub x: f64,
+    pub y: f64,
+    pub weight: f64,
+    /// Company holding it (scores points).
+    pub owner: Option<String>,
+    /// Company the progress belongs to and its fill (0..1). owner == side at 1.
+    pub side: Option<String>,
+    pub cap: f64,
+    /// More than one company inside: frozen.
+    #[serde(skip)]
+    pub contested: bool,
+}
+
+/// Beacons and company scores of the current round (saved with the season).
+#[derive(Serialize, Deserialize, Clone, Debug, Default)]
+#[serde(default)]
+pub struct Objectives {
+    pub beacons: Vec<Beacon>,
+    pub score: BTreeMap<String, f64>,
+    /// Winner of the previous round (gets `winBonus`).
+    #[serde(rename = "lastWinner")]
+    pub last_winner: Option<String>,
+    #[serde(skip)]
+    pub timer: f64,
+}
+
+impl Objectives {
+    pub fn from_rule(rule: &ObjectiveRule, data: &crate::data::Data) -> Objectives {
+        let beacons = rule
+            .beacons
+            .iter()
+            .filter_map(|b| {
+                let m = data.maps.iter().find(|m| m.name == b.map)?;
+                Some(Beacon {
+                    map: m.id,
+                    name: m.name.clone(),
+                    x: b.x.clamp(0.0, m.w),
+                    y: b.y.clamp(0.0, m.h),
+                    weight: if b.weight > 0.0 { b.weight } else { 1.0 },
+                    ..Default::default()
+                })
+            })
+            .collect();
+        Objectives { beacons, ..Default::default() }
+    }
+
+    /// New round: neutral beacons, zero scores (the winner is decided by the caller).
+    pub fn reset(&mut self) {
+        for b in &mut self.beacons {
+            b.owner = None;
+            b.side = None;
+            b.cap = 0.0;
+            b.contested = false;
+        }
+        self.score.clear();
+    }
+
+    /// Company with the most points (None on a tie or with no points).
+    pub fn leader(&self) -> Option<String> {
+        let mut v: Vec<(&String, &f64)> = self.score.iter().filter(|(_, s)| **s > 0.0).collect();
+        v.sort_by(|a, b| b.1.total_cmp(a.1));
+        match v.as_slice() {
+            [] => None,
+            [(f, _)] => Some((*f).clone()),
+            [(f, a), (_, b), ..] if a > b => Some((*f).clone()),
+            _ => None,
+        }
+    }
+
+    /// Restore owners/scores from a save, but only if the beacon layout is unchanged (same maps,
+    /// positions and weights); otherwise the round's objective starts over. The last winner is kept.
+    pub fn restore(&mut self, saved: &Objectives) {
+        self.last_winner = saved.last_winner.clone();
+        let same = saved.beacons.len() == self.beacons.len()
+            && self.beacons.iter().zip(&saved.beacons).all(|(a, b)| a.map == b.map && a.x == b.x && a.y == b.y && a.weight == b.weight);
+        if !same {
+            return;
+        }
+        for (b, s) in self.beacons.iter_mut().zip(&saved.beacons) {
+            b.owner = s.owner.clone();
+            b.side = s.side.clone();
+            b.cap = s.cap.clamp(0.0, 1.0);
+        }
+        self.score = saved.score.clone();
+    }
+}
+
 /// Everything needed to bring a pilot back after a reconnect or a server restart.
 #[derive(Serialize, Deserialize, Clone, Debug, Default)]
 #[serde(default)]
@@ -503,6 +631,7 @@ pub struct SaveFile {
     pub round: u64,
     pub profiles: HashMap<String, Profile>,
     pub champions: Vec<TopRow>,
+    pub obj: Objectives,
 }
 
 /// Bots play the season too but never appear in rankings or saves.
@@ -574,6 +703,17 @@ mod tests {
         }
         for p in s.ammo.values().chain(s.rockets.values()) {
             assert!(p.pack > 0);
+        }
+        // beacons sit on real maps, clear of portal/station safe zones
+        let maps: Vec<serde_json::Value> = serde_json::from_str(include_str!("../../data/maps.json")).unwrap();
+        assert_eq!(s.objectives.beacons.len(), 5);
+        for b in &s.objectives.beacons {
+            let m = maps.iter().find(|m| m["name"] == b.map.as_str()).unwrap_or_else(|| panic!("no map {}", b.map));
+            let pts = m["portals"].as_array().unwrap().iter().chain(m["stations"].as_array().unwrap());
+            for p in pts {
+                let d = ((p["x"].as_f64().unwrap() - b.x).powi(2) + (p["y"].as_f64().unwrap() - b.y).powi(2)).sqrt();
+                assert!(d >= s.objectives.radius + s.safe_radius.station.max(s.safe_radius.portal), "beacon {} too close ({})", b.map, d);
+            }
         }
         let ships: Vec<Ship> = serde_json::from_str(include_str!("../../data/ships.json")).unwrap();
         for id in s.ships.keys().chain(std::iter::once(&s.start.ship)) {

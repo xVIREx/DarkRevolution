@@ -5,6 +5,22 @@
   "deathDrop": 0.3,
   "cargoLife": 90,
   "bonusBoxes": { "perMap": 12, "credits": 2500, "uridium": 40, "ammo": 100, "respawn": 30 },
+  "objectives": {
+    "_note": "Company goal: beacons on the neutral 4-x maps. Captured while only one company is within radius (30 s, faster with more pilots); a held beacon scores pointsPerSec x weight for its company. Most points at round end wins; that company gets winBonus extra rewards next round.",
+    "radius": 1500,
+    "captureSecs": 30,
+    "pointsPerSec": 1,
+    "captureExp": 20000,
+    "captureUridium": 3000,
+    "winBonus": 0.1,
+    "beacons": [
+      { "map": "4-1", "x": 10400, "y": 10200 },
+      { "map": "4-2", "x": 10400, "y": 10200 },
+      { "map": "4-3", "x": 10400, "y": 3200 },
+      { "map": "4-4", "x": 20800, "y": 19500 },
+      { "map": "4-5", "x": 18500, "y": 13000, "weight": 2 }
+    ]
+  },
   "start": {
     "ship": "ship_phoenix",
     "credits": 15000,

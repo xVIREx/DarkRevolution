@@ -362,7 +362,7 @@ html.touch #actionbar { transform: translateX(-50%) scale(0.72); transform-origi
 .season-bar .sb-bonus { color: #8dff9a; }
 .season-bar .sb-safe { color: var(--sh); }
 .season-bar span:empty { display: none; }
-#win-target { margin-top: 22px; }
+html.season #win-target { margin-top: 22px; }
 
 .win-rank .rk-tabs { display: flex; gap: 2px; margin-bottom: 6px; }
 .win-rank .rk-tab { flex: 1; text-align: center; padding: 3px 0; font-size: 10px; color: #bcd; cursor: pointer; background: url('/assets/ui/win/small_tabs_inactive.png') center / 100% 100%; }
@@ -493,3 +493,22 @@ html.touch .upg-btn { bottom: 76px; min-width: 0; }
 .win-warp .warp-status { color: #8dff9a; font-weight: bold; }
 .win-warp .warp-status.cd { color: #ff9a4a; }
 .win-warp .warp-status:empty { display: none; }
+
+/* company objective */
+.obj-bar:empty, .obj-bar.empty { display: none; }
+.obj-bar { position: absolute; top: 30px; left: 50%; transform: translateX(-50%); z-index: 14; display: flex; gap: 10px; align-items: center; padding: 3px 8px; background: rgba(4,12,18,0.72); border: 1px solid rgba(30,80,104,0.6); border-radius: 3px; font-size: 10px; pointer-events: auto; }
+.obj-scores { display: flex; gap: 6px; }
+.obj-sc { position: relative; width: 74px; height: 16px; background: rgba(0,0,0,0.5); overflow: hidden; border: 1px solid transparent; }
+.obj-sc.me { border-color: var(--fc); }
+.obj-sc i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--fc); opacity: 0.45; }
+.obj-sc b, .obj-sc span { position: relative; line-height: 16px; padding: 0 4px; color: #fff; text-shadow: 0 1px 1px #000; }
+.obj-sc b { font-weight: bold; }
+.obj-sc span { float: right; font-variant-numeric: tabular-nums; }
+.obj-beacons { display: flex; gap: 4px; }
+.obj-b { position: relative; min-width: 26px; padding: 1px 3px; text-align: center; color: #fff; border: 2px solid var(--oc); border-radius: 3px; background: linear-gradient(to right, color-mix(in srgb, var(--sc) 45%, transparent) var(--p), rgba(0,0,0,0.4) var(--p)); cursor: help; }
+.obj-b sup { font-size: 7px; color: var(--accent); }
+.obj-b.contested { animation: objBlink 0.5s steps(2) infinite; }
+@keyframes objBlink { 50% { border-color: #fff; } }
+.re-company { font: 20px var(--title); letter-spacing: 2px; margin-bottom: 4px; text-shadow: 0 0 10px currentColor; }
+html.season.objectives #win-target { margin-top: 44px; }
+@media (max-width: 640px) { .obj-bar { top: 26px; gap: 4px; padding: 2px 4px; } .obj-sc { width: 50px; } .obj-b { min-width: 22px; font-size: 9px; } }

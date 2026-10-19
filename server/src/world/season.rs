@@ -8,7 +8,7 @@ use crate::equipment::{self, Loadout};
 use crate::protocol::{ClientMsg, EntState, FactionRow, ServerMsg, TopMsg};
 use crate::season::Price;
 use crate::season::{
-    big, display_name, is_bot_token, map_tier, now_secs, round_of, valid_token, Eco, NextBuy, Profile, SaveFile, TopRow,
+    big, display_name, is_bot_token, map_tier, Objectives, now_secs, round_of, valid_token, Eco, NextBuy, Profile, SaveFile, TopRow,
 };
 use rand::distributions::Alphanumeric;
 use rand::Rng;
@@ -38,6 +38,8 @@ pub struct SeasonState {
     pub boxes: Vec<LootBox>,
     /// Bonus boxes waiting to respawn: (map, at world time).
     box_respawn: Vec<(u32, f64)>,
+    /// Company objective: beacons and company scores.
+    pub obj: Objectives,
     /// Reward bonus per company (underdog bonus), refreshed with the leaderboard.
     bonus: BTreeMap<String, f64>,
     save_path: Option<PathBuf>,
@@ -57,6 +59,7 @@ impl SeasonState {
             champions: vec![],
             boxes: vec![],
             box_respawn: vec![],
+            obj: Objectives::default(),
             bonus: BTreeMap::new(),
             save_path,
             save_timer: 0.0,
@@ -74,6 +77,7 @@ impl SeasonState {
         }
         let path = std::env::var("SEASON_SAVE").map(PathBuf::from).unwrap_or_else(|_| PathBuf::from("season-save.json"));
         let mut s = SeasonState::new(Some(path), data.shop.round_secs());
+        s.obj = Objectives::from_rule(&data.shop.objectives, data);
         s.load();
         info!("season on: {} min rounds, round {}, {} saved pilots, save file {:?}", s.period / 60, s.round, s.profiles.len(), s.save_path);
         Some(s)
@@ -94,12 +98,14 @@ impl SeasonState {
             Ok(f) if f.round == self.round => {
                 self.profiles = f.profiles;
                 self.champions = f.champions;
+                self.obj.restore(&f.obj);
             }
             Ok(f) if f.round + 1 == self.round => {
                 // the server was down over the round change: the last save decides the champions
                 let mut rows: Vec<TopRow> = f.profiles.values().map(|p| row_of(p, false)).collect();
                 sort_rows(&mut rows);
                 self.champions = rows.into_iter().filter(|r| r.ep > 0.0).take(3).collect();
+                self.obj.last_winner = f.obj.leader();
             }
             Ok(_) => {}
             Err(e) => warn!("{}: {}", path.display(), e),
@@ -393,9 +399,13 @@ impl World {
             self.send_log(id, "Tip: press U right away - your first upgrade is a Yamato. Shoot with MCB-25 (key 2) for double damage.");
         }
         if bonus > 0.0 {
-            self.send_log(id, &format!("Your company is outnumbered this round: +{}% rewards!", (bonus * 100.0).round()));
+            self.send_log(id, &format!("Your company gets +{}% rewards this round!", (bonus * 100.0).round()));
+        }
+        if !returning {
+            self.send_log(id, "Company goal: capture and hold the beacons on the 4-x maps. Most beacon points at the end wins the round.");
         }
         self.season_board();
+        self.send_objectives();
     }
 
     /// Remember a leaving pilot's progress.
@@ -722,7 +732,7 @@ impl World {
                 lines.push(format!("(shared with {} group member{}, +{}% group bonus)", n - 1.0, if n > 2.0 { "s" } else { "" }, ((n - 1.0) * SHARE_PCT).round()));
             }
             if s.bonus.get(&self.ents[&r].faction).copied().unwrap_or(0.0) > 0.0 && r == killer {
-                lines.push(format!("(+{}% outnumbered-company bonus)", (s.bonus[&self.ents[&r].faction] * 100.0).round()));
+                lines.push(format!("(+{}% company bonus)", (s.bonus[&self.ents[&r].faction] * 100.0).round()));
             }
             for l in lines {
                 self.send_log(r, &l);
@@ -841,8 +851,14 @@ impl World {
         // underdog bonus: the company (or companies) with the fewest pilots today
         let min = factions.values().map(|f| f.pilots).min().unwrap_or(0);
         let max = factions.values().map(|f| f.pilots).max().unwrap_or(0);
-        for f in factions.values_mut() {
+        let winner = s.obj.last_winner.clone();
+        let win_bonus = self.data.shop.objectives.win_bonus;
+        for (k, f) in factions.iter_mut() {
             f.bonus = if f.pilots == min && min < max { self.data.shop.underdog_bonus } else { 0.0 };
+            // last round's winning company keeps a small edge
+            if winner.as_deref() == Some(k.as_str()) {
+                f.bonus += win_bonus;
+            }
         }
         (rows, factions)
     }
@@ -875,12 +891,13 @@ impl World {
     /// 00:00 UTC: crown yesterday's top 3 and send everyone back to the start.
     fn round_reset(&mut self, round: u64) {
         let (rows, _) = self.standings();
+        let (company, scores) = self.objectives_round_end();
         let top: Vec<TopRow> = rows.iter().take(10).map(|r| r.1.clone()).collect();
         for e in self.ents.values() {
             let Some(eco) = e.player().and_then(|p| p.eco.as_ref()) else { continue };
             let rank = rows.iter().position(|r| r.0 == eco.token).map_or(0, |i| i as u32 + 1);
             let ep = rows.get(rank.saturating_sub(1) as usize).map_or(0.0, |r| r.1.ep);
-            e.send(&ServerMsg::RoundEnd { rows: top.clone(), rank, pilots: rows.len() as u32, ep });
+            e.send(&ServerMsg::RoundEnd { rows: top.clone(), rank, pilots: rows.len() as u32, ep, company: company.clone(), scores: scores.clone() });
         }
         let champions: Vec<TopRow> = rows.iter().filter(|r| r.1.ep > 0.0).take(3).map(|r| r.1.clone()).collect();
         let text = if champions.is_empty() {
@@ -888,6 +905,10 @@ impl World {
         } else {
             let list: Vec<String> = champions.iter().enumerate().map(|(i, c)| format!("{}. {} ({} EP)", i + 1, c.n, big(c.ep))).collect();
             format!("Round over! Winners: {}. A new round begins - everyone starts from scratch.", list.join(", "))
+        };
+        let text = match &company {
+            Some(c) => format!("{} wins the round on beacon control! {}", c.to_uppercase(), text),
+            None => text,
         };
         info!("season reset (round {}): {}", round, text);
         if let Some(s) = self.season.as_mut() {
@@ -914,6 +935,7 @@ impl World {
             }
         }
         self.season_board();
+        self.send_objectives();
     }
 
     fn season_reset_pilot(&mut self, id: u32) {
@@ -945,7 +967,7 @@ impl World {
         let Some(path) = s.save_path.clone() else { return };
         let mut profiles = s.profiles.clone();
         profiles.extend(online);
-        let file = SaveFile { round: s.round, profiles, champions: s.champions.clone() };
+        let file = SaveFile { round: s.round, profiles, champions: s.champions.clone(), obj: s.obj.clone() };
         let tmp = path.with_extension("tmp");
         let res = serde_json::to_vec(&file)
             .map_err(|e| e.to_string())
@@ -1304,6 +1326,76 @@ mod tests {
         let (rows, factions) = w.standings();
         assert!(rows.is_empty());
         assert_eq!(factions.values().map(|f| f.pilots).sum::<u32>(), 0);
+    }
+
+    #[test]
+    fn beacons_capture_contest_and_win() {
+        let mut w = world();
+        let rule = crate::season::ObjectiveRule {
+            radius: 1000.0,
+            capture_secs: 10.0,
+            points_per_sec: 1.0,
+            capture_exp: 500.0,
+            capture_uridium: 100.0,
+            win_bonus: 0.1,
+            beacons: vec![crate::season::BeaconDef { map: "4-1".into(), x: 5000.0, y: 5000.0, weight: 2.0 }],
+        };
+        let data = w.data.clone();
+        w.season.as_mut().unwrap().obj = Objectives::from_rule(&rule, &data);
+        let mut d = (*w.data).clone();
+        d.shop.objectives = rule;
+        w.data = std::sync::Arc::new(d);
+        let (a, _) = join(&mut w, "token-beac-a", "mmo");
+        let (b, _) = join(&mut w, "token-beac-b", "eic");
+        let put = |w: &mut World, id: u32, x: f64| {
+            let e = w.ents.get_mut(&id).unwrap();
+            (e.map, e.x, e.y) = (2, x, 5000.0);
+        };
+        let run = |w: &mut World, secs: f64| {
+            for _ in 0..(secs * 20.0) as u32 {
+                w.objectives_step(0.05);
+            }
+        };
+        put(&mut w, a, 5200.0);
+        run(&mut w, 10.5);
+        let bc = &w.season.as_ref().unwrap().obj.beacons[0];
+        assert_eq!(bc.owner.as_deref(), Some("mmo"));
+        assert_eq!(w.ents[&a].player().unwrap().exp, 500.0, "capture reward");
+        // contested: nothing moves, mmo keeps scoring (weight 2)
+        put(&mut w, b, 4800.0);
+        let before = w.season.as_ref().unwrap().obj.score["mmo"];
+        run(&mut w, 5.0);
+        let o = &w.season.as_ref().unwrap().obj;
+        assert!(o.beacons[0].contested && o.beacons[0].cap == 1.0);
+        assert!((o.score["mmo"] - before - 10.0).abs() < 0.2);
+        // mmo leaves: eic drains it to neutral, then captures
+        put(&mut w, a, 15000.0);
+        run(&mut w, 10.5);
+        assert_eq!(w.season.as_ref().unwrap().obj.beacons[0].owner, None);
+        run(&mut w, 10.5);
+        assert_eq!(w.season.as_ref().unwrap().obj.beacons[0].owner.as_deref(), Some("eic"));
+        // mmo takes it back right away: owner changes, but no second reward within the cooldown
+        put(&mut w, b, 15000.0);
+        put(&mut w, a, 5200.0);
+        run(&mut w, 21.0);
+        assert_eq!(w.season.as_ref().unwrap().obj.beacons[0].owner.as_deref(), Some("mmo"));
+        assert_eq!(w.ents[&a].player().unwrap().exp, 500.0, "capture reward cooldown");
+        // a save with a different beacon layout doesn't carry scores over
+        let mut moved = w.season.as_ref().unwrap().obj.clone();
+        moved.beacons[0].x += 1.0;
+        let mut fresh = Objectives::from_rule(&w.data.shop.objectives, &w.data);
+        fresh.restore(&moved);
+        assert!(fresh.score.is_empty() && fresh.beacons[0].owner.is_none());
+        fresh.restore(&w.season.as_ref().unwrap().obj);
+        assert_eq!(fresh.beacons[0].owner.as_deref(), Some("mmo"));
+        // round end: the leader wins and gets the bonus next round; beacons reset
+        let (win, scores) = w.objectives_round_end();
+        assert_eq!(win.as_deref(), Some("mmo"));
+        assert!(scores["mmo"] > scores.get("eic").copied().unwrap_or(0.0));
+        let o = &w.season.as_ref().unwrap().obj;
+        assert!(o.beacons[0].owner.is_none() && o.score.is_empty());
+        let (_, factions) = w.standings();
+        assert!(factions["mmo"].bonus >= 0.1);
     }
 }
 

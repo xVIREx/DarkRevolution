@@ -17,8 +17,9 @@ import { VolumePanel } from './hud/volume';
 import { WarpWindow } from './hud/warp';
 import { MiniBoard, RankWindow, roundEndHtml, SeasonBar, toast, UpgradeButton } from './hud/season';
 import { GroupWindow } from './hud/group';
+import { BeaconsView, ObjectiveBar } from './hud/objectives';
 import { AudioSystem } from './audio';
-import type { EntId, EntSnap, Faction, MapDef, ServerMsg, YouMsg } from './types';
+import type { EntId, EntSnap, Faction, MapDef, ObjMsg, ServerMsg, YouMsg } from './types';
 import { IS_TOUCH, TouchControls } from './touch';
 
 const OPTIMISTIC_MS = 600;
@@ -40,6 +41,9 @@ export class Game implements Actions {
   private miniBoard: MiniBoard | null = null;
   private roundOver: Dialog | null = null;
   private groupWin: GroupWindow;
+  private objBar: ObjectiveBar | null = null;
+  private beacons: BeaconsView | null = null;
+  private obj: ObjMsg | null = null;
   private input: Input;
   private touch: TouchControls | null = null;
   private respawn: Dialog;
@@ -86,6 +90,9 @@ export class Game implements Actions {
       this.upgradeBtn = new UpgradeButton(this.hud.root, this, () => this.you);
       this.miniBoard = new MiniBoard(this.hud.root, () => { this.rankWin!.win.open(); this.rankWin!.win.front(); }, () => this.ents.me()?.snap.n ?? this.name);
       this.roundOver = new Dialog('Round over', 'Next round', () => this.roundOver?.hide());
+      this.objBar = new ObjectiveBar(this.hud.root);
+      document.documentElement.classList.add('season');
+      this.beacons = new BeaconsView(this.world);
       this.hud.rightMenu.add({ icon: 'shop', title: 'Shop [H]', onClick: () => this.hangar.show('Shop'), isOpen: () => false });
     }
     this.warpWin = new WarpWindow(this, season
@@ -193,8 +200,15 @@ export class Game implements Actions {
         break;
       }
       case 'roundEnd':
-        this.roundOver?.show(roundEndHtml(m, this.ents.me()?.snap.n ?? this.name), 'Round over');
+        this.roundOver?.show(roundEndHtml(m, this.ents.me()?.snap.n ?? this.name, this.faction), 'Round over');
         break;
+      case 'obj': {
+        const { t: _t, ...o } = m;
+        void _t;
+        this.obj = o;
+        this.objBar?.update(o, this.faction);
+        break;
+      }
       case 'groupInvite':
         this.groupWin.onInvite(m.from, m.id);
         this.audio.play('select');
@@ -431,6 +445,7 @@ export class Game implements Actions {
       myId: this.ents.myId,
       selectedId: this.ents.selectedId,
       group: this.groupWin?.current ?? null,
+      obj: this.obj,
     };
   }
 
@@ -469,6 +484,7 @@ export class Game implements Actions {
       this.ammoBar.update(s, now);
       this.minimap.update(s, now);
       this.warpWin?.update(s);
+      this.beacons?.update(this.obj, this.map?.id ?? null);
       this.groupWin.update(s);
     } catch (e) {
       console.error('frame error', e);

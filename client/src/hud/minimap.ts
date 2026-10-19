@@ -3,6 +3,7 @@ import { Assets } from '../assets';
 import { el } from './dom';
 import { DOWindow, ui } from './ui';
 import { IS_TOUCH } from '../touch';
+import { drawBeacon } from './objectives';
 
 const SIZES = [220, 300, 380, 470];
 
@@ -133,6 +134,7 @@ export class Minimap {
         c.strokeRect(e.x * sx - 7, e.y * sy - 7, 14, 14);
       }
     }
+    for (const b of s.obj?.beacons ?? []) if (b.map === m.id) drawBeacon(c, b, sx, sy);
     // group members on this map (also when out of view range): green diamonds
     for (const gm of s.group?.members ?? []) {
       if (String(gm.id) === s.myId || gm.map !== m.id || gm.dead) continue;

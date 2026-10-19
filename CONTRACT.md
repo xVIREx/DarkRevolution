@@ -174,3 +174,10 @@ fly within 140 units to collect. Groups: `group` {action: invite|accept|decline|
 server sends `group` {id, leader, members:[{id,n,f,map,x,y,hp,mhp,sh,msh,lvl,ship,dead,active}]} and `groupInvite`
 {from, id}. Members can't attack each other; alien rewards are split between members on the same map who hit an alien
 in the last 20 s (+5% pot per extra member).
+Company objective (`objectives` in shop.json, server world/objectives.rs): a beacon on each neutral 4-x map (4-5 counts
+double). It is captured while pilots of exactly one company are within `radius` (`captureSecs`, up to 2x faster with
+more pilots); another company first drains it to neutral; with several companies inside it is contested (frozen).
+Held beacons score `pointsPerSec × weight` per second for their company; capturers get `captureExp`/`captureUridium`.
+The company with the most points at round end wins (`roundEnd.company`, `roundEnd.scores`) and gets `winBonus` extra
+rewards next round (added to the company bonus). Server → client `obj` {beacons: [{map, name, x, y, r, owner, side,
+cap, contested, weight}], score, lastWinner} every second and on captures.

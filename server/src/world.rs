@@ -16,6 +16,7 @@ use tracing::{debug, info};
 mod behavior;
 mod bots;
 mod group;
+mod objectives;
 mod season;
 
 pub use season::SeasonState;
@@ -1219,6 +1220,7 @@ impl World {
         self.time += dt;
         let data = self.data.clone();
         self.season_step(dt);
+        self.objectives_step(dt);
         self.groups_step(dt);
 
         // respawns

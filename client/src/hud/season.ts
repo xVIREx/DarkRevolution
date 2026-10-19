@@ -107,8 +107,9 @@ export function fmtClock(ms: number): string {
 }
 
 const FACTION_NAME: Record<string, string> = { mmo: 'MMO', eic: 'EIC', vru: 'VRU' };
-const fname = (f: string) => FACTION_NAME[f] ?? f.toUpperCase();
-const fcol = (f: string) => FACTION_COLORS[f] ?? '#ccc';
+export const fname = (f: string): string => FACTION_NAME[f] ?? f.toUpperCase();
+/** company colour; neutral grey for none */
+export const fcol = (f: string | null | undefined): string => (f ? FACTION_COLORS[f] ?? '#ccc' : '#9aa7b4');
 
 /** Countdown + rank strip at the top of the screen; click opens the Rankings window. */
 export class SeasonBar {
@@ -333,9 +334,13 @@ export function toast(text: string, sub = ''): void {
 }
 
 /** Final standings when a round ends. */
-export function roundEndHtml(m: { rows: TopRow[]; rank: number; pilots: number; ep: number }, me: string): string {
+export function roundEndHtml(m: { rows: TopRow[]; rank: number; pilots: number; ep: number; company?: string | null; scores?: Record<string, number> }, me: string, myFaction: string): string {
   const place = m.rank ? `You finished <b>#${m.rank}</b> of ${m.pilots} with <b>${fmtBig(m.ep)} EP</b>.` : 'You did not score this round.';
-  let h = `<div class="re-place">${place}</div><table class="rk-table">`;
+  const sc = Object.entries(m.scores ?? {}).sort((a, b) => b[1] - a[1]).map(([f, v]) => `<b style="color:${fcol(f)}">${fname(f)}</b> ${Math.floor(v)}`).join(' · ');
+  const comp = m.company
+    ? `<div class="re-company" style="color:${fcol(m.company)}">${fname(m.company)} WINS THE ROUND${m.company === myFaction ? ' - your company!' : ''}</div><div class="hint">Beacon points: ${sc}. The winners get bonus rewards next round.</div>`
+    : '<div class="hint">No company held enough beacons to win this round.</div>';
+  let h = `${comp}<div class="re-place">${place}</div><table class="rk-table">`;
   m.rows.forEach((r, i) => {
     h += `<tr class="${r.n === me ? 'me' : ''}"><td>${i < 3 ? ['🥇', '🥈', '🥉'][i] : i + 1}</td><td style="color:${fcol(r.f)}">${esc(r.n)}</td><td>lvl ${r.lvl}</td><td>${fmtBig(r.ep)} EP</td></tr>`;
   });

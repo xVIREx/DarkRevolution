@@ -157,6 +157,8 @@ export interface SeasonYou {
 export interface TopRow { n: string; f: string; lvl: number; ep: number; hon: number; k: number; pk: number; on: boolean }
 export interface FactionRow { pilots: number; online: number; ep: number; bonus: number }
 export interface GroupMember { id: number; n: string; f: string; map: number; x: number; y: number; hp: number; mhp: number; sh: number; msh: number; lvl: number; ship: string; dead: boolean; active: boolean }
+export interface BeaconState { map: number; name: string; x: number; y: number; r: number; owner: string | null; side: string | null; cap: number; contested: boolean; weight: number }
+export interface ObjMsg { beacons: BeaconState[]; score: Record<string, number>; lastWinner: string | null }
 export interface GroupMsg { id: number; leader: number; members: GroupMember[] }
 export interface TopMsg { rows: TopRow[]; factions: Record<string, FactionRow>; champions: TopRow[]; rank: number; pilots: number }
 
@@ -173,7 +175,8 @@ export type ServerMsg =
   | ({ t: 'top' } & TopMsg)
   | ({ t: 'group' } & GroupMsg)
   | { t: 'groupInvite'; from: string; id: number }
-  | { t: 'roundEnd'; rows: TopRow[]; rank: number; pilots: number; ep: number };
+  | { t: 'roundEnd'; rows: TopRow[]; rank: number; pilots: number; ep: number; company: string | null; scores: Record<string, number> }
+  | ({ t: 'obj' } & ObjMsg);
 
 export type ClientMsg =
   | { t: 'login'; name: string; faction: Faction; token?: string }
