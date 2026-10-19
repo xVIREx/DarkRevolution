@@ -14,7 +14,7 @@ import { Ribbon, trailMaterial } from './trail';
 const ENGINE_COLOR = '#78c8ff';
 /** fx.engineTrail gradient head colour (0, 1, 0.969) */
 const TRAIL_COLOR = '#00fff7';
-const DRONE_LEN = 34;
+const DRONE_LEN = 46;
 const MAX_TRAIL_DIST = 2600;
 
 const placeholderGeo = new THREE.ConeGeometry(18, 60, 4).rotateZ(-Math.PI / 2);

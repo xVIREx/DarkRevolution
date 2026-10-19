@@ -396,7 +396,7 @@ class ShieldHit implements Fx {
         uniform float uA; uniform vec3 uColor; uniform float uT;
         varying vec3 vN; varying vec3 vV; varying vec3 vP;
         void main() {
-          float f = pow(1.0 - abs(dot(vN, vV)), 2.2);
+          float f = pow(clamp(1.0 - abs(dot(vN, vV)), 0.0, 1.0), 2.2); // pow(<0) is NaN, which bloom smears over the screen
           float hex = 0.6 + 0.4 * step(0.5, fract(sin(dot(floor(vP.xz * 7.0), vec2(12.9, 78.2))) * 43758.5));
           gl_FragColor = vec4(uColor * (f * 1.4 + 0.08) * hex * uA, 1.0);
         }`,

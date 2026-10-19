@@ -209,3 +209,51 @@ export function drawSheetFrame(
   const dh = sheet.ch * s;
   ctx.drawImage(img, col * sheet.cw, row * sheet.ch, sheet.cw, sheet.ch, (w - dw) / 2, (h - dh) / 2, dw, dh);
 }
+
+const bboxCache = new Map<string, [number, number, number, number] | null>();
+let bboxCtx: CanvasRenderingContext2D | null = null;
+
+/** Visible-pixel bounds of one sheet frame (x, y, w, h in frame px), cached; null if empty/unreadable. */
+function frameBBox(img: HTMLImageElement, sheet: SheetInfo, frame: number): [number, number, number, number] | null {
+  const key = `${img.src}#${frame}`;
+  if (bboxCache.has(key)) return bboxCache.get(key)!;
+  let r: [number, number, number, number] | null = null;
+  try {
+    bboxCtx ??= document.createElement('canvas').getContext('2d', { willReadFrequently: true });
+    const c = bboxCtx!;
+    c.canvas.width = sheet.cw;
+    c.canvas.height = sheet.ch;
+    c.clearRect(0, 0, sheet.cw, sheet.ch);
+    c.drawImage(img, (frame % sheet.cols) * sheet.cw, Math.floor(frame / sheet.cols) * sheet.ch, sheet.cw, sheet.ch, 0, 0, sheet.cw, sheet.ch);
+    const d = c.getImageData(0, 0, sheet.cw, sheet.ch).data;
+    let x0 = sheet.cw, y0 = sheet.ch, x1 = -1, y1 = -1;
+    for (let y = 0; y < sheet.ch; y++) {
+      for (let x = 0; x < sheet.cw; x++) {
+        if (d[(y * sheet.cw + x) * 4 + 3] > 24) {
+          if (x < x0) x0 = x;
+          if (x > x1) x1 = x;
+          if (y < y0) y0 = y;
+          if (y > y1) y1 = y;
+        }
+      }
+    }
+    if (x1 >= x0) r = [x0, y0, x1 - x0 + 1, y1 - y0 + 1];
+  } catch { /* tainted / not decoded: fall back to the full frame */ }
+  bboxCache.set(key, r);
+  return r;
+}
+
+/** Like drawSheetFrame, but crops the frame's transparent padding so the ship is centred and fills
+ * the box (sheets pad their frames differently, which made hangar thumbnails look off-centre). */
+export function drawSheetFrameFit(ctx: CanvasRenderingContext2D, img: HTMLImageElement, sheet: SheetInfo, frame: number, w: number, h: number): void {
+  const b = frameBBox(img, sheet, frame);
+  if (!b) {
+    drawSheetFrame(ctx, img, sheet, frame, w, h);
+    return;
+  }
+  const [bx, by, bw, bh] = b;
+  const s = Math.min(w / bw, h / bh);
+  const dw = bw * s;
+  const dh = bh * s;
+  ctx.drawImage(img, (frame % sheet.cols) * sheet.cw + bx, Math.floor(frame / sheet.cols) * sheet.ch + by, bw, bh, (w - dw) / 2, (h - dh) / 2, dw, dh);
+}

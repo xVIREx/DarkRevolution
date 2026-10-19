@@ -1,5 +1,5 @@
 import type { Actions } from './actions';
-import { Assets, drawSheetFrame } from './assets';
+import { Assets, drawSheetFrameFit } from './assets';
 import type { ShipDef, YouMsg } from './types';
 import { el, esc, fmt } from './hud/dom';
 import { syncMenus, ui } from './hud/ui';
@@ -527,8 +527,8 @@ export class Hangar {
       ctx.clearRect(0, 0, cv.width, cv.height);
       if (img && sheet) {
         ctx.save();
-        ctx.translate(cv.width * 0.04, cv.height * 0.04);
-        drawSheetFrame(ctx, img, sheet, this.assets.frameFor(angle, sheet.frames), cv.width * 0.92, cv.height * 0.92);
+        ctx.translate(cv.width * 0.08, cv.height * 0.08);
+        drawSheetFrameFit(ctx, img, sheet, this.assets.frameFor(angle, sheet.frames), cv.width * 0.84, cv.height * 0.84);
         ctx.restore();
         return;
       }

@@ -6,6 +6,20 @@ import type { ModelDef, RimDef, TexSet } from './manifest3d';
 import { url3d } from './manifest3d';
 
 /** world units per lib_ships `visualSize` (goliath visualSize 1.4 → ~150 units, close to its 2D sprite). */
+/** Orientation fixes for GLBs the exporter got wrong (keyed by manifest `geometry`, Euler XYZ like `rot`).
+ * These prefabs are authored standing up or lying on their side; the values lay them flat with the face up
+ * so the top view matches the 2D sprite (checked with tools/m3d_render.py against sheet frame 16). */
+const Q = Math.PI / 2;
+const ROT_FIX: Record<string, [number, number, number]> = {
+  'lordakia': [0, 0, Q],
+  'lordakia-boss': [0, 0, Q],
+  'lordakium': [0, 0, Q],
+  'lordakium-boss': [0, 0, -Q],
+  'sibelon-boss': [0, 0, -Q],
+  'sibelonit': [-Q, Q, 0],
+  'kucurbium': [-Q, -Q, 0],
+};
+
 export const VISUAL_SIZE_UNIT = 105;
 
 export type TexKind = 'diffuse' | 'normal' | 'specular' | 'glow' | 'alpha';
@@ -215,7 +229,8 @@ export class ModelLibrary {
       m.material = Array.isArray(m.material) ? m.material.map((x) => built.get(x) ?? x) : built.get(m.material) ?? m.material;
       m.frustumCulled = true;
     });
-    if (def.rot) raw.rotation.set(def.rot[0] ?? 0, def.rot[1] ?? 0, def.rot[2] ?? 0);
+    const rot = ROT_FIX[String((def as { geometry?: unknown }).geometry ?? '')] ?? def.rot;
+    if (rot) raw.rotation.set(rot[0] ?? 0, rot[1] ?? 0, rot[2] ?? 0);
     const fwd = new THREE.Group();
     fwd.add(raw);
     fwd.rotation.y = forwardYaw(forward);
