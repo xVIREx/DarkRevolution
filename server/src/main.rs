@@ -28,5 +28,30 @@ async fn main() {
     let addr = SocketAddr::from(([0, 0, 0, 0], port));
     let listener = tokio::net::TcpListener::bind(addr).await.expect("bind");
     info!("listening on http://{}  (client: {}, data: {})", addr, dist_dir.display(), data_dir.display());
-    axum::serve(listener, router(world, &dist_dir, &data_dir)).await.expect("server");
+    axum::serve(listener, router(world.clone(), &dist_dir, &data_dir))
+        .with_graceful_shutdown(shutdown_signal(world))
+        .await
+        .expect("server");
+}
+
+/// Fly stops the machine with SIGINT/SIGTERM on deploys: save the round as soon as the signal
+/// arrives (open websockets would hold up a graceful shutdown past Fly's kill timeout).
+async fn shutdown_signal(world: Arc<Mutex<World>>) {
+    let ctrl_c = async {
+        let _ = tokio::signal::ctrl_c().await;
+    };
+    #[cfg(unix)]
+    let term = async {
+        if let Ok(mut s) = tokio::signal::unix::signal(tokio::signal::unix::SignalKind::terminate()) {
+            s.recv().await;
+        }
+    };
+    #[cfg(not(unix))]
+    let term = std::future::pending::<()>();
+    tokio::select! {
+        _ = ctrl_c => {},
+        _ = term => {},
+    }
+    info!("shutting down");
+    world.lock().unwrap().save_now();
 }

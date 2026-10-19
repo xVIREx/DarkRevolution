@@ -1045,6 +1045,14 @@ impl World {
         self.send_log(id, "New round: back in the Phoenix. Good luck, pilot!");
     }
 
+    /// Write the season save right away (server shutdown, so a deploy loses nothing).
+    pub fn save_now(&mut self) {
+        if self.season.is_some() {
+            self.season_save();
+            info!("season saved for shutdown");
+        }
+    }
+
     fn season_save(&mut self) {
         let online: Vec<(String, Profile)> = self.ents.values().filter_map(profile_of).filter(|(t, _)| !is_bot_token(t)).collect();
         let Some(s) = self.season.as_mut() else { return };
