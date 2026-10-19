@@ -91,11 +91,15 @@ pub fn slots(ship: &Ship, items: &Items) -> Slots {
     }
 }
 
-/// Non-config loadout state: active formation and boosters.
+/// Non-config loadout state: active formation and boosters, plus the account-wide bonuses
+/// (skill tree, Seprom refining, P.E.T.) that the daily season sells and sandbox gives away.
 #[derive(Clone, Debug, PartialEq)]
 pub struct Loadout {
     pub formation: String,
     pub boosters: Vec<String>,
+    pub skills: bool,
+    pub refining: bool,
+    pub pet: bool,
 }
 
 impl Loadout {
@@ -104,7 +108,15 @@ impl Loadout {
         Loadout {
             formation: if items.formation("drill").is_some() { "drill".into() } else { "standard".into() },
             boosters: items.boosters.iter().map(|b| b.id.clone()).collect(),
+            skills: true,
+            refining: true,
+            pet: true,
         }
+    }
+
+    /// Fresh season pilot: Standard formation, nothing unlocked.
+    pub fn bare() -> Loadout {
+        Loadout { formation: "standard".into(), boosters: vec![], skills: false, refining: false, pet: false }
     }
 }
 
@@ -245,8 +257,9 @@ pub fn compute_stats(ship: &Ship, items: &Items, cfg: &EquipConfig, lo: &Loadout
     let b_shd = cap(boosters.iter().map(|b| b.shield).sum());
     let b_hp = cap(boosters.iter().map(|b| b.hp).sum());
     let b_rep = cap(boosters.iter().map(|b| b.repair).sum());
-    let sk = &items.skills;
-    let rf = &items.refining;
+    let (no_sk, no_rf) = (crate::data::Skills::default(), crate::data::Refining::default());
+    let sk = if lo.skills { &items.skills } else { &no_sk };
+    let rf = if lo.refining { &items.refining } else { &no_rf };
     let design = cfg
         .drone_design
         .as_deref()
@@ -266,7 +279,8 @@ pub fn compute_stats(ship: &Ship, items: &Items, cfg: &EquipConfig, lo: &Loadout
         d_fpvp += fpvp;
         d_n += n;
     }
-    let pet_ids: Vec<String> = (0..items.pet.lasers).map(|_| items.pet.laser.clone()).collect();
+    let pet_n = if lo.pet { items.pet.lasers } else { 0 };
+    let pet_ids: Vec<String> = (0..pet_n).map(|_| items.pet.laser.clone()).collect();
     let (p_pve, p_pvp, p_od, _, _, _, p_n) = laser_sum(items, &pet_ids, &[]);
 
     let common = vec![
@@ -617,7 +631,7 @@ mod tests {
     fn upgrade_levels_and_formation_matter() {
         let items = Items::default();
         let g = goliath();
-        let lo = Loadout { formation: "standard".into(), boosters: vec![] };
+        let lo = Loadout { formation: "standard".into(), boosters: vec![], skills: true, refining: true, pet: true };
         let mut cfg = EquipConfig { lasers: vec!["lf4".into()], ..Default::default() };
         normalize(&items, &mut cfg);
         assert_eq!(cfg.laser_lvls, vec![16]);
@@ -626,11 +640,11 @@ mod tests {
         assert!(close(compute_stats(&g, &items, &cfg, &lo).damage, base + pet, 0.05));
         cfg.laser_lvls = vec![0];
         assert!(close(compute_stats(&g, &items, &cfg, &lo).damage, base / 1.06 + pet, 0.05));
-        let drill = Loadout { formation: "drill".into(), boosters: vec![] };
+        let drill = Loadout { formation: "drill".into(), boosters: vec![], skills: true, refining: true, pet: true };
         let d = compute_stats(&g, &items, &cfg, &drill);
         assert!(close(d.damage, base / 1.06 * 1.2 + pet, 0.05));
         assert!(d.speed < compute_stats(&g, &items, &cfg, &lo).speed);
-        let heart = Loadout { formation: "heart".into(), boosters: vec![] };
+        let heart = Loadout { formation: "heart".into(), boosters: vec![], skills: true, refining: true, pet: true };
         let h = compute_stats(&g, &items, &cfg, &heart);
         assert!(close(h.hp, (256000.0 + 50000.0) * 1.2, 0.5));
     }
@@ -649,7 +663,7 @@ mod tests {
     #[test]
     fn shields_and_absorb() {
         let items = Items::default();
-        let lo = Loadout { formation: "standard".into(), boosters: vec![] };
+        let lo = Loadout { formation: "standard".into(), boosters: vec![], skills: true, refining: true, pet: true };
         let mut cfg = EquipConfig { gens: vec!["sg3n-a01".into(), "sg3n-b02".into()], gen_lvls: vec![0, 0], ..Default::default() };
         normalize(&items, &mut cfg);
         let s = compute_stats(&goliath(), &items, &cfg, &lo);

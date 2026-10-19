@@ -4,6 +4,7 @@ import { Game } from './game';
 import { Net } from './net';
 import { AudioSystem } from './audio';
 import { LoginScreen } from './hud/login';
+import { fetchSeasonInfo, seasonToken, type SeasonInfo } from './hud/season';
 import type { Faction } from './types';
 
 function boot(): void {
@@ -13,17 +14,24 @@ function boot(): void {
   void audio.init();
   const net = new Net();
   let game: Game | null = null;
+  let season: SeasonInfo = { enabled: false };
+  const seasonReady = fetchSeasonInfo().then((s) => {
+    season = s;
+    login.setSeason(s);
+  });
 
   const login: LoginScreen = new LoginScreen((name: string, faction: Faction) => {
     login.setBusy(true);
     login.setStatus('Loading assets...');
-    void assetsReady.then(() => {
+    void Promise.all([assetsReady, seasonReady]).then(() => {
       login.setStatus('Connecting...');
       net.onOpen = () => {
         // create the game before sending login so it sees welcome/map/state
-        game = new Game(assets, audio, net, name, faction);
+        const token = season.enabled ? seasonToken() : undefined;
+        const skew = season.enabled && season.now ? season.now - Date.now() : 0;
+        game = new Game(assets, audio, net, name, faction, token ? { token, skew } : null);
         (window as unknown as { __game?: Game }).__game = game; // debug handle
-        net.send({ t: 'login', name, faction });
+        net.send({ t: 'login', name, faction, token });
         login.hide();
       };
       net.onClose = () => {

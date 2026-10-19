@@ -11,3 +11,5 @@ video/clips/
 video/frames/
 video/node_modules/
 __pycache__/
+season-save.json
+server/season-save.json

@@ -10,6 +10,12 @@ primary_region = "fra"
   EGRESS_GB_PER_IP = "2"
   WS_PER_IP = "4"
   WS_TOTAL = "300"
+  # Daily season progress (server/src/world/season.rs), kept across deploys/restarts.
+  SEASON_SAVE = "/data/season-save.json"
+
+[mounts]
+  source = "season_data"
+  destination = "/data"
 
 [http_service]
   internal_port = 8080

@@ -114,7 +114,41 @@ export interface YouMsg {
   map?: number;
   rocket?: string;
   dead?: boolean;
+  faction?: string;
+  /** daily season state (absent in the free sandbox) */
+  season?: SeasonYou;
 }
+
+export interface PilotStats {
+  npcKills: number;
+  pvpKills: number;
+  deaths: number;
+  earnedC: number;
+  earnedU: number;
+  bestKill: string;
+  bestKillEp: number;
+  online: number;
+}
+
+export interface SeasonYou {
+  /** unix ms of the next 00:00 UTC reset */
+  resetAt: number;
+  /** reward bonus of your company (0.25 = +25%) */
+  bonus: number;
+  ships: string[];
+  items: Record<string, number>;
+  levels: Record<string, number>;
+  unlocks: string[];
+  ammo: Record<string, number>;
+  pilot: PilotStats;
+  rank: number;
+  /** PvP impossible where you are (protected map / safe zone) */
+  safe: boolean;
+}
+
+export interface TopRow { n: string; f: string; lvl: number; ep: number; hon: number; k: number; pk: number; on: boolean }
+export interface FactionRow { pilots: number; online: number; ep: number; bonus: number }
+export interface TopMsg { rows: TopRow[]; factions: Record<string, FactionRow>; champions: TopRow[]; rank: number; pilots: number }
 
 export type ServerMsg =
   | { t: 'welcome'; id: number | string }
@@ -125,10 +159,13 @@ export type ServerMsg =
   | { t: 'boom'; id: number | string; x: number; y: number }
   | { t: 'dead'; by: string }
   | { t: 'log'; text: string }
-  | { t: 'chat'; from: string; text: string };
+  | { t: 'chat'; from: string; text: string }
+  | ({ t: 'top' } & TopMsg);
 
 export type ClientMsg =
-  | { t: 'login'; name: string; faction: Faction }
+  | { t: 'login'; name: string; faction: Faction; token?: string }
+  | { t: 'buy'; kind: string; id: string; qty?: number }
+  | { t: 'autoequip' }
   | { t: 'move'; x: number; y: number }
   | { t: 'select'; id: number | string | null }
   | { t: 'attack'; on: boolean }

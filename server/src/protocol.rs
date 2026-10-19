@@ -2,7 +2,9 @@
 
 use crate::equipment::{DroneCfg, EquipConfig, Slots, Stats};
 use serde::{Deserialize, Serialize};
+use crate::season::{PilotStats, TopRow};
 use serde_json::Value;
+use std::collections::BTreeMap;
 
 #[derive(Deserialize, Debug, Clone)]
 #[serde(tag = "t", rename_all = "lowercase")]
@@ -12,6 +14,9 @@ pub enum ClientMsg {
         name: String,
         #[serde(default)]
         faction: String,
+        /// Season identity (random string kept in the browser).
+        #[serde(default)]
+        token: Option<String>,
     },
     Move {
         x: f64,
@@ -102,6 +107,21 @@ pub enum ClientMsg {
     Cfg {
         n: u8,
     },
+    /// Season: buy from the shop. `kind` ship|item|design|ammo|rocket|formation|booster|tech|upgrade;
+    /// `qty` = units (items) or packs (ammo/rockets).
+    Buy {
+        kind: String,
+        id: String,
+        #[serde(default = "one32")]
+        qty: u32,
+    },
+    /// Season: fill both configs with the best owned gear.
+    #[serde(rename = "autoequip")]
+    AutoEquip,
+}
+
+fn one32() -> u32 {
+    1
 }
 
 fn one() -> u8 {
@@ -158,6 +178,7 @@ pub enum ServerMsg<'a> {
         ents: &'a [EntState],
     },
     You(&'a YouMsg),
+    Top(&'a TopMsg),
     Shot {
         from: u32,
         to: u32,
@@ -225,4 +246,44 @@ pub struct YouMsg {
     /// Seconds until `cfg` can switch again.
     #[serde(rename = "cfgCd")]
     pub cfg_cd: f64,
+    pub faction: String,
+    /// Daily season state (absent in sandbox mode).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub season: Option<SeasonYou>,
+}
+
+#[derive(Serialize, Debug, Clone, PartialEq)]
+pub struct SeasonYou {
+    /// Unix ms of the next reset (00:00 UTC).
+    #[serde(rename = "resetAt")]
+    pub reset_at: u64,
+    /// Reward bonus your company currently gets (0.25 = +25%), 0 if none.
+    pub bonus: f64,
+    pub ships: Vec<String>,
+    pub items: BTreeMap<String, u32>,
+    pub levels: BTreeMap<String, u8>,
+    pub unlocks: Vec<String>,
+    pub ammo: BTreeMap<String, u64>,
+    pub pilot: PilotStats,
+    pub rank: u32,
+    /// PvP is impossible here (protected map / safe zone) — shown on the HUD.
+    pub safe: bool,
+}
+
+/// Leaderboard broadcast (season only, every few seconds).
+#[derive(Serialize, Debug, Clone)]
+pub struct TopMsg {
+    pub rows: Vec<TopRow>,
+    pub factions: BTreeMap<String, FactionRow>,
+    pub champions: Vec<TopRow>,
+    pub rank: u32,
+    pub pilots: u32,
+}
+
+#[derive(Serialize, Debug, Clone, Default)]
+pub struct FactionRow {
+    pub pilots: u32,
+    pub online: u32,
+    pub ep: f64,
+    pub bonus: f64,
 }

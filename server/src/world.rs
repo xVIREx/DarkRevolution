@@ -4,7 +4,8 @@ use crate::ai::{self, PlayerPos};
 use crate::combat::{self, dist};
 use crate::data::{Data, Ship};
 use crate::equipment::{self, EquipConfig, Loadout, Stats};
-use crate::protocol::{ClientMsg, EntState, ServerMsg, YouMsg};
+use crate::protocol::{ClientMsg, EntState, SeasonYou, ServerMsg, YouMsg};
+use crate::season::Eco;
 use rand::rngs::StdRng;
 use rand::{Rng, SeedableRng};
 use std::collections::{BTreeMap, HashMap};
@@ -14,6 +15,9 @@ use tracing::{debug, info};
 
 mod behavior;
 mod bots;
+mod season;
+
+pub use season::SeasonState;
 
 pub const TICK_HZ: f64 = 20.0;
 /// Max distance at which entities are included in a player's state snapshot
@@ -56,6 +60,8 @@ pub struct PlayerData {
     pub idb_mult: f64,
     pub idb_idle: f64,
     pub rsb_cd: f64,
+    /// Daily season wallet/inventory; `None` = sandbox player (everything free) or bot.
+    pub eco: Option<Box<Eco>>,
     last_you: Option<YouMsg>,
     you_timer: f64,
 }
@@ -253,6 +259,8 @@ pub struct World {
     bots: Vec<bots::Bot>,
     /// Map-wide broadcasts queued during this tick / message handling.
     pending: Vec<(u32, String)>,
+    /// Daily season (data/shop.json); `None` = free sandbox.
+    pub season: Option<SeasonState>,
 }
 
 impl World {
@@ -267,7 +275,9 @@ impl World {
             rng: StdRng::from_entropy(),
             bots: vec![],
             pending: vec![],
+            season: None,
         };
+        w.season = SeasonState::from_env(&w.data);
         let data = w.data.clone();
         let mut total = 0;
         for m in &data.maps {
@@ -433,11 +443,21 @@ impl World {
     }
 
     pub fn login(&mut self, tx: Tx, name: &str, faction: &str) -> u32 {
+        self.login_token(tx, name, faction, None)
+    }
+
+    /// Log in; in the daily season `token` identifies the pilot's saved progress (bots and
+    /// sandbox players ignore it).
+    pub fn login_token(&mut self, tx: Tx, name: &str, faction: &str, token: Option<&str>) -> u32 {
         let connected = !tx.is_closed(); // bots log in with a dead outbox
-        let faction = match faction.to_lowercase().as_str() {
+        let mut faction = match faction.to_lowercase().as_str() {
             f @ ("mmo" | "eic" | "vru") => f.to_string(),
             _ => "mmo".to_string(),
         };
+        let season = if connected { self.season_identity(token) } else { None };
+        if let Some((_, Some(p))) = &season {
+            faction = p.faction.clone(); // one company per day
+        }
         let id = self.alloc_id();
         let mut name: String = name.trim().chars().filter(|c| !c.is_control()).take(20).collect();
         if name.is_empty() {
@@ -492,10 +512,14 @@ impl World {
                 idb_mult: 1.0,
                 idb_idle: 0.0,
                 rsb_cd: 0.0,
+                eco: None,
                 last_you: None,
                 you_timer: 0.0,
             })),
         };
+        if let Some((tok, profile)) = season {
+            self.season_setup(&mut e, tok, profile);
+        }
         Self::apply_ship(&self.data, &mut e, true);
         e.send(&ServerMsg::Welcome { id });
         self.send_map(&e);
@@ -505,12 +529,14 @@ impl World {
             info!("player {} '{}' ({}) joined map {}", id, name, faction, map);
         }
         self.send_log(id, &format!("Welcome, {}!", name));
+        self.season_welcome(id);
         id
     }
 
     pub fn remove(&mut self, id: u32) {
         if let Some(e) = self.ents.remove(&id) {
             info!("player {} '{}' left", id, e.name);
+            self.season_store(&e);
             self.clear_targeting(id);
         }
     }
@@ -536,16 +562,28 @@ impl World {
         }
     }
 
-    fn you_of(data: &Data, e: &Entity) -> Option<YouMsg> {
+    fn you_of(data: &Data, e: &Entity, ctx: Option<(u64, f64, bool)>) -> Option<YouMsg> {
         let p = e.player()?;
         let ship = Self::ship_of(data, p);
+        let season = p.eco.as_ref().zip(ctx).map(|(eco, (reset_at, bonus, safe))| SeasonYou {
+            reset_at,
+            bonus,
+            ships: eco.ships.iter().cloned().collect(),
+            items: eco.items.clone(),
+            levels: eco.levels.clone(),
+            unlocks: eco.unlocks.iter().cloned().collect(),
+            ammo: eco.ammo.clone(),
+            pilot: crate::season::pilot_view(&eco.stats),
+            rank: eco.rank,
+            safe,
+        });
         Some(YouMsg {
             ship: p.ship.clone(),
             design: p.design.clone(),
             speed: e.speed,
             ammo: p.ammo.clone(),
-            credits: INFINITE,
-            uridium: INFINITE,
+            credits: p.eco.as_ref().map_or(INFINITE, |x| x.credits.floor()),
+            uridium: p.eco.as_ref().map_or(INFINITE, |x| x.uridium.floor()),
             exp: p.exp,
             honor: p.honor,
             level: combat::level_for_exp(p.exp),
@@ -561,13 +599,16 @@ impl World {
             slots: equipment::slots(ship, &data.items),
             stats: p.stats.clone(),
             cfg_cd: p.cfg_cd.ceil(),
+            faction: e.faction.clone(),
+            season,
         })
     }
 
     /// Send `you` if it changed (or `force`).
     fn send_you(&mut self, id: u32, force: bool) {
+        let ctx = self.season_you_ctx(id);
         let Some(e) = self.ents.get_mut(&id) else { return };
-        let Some(you) = Self::you_of(&self.data, e) else { return };
+        let Some(you) = Self::you_of(&self.data, e, ctx) else { return };
         let p = e.player_mut().unwrap();
         if force || p.last_you.as_ref() != Some(&you) || p.you_timer >= YOU_INTERVAL {
             let _ = p.tx.try_send(ServerMsg::You(&you).json());
@@ -584,10 +625,14 @@ impl World {
 
     pub fn handle(&mut self, id: u32, msg: ClientMsg) {
         let data = self.data.clone();
+        if self.season_gate(id, &msg) {
+            self.send_you(id, false);
+            return;
+        }
         let Some(e) = self.ents.get_mut(&id) else { return };
         let dead = e.player().map(|p| p.dead).unwrap_or(true);
         match msg {
-            ClientMsg::Login { .. } => {}
+            ClientMsg::Login { .. } | ClientMsg::Buy { .. } | ClientMsg::AutoEquip => {}
             ClientMsg::Move { x, y } => {
                 if dead || !x.is_finite() || !y.is_finite() {
                     return;
@@ -684,6 +729,13 @@ impl World {
                     c.gen_lvls = v;
                 }
                 equipment::normalize(&data.items, &mut c);
+                if let Some(eco) = &p.eco {
+                    if let Err(err) = eco.check_owned(&data.items, &c) {
+                        self.send_log(id, &format!("Equipment rejected: {}", err));
+                        return;
+                    }
+                    eco.apply_levels(&data.items, &mut c);
+                }
                 let ship = Self::ship_of(&data, p);
                 if let Err(err) = equipment::validate(ship, &data.items, &c) {
                     self.send_log(id, &format!("Equipment rejected: {}", err));
@@ -916,6 +968,12 @@ impl World {
         }
         let p = e.player().unwrap();
         let rocket = data.rocket(&p.rocket).unwrap_or(&data.lasers.rockets[0]);
+        if p.eco.as_ref().is_some_and(|x| x.stock(&rocket.id) == Some(0)) {
+            if !quiet {
+                self.send_log(id, &format!("Out of {} rockets - buy more in the shop", rocket.name));
+            }
+            return;
+        }
         let range = if rocket.range > 0.0 { rocket.range } else { combat::ROCKET_RANGE };
         let Some(tid) = self.target_in_range(id, range) else {
             if !quiet {
@@ -926,7 +984,14 @@ impl World {
         let dmg = rocket.damage * p.stats.rocket_mult * p.dmg_mult;
         let cd = combat::ROCKET_COOLDOWN * p.stats.rocket_cd_mult;
         let rid = rocket.id.clone();
-        self.ents.get_mut(&id).unwrap().rocket_cd = cd;
+        if self.pvp_refused(id, tid) {
+            return;
+        }
+        let e = self.ents.get_mut(&id).unwrap();
+        e.rocket_cd = cd;
+        if let Some(eco) = e.player_mut().and_then(|p| p.eco.as_mut()) {
+            eco.consume(&rid);
+        }
         let miss = self.rng.gen_bool(PLAYER_MISS);
         self.apply_hit(id, tid, dmg, "rocket", rid, false, miss);
     }
@@ -940,6 +1005,11 @@ impl World {
         }
         let range = if e.is_player() { combat::LASER_RANGE } else { combat::NPC_RANGE };
         let Some(tid) = self.target_in_range(id, range) else { return };
+        if self.pvp_refused(id, tid) {
+            return;
+        }
+        self.season_ammo_fallback(id);
+        let e = &self.ents[&id];
         let roll = self.rng.gen_range(0.8..1.2);
         let t = &self.ents[&tid];
         let t_npc: Option<String> = t.npc().map(|n| data.npcs[n.def].id.clone());
@@ -989,6 +1059,9 @@ impl World {
         let e = self.ents.get_mut(&id).unwrap();
         e.laser_cd = combat::LASER_CYCLE;
         if let Some(p) = e.player_mut() {
+            if let Some(eco) = p.eco.as_mut() {
+                eco.consume(&ammo);
+            }
             if ammo_cd > 0.0 {
                 p.rsb_cd = ammo_cd;
             }
@@ -1072,6 +1145,9 @@ impl World {
 
     fn kill(&mut self, id: u32, killer: u32) {
         let killer_name = self.ents.get(&killer).map(|k| k.name.clone()).unwrap_or_default();
+        if self.ents.get(&id).is_some_and(|e| e.is_player()) {
+            self.season_pvp_kill(killer, id);
+        }
         let Some(e) = self.ents.get_mut(&id) else { return };
         let (map, x, y) = (e.map, e.x, e.y);
         self.pending.push((map, ServerMsg::Boom { id, x: round1(x), y: round1(y) }.json()));
@@ -1099,6 +1175,9 @@ impl World {
     }
 
     fn reward(&mut self, killer: u32, def: usize) {
+        if self.season_reward(killer, def) {
+            return;
+        }
         let d = self.data.npcs[def].clone();
         let Some(k) = self.ents.get_mut(&killer) else { return };
         let Some(p) = k.player_mut() else { return };
@@ -1122,6 +1201,7 @@ impl World {
         self.tick += 1;
         self.time += dt;
         let data = self.data.clone();
+        self.season_step(dt);
 
         // respawns
         let now = self.time;

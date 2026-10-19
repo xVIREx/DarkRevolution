@@ -352,3 +352,90 @@ html.touch #actionbar { transform: translateX(-50%) scale(0.72); transform-origi
 .touch-btn.attack.on { background: rgba(255, 60, 30, 0.55); box-shadow: 0 0 14px #ff5a3c; }
 /* landscape phones: no room above the minimap, so the buttons move to the left edge */
 @media (orientation: landscape) and (max-height: 600px) { .touch-btns { right: auto; left: 12px; bottom: 16px; } }
+
+/* ---------------- daily season ---------------- */
+.season-bar { position: absolute; top: 4px; left: 50%; transform: translateX(-50%); z-index: 15; display: flex; gap: 10px; align-items: center; padding: 3px 12px; font-size: 11px; color: var(--text); background: var(--panel); border: 1px solid var(--line); border-radius: 3px; cursor: pointer; white-space: nowrap; pointer-events: auto; }
+.season-bar b { font: 11px var(--title); color: var(--accent); letter-spacing: 1px; }
+.season-bar .sb-clock { font-variant-numeric: tabular-nums; }
+.season-bar.soon .sb-clock { color: #ff9a4a; }
+.season-bar .sb-rank { color: #cfe; }
+.season-bar .sb-bonus { color: #8dff9a; }
+.season-bar .sb-safe { color: var(--sh); }
+.season-bar span:empty { display: none; }
+#win-target { margin-top: 22px; }
+
+.win-rank .rk-tabs { display: flex; gap: 2px; margin-bottom: 6px; }
+.win-rank .rk-tab { flex: 1; text-align: center; padding: 3px 0; font-size: 10px; color: #bcd; cursor: pointer; background: url('/assets/ui/win/small_tabs_inactive.png') center / 100% 100%; }
+.win-rank .rk-tab.on { background-image: url('/assets/ui/win/small_tabs_active.png'); color: var(--accent); }
+.win-rank .rk-page { max-height: 320px; overflow-y: auto; font-size: 11px; }
+.rk-table { width: 100%; border-collapse: collapse; }
+.rk-table th { color: var(--dim); font-weight: normal; text-align: left; padding: 2px 3px; border-bottom: 1px solid var(--line); }
+.rk-table td { padding: 2px 3px; white-space: nowrap; }
+.rk-table td:nth-child(n+3) { text-align: right; font-variant-numeric: tabular-nums; }
+.rk-table tr.me td { background: rgba(255, 207, 63, 0.12); }
+.rk-table .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #445; margin-right: 4px; vertical-align: middle; }
+.rk-table .dot.on { background: #6bd96b; }
+.rk-me { margin-top: 6px; color: var(--accent); text-align: center; }
+.rk-fac { display: grid; grid-template-columns: 22px 40px 1fr auto; align-items: center; gap: 6px; padding: 5px 4px; margin-top: 4px; border-left: 3px solid var(--fc); background: rgba(255,255,255,0.03); }
+.rk-fac img { width: 20px; height: 20px; }
+.rk-fac b { color: var(--fc); font: 12px var(--title); }
+.rk-fac span { color: var(--dim); }
+.rk-fac .rk-ep { color: var(--text); font-variant-numeric: tabular-nums; }
+.rk-fac i { grid-column: 2 / -1; color: #8dff9a; font-style: normal; font-size: 10px; }
+.win-rank .kv { display: flex; justify-content: space-between; padding: 1px 2px; border-bottom: 1px solid rgba(30,80,104,0.35); }
+.win-rank .kv span { color: var(--dim); }
+
+/* shop tab */
+.shop { display: flex; gap: 8px; flex: 1; min-height: 0; padding: 6px; }
+.shop-cats { width: 150px; flex: none; display: flex; flex-direction: column; gap: 2px; }
+.shop-wallet { padding: 6px; margin-bottom: 6px; background: rgba(0,0,0,0.45); border: 1px solid var(--line); }
+.shop-wallet div { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+.shop-wallet img { width: 18px; height: 18px; }
+.shop-cat { padding: 5px 8px; font-size: 11px; color: #bcd; cursor: pointer; border: 1px solid transparent; background: rgba(19,50,62,0.35); }
+.shop-cat:hover { color: #fff; border-color: var(--cyan); }
+.shop-cat.on { color: var(--accent); border-color: var(--accent); }
+.shop-cats .hint { margin-top: 8px; font-size: 9px; }
+.shop-list { flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 3px; padding: 4px; background: rgba(0,0,0,0.39); border: 1px solid var(--line); }
+.shop-row { display: grid; grid-template-columns: 40px 1fr auto auto; align-items: center; gap: 8px; padding: 3px 6px; background: rgba(255,255,255,0.03); border: 1px solid transparent; }
+.shop-row:hover { border-color: rgba(46,127,156,0.6); }
+.shop-ico { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: url('/assets/ui/win/itembg.png') center / 100% 100%; }
+.shop-ico img { max-width: 32px; max-height: 32px; }
+.shop-txt b { display: block; font-size: 12px; color: #fff; font-weight: normal; }
+.shop-txt span { font-size: 10px; color: var(--dim); }
+.shop-have { font-size: 10px; color: var(--dim); text-align: right; min-width: 70px; }
+.shop-have b { color: var(--text); }
+.shop-have .ok, .card .price .ok { color: #6bd96b; }
+.shop-btns { display: flex; gap: 4px; }
+.shop-btns .dobtn { min-width: 86px; padding: 2px 6px; display: flex; flex-direction: column; align-items: center; line-height: 1.15; font-size: 10px; }
+.shop-btns .dobtn small { font-size: 9px; }
+.pc { color: #ffe08a; }
+.pu { color: #9fd8ff; }
+
+/* season ships / equipment / ammo */
+.card .price { position: absolute; top: 4px; left: 4px; font-size: 9px; background: rgba(0,0,0,0.75); padding: 1px 5px; border: 1px solid #333; }
+.card .price.afford { border-color: #6bd96b; }
+.card.locked canvas { filter: grayscale(0.6) brightness(0.75); }
+.eq-item.used { opacity: 0.45; }
+.eq-form.locked { opacity: 0.35; cursor: not-allowed; }
+.ab-slot.out .ico { filter: grayscale(1) brightness(0.5); }
+.ab-slot.out .amt { color: var(--bad); }
+
+/* login */
+.season-info { margin: 8px 0; padding: 6px 8px; font-size: 10px; color: var(--dim); background: rgba(255,207,63,0.06); border: 1px solid rgba(255,207,63,0.35); }
+.season-info .si-title { font: 12px var(--title); color: var(--accent); display: flex; justify-content: space-between; gap: 8px; }
+.season-info .si-title span { font: 10px var(--font); color: var(--text); }
+.season-info .si-text { margin: 3px 0; }
+.season-info .si-row { color: var(--text); margin-top: 2px; }
+.season-info .si-lock { margin-top: 4px; color: #8dff9a; }
+.faction em { display: block; margin-top: 3px; font-style: normal; font-size: 8px; color: var(--text); }
+.faction em i { font-style: normal; color: #8dff9a; }
+.faction.disabled { opacity: 0.3; cursor: not-allowed; }
+@media (max-width: 640px) {
+  .season-bar { font-size: 9px; gap: 6px; padding: 2px 6px; max-width: calc(100vw - 16px); overflow: hidden; }
+  .season-bar .sb-rank, .season-bar .sb-bonus { display: none; }
+  .shop { flex-direction: column; }
+  .shop-cats { width: auto; flex-direction: row; flex-wrap: wrap; }
+  .shop-cats .hint { display: none; }
+  .shop-row { grid-template-columns: 36px 1fr; }
+  .shop-have, .shop-btns { grid-column: 2; text-align: left; }
+}

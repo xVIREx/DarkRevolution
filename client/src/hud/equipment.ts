@@ -3,6 +3,7 @@ import type { ShipDef, YouMsg } from '../types';
 import { el, esc, fmt } from './dom';
 import { boosterIcon, DEFAULT_FORMATIONS, formationIcon, ITEMS, itemInfo, itemName, itemStat, loadItems, type EquipKind, type ItemDef } from './items';
 import { button, iconUrl } from './ui';
+import { fmtBig, priceHtml, SHOP, unlocked, upgradeCost } from './season';
 
 /**
  * DarkOrbit-style Equipment panel (hangar tab): Config 1/2, ship slot rows (lasers,
@@ -98,7 +99,7 @@ export class EquipmentPanel {
   private activateBtn: HTMLButtonElement;
   private sig = '';
 
-  constructor(parent: HTMLElement, private readonly actions: Actions, private readonly ship: () => ShipDef | undefined) {
+  constructor(parent: HTMLElement, private readonly actions: Actions, private readonly ship: () => ShipDef | undefined, private readonly season = false) {
     const root = el('div', 'eq', undefined, parent);
     this.top = el('div', 'eq-top', undefined, root);
     for (const n of [0, 1] as const) {
@@ -109,11 +110,16 @@ export class EquipmentPanel {
     this.activeEl = el('span', 'eq-active', '', this.top);
     this.activateBtn = button('Activate [C]', this.top, 'green', () => this.actions.switchConfig((this.edit + 1) as 1 | 2));
     el('span', 'eq-sp', '', this.top);
-    button('Auto-equip best', this.top, 'blue', () => this.quick('best'));
-    button('All shields', this.top, 'blue', () => this.quick('shield'));
-    button('All speed', this.top, 'blue', () => this.quick('speed'));
-    button('Unequip all', this.top, 'red', () => this.apply(emptyCfg()));
-    button('Upgrade all to max', this.top, 'green', () => this.upgradeAll(MAX_ANY));
+    if (season) {
+      button('Auto-equip best', this.top, 'blue', () => this.actions.sendRaw({ t: 'autoequip' }));
+      button('Unequip all', this.top, 'red', () => this.apply(emptyCfg()));
+    } else {
+      button('Auto-equip best', this.top, 'blue', () => this.quick('best'));
+      button('All shields', this.top, 'blue', () => this.quick('shield'));
+      button('All speed', this.top, 'blue', () => this.quick('speed'));
+      button('Unequip all', this.top, 'red', () => this.apply(emptyCfg()));
+      button('Upgrade all to max', this.top, 'green', () => this.upgradeAll(MAX_ANY));
+    }
 
     const main = el('div', 'eq-main', undefined, root);
     const left = el('div', 'eq-left', undefined, main);
@@ -133,7 +139,9 @@ export class EquipmentPanel {
       });
     }
     this.invEl = el('div', 'eq-items', '', right);
-    el('div', 'hint', 'Drag items onto slots or double-click to equip · right-click / drag out to unequip · everything is free (∞)', right);
+    el('div', 'hint', season
+      ? 'Your items (free / owned) · drag onto slots or double-click to equip · right-click / drag out to unequip · buy more in the Shop'
+      : 'Drag items onto slots or double-click to equip · right-click / drag out to unequip · everything is free (∞)', right);
 
     // drop outside any slot = unequip
     root.addEventListener('dragover', (e) => { if (e.dataTransfer?.types.includes('x-do-eqsrc')) e.preventDefault(); });
@@ -168,11 +176,19 @@ export class EquipmentPanel {
 
   private sigOf(): string {
     const y = this.you;
-    return JSON.stringify([this.cfgs, this.lvs, this.formationLocal, this.boostLocal, y?.cfg, y?.slots, y?.stats, Math.ceil(y?.cfgCd ?? 0), y?.ship]);
+    return JSON.stringify([this.cfgs, this.lvs, this.formationLocal, this.boostLocal, y?.cfg, y?.slots, y?.stats, Math.ceil(y?.cfgCd ?? 0), y?.ship,
+      y?.season?.items, y?.season?.unlocks, y?.season?.levels]);
   }
 
   // ------------------------------------------------------------ upgrades / formations / boosters
   private setLevel(target: 'laser' | 'gen' | 'drone', slot: number | 'all', level: number): void {
+    if (this.season) {
+      // season: upgrades are bought per item type (Shop > Upgrades); +1 from the badge
+      const ids = target === 'laser' ? this.cfg.lasers : target === 'gen' ? this.cfg.gens : this.cfg.drones.map((d) => d.type);
+      const id = slot === 'all' ? undefined : ids[slot];
+      if (id) this.actions.sendRaw({ t: 'buy', kind: 'upgrade', id, qty: 1 });
+      return;
+    }
     level = Math.max(0, Math.round(level));
     const lv = this.lvs[this.edit];
     const arr = target === 'laser' ? lv.lasers : target === 'gen' ? lv.gens : lv.drones;
@@ -219,6 +235,25 @@ export class EquipmentPanel {
     return this.cfgs[this.edit];
   }
 
+  /** season: owned count of an item (Infinity in the sandbox) */
+  private owned(id: string): number {
+    if (!this.season) return Infinity;
+    const s = this.you?.season;
+    if (itemInfo(id)?.kind === 'design') return unlocked(s ?? null, 'design', id) ? Infinity : 0;
+    return s?.items[id] ?? 0;
+  }
+
+  /** how many of `id` the edited config already uses */
+  private used(id: string, c: EquipConfig = this.cfg): number {
+    let n = 0;
+    for (const x of [...c.lasers, ...c.gens, ...c.extras]) if (x === id) n++;
+    for (const d of c.drones) {
+      if (d.type === id) n++;
+      for (const x of d.items) if (x === id) n++;
+    }
+    return n;
+  }
+
   // ------------------------------------------------------------ edits
   private apply(c: EquipConfig): void {
     this.cfgs[this.edit] = c;
@@ -230,6 +265,7 @@ export class EquipmentPanel {
   private place(id: string, dst: Src, from?: Src): void {
     const info = itemInfo(id);
     if (!info || !ACCEPT[dst.zone].includes(info.kind)) return;
+    if (!from && info.kind !== 'design' && this.used(id) >= this.owned(id)) return;
     const c = clone(this.cfg);
     const sl = this.slots();
     if (from) this.removeFrom(c, from);
@@ -402,15 +438,17 @@ export class EquipmentPanel {
     const forms: ItemDef[] = ITEMS.formations?.length ? ITEMS.formations : DEFAULT_FORMATIONS.map((id) => ({ id, name: id }));
     const cur = (this.formationLocal ?? 'standard').toLowerCase();
     for (const f of forms) {
-      const b = el('div', `eq-form${f.id.toLowerCase() === cur ? ' on' : ''}`, `<img src="${formationIcon(f.id)}" draggable="false"><span>${esc(prettyName(f.name ?? f.id))}</span>`, fg);
-      b.title = `${prettyName(f.name ?? f.id)}${f.desc ? `\n${f.desc}` : ''}`;
-      b.addEventListener('click', () => this.setFormation(f.id));
+      const locked = this.season && f.id !== 'standard' && !unlocked(this.you?.season ?? null, 'formation', f.id);
+      const b = el('div', `eq-form${f.id.toLowerCase() === cur ? ' on' : ''}${locked ? ' locked' : ''}`, `<img src="${formationIcon(f.id)}" draggable="false"><span>${esc(prettyName(f.name ?? f.id))}</span>`, fg);
+      const price = SHOP?.formations[f.id];
+      b.title = `${prettyName(f.name ?? f.id)}${f.desc ? `\n${f.desc}` : ''}${locked ? `\nLocked - buy it in the Shop${price ? ` (${priceHtml(price).replace(/<[^>]+>/g, '')})` : ''}` : ''}`;
+      if (!locked) b.addEventListener('click', () => this.setFormation(f.id));
     }
     // boosters
     el('div', 'eq-rowhead', '<span>Boosters <small>click to toggle</small></span>', this.extraEl);
     const bg = el('div', 'eq-boosters', undefined, this.extraEl);
-    const boosters = ITEMS.boosters ?? [];
-    if (!boosters.length) el('span', 'hint', 'No boosters in items.json yet', bg);
+    const boosters = (ITEMS.boosters ?? []).filter((b) => !this.season || unlocked(this.you?.season ?? null, 'booster', b.id));
+    if (!boosters.length) el('span', 'hint', this.season ? 'No boosters yet - buy them in the Shop (they last until the daily reset)' : 'No boosters in items.json yet', bg);
     for (const b of boosters) {
       const on = !!this.boostLocal[b.id];
       const c = el('div', `eq-boost${on ? ' on' : ''}`, `<img src="${boosterIcon(b.id, String(b.icon ?? ''))}" draggable="false"><div><b>${esc(b.name ?? b.id)}</b><span>${esc(String(b.desc ?? b.effect ?? effectText(b)))}</span></div><i class="led"></i>`, bg);
@@ -436,9 +474,15 @@ export class EquipmentPanel {
         const lv = this.lvs[this.edit];
         const cur = (up === 'laser' ? lv.lasers : up === 'gen' ? lv.gens : lv.drones)[src.i] ?? 0;
         const badge = el('span', `eq-lvl${cur >= max ? ' max' : ''}`, String(cur), s);
-        badge.title = `Upgrade level ${cur}/${max} - click +1 (shift-click -1), mouse wheel to change`;
-        badge.addEventListener('click', (e) => { e.stopPropagation(); this.setLevel(up, src.i, e.shiftKey ? cur - 1 : cur >= max ? 0 : cur + 1); });
-        s.addEventListener('wheel', (e) => { e.preventDefault(); this.setLevel(up, src.i, cur + (e.deltaY < 0 ? 1 : -1)); }, { passive: false });
+        if (this.season) {
+          const cost = cur < max ? upgradeCost(id, cur) : null;
+          badge.title = cost ? `Level ${cur}/${max} (all your ${itemName(id)}) - click to upgrade for ${fmtBig(cost)} credits` : `Level ${cur}/${max}`;
+          badge.addEventListener('click', (e) => { e.stopPropagation(); if (cur < max) this.setLevel(up, src.i, cur + 1); });
+        } else {
+          badge.title = `Upgrade level ${cur}/${max} - click +1 (shift-click -1), mouse wheel to change`;
+          badge.addEventListener('click', (e) => { e.stopPropagation(); this.setLevel(up, src.i, e.shiftKey ? cur - 1 : cur >= max ? 0 : cur + 1); });
+          s.addEventListener('wheel', (e) => { e.preventDefault(); this.setLevel(up, src.i, cur + (e.deltaY < 0 ? 1 : -1)); }, { passive: false });
+        }
       }
       s.title = `${itemName(id)}\n${itemStat(id)}\n(right-click or drag out to unequip)`;
       s.draggable = true;
@@ -490,7 +534,11 @@ export class EquipmentPanel {
     for (const [kind, list] of lists) {
       if (!f.kinds.includes(kind)) continue;
       for (const it of list ?? []) {
-        const b = el('div', 'eq-item', `<div class="eq-slot"><img src="${iconUrl(it.id)}" draggable="false"></div><div class="eq-itemtxt"><b>${esc(it.name)}</b><span>${esc(itemStat(it.id))}</span></div><i>∞</i>`, this.invEl);
+        const own = this.owned(it.id);
+        if (own <= 0) continue;
+        const free = own === Infinity ? Infinity : own - this.used(it.id);
+        const count = own === Infinity ? (this.season ? '✓' : '∞') : `${free}/${own}`;
+        const b = el('div', `eq-item${free <= 0 ? ' used' : ''}`, `<div class="eq-slot"><img src="${iconUrl(it.id)}" draggable="false"></div><div class="eq-itemtxt"><b>${esc(it.name)}</b><span>${esc(itemStat(it.id))}</span></div><i>${count}</i>`, this.invEl);
         b.draggable = true;
         b.title = `${it.name}\n${itemStat(it.id)}${it.desc ? `\n${it.desc}` : ''}\nDouble-click to equip`;
         b.addEventListener('dragstart', (e) => {
@@ -500,6 +548,7 @@ export class EquipmentPanel {
         b.addEventListener('dblclick', () => this.autoPlace(it.id));
       }
     }
+    if (!this.invEl.childElementCount) el('div', 'hint', 'Nothing here yet - buy items in the Shop tab.', this.invEl);
   }
 }
 

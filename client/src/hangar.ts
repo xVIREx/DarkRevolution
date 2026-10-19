@@ -4,6 +4,8 @@ import type { ShipDef, YouMsg } from './types';
 import { el, esc, fmt } from './hud/dom';
 import { syncMenus, ui } from './hud/ui';
 import { EquipmentPanel } from './hud/equipment';
+import { ShopPanel } from './hud/shop';
+import { canAfford, loadShop, priceHtml, SHOP } from './hud/season';
 
 type SortKey = 'name' | 'hp' | 'speed' | 'lasers' | 'generators' | 'extras' | 'cargo' | 'designs';
 const STATS: { k: keyof ShipDef; label: string }[] = [
@@ -35,6 +37,7 @@ export class Hangar {
   private curEl: HTMLDivElement;
   private curCanvas: HTMLCanvasElement;
   private equipment: EquipmentPanel;
+  private shop: ShopPanel | null = null;
   private godBox: HTMLInputElement;
   private multSlider: HTMLInputElement;
   private multLabel: HTMLElement;
@@ -46,7 +49,7 @@ export class Hangar {
   private userTouchedCheat = 0;
   private spin = 0;
 
-  constructor(private readonly assets: Assets, private readonly actions: Actions) {
+  constructor(private readonly assets: Assets, private readonly actions: Actions, private readonly season = false) {
     for (const s of assets.ships) this.byId.set(s.id, s);
 
     this.root = el('div', 'dowin hangar-win', undefined, document.body);
@@ -65,16 +68,24 @@ export class Hangar {
     el('div', 'dowin-bg', undefined, body);
     const pageShips = el('div', 'hangar-page ships', undefined, body);
     const pageEquip = el('div', 'hangar-page equip', undefined, body);
-    this.equipment = new EquipmentPanel(pageEquip, actions, () => this.currentShip());
-    const pages: [string, HTMLElement][] = [['Equipment', pageEquip], [`Ships (${assets.ships.length} · ${nDesigns} designs)`, pageShips]];
+    this.equipment = new EquipmentPanel(pageEquip, actions, () => this.currentShip(), season);
+    const pages: [string, HTMLElement][] = [['Equipment', pageEquip], [season ? 'Ships' : `Ships (${assets.ships.length} · ${nDesigns} designs)`, pageShips]];
+    if (season) {
+      const pageShop = el('div', 'hangar-page shop-page', undefined, body);
+      this.shop = new ShopPanel(pageShop, actions);
+      pages.splice(1, 0, ['Shop', pageShop]);
+      void loadShop().then(() => this.renderGrid());
+    }
     const tabEls: HTMLElement[] = [];
+    this.selectTab = (i: number) => {
+      pages.forEach(([, p2], j) => { p2.classList.toggle('show', i === j); tabEls[j].classList.toggle('on', i === j); });
+      try { localStorage.setItem('do.hangar.tab', String(i)); } catch { /* ignore */ }
+    };
+    this.tabNames = pages.map(([label]) => label.split(' ')[0]);
     pages.forEach(([label], i) => {
       const t = el('div', 'htab', esc(label), tabs);
       tabEls.push(t);
-      t.addEventListener('click', () => {
-        pages.forEach(([, p2], j) => { p2.classList.toggle('show', i === j); tabEls[j].classList.toggle('on', i === j); });
-        try { localStorage.setItem('do.hangar.tab', String(i)); } catch { /* ignore */ }
-      });
+      t.addEventListener('click', () => this.selectTab(i));
     });
     let tab = 0;
     try { tab = Number(localStorage.getItem('do.hangar.tab') ?? '0') || 0; } catch { /* ignore */ }
@@ -93,7 +104,7 @@ export class Hangar {
     });
     el('span', 'hint', 'Sort', tb);
     this.sort = el('select', undefined, undefined, tb);
-    for (const [v, l] of [['name', 'Name'], ['hp', 'HP'], ['speed', 'Speed'], ['lasers', 'Lasers'], ['generators', 'Generators'], ['extras', 'Extras'], ['cargo', 'Cargo'], ['designs', 'Designs']]) {
+    for (const [v, l] of [['name', season ? 'Price' : 'Name'], ['hp', 'HP'], ['speed', 'Speed'], ['lasers', 'Lasers'], ['generators', 'Generators'], ['extras', 'Extras'], ['cargo', 'Cargo'], ['designs', 'Designs']]) {
       const o = el('option', undefined, l, this.sort);
       o.value = v;
     }
@@ -104,7 +115,7 @@ export class Hangar {
     el('span', undefined, 'With designs only', lab);
     this.onlyDesigns.addEventListener('change', () => this.renderGrid());
     this.countEl = el('span', 'hint', '', tb);
-    el('span', 'hint', '· click a ship for designs · double-click to equip · ☐ to compare', tb);
+    el('span', 'hint', season ? '· click a ship to buy it or pick a design · double-click to fly it (at a station)' : '· click a ship for designs · double-click to equip · ☐ to compare', tb);
 
     const main = el('div', 'main', undefined, pageShips);
     this.grid = el('div', 'grid', undefined, main);
@@ -121,6 +132,7 @@ export class Hangar {
 
     // cheats
     const s3 = el('section', undefined, undefined, side);
+    if (season) s3.style.display = 'none';
     el('div', 'panel-title', 'Cheats (testing)', s3);
     const c3 = el('div', 'content', undefined, s3);
     const gl = el('label', 'switch', undefined, c3);
@@ -183,7 +195,13 @@ export class Hangar {
     else this.show();
   }
 
-  show(): void {
+  private selectTab: (i: number) => void = () => undefined;
+  private tabNames: string[] = [];
+
+  /** open the hangar, optionally on a tab ('Equipment' | 'Shop' | 'Ships') */
+  show(tab?: string): void {
+    const i = tab ? this.tabNames.indexOf(tab) : -1;
+    if (i >= 0) this.selectTab(i);
     this.root.classList.add('show');
     this.renderCurrent();
     this.equipment.render();
@@ -205,12 +223,34 @@ export class Hangar {
       if (typeof y.dmgMult === 'number' && y.dmgMult > 0) this.multSlider.value = String(Math.log10(y.dmgMult));
       this.multLabel.textContent = `x${fmtMult(Number(this.multSlider.value))}`;
     }
+    const owned = JSON.stringify(y.season?.ships ?? []);
+    if (this.season && owned !== this.ownedSig) {
+      this.ownedSig = owned;
+      this.renderGrid();
+    } else if (this.season && (prev?.credits !== y.credits || prev?.uridium !== y.uridium)) this.refreshCards();
     if (!prev || prev.ship !== y.ship || prev.design !== y.design) {
       this.refreshCards();
       this.renderCurrent();
       if (this.designsEl && this.openShip) this.renderDesigns(this.openShip);
     }
     this.equipment.setYou(y);
+    this.shop?.setYou(y);
+  }
+
+  private ownedSig = '';
+
+  private owns(id: string): boolean {
+    return !this.season || !!this.you?.season?.ships.includes(id);
+  }
+
+  /** price of a ship in the season shop (start ship: free) */
+  private priceOf(id: string): { c?: number; u?: number } | undefined {
+    return SHOP?.ships[id] ?? (SHOP?.start.ship === id ? {} : undefined);
+  }
+
+  private priceKey(id: string): number {
+    const p = this.priceOf(id);
+    return p ? (p.c ?? 0) + (p.u ?? 0) * 400 : Infinity;
   }
 
   shipNameMap(): Map<string, string> {
@@ -245,6 +285,7 @@ export class Hangar {
   private filtered(): ShipDef[] {
     const q = this.search.value.trim().toLowerCase();
     let list = this.assets.ships.filter((s) => {
+      if (this.season && !this.priceOf(s.id)) return false;
       if (this.onlyDesigns.checked && s.designs.length === 0) return false;
       if (!q) return true;
       if (s.name.toLowerCase().includes(q) || s.id.toLowerCase().includes(q)) return true;
@@ -252,6 +293,7 @@ export class Hangar {
     });
     const key = this.sort.value as SortKey;
     list = [...list].sort((a, b) => {
+      if (this.season && key === 'name') return this.priceKey(a.id) - this.priceKey(b.id);
       if (key === 'name') return a.name.localeCompare(b.name);
       if (key === 'designs') return b.designs.length - a.designs.length || a.name.localeCompare(b.name);
       return (Number(b[key]) || 0) - (Number(a[key]) || 0) || a.name.localeCompare(b.name);
@@ -292,8 +334,9 @@ export class Hangar {
         const g = el('span', 'guess', 'est. stats', c);
         g.title = 'Stats are estimated (not found in the game data)';
       }
+      if (this.season) el('div', 'price', '', c);
       c.addEventListener('click', () => this.toggleDesigns(s.id));
-      c.addEventListener('dblclick', () => this.actions.setShip(s.id));
+      c.addEventListener('dblclick', () => { if (this.owns(s.id)) this.actions.setShip(s.id); });
       let spin = 0;
       let timer = 0;
       c.addEventListener('mouseenter', () => {
@@ -324,6 +367,14 @@ export class Hangar {
       if (id === cur && !tag) {
         tag = el('span', 'cur', 'EQUIPPED', c);
       } else if (id !== cur && tag) tag.remove();
+      const pr = c.querySelector<HTMLElement>('.price');
+      if (pr) {
+        const own = this.owns(id);
+        c.classList.toggle('locked', !own);
+        const html = own ? '<b class="ok">OWNED</b>' : priceHtml(this.priceOf(id));
+        if (pr.innerHTML !== html) pr.innerHTML = html;
+        pr.classList.toggle('afford', !own && canAfford(this.you, this.priceOf(id)));
+      }
       const cmp = c.querySelector('.cmp')!;
       const on = this.compare.includes(id);
       cmp.classList.toggle('on', on);
@@ -364,6 +415,16 @@ export class Hangar {
       this.designsEl = box;
     }
     const title = el('div', 'dtitle', `<span>${esc(s.name)} <span class="hint">${s.designs.length} design(s) · HP ${fmt(s.hp)} · speed ${s.speed} · ${s.lasers} lasers · ${s.generators} gens</span></span>`, box);
+    if (!this.owns(s.id)) {
+      const p = this.priceOf(s.id);
+      const ok = canAfford(this.you, p);
+      const buy = el('button', 'btn primary', `Buy ${esc(s.name)} · ${priceHtml(p)}`, title);
+      buy.disabled = !ok;
+      buy.title = ok ? 'Buy this ship (you switch to it at a space station)' : 'Not enough credits / uridium yet';
+      buy.addEventListener('click', () => this.actions.sendRaw({ t: 'buy', kind: 'ship', id: s.id }));
+      el('div', 'hint', 'Buy the ship to fly it and unlock its designs. Ships can only be changed at a space station.', box);
+      return;
+    }
     const eq = el('button', 'btn primary', 'Equip base', title);
     eq.addEventListener('click', () => this.actions.setShip(s.id));
     const q = this.search.value.trim().toLowerCase();

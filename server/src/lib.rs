@@ -7,6 +7,7 @@ pub mod equipment;
 pub mod limits;
 pub mod net;
 pub mod protocol;
+pub mod season;
 pub mod world;
 
 use axum::middleware;
@@ -29,6 +30,7 @@ pub fn router(world: SharedWorld, dist_dir: &Path, data_dir: &Path) -> Router {
     let spa = ServeDir::new(dist_dir).fallback(ServeFile::new(dist_dir.join("index.html")));
     Router::new()
         .route("/ws", get(net::ws_handler))
+        .route("/api/season", get(net::season_api))
         .with_state(world)
         .merge(
             Router::new()

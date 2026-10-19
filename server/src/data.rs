@@ -786,6 +786,8 @@ pub struct Data {
     pub maps: Vec<MapDef>,
     pub lasers: Lasers,
     pub items: Items,
+    /// Daily season catalogue (data/shop.json); disabled when missing.
+    pub shop: crate::season::Shop,
 }
 
 impl Data {
@@ -815,6 +817,7 @@ impl Data {
         let items = load_items(&pick(data_dir, fixtures_dir, "items.json"));
         let mut d = Data::from_parts(ships, npcs, maps, lasers);
         d.items = items;
+        d.shop = load_shop(&data_dir.join("shop.json"));
         d
     }
 
@@ -876,7 +879,7 @@ impl Data {
             lasers.ammo.len(),
             lasers.rockets.len()
         );
-        Data { ships, npcs, maps, lasers, items: Items::default() }
+        Data { ships, npcs, maps, lasers, items: Items::default(), shop: Default::default() }
     }
 }
 
@@ -957,6 +960,22 @@ fn load_lasers(path: &Path) -> Lasers {
             Ok(l) => Some(l),
             Err(e) => {
                 warn!("{}: {}", path.display(), e);
+                None
+            }
+        })
+        .unwrap_or_default()
+}
+
+fn load_shop(path: &Path) -> crate::season::Shop {
+    if !path.exists() {
+        info!("no {}: daily season disabled (sandbox mode)", path.display());
+        return Default::default();
+    }
+    read_json(path)
+        .and_then(|v| match serde_json::from_value::<crate::season::Shop>(v) {
+            Ok(s) => Some(s),
+            Err(e) => {
+                warn!("{}: {} (daily season disabled)", path.display(), e);
                 None
             }
         })

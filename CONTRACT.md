@@ -145,3 +145,21 @@ follow and defend them; Boss Kucurbium / Hitac 2.0 escorts give an insta-shield;
 + repair while alive); Ice Meteoroids → Icy, Century Falcon → Vagrants; Mordons call nearby Mordons; Saboteur hits slow you to
 200 for 5 s; Barracuda at 20% HP stops 5 s then explodes (radius 500). Minions/escorts don't respawn on their own.
 Players never lose resources.
+
+## Daily season (data/shop.json, server/src/season.rs + world/season.rs)
+
+When `data/shop.json` has `enabled: true` (and env `SEASON` != `0`) the game runs as a 24 h season instead of the
+free sandbox above: everyone starts in a Phoenix with an LF-1, earns credits/uridium/EP/honor from kills and buys
+ships, items (owned counts; both configs share them), per-item-type upgrade levels, ammo/rocket stock (x1 and R-310
+unlimited), drone designs, formations, boosters and tech (P.E.T., Seprom refining, skill tree) in the shop. Progress is
+keyed by a browser token (`login.token`, localStorage `do.token`), the company is locked for the day, and everything
+resets at 00:00 UTC (top 3 become "champions"). Saved to `SEASON_SAVE` (default `./season-save.json`) every 30 s.
+Rules: no Jump CPU (`warp`), no `cheat`, no `upgrade` (levels come from purchases), ships change only near a station,
+no PvP vs your own company, on `protectedMaps` (x-1/x-2) or within `safeRadius` of portals/stations; PvP kills pay a
+bounty per victim level (once per victim per `pvp.cooldown` s). The company with the fewest pilots today gets
+`underdogBonus` extra rewards. Bots stay sandbox players (free gear) on their protected home maps.
+
+Additional messages — client → server: `buy` {`kind`: ship|item|design|ammo|rocket|formation|booster|tech|upgrade,
+`id`, `qty`}, `autoequip`. Server → client: `you.season` {resetAt, bonus, ships, items, levels, unlocks, ammo, pilot
+(stats), rank, safe}, `you.faction`, `top` {rows, factions, champions, rank, pilots} every 5 s. HTTP `GET
+/api/season?token=` returns the login-screen summary (reset time, company sizes/bonus, your locked company, champions).

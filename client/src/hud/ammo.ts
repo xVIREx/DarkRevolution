@@ -184,7 +184,9 @@ export class AmmoBar {
     const row = el('div', 'ab-pop-items', undefined, this.popup);
     if (!cat.items.length) el('div', 'ab-pop-empty', 'No items', row);
     for (const it of cat.items) {
-      const b = el('div', 'ab-item', `<img src="${barIcon(it)}" draggable="false"><span>${esc(itemName(it))}</span>${isFormation(it) ? "" : "<b>∞</b>"}`, row);
+      const sea = this.state?.you?.season;
+      const left = sea && it !== 'x1' && it !== 'r310' && !isFormation(it) ? short(sea.ammo[it] ?? 0) : '∞';
+      const b = el('div', 'ab-item', `<img src="${barIcon(it)}" draggable="false"><span>${esc(itemName(it))}</span>${isFormation(it) ? "" : `<b>${left}</b>`}`, row);
       b.draggable = true;
       b.title = `${itemName(it)} - click to use, drag onto a slot`;
       b.addEventListener('dragstart', (e) => {
@@ -248,10 +250,17 @@ export class AmmoBar {
       this.formation = yf;
       this.paintPopupSel();
     }
+    const sea = s.you?.season;
     this.slotEls.forEach((el2, i) => {
       const id = this.slots[i];
       const isAmmo = !!id && this.ammoIds.has(id);
       const isRocket = !!id && this.rocketIds.has(id);
+      if (id && (isAmmo || isRocket)) {
+        const left = sea && id !== 'x1' && id !== 'r310' ? sea.ammo[id] ?? 0 : Infinity;
+        const t = left === Infinity ? '∞' : short(left);
+        if (el2.amt.textContent !== t) el2.amt.textContent = t;
+        el2.root.classList.toggle('out', left === 0);
+      }
       const sel = (isAmmo && id === s.ammo) || (isRocket && id === s.rocket) || (!!id && !!this.formation && id.toLowerCase() === this.formation.toLowerCase());
       el2.root.classList.toggle('selected', sel);
       el2.root.classList.toggle('attacking', sel && isAmmo && s.attacking);
@@ -262,4 +271,10 @@ export class AmmoBar {
       if (el2.bg !== bg) { el2.bg = bg; el2.cd.style.background = bg; }
     });
   }
+}
+
+function short(n: number): string {
+  if (n >= 1e6) return `${+(n / 1e6).toFixed(1)}M`;
+  if (n >= 1e4) return `${Math.floor(n / 1000)}k`;
+  return String(n);
 }

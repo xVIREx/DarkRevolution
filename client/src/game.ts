@@ -15,6 +15,7 @@ import { Dialog } from './hud/dialogs';
 import { esc } from './hud/dom';
 import { VolumePanel } from './hud/volume';
 import { WarpWindow } from './hud/warp';
+import { RankWindow, SeasonBar } from './hud/season';
 import { AudioSystem } from './audio';
 import type { EntId, EntSnap, Faction, MapDef, ServerMsg, YouMsg } from './types';
 import { IS_TOUCH, TouchControls } from './touch';
@@ -31,7 +32,9 @@ export class Game implements Actions {
   private log: LogWindow;
   private chatBox: ChatBox;
   private hangar: Hangar;
-  private warpWin: WarpWindow;
+  private warpWin: WarpWindow | null = null;
+  private seasonBar: SeasonBar | null = null;
+  private rankWin: RankWindow | null = null;
   private input: Input;
   private touch: TouchControls | null = null;
   private respawn: Dialog;
@@ -52,7 +55,8 @@ export class Game implements Actions {
   private lastWarn = 0;
   private lastLevel: number | null = null;
 
-  constructor(assets: Assets, private readonly audio: AudioSystem, private readonly net: Net, private readonly name: string, private readonly faction: Faction) {
+  constructor(assets: Assets, private readonly audio: AudioSystem, private readonly net: Net, private readonly name: string, private faction: Faction,
+    private readonly season: { token: string; skew: number } | null = null) {
     const container = document.getElementById('app') ?? document.body;
     this.world = new World(assets, container);
     this.ents = new EntityManager(assets, this.world.entityLayer);
@@ -68,9 +72,17 @@ export class Game implements Actions {
     this.minimap = new Minimap(this.hud.root, assets, this);
     this.chatBox = new ChatBox(this.hud.root, (t) => this.chat(t));
     this.log = new LogWindow(this.hud.root);
-    this.hangar = new Hangar(assets, this);
-    this.warpWin = new WarpWindow(this);
-    this.hud.rightMenu.add({ icon: 'spacemap', title: 'Jump CPU [G]', win: 'win-warp' });
+    this.hangar = new Hangar(assets, this, !!season);
+    if (season) {
+      this.rankWin = new RankWindow(() => this.ents.me()?.snap.n ?? this.name);
+      this.seasonBar = new SeasonBar(this.hud.root, () => { this.rankWin!.win.open(); this.rankWin!.win.front(); });
+      this.seasonBar.setSkew(season.skew);
+      this.hud.rightMenu.add({ icon: 'rankings', title: 'Daily ranking', win: 'win-rank' });
+      this.hud.rightMenu.add({ icon: 'shop', title: 'Shop [H]', onClick: () => this.hangar.show('Shop'), isOpen: () => false });
+    } else {
+      this.warpWin = new WarpWindow(this);
+      this.hud.rightMenu.add({ icon: 'spacemap', title: 'Jump CPU [G]', win: 'win-warp' });
+    }
     this.hud.setShipNames(this.hangar.shipNameMap());
     this.respawn = new Dialog('Ship destroyed', 'Repair & respawn', () => this.revive());
     this.lost = new Dialog('Connection lost', 'Reconnect', () => this.reconnect());
@@ -91,7 +103,7 @@ export class Game implements Actions {
     if (!assets.shipsOk) this.log.add('data/ships.json not found - hangar uses manifest sheets', true);
     this.log.add(IS_TOUCH
       ? 'Welcome, pilot! Hold to fly, pinch to zoom, tap a ship to select it, tap again to attack.'
-      : 'Welcome, pilot! Click to fly, double-click/CTRL to attack, H for hangar.', true);
+      : 'Welcome, pilot! Click to fly, double-click/CTRL to attack, H for hangar & shop, J to jump through portals.', true);
     if (IS_TOUCH) this.touch = new TouchControls(this);
 
     requestAnimationFrame((t) => this.frame(t));
@@ -124,6 +136,14 @@ export class Game implements Actions {
         if (y.ammo && now - this.ammoSetAt > OPTIMISTIC_MS) this.ammo = y.ammo;
         if (y.rocket) this.rocket = y.rocket;
         if (y.dead === false && this.dead) this.hideDead();
+        if (y.faction && y.faction !== this.faction && (y.faction === 'mmo' || y.faction === 'eic' || y.faction === 'vru')) {
+          this.faction = y.faction;
+          this.ents.myFaction = y.faction;
+        }
+        if (y.season) {
+          this.seasonBar?.update(y.season, this.rankWin?.pilots ?? 0);
+          this.rankWin?.setYou(y);
+        }
         this.hangar.setYou(y);
         break;
       }
@@ -142,14 +162,24 @@ export class Game implements Actions {
       }
       case 'dead':
         this.dead = true;
-        this.respawn.show(`You were destroyed by <b>${esc(m.by || 'unknown')}</b>.<br><span class="hint">You lose nothing - resources are infinite.</span>`);
+        this.respawn.show(`You were destroyed by <b>${esc(m.by || 'unknown')}</b>.<br><span class="hint">${this.season
+          ? 'Repairs are free - you keep your ship, gear and credits.'
+          : 'You lose nothing - resources are infinite.'}</span>`);
         break;
       case 'log':
         this.log.add(m.text);
         break;
       case 'chat':
         this.chatBox.add(m.from, m.text);
+        if (m.from === 'SEASON') this.log.add(m.text, true);
         break;
+      case 'top': {
+        const { t: _t, ...top } = m;
+        void _t;
+        this.rankWin?.setTop(top);
+        if (this.you?.season) this.seasonBar?.update(this.you.season, top.pilots);
+        break;
+      }
     }
   }
 
@@ -215,7 +245,7 @@ export class Game implements Actions {
 
   reconnect(): void {
     this.lost.hide();
-    this.net.onOpen = () => this.net.send({ t: 'login', name: this.name, faction: this.faction });
+    this.net.onOpen = () => this.net.send({ t: 'login', name: this.name, faction: this.faction, token: this.season?.token });
     this.net.connect();
   }
 
@@ -320,7 +350,8 @@ export class Game implements Actions {
   }
 
   toggleWarp(): void {
-    this.warpWin.toggle();
+    if (this.warpWin) this.warpWin.toggle();
+    else this.log.add('The Jump CPU is disabled in the daily season - fly through the portals [J]', true);
   }
 
   revive(): void {
@@ -410,7 +441,7 @@ export class Game implements Actions {
       this.hud.update(s);
       this.ammoBar.update(s, now);
       this.minimap.update(s, now);
-      this.warpWin.update(s);
+      this.warpWin?.update(s);
     } catch (e) {
       console.error('frame error', e);
     }

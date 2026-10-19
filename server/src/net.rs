@@ -3,7 +3,8 @@
 use crate::protocol::ClientMsg;
 use crate::SharedWorld;
 use axum::extract::ws::{Message, WebSocket, WebSocketUpgrade};
-use axum::extract::State;
+use axum::extract::{Query, State};
+use axum::Json;
 use crate::limits::{self, client_ip, WsSlot};
 use axum::http::{HeaderMap, StatusCode};
 use axum::response::{IntoResponse, Response};
@@ -52,7 +53,9 @@ async fn client(socket: WebSocket, world: SharedWorld, slot: WsSlot) {
         };
         let mut w = world.lock().unwrap();
         match (me, parsed) {
-            (None, ClientMsg::Login { name, faction }) => me = Some(w.login(tx.clone(), &name, &faction)),
+            (None, ClientMsg::Login { name, faction, token }) => {
+                me = Some(w.login_token(tx.clone(), &name, &faction, token.as_deref()))
+            }
             (None, _) => {}
             (Some(id), m) => w.handle(id, m),
         }
@@ -65,4 +68,14 @@ async fn client(socket: WebSocket, world: SharedWorld, slot: WsSlot) {
     }
     drop(tx);
     writer.abort();
+}
+
+#[derive(serde::Deserialize)]
+pub struct SeasonQuery {
+    token: Option<String>,
+}
+
+/// Season summary for the login screen: reset time, company sizes/bonus, your locked company.
+pub async fn season_api(Query(q): Query<SeasonQuery>, State(world): State<SharedWorld>) -> Json<serde_json::Value> {
+    Json(world.lock().unwrap().season_info(q.token.as_deref()))
 }
