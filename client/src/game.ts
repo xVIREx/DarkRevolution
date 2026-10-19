@@ -16,6 +16,7 @@ import { esc } from './hud/dom';
 import { VolumePanel } from './hud/volume';
 import { WarpWindow } from './hud/warp';
 import { RankWindow, SeasonBar } from './hud/season';
+import { GroupWindow } from './hud/group';
 import { AudioSystem } from './audio';
 import type { EntId, EntSnap, Faction, MapDef, ServerMsg, YouMsg } from './types';
 import { IS_TOUCH, TouchControls } from './touch';
@@ -35,6 +36,7 @@ export class Game implements Actions {
   private warpWin: WarpWindow | null = null;
   private seasonBar: SeasonBar | null = null;
   private rankWin: RankWindow | null = null;
+  private groupWin: GroupWindow;
   private input: Input;
   private touch: TouchControls | null = null;
   private respawn: Dialog;
@@ -84,6 +86,8 @@ export class Game implements Actions {
       this.hud.rightMenu.add({ icon: 'spacemap', title: 'Jump CPU [G]', win: 'win-warp' });
     }
     this.hud.setShipNames(this.hangar.shipNameMap());
+    this.groupWin = new GroupWindow(this, () => this.state());
+    this.hud.leftMenu.add({ icon: 'contacts', title: 'Group', win: 'win-group' });
     this.respawn = new Dialog('Ship destroyed', 'Repair & respawn', () => this.revive());
     this.lost = new Dialog('Connection lost', 'Reconnect', () => this.reconnect());
 
@@ -172,6 +176,16 @@ export class Game implements Actions {
       case 'chat':
         this.chatBox.add(m.from, m.text);
         if (m.from === 'SEASON') this.log.add(m.text, true);
+        break;
+      case 'group': {
+        const { t: _t, ...g } = m;
+        void _t;
+        this.groupWin.setGroup(g);
+        break;
+      }
+      case 'groupInvite':
+        this.groupWin.onInvite(m.from, m.id);
+        this.audio.play('select');
         break;
       case 'top': {
         const { t: _t, ...top } = m;
@@ -404,6 +418,7 @@ export class Game implements Actions {
       ents: (function* () { for (const v of ents.values()) yield { snap: v.snap, x: v.x, y: v.y }; })(),
       myId: this.ents.myId,
       selectedId: this.ents.selectedId,
+      group: this.groupWin?.current ?? null,
     };
   }
 
@@ -442,6 +457,7 @@ export class Game implements Actions {
       this.ammoBar.update(s, now);
       this.minimap.update(s, now);
       this.warpWin?.update(s);
+      this.groupWin.update(s);
     } catch (e) {
       console.error('frame error', e);
     }

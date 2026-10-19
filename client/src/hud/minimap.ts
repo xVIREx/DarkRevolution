@@ -128,6 +128,14 @@ export class Minimap {
         c.strokeRect(e.x * sx - 7, e.y * sy - 7, 14, 14);
       }
     }
+    // group members on this map (also when out of view range): green diamonds
+    for (const gm of s.group?.members ?? []) {
+      if (String(gm.id) === s.myId || gm.map !== m.id || gm.dead) continue;
+      const x = gm.x * sx;
+      const y = gm.y * sy;
+      c.fillStyle = '#5cff6a';
+      c.beginPath(); c.moveTo(x, y - 6); c.lineTo(x + 6, y); c.lineTo(x, y + 6); c.lineTo(x - 6, y); c.closePath(); c.fill();
+    }
     if (s.me) {
       const x = s.me.x * sx;
       const y = s.me.y * sy;

@@ -118,6 +118,14 @@ pub enum ClientMsg {
     /// Season: fill both configs with the best owned gear.
     #[serde(rename = "autoequip")]
     AutoEquip,
+    /// Groups: `action` invite (by `name` or `id`) | accept | decline | leave | kick (`id`) | lead (`id`).
+    Group {
+        action: String,
+        #[serde(default)]
+        name: Option<String>,
+        #[serde(default)]
+        id: Option<u32>,
+    },
 }
 
 fn one32() -> u32 {
@@ -179,6 +187,14 @@ pub enum ServerMsg<'a> {
     },
     You(&'a YouMsg),
     Top(&'a TopMsg),
+    /// Your group (id 0 / no members = not in a group); sent on change and every second.
+    Group(&'a GroupMsg),
+    /// Someone invites you: answer with `group` accept/decline.
+    #[serde(rename = "groupInvite")]
+    GroupInvite {
+        from: String,
+        id: u32,
+    },
     Shot {
         from: u32,
         to: u32,
@@ -278,6 +294,32 @@ pub struct TopMsg {
     pub champions: Vec<TopRow>,
     pub rank: u32,
     pub pilots: u32,
+}
+
+#[derive(Serialize, Debug, Clone)]
+pub struct GroupMsg {
+    pub id: u32,
+    pub leader: u32,
+    pub members: Vec<GroupMember>,
+}
+
+#[derive(Serialize, Debug, Clone)]
+pub struct GroupMember {
+    pub id: u32,
+    pub n: String,
+    pub f: String,
+    pub map: u32,
+    pub x: f64,
+    pub y: f64,
+    pub hp: f64,
+    pub mhp: f64,
+    pub sh: f64,
+    pub msh: f64,
+    pub lvl: u32,
+    pub ship: String,
+    pub dead: bool,
+    /// Hit an alien within the sharing window (gets a share of group kills).
+    pub active: bool,
 }
 
 #[derive(Serialize, Debug, Clone, Default)]

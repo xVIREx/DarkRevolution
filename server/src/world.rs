@@ -15,6 +15,7 @@ use tracing::{debug, info};
 
 mod behavior;
 mod bots;
+mod group;
 mod season;
 
 pub use season::SeasonState;
@@ -62,6 +63,8 @@ pub struct PlayerData {
     pub rsb_cd: f64,
     /// Daily season wallet/inventory; `None` = sandbox player (everything free) or bot.
     pub eco: Option<Box<Eco>>,
+    /// World time of the last hit on an alien (group reward sharing needs recent activity).
+    pub last_alien_hit: f64,
     last_you: Option<YouMsg>,
     you_timer: f64,
 }
@@ -261,6 +264,7 @@ pub struct World {
     pending: Vec<(u32, String)>,
     /// Daily season (data/shop.json); `None` = free sandbox.
     pub season: Option<SeasonState>,
+    groups: group::Groups,
 }
 
 impl World {
@@ -276,6 +280,7 @@ impl World {
             bots: vec![],
             pending: vec![],
             season: None,
+            groups: Default::default(),
         };
         w.season = SeasonState::from_env(&w.data);
         let data = w.data.clone();
@@ -513,6 +518,7 @@ impl World {
                 idb_idle: 0.0,
                 rsb_cd: 0.0,
                 eco: None,
+                last_alien_hit: -1e9,
                 last_you: None,
                 you_timer: 0.0,
             })),
@@ -534,6 +540,7 @@ impl World {
     }
 
     pub fn remove(&mut self, id: u32) {
+        self.group_leave(id);
         if let Some(e) = self.ents.remove(&id) {
             info!("player {} '{}' left", id, e.name);
             self.season_store(&e);
@@ -633,6 +640,7 @@ impl World {
         let dead = e.player().map(|p| p.dead).unwrap_or(true);
         match msg {
             ClientMsg::Login { .. } | ClientMsg::Buy { .. } | ClientMsg::AutoEquip => {}
+            ClientMsg::Group { action, name, id: target } => self.handle_group(id, &action, name, target),
             ClientMsg::Move { x, y } => {
                 if dead || !x.is_finite() || !y.is_finite() {
                     return;
@@ -1115,6 +1123,11 @@ impl World {
             }
         }
         let killed = t.hp <= 0.0;
+        if npc_hit && !miss {
+            if let Some(p) = self.ents.get_mut(&from).and_then(|a| a.player_mut()) {
+                p.last_alien_hit = self.time;
+            }
+        }
         if npc_hit && !killed {
             self.call_for_help(to, from);
         }
@@ -1202,6 +1215,7 @@ impl World {
         self.time += dt;
         let data = self.data.clone();
         self.season_step(dt);
+        self.groups_step(dt);
 
         // respawns
         let now = self.time;

@@ -148,6 +148,8 @@ export interface SeasonYou {
 
 export interface TopRow { n: string; f: string; lvl: number; ep: number; hon: number; k: number; pk: number; on: boolean }
 export interface FactionRow { pilots: number; online: number; ep: number; bonus: number }
+export interface GroupMember { id: number; n: string; f: string; map: number; x: number; y: number; hp: number; mhp: number; sh: number; msh: number; lvl: number; ship: string; dead: boolean; active: boolean }
+export interface GroupMsg { id: number; leader: number; members: GroupMember[] }
 export interface TopMsg { rows: TopRow[]; factions: Record<string, FactionRow>; champions: TopRow[]; rank: number; pilots: number }
 
 export type ServerMsg =
@@ -160,7 +162,9 @@ export type ServerMsg =
   | { t: 'dead'; by: string }
   | { t: 'log'; text: string }
   | { t: 'chat'; from: string; text: string }
-  | ({ t: 'top' } & TopMsg);
+  | ({ t: 'top' } & TopMsg)
+  | ({ t: 'group' } & GroupMsg)
+  | { t: 'groupInvite'; from: string; id: number };
 
 export type ClientMsg =
   | { t: 'login'; name: string; faction: Faction; token?: string }

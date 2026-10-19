@@ -19,6 +19,7 @@ const FACTIONS: [&str; 3] = ["mmo", "eic", "vru"];
 const BOARD_EVERY: f64 = 5.0;
 const SAVE_EVERY: f64 = 30.0;
 const TOP_ROWS: usize = 10;
+const SHARE_PCT: f64 = super::group::SHARE_BONUS * 100.0;
 
 pub struct SeasonState {
     /// Current UTC day (days since the epoch).
@@ -418,7 +419,10 @@ impl World {
     }
 
     /// Why player `a` may not shoot player `t` right now (season rules), if it may not.
-    fn pvp_block(&self, a: u32, t: u32) -> Option<&'static str> {
+    pub(super) fn pvp_block(&self, a: u32, t: u32) -> Option<&'static str> {
+        if self.same_group(a, t) {
+            return Some("You can't attack members of your group");
+        }
         self.season.as_ref()?;
         let (a, t) = (self.ents.get(&a)?, self.ents.get(&t)?);
         if !a.is_player() || !t.is_player() {
@@ -617,37 +621,60 @@ impl World {
         if !k.player().is_some_and(|p| p.eco.is_some()) {
             return false;
         }
-        let bonus = s.bonus.get(&k.faction).copied().unwrap_or(0.0);
         let d = &data.npcs[def];
         let m = &data.shop.reward_mult;
-        let f = 1.0 + bonus;
-        let (ep, hon, cr, uri) = (d.exp * m.exp * f, d.honor * m.honor * f, d.credits * m.credits * f, d.uridium * m.uridium * f);
-        let k = self.ents.get_mut(&killer).unwrap();
-        let p = k.player_mut().unwrap();
-        p.exp += ep;
-        p.honor += hon;
-        let eco = p.eco.as_mut().unwrap();
-        eco.credits += cr;
-        eco.uridium += uri;
-        eco.stats.npc_kills += 1;
-        eco.stats.earned_c += cr;
-        eco.stats.earned_u += uri;
-        if d.exp > eco.stats.best_kill_ep {
-            eco.stats.best_kill_ep = d.exp;
-            eco.stats.best_kill = d.name.clone();
-        }
-        info!("player {} destroyed {} (+{} EP, +{} honor, +{} C, +{} U)", killer, d.name, ep.round(), hon.round(), cr.round(), uri.round());
-        let mut lines = vec![format!("You destroyed {}", d.name)];
-        for (v, what) in [(cr, "credits"), (uri, "uridium"), (ep, "EP"), (hon, "honor")] {
-            if v > 0.0 {
-                lines.push(format!("You received {} {}", big(v), what));
+        let killer_name = k.name.clone();
+        // group: split between the killer and active members on the map, with a small bonus pot
+        let share: Vec<u32> = self
+            .share_targets(killer)
+            .into_iter()
+            .filter(|id| self.ents.get(id).and_then(|e| e.player()).is_some_and(|p| p.eco.is_some()))
+            .collect();
+        let n = share.len().max(1) as f64;
+        let pot = (1.0 + super::group::SHARE_BONUS * (n - 1.0)) / n;
+        let mut info_line = None;
+        for &r in &share {
+            let e = self.ents.get_mut(&r).unwrap();
+            let f = (1.0 + s.bonus.get(&e.faction).copied().unwrap_or(0.0)) * pot;
+            let (ep, hon, cr, uri) = (d.exp * m.exp * f, d.honor * m.honor * f, d.credits * m.credits * f, d.uridium * m.uridium * f);
+            let p = e.player_mut().unwrap();
+            p.exp += ep;
+            p.honor += hon;
+            let eco = p.eco.as_mut().unwrap();
+            eco.credits += cr;
+            eco.uridium += uri;
+            eco.stats.earned_c += cr;
+            eco.stats.earned_u += uri;
+            let mut lines = vec![];
+            if r == killer {
+                eco.stats.npc_kills += 1;
+                if d.exp > eco.stats.best_kill_ep {
+                    eco.stats.best_kill_ep = d.exp;
+                    eco.stats.best_kill = d.name.clone();
+                }
+                info_line = Some((ep, hon, cr, uri));
+                lines.push(format!("You destroyed {}", d.name));
+            } else {
+                lines.push(format!("Group: {} destroyed {}", killer_name, d.name));
+            }
+            for (v, what) in [(cr, "credits"), (uri, "uridium"), (ep, "EP"), (hon, "honor")] {
+                if v > 0.0 {
+                    lines.push(format!("You received {} {}", big(v), what));
+                }
+            }
+            if r == killer && n > 1.0 {
+                lines.push(format!("(shared with {} group member{}, +{}% group bonus)", n - 1.0, if n > 2.0 { "s" } else { "" }, ((n - 1.0) * SHARE_PCT).round()));
+            }
+            if s.bonus.get(&self.ents[&r].faction).copied().unwrap_or(0.0) > 0.0 && r == killer {
+                lines.push(format!("(+{}% outnumbered-company bonus)", (s.bonus[&self.ents[&r].faction] * 100.0).round()));
+            }
+            for l in lines {
+                self.send_log(r, &l);
             }
         }
-        if bonus > 0.0 {
-            lines.push(format!("(+{}% outnumbered-company bonus)", (bonus * 100.0).round()));
-        }
-        for l in lines {
-            self.send_log(killer, &l);
+        if let Some((ep, hon, cr, uri)) = info_line {
+            let shared = if n > 1.0 { format!(", shared x{}", n) } else { String::new() };
+            info!("player {} destroyed {} (+{} EP, +{} honor, +{} C, +{} U{})", killer, d.name, ep.round(), hon.round(), cr.round(), uri.round(), shared);
         }
         true
     }
@@ -1076,5 +1103,60 @@ mod tests {
         assert_eq!(eco(&w, a).credits, 15_000.0);
         assert!(logs(&mut rxv).contains("Champions"));
         let _ = v;
+    }
+
+    fn grp(action: &str, name: Option<&str>, id: Option<u32>) -> ClientMsg {
+        ClientMsg::Group { action: action.into(), name: name.map(String::from), id }
+    }
+
+    #[test]
+    fn groups_invite_share_and_protect() {
+        let mut w = world();
+        let (a, mut rxa) = join(&mut w, "token-grp-a", "mmo");
+        let (b, mut rxb) = join(&mut w, "token-grp-b", "eic");
+        let (c, _rxc) = join(&mut w, "token-grp-c", "vru");
+        w.ents.get_mut(&b).unwrap().name = "Bob".into();
+        // invite by name, accept -> group of 2 led by a
+        w.handle(a, grp("invite", Some("bob"), None));
+        assert!(logs(&mut rxb).contains("groupInvite"));
+        w.handle(b, grp("accept", None, None));
+        assert!(w.same_group(a, b));
+        assert!(logs(&mut rxa).contains("\"t\":\"group\""));
+        // only the leader invites
+        w.handle(b, grp("invite", None, Some(c)));
+        assert!(logs(&mut rxb).contains("Only the group leader"));
+
+        // group members never fight, even across companies on an open map
+        for id in [a, b] {
+            let e = w.ents.get_mut(&id).unwrap();
+            (e.map, e.x, e.y) = (2, 5000.0, 5000.0);
+        }
+        assert!(w.pvp_block(a, b).is_some());
+
+        // kill share: b inactive -> a gets everything; b active on the same map -> split + 5%
+        let npc = *w.ents.keys().find(|k| w.ents[k].npc().is_some()).unwrap();
+        let def = w.ents[&npc].npc().unwrap().def;
+        w.reward(a, def);
+        assert_eq!(eco(&w, a).credits, 15_400.0);
+        assert_eq!(eco(&w, b).credits, 15_000.0);
+        w.ents.get_mut(&b).unwrap().player_mut().unwrap().last_alien_hit = w.time;
+        w.reward(a, def);
+        assert_eq!(eco(&w, a).credits, 15_400.0 + 210.0);
+        assert_eq!(eco(&w, b).credits, 15_000.0 + 210.0);
+        assert_eq!(eco(&w, a).stats.npc_kills, 2);
+        assert_eq!(eco(&w, b).stats.npc_kills, 0);
+        // different map: no share
+        w.ents.get_mut(&b).unwrap().map = 1;
+        w.reward(a, def);
+        assert_eq!(eco(&w, b).credits, 15_210.0);
+
+        // leaving a 2-pilot group disbands it; disconnecting also leaves
+        w.handle(b, grp("leave", None, None));
+        assert!(!w.same_group(a, b) && w.group_of(a).is_none());
+        w.handle(a, grp("invite", None, Some(c)));
+        w.handle(c, grp("accept", None, None));
+        assert!(w.same_group(a, c));
+        w.remove(a);
+        assert!(w.group_of(c).is_none());
     }
 }
