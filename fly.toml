@@ -12,8 +12,6 @@ primary_region = "fra"
   WS_TOTAL = "300"
   # Daily season progress (server/src/world/season.rs), kept across deploys/restarts.
   SEASON_SAVE = "/data/season-save.json"
-  # one-off: round 995801 extended by 30 min to 22:00 UTC (ignored by any other round)
-  SEASON_ROUND_END = "995801:1792447200"
 
 [mounts]
   source = "season_data"
