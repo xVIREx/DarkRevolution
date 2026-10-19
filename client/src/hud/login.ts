@@ -17,12 +17,15 @@ export class LoginScreen {
   private cards = new Map<Faction, HTMLDivElement>();
   private seasonEl: HTMLDivElement;
   private locked: Faction | null = null;
+  private picked = false;
   private nameInput: HTMLInputElement;
 
   constructor(onLogin: (name: string, faction: Faction) => void) {
-    let saved: { name?: string; faction?: Faction } = {};
+    let saved: { name?: string; faction?: Faction; picked?: boolean } = {};
     try { saved = JSON.parse(localStorage.getItem('do.login') || '{}'); } catch { /* ignore */ }
-    this.faction = saved.faction && FACTIONS.some((f) => f.id === saved.faction) ? saved.faction : 'mmo';
+    // a company you clicked yourself is kept; otherwise the smallest one is preselected (setSeason)
+    this.picked = !!saved.picked && !!saved.faction && FACTIONS.some((f) => f.id === saved.faction);
+    this.faction = this.picked ? saved.faction! : FACTIONS[Math.floor(Math.random() * FACTIONS.length)].id;
 
     this.root = el('div', 'overlay', undefined, document.body);
     this.root.id = 'login';
@@ -45,9 +48,8 @@ export class LoginScreen {
       c.classList.toggle('sel', f.id === this.faction);
       c.addEventListener('click', () => {
         if (this.locked && this.locked !== f.id) return;
-        this.faction = f.id;
-        this.cards.forEach((x) => x.classList.remove('sel'));
-        c.classList.add('sel');
+        this.picked = true;
+        this.select(f.id);
       });
       this.cards.set(f.id, c);
     }
@@ -57,7 +59,7 @@ export class LoginScreen {
     this.status = el('div', 'status', '', body);
     const go = () => {
       const n = name.value.trim().slice(0, 20) || 'Pilot';
-      try { localStorage.setItem('do.login', JSON.stringify({ name: n, faction: this.faction })); } catch { /* ignore */ }
+      try { localStorage.setItem('do.login', JSON.stringify({ name: n, faction: this.faction, picked: this.picked })); } catch { /* ignore */ }
       onLogin(n, this.faction);
     };
     this.btn.addEventListener('click', go);
@@ -88,6 +90,13 @@ export class LoginScreen {
       tag.innerHTML = r ? `${r.pilots} pilot${r.pilots === 1 ? '' : 's'} this round${r.bonus > 0 ? ` · <i>+${Math.round(r.bonus * 100)}% rewards</i>` : ''}` : '';
     }
     const lock = info.locked as Faction | null | undefined;
+    if (!lock && !this.picked && info.factions) {
+      // spread new pilots out: preselect the company with the fewest pilots this round
+      const n = (f: Faction) => info.factions?.[f]?.pilots ?? 0;
+      const min = Math.min(...FACTIONS.map((f) => n(f.id)));
+      const small = FACTIONS.filter((f) => n(f.id) === min);
+      if (!small.some((f) => f.id === this.faction)) this.select(small[Math.floor(Math.random() * small.length)].id);
+    }
     if (lock && this.cards.has(lock)) {
       this.locked = lock;
       this.faction = lock;
@@ -98,6 +107,11 @@ export class LoginScreen {
       el('div', 'si-lock', `You fly for <b>${lock.toUpperCase()}</b> until the round ends${info.level ? ` (level ${info.level})` : ''} - your progress is waiting.`, this.seasonEl);
       if (info.name) this.nameInput.value = info.name;
     }
+  }
+
+  private select(f: Faction): void {
+    this.faction = f;
+    for (const [id, c] of this.cards) c.classList.toggle('sel', id === f);
   }
 
   setStatus(text: string, err = false): void {
