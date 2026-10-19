@@ -1546,6 +1546,10 @@ mod tests {
         assert!(laser.dmg > 0.0 && laser.c > 0.0);
         // tech is listed (P.E.T. adds damage)
         assert!(opts.iter().any(|o| o.cat == "tech" && o.id == "pet" && o.dmg > 0.0));
+        // speed gens are offered and show their gain on the speed config
+        if let Some(sp) = opts.iter().find(|o| o.cat == "speed") {
+            assert!(sp.spd > 0.0 && sp.value > 0.0, "{:?}", sp);
+        }
         w.ents.get_mut(&id).unwrap().player_mut().unwrap().eco.as_mut().unwrap().credits = 1e6;
         assert!(w.affordable_upgrades(id) > 0);
     }

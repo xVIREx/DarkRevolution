@@ -30,7 +30,7 @@ pub struct UpgradeOption {
     pub shd: f64,
     pub hp: f64,
     pub spd: f64,
-    /// Gain per 10k credits (damage % + ½ shield % + 0.3 HP %, uridium at `uriValue` credits).
+    /// Gain per 10k credits (damage % + ½ shield % + 0.3 HP % + ½ speed %, uridium at `uriValue` credits).
     pub value: f64,
 }
 

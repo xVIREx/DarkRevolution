@@ -13,12 +13,12 @@ const CATS: { id: string; label: string; cats: string[] }[] = [
   { id: 'all', label: 'All', cats: [] },
   { id: 'ships', label: 'Ships', cats: ['ship'] },
   { id: 'weapons', label: 'Weapons', cats: ['laser', 'drone'] },
-  { id: 'defense', label: 'Defense', cats: ['shield', 'extra'] },
+  { id: 'defense', label: 'Defense & speed', cats: ['shield', 'speed', 'extra'] },
   { id: 'boosts', label: 'Boosts', cats: ['design', 'formation', 'booster', 'tech'] },
   { id: 'levels', label: 'Levels', cats: ['level'] },
 ];
 const CAT_NAME: Record<string, string> = {
-  ship: 'Ship', laser: 'Laser', shield: 'Shield', drone: 'Drone', extra: 'Extra', design: 'Drone design',
+  ship: 'Ship', laser: 'Laser', shield: 'Shield', speed: 'Speed generator', drone: 'Drone', extra: 'Extra', design: 'Drone design',
   formation: 'Formation', booster: 'Booster', tech: 'Tech', level: 'Upgrade',
 };
 

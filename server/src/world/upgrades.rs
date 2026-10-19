@@ -33,12 +33,13 @@ fn price(c: f64, u: f64) -> Price {
 }
 
 /// Stats of the best fit for `ship` with this inventory and loadout.
-fn best_fit(data: &Data, eco: &Eco, lo: &Loadout, ship: &str) -> Stats {
+/// Stats of auto-fitted config `which` (0 = shields first, 1 = speed gens first).
+fn best_fit(data: &Data, eco: &Eco, lo: &Loadout, ship: &str, which: usize) -> Stats {
     let ship = data.ship(ship).unwrap_or(&data.ships[0]);
     let cfg = eco.auto_configs(&data.items, equipment::slots(ship, &data.items));
     let mut lo = lo.clone();
     eco.apply_unlocks(&mut lo);
-    equipment::compute_stats(ship, &data.items, &cfg[0], &lo)
+    equipment::compute_stats(ship, &data.items, &cfg[which], &lo)
 }
 
 fn pct(after: f64, before: f64) -> f64 {
@@ -135,6 +136,19 @@ impl World {
         for (g, pr) in &better_g {
             push_g(g, pr);
         }
+        // speed gens: they go first in config 2 (speed config), so they're compared there
+        let mut speeds: Vec<(&crate::data::SpeedGen, &Price)> =
+            items.speed_gens.iter().filter_map(|g| shop.items.get(&g.id).map(|p| (g, p))).collect();
+        speeds.sort_by(|a, b| a.0.speed.total_cmp(&b.0.speed));
+        let owned_s: u32 = speeds.iter().map(|(g, _)| eco.owns(&g.id)).sum();
+        let room_s = owned_s < slots.gens;
+        let slowest = if room_s { 0.0 } else { speeds.iter().filter(|(g, _)| eco.owns(&g.id) > 0).map(|(g, _)| g.speed).fold(f64::INFINITY, f64::min) };
+        let what_s = if room_s { "fills a generator slot in config 2 (speed)" } else { "replaces your slowest speed gen" };
+        for (g, pr) in speeds.iter().filter(|(g, _)| g.speed > slowest) {
+            if !out.iter().any(|c| c.id == g.id) {
+                out.push(Cand { cat: "speed", kind: "item", id: g.id.clone(), label: format!("{} speed gen", g.name), desc: format!("+{} speed · {}", g.speed, what_s), price: (*pr).clone(), sim: Sim::Item(g.id.clone()) });
+            }
+        }
 
         // ---- drones (up to 10), each carries more lasers
         let drones: u32 = items.drones.iter().map(|d| eco.owns(&d.id)).sum();
@@ -213,7 +227,7 @@ impl World {
         let data = &self.data;
         let Some(p) = self.ents.get(&id).and_then(|e| e.player()) else { return vec![] };
         let Some(eco) = p.eco.as_ref() else { return vec![] };
-        let before = best_fit(data, eco, &p.loadout, &p.ship);
+        let before = [best_fit(data, eco, &p.loadout, &p.ship, 0), best_fit(data, eco, &p.loadout, &p.ship, 1)];
         self.upgrade_cands(id)
             .into_iter()
             .map(|c| {
@@ -239,11 +253,16 @@ impl World {
                         e2.levels.insert(i.clone(), l + 1);
                     }
                 }
-                let after = best_fit(data, &e2, &lo, &ship);
+                // damage/shield/HP on config 1; speed gens show their speed on config 2 (speed config)
+                let after = best_fit(data, &e2, &lo, &ship, 0);
+                let after_spd = if c.cat == "speed" { best_fit(data, &e2, &lo, &ship, 1).speed } else { after.speed };
+                let before_spd = if c.cat == "speed" { before[1].speed } else { before[0].speed };
+                let before = &before[0];
                 let (dmg, shd, hp) = (pct(after.damage, before.damage), pct(after.shield, before.shield), pct(after.hp, before.hp));
                 let cost = c.price.c + c.price.u * data.shop.upgrade.uri_value;
+                let spd = pct(after_spd, before_spd);
                 UpgradeOption {
-                    value: if cost > 0.0 { ((dmg + 0.5 * shd + 0.3 * hp) / (cost / 10_000.0) * 10.0).round() / 10.0 } else { 0.0 },
+                    value: if cost > 0.0 { ((dmg + 0.5 * shd + 0.3 * hp + 0.5 * spd) / (cost / 10_000.0) * 10.0).round() / 10.0 } else { 0.0 },
                     cat: c.cat.into(),
                     kind: c.kind.into(),
                     id: c.id,
@@ -255,7 +274,7 @@ impl World {
                     dmg,
                     shd,
                     hp,
-                    spd: pct(after.speed, before.speed),
+                    spd,
                 }
             })
             .collect()
