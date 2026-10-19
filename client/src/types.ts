@@ -160,7 +160,7 @@ export interface TopRow { n: string; f: string; lvl: number; ep: number; hon: nu
 export interface FactionRow { pilots: number; online: number; ep: number; bonus: number }
 export interface UpgradeOption { cat: string; kind: string; id: string; label: string; desc: string; c: number; u: number; ok: boolean; dmg: number; shd: number; hp: number; spd: number; value: number }
 export interface BeaconState { map: number; name: string; x: number; y: number; r: number; owner: string | null; side: string | null; cap: number; contested: boolean; weight: number }
-export interface ObjMsg { beacons: BeaconState[]; score: Record<string, number>; lastWinner: string | null }
+export interface ObjMsg { beacons: BeaconState[]; score: Record<string, number>; lastWinner: string | null; target?: number }
 export interface TopMsg { rows: TopRow[]; factions: Record<string, FactionRow>; champions: TopRow[]; rank: number; pilots: number }
 
 export type ServerMsg =

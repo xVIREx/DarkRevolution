@@ -324,6 +324,8 @@ pub struct ObjMsg {
     pub score: BTreeMap<String, f64>,
     #[serde(rename = "lastWinner")]
     pub last_winner: Option<String>,
+    /// Beacon points that win the round at once (0 = timer only).
+    pub target: f64,
 }
 
 #[derive(Serialize, Debug, Clone)]

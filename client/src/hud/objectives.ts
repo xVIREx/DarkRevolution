@@ -13,10 +13,12 @@ export class ObjectiveBar {
   private scores: HTMLDivElement;
   private beacons: HTMLDivElement;
   private sig = '';
+  private goal: HTMLDivElement;
 
   constructor(parent: HTMLElement) {
     this.root = el('div', 'obj-bar empty', undefined, parent);
     this.root.title = 'Company goal: capture and hold the beacons on the 4-x maps. Most beacon points when the round ends wins.';
+    this.goal = el('div', 'obj-goal', '', this.root);
     this.scores = el('div', 'obj-scores', '', this.root);
     this.beacons = el('div', 'obj-beacons', '', this.root);
   }
@@ -29,11 +31,17 @@ export class ObjectiveBar {
     this.root.classList.toggle('empty', !has);
     document.documentElement.classList.toggle('objectives', has);
     if (!has) return;
-    const total = Math.max(1, ...['mmo', 'eic', 'vru'].map((f) => m.score[f] ?? 0));
+    // bars fill towards the winning score (first there wins the round), else relative to the leader
+    const target = m.target ?? 0;
+    const total = target > 0 ? target : Math.max(1, ...['mmo', 'eic', 'vru'].map((f) => m.score[f] ?? 0));
+    this.goal.textContent = target > 0 ? `First company to ${target.toLocaleString('en-US')} beacon points wins` : '';
+    this.root.title = target > 0
+      ? `Company goal: capture and hold the beacons on the 4-x maps. The first company to ${target.toLocaleString('en-US')} points wins the round on the spot; otherwise the most points when time runs out.`
+      : 'Company goal: capture and hold the beacons on the 4-x maps. Most beacon points when the round ends wins.';
     this.scores.innerHTML = ['mmo', 'eic', 'vru']
       .map((f) => {
         const v = Math.floor(m.score[f] ?? 0);
-        return `<div class="obj-sc${f === myFaction ? ' me' : ''}" style="--fc:${col(f)}"><b>${fname(f)}</b><i style="width:${(v / total) * 100}%"></i><span>${v}</span></div>`;
+        return `<div class="obj-sc${f === myFaction ? ' me' : ''}" style="--fc:${col(f)}"><b>${fname(f)}</b><i style="width:${Math.min(100, (v / total) * 100)}%"></i><span>${v}</span></div>`;
       })
       .join('');
     this.beacons.innerHTML = m.beacons

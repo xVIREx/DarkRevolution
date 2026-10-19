@@ -143,6 +143,7 @@ impl World {
                 .collect(),
             score: s.obj.score.iter().map(|(k, v)| (k.clone(), v.floor())).collect(),
             last_winner: s.obj.last_winner.clone(),
+            target: self.data.shop.objectives.win_score,
         };
         let json = ServerMsg::Objectives(&msg).json();
         for e in self.ents.values() {

@@ -154,6 +154,10 @@ pub struct BonusBoxRule {
     pub ammo: u64,
     /// Seconds until a collected box reappears elsewhere.
     pub respawn: f64,
+    /// Chance that a bonus box is a jackpot worth `jackpotMult` times as much.
+    pub jackpot: f64,
+    #[serde(rename = "jackpotMult")]
+    pub jackpot_mult: f64,
 }
 
 #[derive(Deserialize, Clone, Debug, Default)]
@@ -527,6 +531,9 @@ pub struct ObjectiveRule {
     /// Reward bonus for the winning company's pilots during the next round.
     #[serde(rename = "winBonus")]
     pub win_bonus: f64,
+    /// Beacon points that win the round on the spot (0 = only the timer ends it).
+    #[serde(rename = "winScore")]
+    pub win_score: f64,
     pub beacons: Vec<BeaconDef>,
 }
 
@@ -663,6 +670,9 @@ pub struct TopRow {
 pub struct SaveFile {
     #[serde(alias = "day")]
     pub round: u64,
+    /// Unix seconds the round ends (0 in saves from before rounds could end early).
+    #[serde(default)]
+    pub end: f64,
     pub profiles: HashMap<String, Profile>,
     pub champions: Vec<TopRow>,
     pub obj: Objectives,

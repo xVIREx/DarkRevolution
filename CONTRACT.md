@@ -152,9 +152,9 @@ When `data/shop.json` has `enabled: true` (and env `SEASON` != `0`) the game run
 free sandbox above: everyone starts in a Phoenix with an LF-1, earns credits/uridium/EP/honor from kills and buys
 ships, items (owned counts; both configs share them), per-item-type upgrade levels, ammo/rocket stock (x1 and R-310
 unlimited), drone designs, formations, boosters and tech (P.E.T., Seprom refining, skill tree) in the shop. Progress is
-keyed by a browser token (`login.token`, localStorage `do.token`), the company is locked for the day, and everything
-resets at 00:00 UTC (top 3 become "champions"). Saved to `SEASON_SAVE` (default `./season-save.json`) every 30 s.
-Rules: Jump CPU (`warp`) only to maps already reached this round (`you.season.visited`, the current map included), with a 30 s cooldown (`warpCd`), not while dead or within 10 s of taking damage; it lands at your company's station on that map, else a random spot; no `cheat`, no `upgrade` (levels come from purchases), ships change only near a station,
+keyed by a browser token (`login.token`, localStorage `do.token`), the company is locked for the round, and everything
+resets when the round ends (top 3 become "champions"). Saved to `SEASON_SAVE` (default `./season-save.json`) every 30 s.
+Rules: Jump CPU (`warp`) only to maps already reached this round (`you.season.visited`, the current map included), with a 30 s cooldown (`warpCd`), not while dead or within 10 s of taking damage; it lands at your company's station on that map, else a random spot; no `cheat`, no `upgrade` (levels come from purchases), ships change anywhere unless under fire,
 no PvP vs your own company, on `protectedMaps` (x-1/x-2) or within `safeRadius` of portals/stations; PvP kills pay a
 bounty per victim level (once per victim per `pvp.cooldown` s). The company with the fewest pilots today gets
 `underdogBonus` extra rewards. Bots play the season too (Phoenix start, auto-buy the next upgrade every 20 s) but are left out of rankings and saves.
@@ -164,8 +164,9 @@ Additional messages — client → server: `buy` {`kind`: ship|item|design|ammo|
 (stats), rank, safe}, `you.faction`, `top` {rows, factions, champions, rank, pilots} every 5 s. HTTP `GET
 /api/season?token=` returns the login-screen summary (reset time, company sizes/bonus, your locked company, champions).
 
-Rounds (Starblast-style): `roundMinutes` (30) sets the round length; rounds start at multiples of it since the epoch
-(UTC), so with 30 they end at :00 and :30. At the end every season pilot gets `roundEnd` {rows, rank, pilots, ep} and
+Rounds (Starblast-style): a round lasts `roundMinutes` (60), or ends at once when a company reaches
+`objectives.winScore` beacon points; the next round starts right away (`you.season.resetAt` = its end; the save keeps
+`round` and `end` so restarts continue it). At the end every season pilot gets `roundEnd` {rows, rank, pilots, ep} and
 starts over. The Upgrades panel (U) asks `upgrades` and gets `upgrades` {options:[{cat, kind, id, label, desc, c, u, ok, dmg, shd, hp,
 spd, value}]}: ships up to 3 tiers ahead on the `tiers` ladder (or `switch` to an owned better ship), every better laser /
 shield type, drones, extras, designs, formations, boosters, tech and the next upgrade levels, each with its simulated
@@ -173,8 +174,8 @@ shield type, drones, extras, designs, formations, boosters, tech and the next up
 counts what you can afford. Ships change anywhere unless under fire (10 s), keeping the hp/shield fill ratio; a ship
 bought under fire switches once out of combat. Dying spills
 `deathDrop` (30%) of unspent credits/uridium into a cargo box; maps keep `bonusBoxes.perMap` bonus boxes (credits /
-uridium / MCB-25 scaled by map tier). Boxes are state entities with `k: "b"` and sheet `box_cargo` / `box_bonus`;
-fly within 140 units to collect. Alien loot: the killing blow takes 70%; the other
+uridium / MCB-25 scaled by map tier, `jackpot` chance of `jackpotMult`x). Boxes are state entities with `k: "b"` and sheet `box_cargo` / `box_bonus`;
+fly on top of one (60 units) to collect. Alien loot: the killing blow takes 70%; the other
 30% is split equally between the killer, everyone else who shot it (any company) and the killer's company mates within
 2000 units who fired or were hit in the last 60 s (the company is one big party, no custom groups). Alone = 100%.
 Bots get a slice only for shooting.
@@ -182,9 +183,9 @@ Company objective (`objectives` in shop.json, server world/objectives.rs): a bea
 double). It is captured while pilots of exactly one company are within `radius` (`captureSecs`, up to 2x faster with
 more pilots); another company first drains it to neutral; with several companies inside it is contested (frozen).
 Held beacons score `pointsPerSec × weight` per second for their company; capturers get `captureExp`/`captureUridium`.
-The company with the most points at round end wins (`roundEnd.company`, `roundEnd.scores`) and gets `winBonus` extra
+The first company to `winScore` points (else the one with the most points when time runs out) wins (`roundEnd.company`, `roundEnd.scores`) and gets `winBonus` extra
 rewards next round (added to the company bonus). Server → client `obj` {beacons: [{map, name, x, y, r, owner, side,
-cap, contested, weight}], score, lastWinner} every second and on captures.
+cap, contested, weight}], score, lastWinner, target (= winScore)} every second and on captures.
 
 DMZ (all modes): within 900 units of a portal or 1600 of a station, a player who hasn't fired for 3 s can't be attacked by
 aliens (they drop the target; kamikaze blasts skip them); `you.protected` tells the client. Box pickups are broadcast as

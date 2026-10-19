@@ -103,16 +103,22 @@ export class Effects {
 
   update(now: number): void {
     this.pickups = this.pickups.filter((p) => {
-      const k = Math.min(1, (now - p.t0) / 450);
+      const k = Math.min(1, (now - p.t0) / 380);
       if (k >= 1) {
         p.el.remove();
         return false;
       }
       const t = p.target() ?? { x: p.x, y: p.y };
       const e = k * k; // accelerate into the ship
-      const s = this.world.worldToScreen(p.x + (t.x - p.x) * e, p.y + (t.y - p.y) * e);
-      p.el.style.transform = `translate(${s.x}px, ${s.y}px) translate(-50%, -50%) scale(${1 - 0.8 * k}) rotate(${k * 200}deg)`;
-      p.el.style.opacity = String(1 - k * 0.6);
+      const wx = p.x + (t.x - p.x) * e;
+      const wy = p.y + (t.y - p.y) * e;
+      const s = this.world.worldToScreen(wx, wy);
+      // same size as the box drawn in the world (3D: 55 units, 2D: the ~80 px sprite), shrinking into the ship
+      const size = Math.abs(this.world.worldToScreen(wx + (this.world.r3d ? 55 : 80), wy).x - s.x);
+      p.el.style.width = p.el.style.height = `${size.toFixed(1)}px`;
+      p.el.style.transform = `translate(${s.x}px, ${s.y}px) translate(-50%, -50%) scale(${(1 - k) ** 1.5}) rotate(${e * 120}deg)`;
+      p.el.style.filter = `brightness(${1 + k * 2.5})`;
+      p.el.style.opacity = String(k < 0.75 ? 1 : 1 - (k - 0.75) / 0.25);
       return true;
     });
     this.fx = this.fx.filter((f) => {

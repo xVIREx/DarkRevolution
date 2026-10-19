@@ -474,6 +474,8 @@ html.touch .upg-btn { bottom: 76px; min-width: 0; }
 
 /* company objective */
 .obj-bar:empty, .obj-bar.empty { display: none; }
+.obj-goal { color: var(--dim); font-size: 9px; white-space: nowrap; }
+.obj-goal:empty { display: none; }
 .obj-bar { position: absolute; top: 30px; left: 50%; transform: translateX(-50%); z-index: 14; display: flex; gap: 10px; align-items: center; padding: 3px 8px; background: rgba(4,12,18,0.72); border: 1px solid rgba(30,80,104,0.6); border-radius: 3px; font-size: 10px; pointer-events: auto; }
 .obj-scores { display: flex; gap: 6px; }
 .obj-sc { position: relative; width: 74px; height: 16px; background: rgba(0,0,0,0.5); overflow: hidden; border: 1px solid transparent; }
@@ -489,7 +491,7 @@ html.touch .upg-btn { bottom: 76px; min-width: 0; }
 @keyframes objBlink { 50% { border-color: #fff; } }
 .re-company { font: 20px var(--title); letter-spacing: 2px; margin-bottom: 4px; text-shadow: 0 0 10px currentColor; }
 html.season.objectives #win-target { margin-top: 44px; }
-@media (max-width: 640px) { .obj-bar { top: 26px; gap: 4px; padding: 2px 4px; } .obj-sc { width: 50px; } .obj-b { min-width: 22px; font-size: 9px; } }
+@media (max-width: 640px) { .obj-goal { display: none; } .obj-bar { top: 26px; gap: 4px; padding: 2px 4px; } .obj-sc { width: 50px; } .obj-b { min-width: 22px; font-size: 9px; } }
 
 /* upgrades panel */
 .win-upgrades .up-ladder { margin-bottom: 6px; }

@@ -30,12 +30,17 @@ const KILLER_SHARE: f64 = 0.7;
 const SHARE_RADIUS: f64 = 2000.0;
 /// A mate must have fired or been hit this recently to get a share (no AFK leeching).
 const SHARE_ACTIVE_SECS: f64 = 60.0;
+/// Round length of the old fixed UTC schedule (saves without an `end`).
+const LEGACY_PERIOD: u64 = 1800;
 
 pub struct SeasonState {
-    /// Current round (`round_of(now, period)`).
+    /// Current round number.
     pub round: u64,
-    /// Round length in seconds.
+    /// Round length in seconds (the most a round lasts).
     pub period: u64,
+    /// Unix seconds the current round ends - after `period`, or earlier when a company reaches
+    /// the objective's `winScore`.
+    pub round_end: f64,
     /// Saved pilots of this round, by token (offline ones; online ones are snapshotted on save).
     pub profiles: HashMap<String, Profile>,
     /// Top 3 of the previous round.
@@ -61,6 +66,7 @@ impl SeasonState {
         SeasonState {
             round: round_of(now_secs(), period),
             period,
+            round_end: now_secs() + period as f64,
             profiles: HashMap::new(),
             champions: vec![],
             boxes: vec![],
@@ -94,26 +100,33 @@ impl SeasonState {
     }
 
     pub fn reset_at_ms(&self) -> u64 {
-        (self.round + 1) * self.period * 1000
+        (self.round_end.max(0.0) * 1000.0) as u64
     }
 
     fn load(&mut self) {
         let Some(path) = &self.save_path else { return };
         let Ok(text) = std::fs::read_to_string(path) else { return };
+        let now = self.now();
         match serde_json::from_str::<SaveFile>(&text) {
-            Ok(f) if f.round == self.round => {
-                self.profiles = f.profiles;
-                self.champions = f.champions;
-                self.obj.restore(&f.obj);
+            Ok(f) => {
+                // saves from the fixed UTC schedule (30 min rounds) carry no end: that round
+                // started at round * 1800 and now runs the full current length
+                let end = if f.end > 0.0 { f.end } else { (f.round * LEGACY_PERIOD) as f64 + self.period as f64 };
+                if end > now {
+                    self.round = f.round;
+                    self.round_end = end;
+                    self.profiles = f.profiles;
+                    self.champions = f.champions;
+                    self.obj.restore(&f.obj);
+                } else if end > now - self.period as f64 {
+                    // the server was down over the round change: the last save decides the champions
+                    let mut rows: Vec<TopRow> = f.profiles.values().map(|p| row_of(p, false)).collect();
+                    sort_rows(&mut rows);
+                    self.champions = rows.into_iter().filter(|r| r.ep > 0.0).take(3).collect();
+                    self.obj.last_winner = f.obj.leader();
+                    self.round = f.round + 1;
+                }
             }
-            Ok(f) if f.round + 1 == self.round => {
-                // the server was down over the round change: the last save decides the champions
-                let mut rows: Vec<TopRow> = f.profiles.values().map(|p| row_of(p, false)).collect();
-                sort_rows(&mut rows);
-                self.champions = rows.into_iter().filter(|r| r.ep > 0.0).take(3).collect();
-                self.obj.last_winner = f.obj.leader();
-            }
-            Ok(_) => {}
             Err(e) => warn!("{}: {}", path.display(), e),
         }
     }
@@ -844,9 +857,10 @@ impl World {
     /// Every tick: daily reset, online time, leaderboard and periodic save.
     pub(super) fn season_step(&mut self, dt: f64) {
         let Some(s) = self.season.as_ref() else { return };
-        let now_round = round_of(s.now(), s.period);
-        if now_round != s.round {
-            self.round_reset(now_round);
+        let target = self.data.shop.objectives.win_score;
+        let won = target > 0.0 && s.obj.score.values().any(|v| *v >= target);
+        if won || s.now() >= s.round_end {
+            self.round_reset(s.round + 1);
         }
         self.boxes_step();
         for e in self.ents.values_mut() {
@@ -972,13 +986,18 @@ impl World {
             let list: Vec<String> = champions.iter().enumerate().map(|(i, c)| format!("{}. {} ({} EP)", i + 1, c.n, big(c.ep))).collect();
             format!("Round over! Winners: {}. A new round begins - everyone starts from scratch.", list.join(", "))
         };
+        let target = self.data.shop.objectives.win_score;
         let text = match &company {
+            Some(c) if target > 0.0 && scores.get(c).is_some_and(|v| *v >= target) => {
+                format!("{} reached {} beacon points and wins the round! {}", c.to_uppercase(), big(target), text)
+            }
             Some(c) => format!("{} wins the round on beacon control! {}", c.to_uppercase(), text),
             None => text,
         };
         info!("season reset (round {}): {}", round, text);
         if let Some(s) = self.season.as_mut() {
             s.round = round;
+            s.round_end = s.now() + s.period as f64;
             s.profiles.clear();
             s.champions = champions;
             s.boxes.retain(|b| b.kind == BoxKind::Bonus);
@@ -1033,7 +1052,7 @@ impl World {
         let Some(path) = s.save_path.clone() else { return };
         let mut profiles = s.profiles.clone();
         profiles.extend(online);
-        let file = SaveFile { round: s.round, profiles, champions: s.champions.clone(), obj: s.obj.clone() };
+        let file = SaveFile { round: s.round, end: s.round_end, profiles, champions: s.champions.clone(), obj: s.obj.clone() };
         let tmp = path.with_extension("tmp");
         let res = serde_json::to_vec(&file)
             .map_err(|e| e.to_string())
@@ -1418,6 +1437,7 @@ mod tests {
             capture_exp: 500.0,
             capture_uridium: 100.0,
             win_bonus: 0.1,
+            win_score: 0.0,
             beacons: vec![crate::season::BeaconDef { map: "4-1".into(), x: 5000.0, y: 5000.0, weight: 2.0 }],
         };
         let data = w.data.clone();
@@ -1476,6 +1496,40 @@ mod tests {
         assert!(o.beacons[0].owner.is_none() && o.score.is_empty());
         let (_, factions) = w.standings();
         assert!(factions["mmo"].bonus >= 0.1);
+
+        // reaching winScore ends the round on the spot, the next one runs the full length again
+        let mut d = (*w.data).clone();
+        d.shop.objectives.win_score = 100.0;
+        w.data = std::sync::Arc::new(d);
+        let (round, end) = (w.season.as_ref().unwrap().round, w.season.as_ref().unwrap().round_end);
+        w.season.as_mut().unwrap().obj.score.insert("eic".into(), 100.0);
+        w.step(0.05);
+        let s = w.season.as_ref().unwrap();
+        assert_eq!(s.round, round + 1);
+        assert!(s.round_end >= end && s.obj.score.is_empty());
+        assert_eq!(s.obj.last_winner.as_deref(), Some("eic"));
+    }
+
+    #[test]
+    fn legacy_save_round_keeps_running_at_the_new_length() {
+        let dir = std::env::temp_dir().join(format!("season-legacy-{}", std::process::id()));
+        std::fs::create_dir_all(&dir).unwrap();
+        let path = dir.join("save.json");
+        // a save of the running 30 min UTC round, from before saves had an end time
+        let round = round_of(now_secs(), LEGACY_PERIOD);
+        std::fs::write(&path, format!(r#"{{"round":{},"profiles":{{}},"champions":[{{"n":"x","f":"mmo","ep":5.0}}],"obj":{{}}}}"#, round)).unwrap();
+        let mut s = SeasonState::new(Some(path.clone()), 3600);
+        s.load();
+        assert_eq!(s.round, round);
+        assert_eq!(s.round_end, (round * LEGACY_PERIOD + 3600) as f64);
+        assert_eq!(s.champions.len(), 1, "same round: carried over");
+        // a round that ended while the server was down: next round, full length
+        std::fs::write(&path, format!(r#"{{"round":7,"end":{},"profiles":{{}},"champions":[],"obj":{{}}}}"#, now_secs() - 10.0)).unwrap();
+        let mut s = SeasonState::new(Some(path), 3600);
+        s.load();
+        assert_eq!(s.round, 8);
+        assert!(s.round_end > now_secs() + 3500.0);
+        let _ = std::fs::remove_dir_all(dir);
     }
 
     #[test]
@@ -1565,8 +1619,8 @@ pub struct LootBox {
     pub until: f64,
 }
 
-/// Fly within this distance of a box to collect it.
-const PICKUP_RANGE: f64 = 140.0;
+/// The ship has to be on top of a box to collect it (DarkOrbit).
+const PICKUP_RANGE: f64 = 60.0;
 
 impl World {
     #[allow(clippy::too_many_arguments)]
@@ -1643,6 +1697,12 @@ impl World {
                 s.box_respawn.push((b.map, now + rule.respawn.max(5.0)));
             }
             self.broadcast(b.map, &ServerMsg::Pickup { x: b.x.round(), y: b.y.round(), by: who, cargo: b.kind == BoxKind::Cargo });
+            let mut b = b;
+            let jackpot = b.kind == BoxKind::Bonus && rule.jackpot_mult > 1.0 && self.rng.gen_bool(rule.jackpot.clamp(0.0, 1.0));
+            if jackpot {
+                (b.credits, b.uridium) = ((b.credits * rule.jackpot_mult).round(), (b.uridium * rule.jackpot_mult).round());
+                b.ammo = (b.ammo as f64 * rule.jackpot_mult) as u64;
+            }
             let Some(eco) = self.ents.get_mut(&who).and_then(|e| e.player_mut()).and_then(|p| p.eco.as_mut()) else { continue };
             eco.credits += b.credits;
             eco.uridium += b.uridium;
@@ -1659,7 +1719,7 @@ impl World {
                 .collect::<Vec<_>>()
                 .join(" + ");
             let label = if b.kind == BoxKind::Cargo { "cargo box" } else { "bonus box" };
-            self.send_log(who, &format!("You collected a {}: {}", label, what));
+            self.send_log(who, &format!("{}You collected a {}: {}", if jackpot { "JACKPOT! " } else { "" }, label, what));
             if b.kind == BoxKind::Cargo {
                 info!("player {} picked up a cargo box ({})", who, what);
             }

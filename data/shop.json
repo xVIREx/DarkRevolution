@@ -1,18 +1,19 @@
 {
-  "_note": "Season economy (30-minute rounds by default) (server/src/season.rs). Everyone starts from the `start` kit; everything resets when the round ends (rounds start at multiples of roundMinutes, UTC). Prices: c = credits, u = uridium. Ammo/rocket prices are per pack of `pack` rounds. Upgrade cost to reach level L of an item type = (c + u * upgrade.uriValue) * upgrade.perLevel * L credits. Remove this file or set enabled=false (or env SEASON=0) for the free sandbox.",
+  "_note": "Season economy (server/src/season.rs). Rounds last roundMinutes, or end early when a company reaches objectives.winScore; everyone starts from the `start` kit and everything resets when the round ends. Prices: c = credits, u = uridium. Ammo/rocket prices are per pack of `pack` rounds. Upgrade cost to reach level L of an item type = (c + u * upgrade.uriValue) * upgrade.perLevel * L credits. Remove this file or set enabled=false (or env SEASON=0) for the free sandbox.",
   "enabled": true,
-  "roundMinutes": 30,
+  "roundMinutes": 60,
   "deathDrop": 0.3,
   "cargoLife": 90,
-  "bonusBoxes": { "perMap": 12, "credits": 2500, "uridium": 40, "ammo": 100, "respawn": 30 },
+  "bonusBoxes": { "perMap": 12, "credits": 10000, "uridium": 150, "ammo": 300, "jackpot": 0.05, "jackpotMult": 10, "respawn": 30 },
   "objectives": {
-    "_note": "Company goal: beacons on the neutral 4-x maps. Captured while only one company is within radius (30 s, faster with more pilots); a held beacon scores pointsPerSec x weight for its company. Most points at round end wins; that company gets winBonus extra rewards next round.",
+    "_note": "Company goal: beacons on the neutral 4-x maps. Captured while only one company is within radius (30 s, faster with more pilots); a held beacon scores pointsPerSec x weight for its company. First company to winScore points wins at once (else most points when the 60 min run out); that company gets winBonus extra rewards next round.",
     "radius": 1500,
     "captureSecs": 30,
     "pointsPerSec": 1,
     "captureExp": 20000,
     "captureUridium": 3000,
     "winBonus": 0.1,
+    "winScore": 5400,
     "beacons": [
       { "map": "4-1", "x": 10400, "y": 10200 },
       { "map": "4-2", "x": 10400, "y": 10200 },
