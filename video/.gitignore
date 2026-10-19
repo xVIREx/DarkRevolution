@@ -1,0 +1,6 @@
+# generated: screenshots, recorded frames, clips, renders
+node_modules/
+frames/
+clips/
+out/
+cards/

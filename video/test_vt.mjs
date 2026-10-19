@@ -1,0 +1,14 @@
+import { launch, login, launchGame, waitAssets, Recorder, me } from './lib.mjs';
+const { browser, page } = await launch();
+await login(page);
+await launchGame(page);
+await waitAssets(page, 3000);
+const m = await me(page);
+await page.evaluate(({x,y}) => window.__game.moveTo(x+3000, y), m);
+const r = new Recorder(page);
+await r.start('test');
+const xs=[];
+await r.cap(3, async()=>{ xs.push((await me(page)).x); });
+await r.stop();
+const d=xs.slice(1).map((x,i)=>x-xs[i]); console.log('dx/frame', d.slice(60,120).map(v=>v.toFixed(1)).join(' '));
+await browser.close();
