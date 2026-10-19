@@ -311,7 +311,7 @@ input[type=text]:focus, input[type=search]:focus, select:focus { border-color: v
 .win-warp .warp-btn.mmo { color: #ff8a7a; }
 .win-warp .warp-btn.eic { color: #8ac4ff; }
 .win-warp .warp-btn.vru { color: #8dff9a; }
-.win-warp .warp-btn.current { border-image-source: url('/assets/ui/win/scale9btn_green_normal.png'); color: #fff; pointer-events: none; }
+.win-warp .warp-btn.current { border-image-source: url('/assets/ui/win/scale9btn_green_normal.png'); color: #fff; }
 /* upgrades / breakdown / formations / boosters */
 .eq-lvl { position: absolute; right: 1px; bottom: 0; min-width: 12px; padding: 0 2px; font: bold 9px/11px var(--font); color: #fff; text-align: center; background: rgba(0,0,0,0.75); border: 1px solid #3d8fb2; cursor: pointer; z-index: 2; }
 .eq-lvl:hover { border-color: var(--accent); }
@@ -440,28 +440,6 @@ html.season #win-target { margin-top: 22px; }
   .shop-have, .shop-btns { grid-column: 2; text-align: left; }
 }
 
-/* group window */
-.win-group .gr-invite { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; padding: 5px; margin-bottom: 5px; font-size: 11px; background: rgba(92,255,106,0.08); border: 1px solid rgba(92,255,106,0.4); }
-.win-group .gr-invite span { flex: 1 1 100%; }
-.win-group .gr-list { display: flex; flex-direction: column; gap: 4px; margin-bottom: 6px; max-height: 300px; overflow-y: auto; }
-.win-group .gr-m { padding: 3px 4px; background: rgba(255,255,255,0.04); border: 1px solid transparent; }
-.win-group .gr-m.me { border-color: rgba(255,207,63,0.35); }
-.win-group .gr-m.dead { opacity: 0.45; }
-.win-group .gr-head { display: flex; gap: 5px; align-items: baseline; font-size: 11px; }
-.win-group .gr-head i { color: var(--accent); font-style: normal; }
-.win-group .gr-head span { margin-left: auto; color: var(--dim); font-size: 9px; }
-.win-group .gr-head em { color: #ff9a4a; font-style: normal; }
-.win-group .gr-bars { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-top: 2px; }
-.win-group .gr-bar { position: relative; height: 9px; background: rgba(0,0,0,0.5); }
-.win-group .gr-bar i { position: absolute; left: 0; top: 0; bottom: 0; }
-.win-group .gr-bar.hp i { background: var(--hp); }
-.win-group .gr-bar.sh i { background: var(--sh); }
-.win-group .gr-bar span { position: relative; font-size: 8px; line-height: 9px; padding-left: 3px; color: #fff; text-shadow: 0 0 2px #000; }
-.win-group .gr-ctl { display: flex; gap: 3px; margin-top: 3px; justify-content: flex-end; }
-.win-group .gr-ctl .dobtn { padding: 0 6px; font-size: 9px; }
-.win-group .gr-row { display: flex; gap: 4px; margin-bottom: 4px; }
-.win-group .gr-row input { flex: 1; min-width: 0; }
-.win-group .hint { font-size: 9px; }
 
 /* rounds: one-key upgrade, mini leaderboard, toasts, round end */
 .upg-btn { position: absolute; left: 50%; bottom: 92px; transform: translateX(-50%); z-index: 13; display: flex; align-items: center; gap: 8px; min-width: 230px; padding: 4px 12px 4px 6px; overflow: hidden; cursor: pointer; background: var(--panel); border: 1px solid var(--line); border-radius: 3px; pointer-events: auto; }
@@ -512,3 +490,39 @@ html.touch .upg-btn { bottom: 76px; min-width: 0; }
 .re-company { font: 20px var(--title); letter-spacing: 2px; margin-bottom: 4px; text-shadow: 0 0 10px currentColor; }
 html.season.objectives #win-target { margin-top: 44px; }
 @media (max-width: 640px) { .obj-bar { top: 26px; gap: 4px; padding: 2px 4px; } .obj-sc { width: 50px; } .obj-b { min-width: 22px; font-size: 9px; } }
+
+/* upgrades panel */
+.win-upgrades .up-ladder { margin-bottom: 6px; }
+.win-upgrades .up-ship { font-size: 11px; color: var(--dim); margin-bottom: 4px; }
+.win-upgrades .up-ship b { color: #fff; font-weight: normal; }
+.win-upgrades .up-tiers { display: flex; flex-wrap: wrap; align-items: center; gap: 3px; }
+.win-upgrades .up-tier { padding: 2px 6px; font-size: 10px; color: var(--dim); border: 1px solid #2a4a5c; border-radius: 3px; cursor: help; }
+.win-upgrades .up-tier.own { color: #cfe; border-color: #3a7fa0; }
+.win-upgrades .up-tier.cur { color: #000; background: var(--accent); border-color: var(--accent); }
+.win-upgrades .up-arrow { color: #3a5a6c; font-size: 11px; }
+.win-upgrades .up-tabs { display: flex; gap: 2px; margin-bottom: 4px; }
+.win-upgrades .up-tab { flex: 1; text-align: center; padding: 3px 0; font-size: 10px; color: #bcd; cursor: pointer; background: url('/assets/ui/win/small_tabs_inactive.png') center / 100% 100%; }
+.win-upgrades .up-tab.on { background-image: url('/assets/ui/win/small_tabs_active.png'); color: var(--accent); }
+.win-upgrades .up-list { max-height: 52vh; overflow-y: auto; display: flex; flex-direction: column; gap: 3px; margin-bottom: 4px; }
+.up-row { display: grid; grid-template-columns: 34px 1fr auto; gap: 8px; align-items: center; padding: 4px 6px; background: rgba(255,255,255,0.03); border: 1px solid transparent; }
+.up-row.ok { background: rgba(107,217,107,0.06); }
+.up-row.best { border-color: var(--accent); }
+.up-ico { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: url('/assets/ui/win/itembg.png') center / 100% 100%; }
+.up-ico img { max-width: 28px; max-height: 28px; }
+.up-txt b { font-size: 12px; color: #fff; font-weight: normal; }
+.up-txt small { margin-left: 6px; font-size: 9px; color: var(--dim); }
+.up-txt small em { color: var(--accent); font-style: normal; }
+.up-txt span { display: block; font-size: 10px; color: var(--dim); }
+.up-fx { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; font-size: 10px; }
+.up-fx i { font-style: normal; }
+.up-fx i.pos { color: #6bd96b; }
+.up-fx i.neg { color: #ff7a6a; }
+.up-fx i.neu { color: var(--dim); }
+.up-fx u { text-decoration: none; color: #9fd8ff; margin-left: auto; }
+.up-row .dobtn { min-width: 92px; display: flex; flex-direction: column; align-items: center; font-size: 11px; line-height: 1.15; padding: 3px 6px; }
+.up-row .dobtn small { font-size: 9px; }
+.upg-btn .upg-badge { font-size: 10px; color: #b9ffb9; }
+.upg-btn .upg-badge:empty { display: none; }
+.pickup-fx { position: absolute; left: 0; top: 0; width: 42px; height: 42px; object-fit: contain; pointer-events: none; z-index: 5; }
+.season-bar .sb-prot { color: #8dff9a; }
+@media (max-width: 640px) { .up-row { grid-template-columns: 28px 1fr; } .up-row .dobtn { grid-column: 2; } }

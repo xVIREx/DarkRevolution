@@ -6,9 +6,8 @@ use crate::combat::{self, dist};
 use crate::data::Data;
 use crate::equipment::{self, Loadout};
 use crate::protocol::{ClientMsg, EntState, FactionRow, ServerMsg, TopMsg};
-use crate::season::Price;
 use crate::season::{
-    big, display_name, is_bot_token, map_tier, Objectives, now_secs, round_of, valid_token, Eco, NextBuy, Profile, SaveFile, TopRow,
+    big, display_name, is_bot_token, map_tier, Objectives, now_secs, round_of, valid_token, Eco, Profile, SaveFile, TopRow,
 };
 use rand::distributions::Alphanumeric;
 use rand::Rng;
@@ -20,10 +19,17 @@ const FACTIONS: [&str; 3] = ["mmo", "eic", "vru"];
 const BOARD_EVERY: f64 = 5.0;
 const SAVE_EVERY: f64 = 30.0;
 const TOP_ROWS: usize = 10;
+/// Ship changes need this long without taking damage.
+const SWITCH_COMBAT_SECS: f64 = 10.0;
 /// Jump CPU in the season: cooldown and "not under fire" window.
-pub const WARP_COOLDOWN_SECS: f64 = 60.0;
+pub const WARP_COOLDOWN_SECS: f64 = 30.0;
 const WARP_COMBAT_SECS: f64 = 10.0;
-const SHARE_PCT: f64 = super::group::SHARE_BONUS * 100.0;
+/// Company kill share: with company mates nearby the killer keeps this much of an alien's loot
+/// and the rest is split between them (weighted towards pilots who are behind). Alone = 100%.
+const KILLER_KEEPS: f64 = 0.7;
+const SHARE_RADIUS: f64 = 2000.0;
+/// A mate must have fired or been hit this recently to get a share (no AFK leeching).
+const SHARE_ACTIVE_SECS: f64 = 60.0;
 
 pub struct SeasonState {
     /// Current round (`round_of(now, period)`).
@@ -418,12 +424,12 @@ impl World {
     }
 
     /// (reset time, company bonus, PvP-free spot, next upgrade) for `you.season`.
-    pub(super) fn season_you_ctx(&self, id: u32) -> Option<(u64, f64, bool, Option<NextBuy>, f64)> {
+    pub(super) fn season_you_ctx(&self, id: u32) -> Option<(u64, f64, bool, f64)> {
         let s = self.season.as_ref()?;
         let e = self.ents.get(&id)?;
         e.player()?.eco.as_ref()?;
         let safe = self.protected_map(e.map) || self.in_safe_zone(e);
-        Some((s.reset_at_ms(), s.bonus.get(&e.faction).copied().unwrap_or(0.0), safe, self.recommend(id), self.time))
+        Some((s.reset_at_ms(), s.bonus.get(&e.faction).copied().unwrap_or(0.0), safe, self.time))
     }
 
     /// Season bots carry a `bot:` token (never the outbox state: a stalled human connection
@@ -443,16 +449,8 @@ impl World {
             || m.stations.iter().any(|s| dist(e.x, e.y, s.x, s.y) <= r.station)
     }
 
-    fn near_station(&self, e: &Entity) -> bool {
-        let r = self.data.shop.safe_radius.station.max(1000.0);
-        self.data.map(e.map).is_some_and(|m| m.stations.iter().any(|s| dist(e.x, e.y, s.x, s.y) <= r))
-    }
-
     /// Why player `a` may not shoot player `t` right now (season rules), if it may not.
     pub(super) fn pvp_block(&self, a: u32, t: u32) -> Option<&'static str> {
-        if self.same_group(a, t) {
-            return Some("You can't attack members of your group");
-        }
         self.season.as_ref()?;
         let (a, t) = (self.ents.get(&a)?, self.ents.get(&t)?);
         if !a.is_player() || !t.is_player() {
@@ -508,10 +506,8 @@ impl World {
             ClientMsg::Warp { map } => {
                 // Jump CPU: free, but not under fire and with a cooldown, so it saves travel
                 // time without being an escape button
-                let (ready, since_hit, here) = (eco.warp_ready, e.since_hit, e.map);
-                if *map == here {
-                    true
-                } else if p.dead {
+                let (ready, since_hit) = (eco.warp_ready, e.since_hit);
+                if p.dead {
                     true
                 } else if !eco.visited.contains(map) {
                     refuse(self, "The Jump CPU only reaches maps you've already flown to this round - use the portals [J]".into())
@@ -555,14 +551,16 @@ impl World {
                 self.season_ship(id, ship, design.clone());
                 true
             }
-            ClientMsg::Buy { kind, id: item, qty } if kind == "next" => {
-                let _ = item;
-                let _ = qty;
-                match self.recommend(id) {
-                    Some(n) if n.ok => self.season_buy(id, &n.kind, &n.id, 1),
-                    Some(n) => self.send_log(id, &format!("Next upgrade: {} - not enough yet", n.label)),
-                    None => self.send_log(id, "You have the best gear there is - spend on the Shop extras!"),
+            ClientMsg::Buy { kind, id: item, .. } if kind == "switch" => {
+                self.season_ship(id, item, None);
+                self.send_upgrades(id);
+                true
+            }
+            ClientMsg::Upgrades => {
+                if let Some(p) = self.ents.get_mut(&id).and_then(|e| e.player_mut()) {
+                    p.upgrades_req = self.time;
                 }
+                self.send_upgrades(id);
                 true
             }
             ClientMsg::Buy { kind, id: item, qty } => {
@@ -595,22 +593,33 @@ impl World {
             self.send_log(id, &format!("You don't own the {} - buy it in the Shop", s.name));
             return;
         }
-        if !self.near_station(e) && !self.is_bot(id) {
-            self.send_log(id, "Ships can only be changed at a space station");
+        // anywhere, but not mid-fight; hp/shield keep their fill ratio (no free heal)
+        if e.since_hit < SWITCH_COMBAT_SECS && !self.is_bot(id) {
+            self.send_log(id, "You can't change ships while under fire");
             return;
         }
         let e = self.ents.get_mut(&id).unwrap();
+        let hp_ratio = if e.mhp > 0.0 { (e.hp / e.mhp).clamp(0.0, 1.0) } else { 1.0 };
         let p = e.player_mut().unwrap();
         let changed = p.ship != ship;
         p.ship = ship.to_string();
         p.design = design;
+        if let Some(eco) = p.eco.as_mut() {
+            eco.pending_ship = None;
+        }
         if changed {
             let eco = p.eco.as_ref().unwrap();
             p.configs = eco.auto_configs(&data.items, equipment::slots(s, &data.items));
             info!("player {} switched to {}", id, s.name);
         }
-        Self::apply_ship(&data, e, changed);
+        Self::apply_ship(&data, e, false);
+        if changed && !e.player().is_some_and(|p| p.dead) {
+            e.hp = (e.mhp * hp_ratio).max(1.0);
+        }
         self.send_you(id, true);
+        if changed {
+            self.send_log(id, &format!("You are now flying the {}", s.name));
+        }
     }
 
     pub(super) fn season_auto_equip(&mut self, id: u32) {
@@ -652,20 +661,25 @@ impl World {
                     }
                     Effect::Ship(ship) => {
                         self.send_log(id, &text);
-                        let docked = self.near_station(&self.ents[&id]) || self.is_bot(id);
-                        if docked {
-                            self.season_ship(id, &ship, None);
+                        let busy = self.ents.get(&id).is_some_and(|e| e.since_hit < SWITCH_COMBAT_SECS) && !self.is_bot(id);
+                        if busy {
+                            if let Some(eco) = self.ents.get_mut(&id).and_then(|e| e.player_mut()).and_then(|p| p.eco.as_mut()) {
+                                eco.pending_ship = Some(ship);
+                            }
+                            self.send_log(id, "You'll switch to it as soon as you're out of combat");
                         } else {
-                            self.send_log(id, "Fly to a space station to switch to it (Hangar > Ships)");
+                            self.season_ship(id, &ship, None);
                         }
                         self.season_mark_dirty();
                         self.send_you(id, true);
+                        self.send_upgrades(id);
                         return;
                     }
                 }
                 self.send_log(id, &text);
                 if !self.is_bot(id) {
                     self.season_mark_dirty();
+                    self.send_upgrades(id);
                 }
             }
         }
@@ -690,18 +704,12 @@ impl World {
         let d = &data.npcs[def];
         let m = &data.shop.reward_mult;
         let killer_name = k.name.clone();
-        // group: split between the killer and active members on the map, with a small bonus pot
-        let share: Vec<u32> = self
-            .share_targets(killer)
-            .into_iter()
-            .filter(|id| self.ents.get(id).and_then(|e| e.player()).is_some_and(|p| p.eco.is_some()))
-            .collect();
-        let n = share.len().max(1) as f64;
-        let pot = (1.0 + super::group::SHARE_BONUS * (n - 1.0)) / n;
+        let share = self.kill_share(killer);
+        let mates = share.len() - 1;
         let mut info_line = None;
-        for &r in &share {
+        for &(r, frac) in &share {
             let e = self.ents.get_mut(&r).unwrap();
-            let f = (1.0 + s.bonus.get(&e.faction).copied().unwrap_or(0.0)) * pot;
+            let f = (1.0 + s.bonus.get(&e.faction).copied().unwrap_or(0.0)) * frac;
             let (ep, hon, cr, uri) = (d.exp * m.exp * f, d.honor * m.honor * f, d.credits * m.credits * f, d.uridium * m.uridium * f);
             let p = e.player_mut().unwrap();
             p.exp += ep;
@@ -721,15 +729,20 @@ impl World {
                 info_line = Some((ep, hon, cr, uri));
                 lines.push(format!("You destroyed {}", d.name));
             } else {
-                lines.push(format!("Group: {} destroyed {}", killer_name, d.name));
+                lines.push(format!("Company share: {} destroyed {} nearby", killer_name, d.name));
             }
             for (v, what) in [(cr, "credits"), (uri, "uridium"), (ep, "EP"), (hon, "honor")] {
                 if v > 0.0 {
                     lines.push(format!("You received {} {}", big(v), what));
                 }
             }
-            if r == killer && n > 1.0 {
-                lines.push(format!("(shared with {} group member{}, +{}% group bonus)", n - 1.0, if n > 2.0 { "s" } else { "" }, ((n - 1.0) * SHARE_PCT).round()));
+            if r == killer && mates > 0 {
+                lines.push(format!(
+                    "({}% shared with {} company pilot{} nearby - hunt alone to keep it all)",
+                    ((1.0 - KILLER_KEEPS) * 100.0).round(),
+                    mates,
+                    if mates > 1 { "s" } else { "" }
+                ));
             }
             if s.bonus.get(&self.ents[&r].faction).copied().unwrap_or(0.0) > 0.0 && r == killer {
                 lines.push(format!("(+{}% company bonus)", (s.bonus[&self.ents[&r].faction] * 100.0).round()));
@@ -739,10 +752,42 @@ impl World {
             }
         }
         if let Some((ep, hon, cr, uri)) = info_line {
-            let shared = if n > 1.0 { format!(", shared x{}", n) } else { String::new() };
+            let shared = if mates > 0 { format!(", shared with {}", mates) } else { String::new() };
             info!("player {} destroyed {} (+{} EP, +{} honor, +{} C, +{} U{})", killer, d.name, ep.round(), hon.round(), cr.round(), uri.round(), shared);
         }
         true
+    }
+
+    /// Who gets a cut of `killer`'s alien kill, as (pilot, fraction): the whole company is one
+    /// big party. Active mates within SHARE_RADIUS on the map split 1 - KILLER_KEEPS, weighted by
+    /// how far behind the killer they are (late joiners catch up, equals split evenly, stronger
+    /// pilots get less). Bots never take a cut from humans. Nobody near = the killer keeps all.
+    pub(super) fn kill_share(&self, killer: u32) -> Vec<(u32, f64)> {
+        let Some(k) = self.ents.get(&killer) else { return vec![] };
+        let lvl = |e: &Entity| e.player().map_or(1, |p| combat::level_for_exp(p.exp)).max(1) as f64;
+        let k_lvl = lvl(k);
+        let mates: Vec<(u32, f64)> = self
+            .ents
+            .iter()
+            .filter(|(id, e)| {
+                **id != killer
+                    && e.map == k.map
+                    && e.faction == k.faction
+                    && dist(e.x, e.y, k.x, k.y) <= SHARE_RADIUS
+                    && e.player().is_some_and(|p| {
+                        !p.dead
+                            && p.eco.as_ref().is_some_and(|x| !is_bot_token(&x.token))
+                            && self.time - p.last_shot.max(p.last_alien_hit) <= SHARE_ACTIVE_SECS
+                    })
+            })
+            .map(|(id, e)| (*id, (k_lvl / lvl(e)).clamp(0.25, 4.0)))
+            .collect();
+        let total: f64 = mates.iter().map(|m| m.1).sum();
+        if mates.is_empty() {
+            return vec![(killer, 1.0)];
+        }
+        let pot = 1.0 - KILLER_KEEPS;
+        std::iter::once((killer, KILLER_KEEPS)).chain(mates.into_iter().map(|(id, w)| (id, pot * w / total))).collect()
     }
 
     /// A player died to `killer`: count it and pay the PvP bounty (once per victim per cooldown).
@@ -808,6 +853,23 @@ impl World {
             if let Some(p) = e.player_mut().filter(|p| !p.tx.is_closed()) {
                 if let Some(eco) = p.eco.as_mut() {
                     eco.stats.online += dt;
+                }
+            }
+        }
+        if self.tick % 20 == 0 {
+            let ids: Vec<u32> = self.ents.values().filter(|e| e.player().is_some_and(|p| p.eco.is_some())).map(|e| e.id).collect();
+            for id in ids {
+                // bots never see the badge
+                let n = if self.is_bot(id) { 0 } else { self.affordable_upgrades(id) };
+                let pending = self.ents.get(&id).and_then(|e| {
+                    let p = e.player()?;
+                    (e.since_hit >= SWITCH_COMBAT_SECS && !p.dead).then(|| p.eco.as_ref()?.pending_ship.clone()).flatten()
+                });
+                if let Some(eco) = self.ents.get_mut(&id).and_then(|e| e.player_mut()).and_then(|p| p.eco.as_mut()) {
+                    eco.affordable = n;
+                }
+                if let Some(ship) = pending {
+                    self.season_ship(id, &ship, None);
                 }
             }
         }
@@ -1037,6 +1099,10 @@ mod tests {
         d.shop = serde_json::from_str(include_str!("../../../data/shop.json")).unwrap();
         d.shop.protected_maps = vec!["1-1".into(), "2-1".into()];
         d.shop.bonus_boxes.per_map = 0;
+        d.shop.tiers = vec![
+            crate::season::Tier { name: "Starter".into(), ships: vec!["ship_phoenix".into()] },
+            crate::season::Tier { name: "Tier 2".into(), ships: vec!["ship_liberator".into()] },
+        ];
         Arc::new(d)
     }
 
@@ -1086,7 +1152,8 @@ mod tests {
         assert_eq!(w.ents[&id].player().unwrap().configs[0].lasers, vec!["lf1"]);
         assert!(logs(&mut rx).contains("Equipment rejected"));
 
-        // buy a Liberator (too expensive), then credits arrive and it works; docked = switch
+        // buy a Liberator (too expensive), then credits arrive and it works; out of combat = switch
+        w.ents.get_mut(&id).unwrap().since_hit = 999.0;
         w.handle(id, ClientMsg::Buy { kind: "ship".into(), id: "ship_liberator".into(), qty: 1 });
         assert!(logs(&mut rx).contains("Not enough"));
         w.ents.get_mut(&id).unwrap().player_mut().unwrap().eco.as_mut().unwrap().credits = 100_000.0;
@@ -1221,59 +1288,50 @@ mod tests {
         let _ = v;
     }
 
-    fn grp(action: &str, name: Option<&str>, id: Option<u32>) -> ClientMsg {
-        ClientMsg::Group { action: action.into(), name: name.map(String::from), id }
-    }
-
     #[test]
-    fn groups_invite_share_and_protect() {
+    fn company_kill_share() {
         let mut w = world();
-        let (a, mut rxa) = join(&mut w, "token-grp-a", "mmo");
-        let (b, mut rxb) = join(&mut w, "token-grp-b", "eic");
-        let (c, _rxc) = join(&mut w, "token-grp-c", "vru");
-        w.ents.get_mut(&b).unwrap().name = "Bob".into();
-        // invite by name, accept -> group of 2 led by a
-        w.handle(a, grp("invite", Some("bob"), None));
-        assert!(logs(&mut rxb).contains("groupInvite"));
-        w.handle(b, grp("accept", None, None));
-        assert!(w.same_group(a, b));
-        assert!(logs(&mut rxa).contains("\"t\":\"group\""));
-        // only the leader invites
-        w.handle(b, grp("invite", None, Some(c)));
-        assert!(logs(&mut rxb).contains("Only the group leader"));
-
-        // group members never fight, even across companies on an open map
-        for id in [a, b] {
+        let (a, mut rxa) = join(&mut w, "token-share-a", "mmo");
+        let (b, mut rxb) = join(&mut w, "token-share-b", "mmo");
+        let (c, _rxc) = join(&mut w, "token-share-c", "eic");
+        let (d, _rxd) = join(&mut w, "token-share-d", "mmo");
+        for (id, x) in [(a, 5000.0), (b, 5500.0), (c, 5200.0), (d, 9000.0)] {
             let e = w.ents.get_mut(&id).unwrap();
-            (e.map, e.x, e.y) = (2, 5000.0, 5000.0);
+            (e.map, e.x, e.y) = (2, x, 5000.0);
         }
-        assert!(w.pvp_block(a, b).is_some());
-
-        // kill share: b inactive -> a gets everything; b active on the same map -> split + 5%
         let npc = *w.ents.keys().find(|k| w.ents[k].npc().is_some()).unwrap();
         let def = w.ents[&npc].npc().unwrap().def;
+        // alone (b idle, c other company, d too far): the killer keeps everything
         w.reward(a, def);
         assert_eq!(eco(&w, a).credits, 23_000.0);
         assert_eq!(eco(&w, b).credits, 15_000.0);
-        w.ents.get_mut(&b).unwrap().player_mut().unwrap().last_alien_hit = w.time;
+        // b active nearby: 70/30
+        w.ents.get_mut(&b).unwrap().player_mut().unwrap().last_shot = w.time;
         w.reward(a, def);
-        assert_eq!(eco(&w, a).credits, 23_000.0 + 4_200.0);
-        assert_eq!(eco(&w, b).credits, 15_000.0 + 4_200.0);
-        assert_eq!(eco(&w, a).stats.npc_kills, 2);
+        assert_eq!(eco(&w, a).credits, 23_000.0 + 5_600.0);
+        assert_eq!(eco(&w, b).credits, 15_000.0 + 2_400.0);
+        assert_eq!(eco(&w, c).credits, 15_000.0);
         assert_eq!(eco(&w, b).stats.npc_kills, 0);
-        // different map: no share
-        w.ents.get_mut(&b).unwrap().map = 1;
-        w.reward(a, def);
-        assert_eq!(eco(&w, b).credits, 19_200.0);
-
-        // leaving a 2-pilot group disbands it; disconnecting also leaves
-        w.handle(b, grp("leave", None, None));
-        assert!(!w.same_group(a, b) && w.group_of(a).is_none());
-        w.handle(a, grp("invite", None, Some(c)));
-        w.handle(c, grp("accept", None, None));
-        assert!(w.same_group(a, c));
-        w.remove(a);
-        assert!(w.group_of(c).is_none());
+        assert!(logs(&mut rxa).contains("hunt alone"));
+        assert!(logs(&mut rxb).contains("Company share"));
+        // no friendly fire inside the company, enemies still fair game off the safe zones
+        assert!(w.pvp_block(a, b).is_some());
+        // a veteran killer feeds a newcomer more than an equal: weights by level gap
+        w.ents.get_mut(&a).unwrap().player_mut().unwrap().exp = 1e7;
+        {
+            let e = w.ents.get_mut(&d).unwrap();
+            e.x = 5300.0;
+            let p = e.player_mut().unwrap();
+            (p.last_shot, p.exp) = (w.time, 1e7);
+        }
+        let sh = w.kill_share(a);
+        let get = |id| sh.iter().find(|x| x.0 == id).unwrap().1;
+        assert!((sh.iter().map(|x| x.1).sum::<f64>() - 1.0).abs() < 1e-9);
+        assert_eq!(get(a), KILLER_KEEPS);
+        assert!(get(b) > get(d) * 2.0, "newcomer b gets more than equal-level d");
+        // bots never take a cut from a human kill
+        w.ents.get_mut(&d).unwrap().player_mut().unwrap().eco.as_mut().unwrap().token = "bot:x".into();
+        assert!(w.kill_share(a).iter().all(|x| x.0 != d));
     }
 
     #[test]
@@ -1320,8 +1378,11 @@ mod tests {
         // once it can afford the next ship (here the Liberator) it buys it without docking
         w.bot_auto_upgrade(bot);
         assert_eq!(w.ents[&bot].player().unwrap().ship, "ship_phoenix", "can't afford 30k yet");
-        w.ents.get_mut(&bot).unwrap().player_mut().unwrap().eco.as_mut().unwrap().credits = 50_000.0;
-        w.bot_auto_upgrade(bot);
+        // with money it buys the best-value upgrades and gets to the next ship along the way
+        w.ents.get_mut(&bot).unwrap().player_mut().unwrap().eco.as_mut().unwrap().credits = 200_000.0;
+        for _ in 0..15 {
+            w.bot_auto_upgrade(bot);
+        }
         assert_eq!(w.ents[&bot].player().unwrap().ship, "ship_liberator");
         let (rows, factions) = w.standings();
         assert!(rows.is_empty());
@@ -1397,6 +1458,70 @@ mod tests {
         let (_, factions) = w.standings();
         assert!(factions["mmo"].bonus >= 0.1);
     }
+
+    #[test]
+    fn upgrade_options_show_real_effects() {
+        let mut w = world();
+        let (id, _rx) = join(&mut w, "token-upg-1", "mmo");
+        let opts = w.upgrade_options(id);
+        // next tier ship, with its slots compared to the current ship
+        let ship = opts.iter().find(|o| o.cat == "ship").expect("ship option");
+        assert_eq!((ship.kind.as_str(), ship.id.as_str()), ("ship", "ship_liberator"));
+        assert!(ship.desc.contains("4 lasers") && ship.hp > 0.0);
+        // a better laser replaces the LF-1: positive damage, priced
+        let laser = opts.iter().find(|o| o.cat == "laser").expect("laser option");
+        assert!(laser.dmg > 0.0 && laser.c > 0.0);
+        // tech is listed (P.E.T. adds damage)
+        assert!(opts.iter().any(|o| o.cat == "tech" && o.id == "pet" && o.dmg > 0.0));
+        w.ents.get_mut(&id).unwrap().player_mut().unwrap().eco.as_mut().unwrap().credits = 1e6;
+        assert!(w.affordable_upgrades(id) > 0);
+    }
+
+    #[test]
+    fn ship_switch_anywhere_but_not_under_fire() {
+        let mut w = world();
+        let (id, mut rx) = join(&mut w, "token-sw-1", "mmo");
+        {
+            let e = w.ents.get_mut(&id).unwrap();
+            (e.map, e.x, e.y) = (2, 8000.0, 8000.0); // far from any station
+            e.hp = e.mhp / 2.0;
+            e.player_mut().unwrap().eco.as_mut().unwrap().credits = 1e6;
+            e.since_hit = 0.0; // under fire
+        }
+        w.handle(id, ClientMsg::Buy { kind: "ship".into(), id: "ship_liberator".into(), qty: 1 });
+        assert_eq!(w.ents[&id].player().unwrap().ship, "ship_phoenix", "not mid-fight");
+        assert!(logs(&mut rx).contains("out of combat"));
+        // out of combat: the pending switch happens, hp keeps its ratio (no free heal)
+        w.ents.get_mut(&id).unwrap().since_hit = 20.0;
+        w.tick = 19;
+        w.step(0.05);
+        let e = &w.ents[&id];
+        assert_eq!(e.player().unwrap().ship, "ship_liberator");
+        assert!((e.hp / e.mhp - 0.5).abs() < 0.01, "hp ratio kept: {}/{}", e.hp, e.mhp);
+    }
+
+    #[test]
+    fn dmz_keeps_aliens_off_resting_pilots() {
+        let mut w = world();
+        let (id, _rx) = join(&mut w, "token-dmz-1", "mmo");
+        let npc = *w.ents.keys().find(|k| w.ents[k].npc().is_some()).unwrap();
+        // pilot at the 1-1 portal, alien right next to it and locked on
+        {
+            let e = w.ents.get_mut(&id).unwrap();
+            (e.map, e.x, e.y) = (1, 15000.0, 15200.0);
+            let n = w.ents.get_mut(&npc).unwrap();
+            (n.map, n.x, n.y) = (1, 15100.0, 15200.0);
+            n.target = Some(id);
+            n.attacking = true;
+        }
+        let hp = (w.ents[&id].hp, w.ents[&id].sh);
+        w.try_laser(npc);
+        assert_eq!((w.ents[&id].hp, w.ents[&id].sh), hp, "protected in the DMZ");
+        assert!(!w.ents[&npc].attacking, "alien gives up");
+        // shooting from the DMZ ends the protection
+        w.ents.get_mut(&id).unwrap().player_mut().unwrap().last_shot = w.time;
+        assert!(!w.alien_proof(&w.ents[&id]));
+    }
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -1419,11 +1544,6 @@ pub struct LootBox {
     pub ammo: u64,
     /// Expires at this world time (cargo); bonus boxes live forever.
     pub until: f64,
-}
-
-/// Highest entry of a cheapest-first list that `eco` can pay for, else the cheapest one.
-fn best_affordable<'a>(eco: &Eco, list: Vec<(String, String, &'a Price)>) -> Option<(String, String, &'a Price)> {
-    list.iter().rev().find(|(_, _, pr)| eco.can_pay(pr.c, pr.u)).cloned().or_else(|| list.first().cloned())
 }
 
 /// Fly within this distance of a box to collect it.
@@ -1503,6 +1623,7 @@ impl World {
             if b.kind == BoxKind::Bonus {
                 s.box_respawn.push((b.map, now + rule.respawn.max(5.0)));
             }
+            self.broadcast(b.map, &ServerMsg::Pickup { x: b.x.round(), y: b.y.round(), by: who, cargo: b.kind == BoxKind::Cargo });
             let Some(eco) = self.ents.get_mut(&who).and_then(|e| e.player_mut()).and_then(|p| p.eco.as_mut()) else { continue };
             eco.credits += b.credits;
             eco.uridium += b.uridium;
@@ -1554,105 +1675,6 @@ impl World {
             .collect()
     }
 
-    /// The one-key upgrade: fill empty slots, then the next bigger ship, then better lasers /
-    /// shields, drones, and finally upgrade levels. `ok` = affordable now.
-    pub(super) fn recommend(&self, id: u32) -> Option<NextBuy> {
-        let data = &self.data;
-        let (shop, items) = (&data.shop, &data.items);
-        let p = self.ents.get(&id)?.player()?;
-        let eco = p.eco.as_ref()?;
-        let ship = World::ship_of(data, p);
-        let sl = equipment::slots(ship, items);
-        let val = |pr: &Price| pr.c + pr.u * shop.upgrade.uri_value;
-        let mk = |kind: &str, id: &str, label: String, pr: &Price| NextBuy {
-            kind: kind.into(),
-            id: id.into(),
-            label,
-            c: pr.c,
-            u: pr.u,
-            ok: eco.can_pay(pr.c, pr.u),
-        };
-        let mut lasers: Vec<(&crate::data::LaserItem, &Price)> =
-            items.lasers.iter().filter(|l| !l.pet_only).filter_map(|l| shop.items.get(&l.id).map(|p| (l, p))).collect();
-        lasers.sort_by(|a, b| a.0.damage.total_cmp(&b.0.damage));
-        let mut shields: Vec<(&crate::data::ShieldGen, &Price)> =
-            items.shield_gens.iter().filter_map(|g| shop.items.get(&g.id).map(|p| (g, p))).collect();
-        shields.sort_by(|a, b| (a.0.shield * a.0.absorb).total_cmp(&(b.0.shield * b.0.absorb)));
-
-        let owned_lasers: u32 = lasers.iter().map(|(l, _)| eco.owns(&l.id)).sum();
-        let owned_gens: u32 = items.shield_gens.iter().map(|g| eco.owns(&g.id)).chain(items.speed_gens.iter().map(|g| eco.owns(&g.id))).sum();
-        // 1/2: empty ship slots
-        if owned_lasers < sl.lasers {
-            let l: Vec<_> = lasers.iter().map(|(l, p)| (l.id.clone(), l.name.clone(), *p)).collect();
-            return best_affordable(eco, l).map(|(i, n, p)| mk("item", &i, format!("Laser {}", n), p));
-        }
-        if owned_gens < sl.gens {
-            let g: Vec<_> = shields.iter().map(|(g, p)| (g.id.clone(), g.name.clone(), *p)).collect();
-            return best_affordable(eco, g).map(|(i, n, p)| mk("item", &i, format!("Shield {}", n), p));
-        }
-        // improvements: a laser / shield better than your weakest one, drones, levels
-        let mut improve: Vec<NextBuy> = vec![];
-        let weakest_laser = lasers.iter().filter(|(l, _)| eco.owns(&l.id) > 0).map(|(l, _)| l.damage).fold(f64::INFINITY, f64::min);
-        let better_l: Vec<_> = lasers.iter().filter(|(l, _)| l.damage > weakest_laser).map(|(l, p)| (l.id.clone(), l.name.clone(), *p)).collect();
-        if let Some((i, n, p)) = best_affordable(eco, better_l) {
-            improve.push(mk("item", &i, format!("Laser {}", n), p));
-        }
-        let sv = |g: &crate::data::ShieldGen| g.shield * g.absorb;
-        let weakest_shield = shields.iter().filter(|(g, _)| eco.owns(&g.id) > 0).map(|(g, _)| sv(g)).fold(f64::INFINITY, f64::min);
-        let better_s: Vec<_> = shields.iter().filter(|(g, _)| sv(g) > weakest_shield).map(|(g, p)| (g.id.clone(), g.name.clone(), *p)).collect();
-        if let Some((i, n, p)) = best_affordable(eco, better_s) {
-            improve.push(mk("item", &i, format!("Shield {}", n), p));
-        }
-        let drones: u32 = items.drones.iter().map(|d| eco.owns(&d.id)).sum();
-        if drones < items.max_drones {
-            let d: Vec<_> = items.drones.iter().filter_map(|d| shop.items.get(&d.id).map(|p| (d.id.clone(), d.name.clone(), p))).collect();
-            if let Some((i, n, p)) = best_affordable(eco, d) {
-                improve.push(mk("item", &i, format!("Drone {}", n), p));
-            }
-        }
-        // next bigger ship
-        let slots_of = |s: &crate::data::Ship| s.lasers + s.generators;
-        let mut ships: Vec<(&crate::data::Ship, &Price)> = shop
-            .ships
-            .iter()
-            .filter(|(i, _)| !eco.ships.contains(*i))
-            .filter_map(|(i, p)| data.ship(i).map(|s| (s, p)))
-            .filter(|(s, _)| slots_of(s) > slots_of(ship) || (slots_of(s) == slots_of(ship) && s.hp > ship.hp * 1.5))
-            .collect();
-        ships.sort_by(|a, b| val(a.1).total_cmp(&val(b.1)));
-        let next_ship = ships.first().map(|(s, p)| mk("ship", &s.id, format!("Ship {}", s.name), p));
-        if let Some(ns) = &next_ship {
-            if ns.ok {
-                return next_ship;
-            }
-            // while saving up, only suggest cheap improvements (<= 25% of the ship)
-            let cap = (ns.c + ns.u * shop.upgrade.uri_value) * 0.25;
-            if let Some(i) = improve.iter().find(|i| i.ok && i.c + i.u * shop.upgrade.uri_value <= cap) {
-                return Some(i.clone());
-            }
-            return next_ship;
-        }
-        if let Some(i) = improve.iter().find(|i| i.ok).or(improve.first()) {
-            return Some(i.clone());
-        }
-        // finally: the lowest upgrade level of an owned laser / shield / drone type
-        let mut lv: Vec<(&str, u8, u8)> = vec![];
-        for (l, _) in &lasers {
-            if eco.owns(&l.id) > 0 {
-                lv.push((&l.id, eco.level(&l.id), l.max_level));
-            }
-        }
-        for (g, _) in &shields {
-            if eco.owns(&g.id) > 0 {
-                lv.push((&g.id, eco.level(&g.id), g.max_level));
-            }
-        }
-        lv.retain(|(_, l, m)| l < m);
-        lv.sort_by_key(|(_, l, _)| *l);
-        let (uid, l, _) = lv.first()?;
-        let cost = shop.upgrade_cost(uid, *l)?;
-        Some(mk("upgrade", uid, format!("Upgrade {} to lvl {}", display_name(items, uid), l + 1), &Price { c: cost, u: 0.0, pack: 0 }))
-    }
 }
 
 impl World {
@@ -1671,9 +1693,11 @@ impl World {
         if !self.ents.get(&id).is_some_and(|e| e.alive()) {
             return;
         }
-        let Some(n) = self.recommend(id) else { return };
-        if n.ok {
-            self.season_buy(id, &n.kind, &n.id, 1);
+        let Some(o) = self.bot_pick_upgrade(id) else { return };
+        if o.kind == "switch" {
+            self.season_ship(id, &o.id, None);
+        } else {
+            self.season_buy(id, &o.kind, &o.id, 1);
         }
     }
 }

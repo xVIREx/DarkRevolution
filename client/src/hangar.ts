@@ -115,7 +115,7 @@ export class Hangar {
     el('span', undefined, 'With designs only', lab);
     this.onlyDesigns.addEventListener('change', () => this.renderGrid());
     this.countEl = el('span', 'hint', '', tb);
-    el('span', 'hint', season ? '· click a ship to buy it or pick a design · double-click to fly it (at a station)' : '· click a ship for designs · double-click to equip · ☐ to compare', tb);
+    el('span', 'hint', season ? '· click a ship to buy it or pick a design · double-click to fly it (not while under fire)' : '· click a ship for designs · double-click to equip · ☐ to compare', tb);
 
     const main = el('div', 'main', undefined, pageShips);
     this.grid = el('div', 'grid', undefined, main);
@@ -420,9 +420,9 @@ export class Hangar {
       const ok = canAfford(this.you, p);
       const buy = el('button', 'btn primary', `Buy ${esc(s.name)} · ${priceHtml(p)}`, title);
       buy.disabled = !ok;
-      buy.title = ok ? 'Buy this ship (you switch to it at a space station)' : 'Not enough credits / uridium yet';
+      buy.title = ok ? 'Buy this ship - you switch to it right away (or once out of combat)' : 'Not enough credits / uridium yet';
       buy.addEventListener('click', () => this.actions.sendRaw({ t: 'buy', kind: 'ship', id: s.id }));
-      el('div', 'hint', 'Buy the ship to fly it and unlock its designs. Ships can only be changed at a space station.', box);
+      el('div', 'hint', 'Buy the ship to fly it and unlock its designs. Tip: press U to compare it with your other upgrade options.', box);
       return;
     }
     const eq = el('button', 'btn primary', 'Equip base', title);

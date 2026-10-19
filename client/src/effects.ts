@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { Assets } from './assets';
+import { Assets, assetUrl } from './assets';
 import { World } from './world';
 import { EntityManager } from './entities';
 import { SheetSprite, basicMat, makeCircle, toThreeY } from './sprites';
@@ -89,7 +89,32 @@ export class Effects {
     }
   }
 
+  /** DarkOrbit-style box collection: the box shrinks and is pulled into the collecting ship. */
+  pickup(x: number, y: number, by: EntId, cargo: boolean, now: number): void {
+    const img = document.createElement('img');
+    img.className = 'pickup-fx';
+    img.src = assetUrl((this.assets.manifest.box as Record<string, string>)[cargo ? 'cargo' : 'bonus'] ?? 'boxes/box2.png');
+    this.dmgLayer.appendChild(img);
+    const target = this.posGetter(by, { x, y });
+    this.pickups.push({ el: img, x, y, target, t0: now });
+  }
+
+  private pickups: { el: HTMLImageElement; x: number; y: number; target: () => Pos | null; t0: number }[] = [];
+
   update(now: number): void {
+    this.pickups = this.pickups.filter((p) => {
+      const k = Math.min(1, (now - p.t0) / 450);
+      if (k >= 1) {
+        p.el.remove();
+        return false;
+      }
+      const t = p.target() ?? { x: p.x, y: p.y };
+      const e = k * k; // accelerate into the ship
+      const s = this.world.worldToScreen(p.x + (t.x - p.x) * e, p.y + (t.y - p.y) * e);
+      p.el.style.transform = `translate(${s.x}px, ${s.y}px) translate(-50%, -50%) scale(${1 - 0.8 * k}) rotate(${k * 200}deg)`;
+      p.el.style.opacity = String(1 - k * 0.6);
+      return true;
+    });
     this.fx = this.fx.filter((f) => {
       const alive = f.update(now);
       if (!alive) f.dispose();
@@ -110,6 +135,8 @@ export class Effects {
   }
 
   clear(): void {
+    for (const p of this.pickups) p.el.remove();
+    this.pickups = [];
     for (const f of this.fx) f.dispose();
     this.fx = [];
     for (const d of this.dmgEls) d.el.remove();

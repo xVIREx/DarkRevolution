@@ -15,8 +15,8 @@ import { Dialog } from './hud/dialogs';
 import { esc } from './hud/dom';
 import { VolumePanel } from './hud/volume';
 import { WarpWindow } from './hud/warp';
-import { MiniBoard, RankWindow, roundEndHtml, SeasonBar, toast, UpgradeButton } from './hud/season';
-import { GroupWindow } from './hud/group';
+import { MiniBoard, RankWindow, roundEndHtml, SeasonBar, toast } from './hud/season';
+import { UpgradeButton, UpgradePanel } from './hud/upgrades';
 import { BeaconsView, ObjectiveBar } from './hud/objectives';
 import { AudioSystem } from './audio';
 import type { EntId, EntSnap, Faction, MapDef, ObjMsg, ServerMsg, YouMsg } from './types';
@@ -38,9 +38,9 @@ export class Game implements Actions {
   private seasonBar: SeasonBar | null = null;
   private rankWin: RankWindow | null = null;
   private upgradeBtn: UpgradeButton | null = null;
+  private upgradePanel: UpgradePanel | null = null;
   private miniBoard: MiniBoard | null = null;
   private roundOver: Dialog | null = null;
-  private groupWin: GroupWindow;
   private objBar: ObjectiveBar | null = null;
   private beacons: BeaconsView | null = null;
   private obj: ObjMsg | null = null;
@@ -87,7 +87,9 @@ export class Game implements Actions {
       this.seasonBar = new SeasonBar(this.hud.root, () => { this.rankWin!.win.open(); this.rankWin!.win.front(); });
       this.seasonBar.setSkew(season.skew);
       this.hud.rightMenu.add({ icon: 'rankings', title: 'Round ranking', win: 'win-rank' });
-      this.upgradeBtn = new UpgradeButton(this.hud.root, this, () => this.you);
+      this.upgradePanel = new UpgradePanel(this, new Map(assets.ships.map((s) => [s.id, s])));
+      this.upgradeBtn = new UpgradeButton(this.hud.root, () => this.upgradePanel?.toggle());
+      this.hud.rightMenu.add({ icon: 'new_shop', title: 'Upgrades [U]', win: 'win-upgrades' });
       this.miniBoard = new MiniBoard(this.hud.root, () => { this.rankWin!.win.open(); this.rankWin!.win.front(); }, () => this.ents.me()?.snap.n ?? this.name);
       this.roundOver = new Dialog('Round over', 'Next round', () => this.roundOver?.hide());
       this.objBar = new ObjectiveBar(this.hud.root);
@@ -96,12 +98,10 @@ export class Game implements Actions {
       this.hud.rightMenu.add({ icon: 'shop', title: 'Shop [H]', onClick: () => this.hangar.show('Shop'), isOpen: () => false });
     }
     this.warpWin = new WarpWindow(this, season
-      ? 'Jump to any map. Recharges for 60 s after each jump and does not work while you are under fire.'
+      ? 'Jump to any map. Recharges for 30 s after each jump and does not work while you are under fire.'
       : undefined);
     this.hud.rightMenu.add({ icon: 'spacemap', title: 'Jump CPU [G]', win: 'win-warp' });
     this.hud.setShipNames(this.hangar.shipNameMap());
-    this.groupWin = new GroupWindow(this, () => this.state());
-    this.hud.leftMenu.add({ icon: 'contacts', title: 'Group', win: 'win-group' });
     this.respawn = new Dialog('Ship destroyed', 'Repair & respawn', () => this.revive());
     this.lost = new Dialog('Connection lost', 'Reconnect', () => this.reconnect());
 
@@ -160,9 +160,10 @@ export class Game implements Actions {
           this.ents.myFaction = y.faction;
         }
         if (y.season) {
-          this.seasonBar?.update(y.season, this.rankWin?.pilots ?? 0);
+          this.seasonBar?.update(y.season, this.rankWin?.pilots ?? 0, !!y.protected);
           this.rankWin?.setYou(y);
-          this.upgradeBtn?.update();
+          this.upgradeBtn?.update(y);
+          this.upgradePanel?.setYou(y);
         }
         this.hangar.setYou(y);
         break;
@@ -193,12 +194,6 @@ export class Game implements Actions {
         this.chatBox.add(m.from, m.text);
         if (m.from === 'SEASON') this.log.add(m.text, true);
         break;
-      case 'group': {
-        const { t: _t, ...g } = m;
-        void _t;
-        this.groupWin.setGroup(g);
-        break;
-      }
       case 'roundEnd':
         this.roundOver?.show(roundEndHtml(m, this.ents.me()?.snap.n ?? this.name, this.faction), 'Round over');
         break;
@@ -209,9 +204,12 @@ export class Game implements Actions {
         this.objBar?.update(o, this.faction);
         break;
       }
-      case 'groupInvite':
-        this.groupWin.onInvite(m.from, m.id);
-        this.audio.play('select');
+      case 'upgrades':
+        this.upgradePanel?.setOptions(m.options);
+        break;
+      case 'pickup':
+        this.effects.pickup(m.x, m.y, m.by, m.cargo, now);
+        if (String(m.by) === this.ents.myId) this.audio.play('select');
         break;
       case 'top': {
         const { t: _t, ...top } = m;
@@ -444,7 +442,6 @@ export class Game implements Actions {
       ents: (function* () { for (const v of ents.values()) yield { snap: v.snap, x: v.x, y: v.y }; })(),
       myId: this.ents.myId,
       selectedId: this.ents.selectedId,
-      group: this.groupWin?.current ?? null,
       obj: this.obj,
     };
   }
@@ -485,7 +482,6 @@ export class Game implements Actions {
       this.minimap.update(s, now);
       this.warpWin?.update(s);
       this.beacons?.update(this.obj, this.map?.id ?? null);
-      this.groupWin.update(s);
     } catch (e) {
       console.error('frame error', e);
     }

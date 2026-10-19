@@ -15,9 +15,9 @@ use tracing::{debug, info};
 
 mod behavior;
 mod bots;
-mod group;
 mod objectives;
 mod season;
+mod upgrades;
 
 pub use season::SeasonState;
 
@@ -64,8 +64,12 @@ pub struct PlayerData {
     pub rsb_cd: f64,
     /// Daily season wallet/inventory; `None` = sandbox player (everything free) or bot.
     pub eco: Option<Box<Eco>>,
-    /// World time of the last hit on an alien (group reward sharing needs recent activity).
+    /// World time of the last hit on an alien (company kill shares need recent activity).
     pub last_alien_hit: f64,
+    /// World time this player last fired (lasers or rockets); shooting ends DMZ protection.
+    pub last_shot: f64,
+    /// World time the Upgrades panel last asked for options (pushes stop once it closes).
+    pub upgrades_req: f64,
     last_you: Option<YouMsg>,
     you_timer: f64,
 }
@@ -265,7 +269,6 @@ pub struct World {
     pending: Vec<(u32, String)>,
     /// Daily season (data/shop.json); `None` = free sandbox.
     pub season: Option<SeasonState>,
-    groups: group::Groups,
 }
 
 impl World {
@@ -281,7 +284,6 @@ impl World {
             bots: vec![],
             pending: vec![],
             season: None,
-            groups: Default::default(),
         };
         w.season = SeasonState::from_env(&w.data);
         let data = w.data.clone();
@@ -520,6 +522,8 @@ impl World {
                 rsb_cd: 0.0,
                 eco: None,
                 last_alien_hit: -1e9,
+                last_shot: -1e9,
+                upgrades_req: -1e9,
                 last_you: None,
                 you_timer: 0.0,
             })),
@@ -541,12 +545,23 @@ impl World {
     }
 
     pub fn remove(&mut self, id: u32) {
-        self.group_leave(id);
         if let Some(e) = self.ents.remove(&id) {
             info!("player {} '{}' left", id, e.name);
             self.season_store(&e);
             self.clear_targeting(id);
         }
+    }
+
+    /// Player inside a portal/station DMZ who hasn't fired recently: aliens can't attack them
+    /// (arriving through a portal or warping lands you in one).
+    pub(crate) fn alien_proof(&self, e: &Entity) -> bool {
+        let Some(p) = e.player() else { return false };
+        if self.time - p.last_shot < combat::DMZ_CALM {
+            return false;
+        }
+        let Some(m) = self.data.map(e.map) else { return false };
+        m.portals.iter().any(|q| dist(e.x, e.y, q.x, q.y) <= combat::PORTAL_DMZ)
+            || m.stations.iter().any(|s| dist(e.x, e.y, s.x, s.y) <= combat::STATION_DMZ)
     }
 
     fn clear_targeting(&mut self, id: u32) {
@@ -570,10 +585,10 @@ impl World {
         }
     }
 
-    fn you_of(data: &Data, e: &Entity, ctx: Option<(u64, f64, bool, Option<crate::season::NextBuy>, f64)>) -> Option<YouMsg> {
+    fn you_of(data: &Data, e: &Entity, ctx: Option<(u64, f64, bool, f64)>, protected: bool) -> Option<YouMsg> {
         let p = e.player()?;
         let ship = Self::ship_of(data, p);
-        let season = p.eco.as_ref().zip(ctx).map(|(eco, (reset_at, bonus, safe, next, now))| SeasonYou {
+        let season = p.eco.as_ref().zip(ctx).map(|(eco, (reset_at, bonus, safe, now))| SeasonYou {
             reset_at,
             bonus,
             ships: eco.ships.iter().cloned().collect(),
@@ -584,7 +599,7 @@ impl World {
             pilot: crate::season::pilot_view(&eco.stats),
             rank: eco.rank,
             safe,
-            next,
+            affordable: eco.affordable,
             round_minutes: (data.shop.round_secs() / 60) as f64,
             visited: eco.visited.iter().copied().collect(),
             warp_cd: (eco.warp_ready - now).max(0.0).ceil(),
@@ -611,6 +626,7 @@ impl World {
             slots: equipment::slots(ship, &data.items),
             stats: p.stats.clone(),
             cfg_cd: p.cfg_cd.ceil(),
+            protected,
             faction: e.faction.clone(),
             season,
         })
@@ -619,8 +635,9 @@ impl World {
     /// Send `you` if it changed (or `force`).
     fn send_you(&mut self, id: u32, force: bool) {
         let ctx = self.season_you_ctx(id);
+        let protected = self.ents.get(&id).is_some_and(|e| self.alien_proof(e));
         let Some(e) = self.ents.get_mut(&id) else { return };
-        let Some(you) = Self::you_of(&self.data, e, ctx) else { return };
+        let Some(you) = Self::you_of(&self.data, e, ctx, protected) else { return };
         let p = e.player_mut().unwrap();
         if force || p.last_you.as_ref() != Some(&you) || p.you_timer >= YOU_INTERVAL {
             let _ = p.tx.try_send(ServerMsg::You(&you).json());
@@ -644,8 +661,7 @@ impl World {
         let Some(e) = self.ents.get_mut(&id) else { return };
         let dead = e.player().map(|p| p.dead).unwrap_or(true);
         match msg {
-            ClientMsg::Login { .. } | ClientMsg::Buy { .. } | ClientMsg::AutoEquip => {}
-            ClientMsg::Group { action, name, id: target } => self.handle_group(id, &action, name, target),
+            ClientMsg::Login { .. } | ClientMsg::Buy { .. } | ClientMsg::AutoEquip | ClientMsg::Upgrades => {}
             ClientMsg::Move { x, y } => {
                 if dead || !x.is_finite() || !y.is_finite() {
                     return;
@@ -917,16 +933,14 @@ impl World {
             self.send_log(id, "Unknown map");
             return;
         };
+        // your company's station if the map has one (also within the current map), else a random spot
         let e = &self.ents[&id];
-        if e.map == dest.id {
-            return;
-        }
-        let station = dest
-            .stations
-            .iter()
-            .find(|s| s.faction == e.faction)
-            .or_else(|| dest.stations.first());
-        let (x, y) = station.map_or((dest.w / 2.0, dest.h / 2.0), |s| (s.x, s.y));
+        let same = e.map == dest.id;
+        let (x, y) = match dest.stations.iter().find(|s| s.faction == e.faction) {
+            Some(s) => (s.x, s.y),
+            None => (self.rng.gen_range(dest.w * 0.1..dest.w * 0.9), self.rng.gen_range(dest.h * 0.1..dest.h * 0.9)),
+        };
+        let e = &self.ents[&id];
         let from = data.map(e.map).map_or_else(String::new, |m| m.name.clone());
         let e = self.ents.get_mut(&id).unwrap();
         e.map = dest.id;
@@ -937,7 +951,9 @@ impl World {
         e.attacking = false;
         info!("player {} warped {} -> {}", id, from, dest.name);
         let e = &self.ents[&id];
-        self.send_map(e);
+        if !same {
+            self.send_map(e);
+        }
         self.clear_targeting(id);
         self.send_you(id, true);
         self.send_log(id, &format!("Warped to {}", dest.name));
@@ -1000,10 +1016,14 @@ impl World {
         if self.pvp_refused(id, tid) {
             return;
         }
+        let now = self.time;
         let e = self.ents.get_mut(&id).unwrap();
         e.rocket_cd = cd;
-        if let Some(eco) = e.player_mut().and_then(|p| p.eco.as_mut()) {
-            eco.consume(&rid);
+        if let Some(p) = e.player_mut() {
+            p.last_shot = now;
+            if let Some(eco) = p.eco.as_mut() {
+                eco.consume(&rid);
+            }
         }
         let miss = self.rng.gen_bool(PLAYER_MISS);
         self.apply_hit(id, tid, dmg, "rocket", rid, false, miss);
@@ -1019,6 +1039,13 @@ impl World {
         let range = if e.is_player() { combat::LASER_RANGE } else { combat::NPC_RANGE };
         let Some(tid) = self.target_in_range(id, range) else { return };
         if self.pvp_refused(id, tid) {
+            return;
+        }
+        if !self.ents[&id].is_player() && self.alien_proof(&self.ents[&tid]) {
+            // the pilot is resting in a portal/station DMZ: aliens give up on them
+            let n = self.ents.get_mut(&id).unwrap();
+            n.target = None;
+            n.attacking = false;
             return;
         }
         self.season_ammo_fallback(id);
@@ -1072,6 +1099,7 @@ impl World {
         let e = self.ents.get_mut(&id).unwrap();
         e.laser_cd = combat::LASER_CYCLE;
         if let Some(p) = e.player_mut() {
+            p.last_shot = self.time;
             if let Some(eco) = p.eco.as_mut() {
                 eco.consume(&ammo);
             }
@@ -1221,7 +1249,6 @@ impl World {
         let data = self.data.clone();
         self.season_step(dt);
         self.objectives_step(dt);
-        self.groups_step(dt);
 
         // respawns
         let now = self.time;
@@ -1274,7 +1301,7 @@ impl World {
         let players: Vec<PlayerPos> = self
             .ents
             .values()
-            .filter(|e| e.is_player() && e.alive())
+            .filter(|e| e.is_player() && e.alive() && !self.alien_proof(e))
             .map(|e| PlayerPos { id: e.id, map: e.map, x: e.x, y: e.y })
             .collect();
         let leaders = self.leader_infos();

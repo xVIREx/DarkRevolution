@@ -2,13 +2,13 @@
 // the reset countdown bar and the Rankings window (today / companies / my stats / champions).
 import type { FactionRow, SeasonYou, TopMsg, TopRow, YouMsg } from '../types';
 import { FACTION_COLORS } from '../types';
-import { el, esc, fmt, isTyping } from './dom';
-import type { Actions } from '../actions';
+import { el, esc, fmt } from './dom';
 import { DOWindow, ui } from './ui';
 
 export interface Price { c?: number; u?: number; pack?: number; name?: string; desc?: string }
 export interface ShopData {
   enabled: boolean;
+  tiers?: { name: string; ships: string[] }[];
   start: { ship: string };
   ships: Record<string, Price>;
   items: Record<string, Price>;
@@ -118,6 +118,7 @@ export class SeasonBar {
   private rank: HTMLElement;
   private bonus: HTMLElement;
   private safe: HTMLElement;
+  private prot: HTMLElement;
   private resetAt = 0;
   private skew = 0;
 
@@ -129,11 +130,13 @@ export class SeasonBar {
     this.rank = el('span', 'sb-rank', '', this.root);
     this.bonus = el('span', 'sb-bonus', '', this.root);
     this.safe = el('span', 'sb-safe', 'PvP-free zone', this.root);
+    this.prot = el('span', 'sb-prot', 'Protected: aliens can\'t attack you here', this.root);
     this.root.addEventListener('click', onClick);
     window.setInterval(() => this.tick(), 500);
   }
 
-  update(s: SeasonYou, pilots: number): void {
+  update(s: SeasonYou, pilots: number, protectedHere = false): void {
+    this.prot.style.display = protectedHere ? '' : 'none';
     this.resetAt = s.resetAt;
     setText(this.rank, s.rank ? `Rank #${s.rank}${pilots ? ` / ${pilots}` : ''}` : '');
     setText(this.bonus, s.bonus > 0 ? `+${Math.round(s.bonus * 100)}% company bonus` : '');
@@ -246,58 +249,6 @@ export class RankWindow {
 
 function setText(e: HTMLElement, v: string): void {
   if (e.textContent !== v) e.textContent = v;
-}
-
-/** One-key upgrade (U): shows the server's recommendation (`you.season.next`) above the action bar. */
-export class UpgradeButton {
-  private root: HTMLDivElement;
-  private label: HTMLElement;
-  private price: HTMLElement;
-  private fill: HTMLElement;
-  private next: SeasonYou['next'] = null;
-  private wasOk = false;
-
-  constructor(parent: HTMLElement, private readonly actions: Actions, private readonly you: () => YouMsg | null) {
-    this.root = el('div', 'upg-btn', undefined, parent);
-    el('kbd', undefined, 'U', this.root);
-    const t = el('div', 'upg-txt', undefined, this.root);
-    this.label = el('b', undefined, '', t);
-    this.price = el('span', undefined, '', t);
-    this.fill = el('i', 'upg-fill', undefined, this.root);
-    this.root.addEventListener('click', () => this.buy());
-    window.addEventListener('keydown', (e) => {
-      if (e.code === 'KeyU' && !e.repeat && !isTyping() && !e.ctrlKey && !e.metaKey) this.buy();
-    });
-    this.root.style.display = 'none';
-  }
-
-  private buy(): void {
-    if (this.next) this.actions.sendRaw({ t: 'buy', kind: 'next', id: '' });
-  }
-
-  update(): void {
-    const y = this.you();
-    const n = y?.season?.next ?? null;
-    this.next = n;
-    this.root.style.display = n ? '' : 'none';
-    if (!n || !y) return;
-    setText(this.label, `Next: ${n.label}`);
-    const parts: string[] = [];
-    if (n.c) parts.push(`${fmtBig(n.c)} C`);
-    if (n.u) parts.push(`${fmtBig(n.u)} U`);
-    setText(this.price, parts.join(' + '));
-    // progress towards the price (the scarcer of credits / uridium)
-    const k = Math.min(n.c ? y.credits / n.c : 1, n.u ? y.uridium / n.u : 1);
-    this.fill.style.width = `${Math.round(Math.max(0, Math.min(1, k)) * 100)}%`;
-    this.root.classList.toggle('ok', n.ok);
-    if (n.ok && !this.wasOk) {
-      this.root.classList.remove('pulse');
-      void this.root.offsetWidth;
-      this.root.classList.add('pulse');
-    }
-    this.wasOk = n.ok;
-    this.root.title = n.ok ? 'Buy it now [U]' : 'Keep hunting - the bar fills as you earn';
-  }
 }
 
 /** Starblast-style always-visible top 5 (+ your own line). */

@@ -2,7 +2,7 @@
 
 use crate::equipment::{DroneCfg, EquipConfig, Slots, Stats};
 use serde::{Deserialize, Serialize};
-use crate::season::{NextBuy, PilotStats, TopRow};
+use crate::season::{PilotStats, TopRow, UpgradeOption};
 use serde_json::Value;
 use std::collections::BTreeMap;
 
@@ -118,14 +118,8 @@ pub enum ClientMsg {
     /// Season: fill both configs with the best owned gear.
     #[serde(rename = "autoequip")]
     AutoEquip,
-    /// Groups: `action` invite (by `name` or `id`) | accept | decline | leave | kick (`id`) | lead (`id`).
-    Group {
-        action: String,
-        #[serde(default)]
-        name: Option<String>,
-        #[serde(default)]
-        id: Option<u32>,
-    },
+    /// Season: ask for the Upgrades panel options (answered with `upgrades`).
+    Upgrades,
 }
 
 fn one32() -> u32 {
@@ -187,14 +181,6 @@ pub enum ServerMsg<'a> {
     },
     You(&'a YouMsg),
     Top(&'a TopMsg),
-    /// Your group (id 0 / no members = not in a group); sent on change and every second.
-    Group(&'a GroupMsg),
-    /// Someone invites you: answer with `group` accept/decline.
-    #[serde(rename = "groupInvite")]
-    GroupInvite {
-        from: String,
-        id: u32,
-    },
     /// The round is over: final standings and your place (sent just before the reset).
     #[serde(rename = "roundEnd")]
     RoundEnd {
@@ -205,6 +191,17 @@ pub enum ServerMsg<'a> {
         /// Winning company (most beacon points), if any, and the final company scores.
         company: Option<String>,
         scores: BTreeMap<String, f64>,
+    },
+    /// A loot box was collected: clients animate it being pulled into the ship `by`.
+    Pickup {
+        x: f64,
+        y: f64,
+        by: u32,
+        cargo: bool,
+    },
+    /// Upgrades panel options with their simulated effects.
+    Upgrades {
+        options: Vec<UpgradeOption>,
     },
     /// Company objective: beacon states and company scores (every second + on events).
     #[serde(rename = "obj")]
@@ -276,6 +273,8 @@ pub struct YouMsg {
     /// Seconds until `cfg` can switch again.
     #[serde(rename = "cfgCd")]
     pub cfg_cd: f64,
+    /// Inside a portal/station DMZ and not shooting: aliens can't attack you.
+    pub protected: bool,
     pub faction: String,
     /// Daily season state (absent in sandbox mode).
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -298,8 +297,8 @@ pub struct SeasonYou {
     pub rank: u32,
     /// PvP is impossible here (protected map / safe zone) — shown on the HUD.
     pub safe: bool,
-    /// The one-key upgrade (U).
-    pub next: Option<NextBuy>,
+    /// Upgrade options affordable right now (badge on the U button).
+    pub affordable: u32,
     /// Round length in minutes.
     #[serde(rename = "roundMinutes")]
     pub round_minutes: f64,
@@ -340,32 +339,6 @@ pub struct BeaconState {
     pub cap: f64,
     pub contested: bool,
     pub weight: f64,
-}
-
-#[derive(Serialize, Debug, Clone)]
-pub struct GroupMsg {
-    pub id: u32,
-    pub leader: u32,
-    pub members: Vec<GroupMember>,
-}
-
-#[derive(Serialize, Debug, Clone)]
-pub struct GroupMember {
-    pub id: u32,
-    pub n: String,
-    pub f: String,
-    pub map: u32,
-    pub x: f64,
-    pub y: f64,
-    pub hp: f64,
-    pub mhp: f64,
-    pub sh: f64,
-    pub msh: f64,
-    pub lvl: u32,
-    pub ship: String,
-    pub dead: bool,
-    /// Hit an alien within the sharing window (gets a share of group kills).
-    pub active: bool,
 }
 
 #[derive(Serialize, Debug, Clone, Default)]

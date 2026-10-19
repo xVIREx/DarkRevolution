@@ -34,6 +34,17 @@
   "safeRadius": { "portal": 900, "station": 1600 },
   "pvp": { "exp": 2000, "honor": 50, "uridium": 300, "cooldown": 300 },
   "upgrade": { "perLevel": 0.02, "uriValue": 400 },
+  "tiers": [
+    { "name": "Starter", "ships": ["ship_phoenix"] },
+    { "name": "Tier 2", "ships": ["ship_yamato", "ship_defcom"] },
+    { "name": "Tier 3", "ships": ["ship_liberator", "ship_leonov"] },
+    { "name": "Tier 4", "ships": ["ship_piranha", "ship_nostromo", "ship_bigboy"] },
+    { "name": "Tier 5", "ships": ["ship_vengeance", "ship_spearhead"] },
+    { "name": "Tier 6", "ships": ["ship_goliath", "ship_aegis", "ship_citadel"] },
+    { "name": "Tier 7", "ships": ["ship_solace", "ship_diminisher", "ship_sentinel", "ship_spectrum", "ship_venom"] },
+    { "name": "Tier 8", "ships": ["ship_cyborg", "ship_hecate", "ship_centurion"] },
+    { "name": "Elite", "ships": ["ship_goliath-plus", "ship_hecate-plus", "ship_citadel-plus"] }
+  ],
   "ships": {
     "ship_yamato": { "c": 8000 },
     "ship_defcom": { "c": 15000 },

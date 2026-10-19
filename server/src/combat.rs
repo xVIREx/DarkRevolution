@@ -10,6 +10,11 @@ pub const SHIELD_ABSORB: f64 = 0.8;
 /// Minimum time between `cfg` switches.
 pub const CONFIG_SWITCH_COOLDOWN: f64 = 5.0;
 pub const PORTAL_RANGE: f64 = 500.0;
+/// DMZ (DarkOrbit's demilitarised zone around portals and stations): aliens can't attack a
+/// player inside it who hasn't fired for `DMZ_CALM` seconds.
+pub const PORTAL_DMZ: f64 = 900.0;
+pub const STATION_DMZ: f64 = 1600.0;
+pub const DMZ_CALM: f64 = 3.0;
 pub const NPC_RESPAWN: f64 = 10.0;
 
 /// Laser damage before randomness: equipment damage × ammo mult × dmgMult.

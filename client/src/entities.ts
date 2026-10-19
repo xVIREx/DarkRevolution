@@ -284,14 +284,15 @@ export class EntityManager {
   }
 
   /** Entity under a world point (closest within its radius), excluding self. */
-  pick(x: number, y: number, zoom: number, slackPx = 12): EntityView | null {
+  pick(x: number, y: number, zoom: number, slackPx = 26): EntityView | null {
     let best: EntityView | null = null;
     let bestD = Infinity;
     const slack = slackPx / zoom;
     for (const [k, v] of this.views) {
       if (k === this.myId || v.snap.k === 'b') continue; // boxes: clicking flies there (collect by flying over)
       const d = Math.hypot(v.x - x, v.y - y);
-      if (d < v.radius + slack && d < bestD) {
+      // generous hit area: small aliens are hard to click otherwise
+      if (d < Math.max(v.radius, 45) + slack && d < bestD) {
         best = v;
         bestD = d;
       }

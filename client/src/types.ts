@@ -116,6 +116,8 @@ export interface YouMsg {
   rocket?: string;
   dead?: boolean;
   faction?: string;
+  /** inside a portal/station DMZ and not shooting: aliens can't attack you */
+  protected?: boolean;
   /** daily season state (absent in the free sandbox) */
   season?: SeasonYou;
 }
@@ -145,8 +147,8 @@ export interface SeasonYou {
   rank: number;
   /** PvP impossible where you are (protected map / safe zone) */
   safe: boolean;
-  /** one-key upgrade (U): what `buy` kind "next" would buy */
-  next?: { kind: string; id: string; label: string; c: number; u: number; ok: boolean } | null;
+  /** upgrade options affordable right now (badge on the U button) */
+  affordable?: number;
   roundMinutes?: number;
   /** maps the Jump CPU can reach (visited this round) */
   visited?: number[];
@@ -156,10 +158,9 @@ export interface SeasonYou {
 
 export interface TopRow { n: string; f: string; lvl: number; ep: number; hon: number; k: number; pk: number; on: boolean }
 export interface FactionRow { pilots: number; online: number; ep: number; bonus: number }
-export interface GroupMember { id: number; n: string; f: string; map: number; x: number; y: number; hp: number; mhp: number; sh: number; msh: number; lvl: number; ship: string; dead: boolean; active: boolean }
+export interface UpgradeOption { cat: string; kind: string; id: string; label: string; desc: string; c: number; u: number; ok: boolean; dmg: number; shd: number; hp: number; spd: number; value: number }
 export interface BeaconState { map: number; name: string; x: number; y: number; r: number; owner: string | null; side: string | null; cap: number; contested: boolean; weight: number }
 export interface ObjMsg { beacons: BeaconState[]; score: Record<string, number>; lastWinner: string | null }
-export interface GroupMsg { id: number; leader: number; members: GroupMember[] }
 export interface TopMsg { rows: TopRow[]; factions: Record<string, FactionRow>; champions: TopRow[]; rank: number; pilots: number }
 
 export type ServerMsg =
@@ -173,10 +174,10 @@ export type ServerMsg =
   | { t: 'log'; text: string }
   | { t: 'chat'; from: string; text: string }
   | ({ t: 'top' } & TopMsg)
-  | ({ t: 'group' } & GroupMsg)
-  | { t: 'groupInvite'; from: string; id: number }
   | { t: 'roundEnd'; rows: TopRow[]; rank: number; pilots: number; ep: number; company: string | null; scores: Record<string, number> }
-  | ({ t: 'obj' } & ObjMsg);
+  | ({ t: 'obj' } & ObjMsg)
+  | { t: 'upgrades'; options: UpgradeOption[] }
+  | { t: 'pickup'; x: number; y: number; by: number; cargo: boolean };
 
 export type ClientMsg =
   | { t: 'login'; name: string; faction: Faction; token?: string }

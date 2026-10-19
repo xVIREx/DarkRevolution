@@ -154,7 +154,7 @@ ships, items (owned counts; both configs share them), per-item-type upgrade leve
 unlimited), drone designs, formations, boosters and tech (P.E.T., Seprom refining, skill tree) in the shop. Progress is
 keyed by a browser token (`login.token`, localStorage `do.token`), the company is locked for the day, and everything
 resets at 00:00 UTC (top 3 become "champions"). Saved to `SEASON_SAVE` (default `./season-save.json`) every 30 s.
-Rules: Jump CPU (`warp`) only to maps already reached this round (`you.season.visited`), with a 60 s cooldown (`warpCd`), not while dead or within 10 s of taking damage, no `cheat`, no `upgrade` (levels come from purchases), ships change only near a station,
+Rules: Jump CPU (`warp`) only to maps already reached this round (`you.season.visited`, the current map included), with a 30 s cooldown (`warpCd`), not while dead or within 10 s of taking damage; it lands at your company's station on that map, else a random spot; no `cheat`, no `upgrade` (levels come from purchases), ships change only near a station,
 no PvP vs your own company, on `protectedMaps` (x-1/x-2) or within `safeRadius` of portals/stations; PvP kills pay a
 bounty per victim level (once per victim per `pvp.cooldown` s). The company with the fewest pilots today gets
 `underdogBonus` extra rewards. Bots play the season too (Phoenix start, auto-buy the next upgrade every 20 s) but are left out of rankings and saves.
@@ -166,14 +166,18 @@ Additional messages — client → server: `buy` {`kind`: ship|item|design|ammo|
 
 Rounds (Starblast-style): `roundMinutes` (30) sets the round length; rounds start at multiples of it since the epoch
 (UTC), so with 30 they end at :00 and :30. At the end every season pilot gets `roundEnd` {rows, rank, pilots, ep} and
-starts over. `buy` kind `next` buys `you.season.next` (the one-key upgrade, U): empty laser slots → empty generator
-slots → next bigger ship (cheap improvements while saving) → better lasers/shields/drones → upgrade levels. Dying spills
+starts over. The Upgrades panel (U) asks `upgrades` and gets `upgrades` {options:[{cat, kind, id, label, desc, c, u, ok, dmg, shd, hp,
+spd, value}]}: ships up to 3 tiers ahead on the `tiers` ladder (or `switch` to an owned better ship), every better laser /
+shield type, drones, extras, designs, formations, boosters, tech and the next upgrade levels, each with its simulated
+% effect on the best fit and a value figure (gain per 10k credits); buy with `buy` {kind, id}. `you.season.affordable`
+counts what you can afford. Ships change anywhere unless under fire (10 s), keeping the hp/shield fill ratio; a ship
+bought under fire switches once out of combat. Dying spills
 `deathDrop` (30%) of unspent credits/uridium into a cargo box; maps keep `bonusBoxes.perMap` bonus boxes (credits /
 uridium / MCB-25 scaled by map tier). Boxes are state entities with `k: "b"` and sheet `box_cargo` / `box_bonus`;
-fly within 140 units to collect. Groups: `group` {action: invite|accept|decline|leave|kick|lead, name?, id?};
-server sends `group` {id, leader, members:[{id,n,f,map,x,y,hp,mhp,sh,msh,lvl,ship,dead,active}]} and `groupInvite`
-{from, id}. Members can't attack each other; alien rewards are split between members on the same map who hit an alien
-in the last 20 s (+5% pot per extra member).
+fly within 140 units to collect. Company = one big party (no
+custom groups): with company mates within 2000 units on the map who fired or were hit in the last 60 s, the killer
+keeps 70% of an alien's loot and the other 30% is split between them, weighted by level gap (killer level / mate level,
+clamped 0.25..4) so late joiners catch up; alone, the killer keeps 100%. Bots never take a cut from humans.
 Company objective (`objectives` in shop.json, server world/objectives.rs): a beacon on each neutral 4-x map (4-5 counts
 double). It is captured while pilots of exactly one company are within `radius` (`captureSecs`, up to 2x faster with
 more pilots); another company first drains it to neutral; with several companies inside it is contested (frozen).
@@ -181,3 +185,7 @@ Held beacons score `pointsPerSec × weight` per second for their company; captur
 The company with the most points at round end wins (`roundEnd.company`, `roundEnd.scores`) and gets `winBonus` extra
 rewards next round (added to the company bonus). Server → client `obj` {beacons: [{map, name, x, y, r, owner, side,
 cap, contested, weight}], score, lastWinner} every second and on captures.
+
+DMZ (all modes): within 900 units of a portal or 1600 of a station, a player who hasn't fired for 3 s can't be attacked by
+aliens (they drop the target; kamikaze blasts skip them); `you.protected` tells the client. Box pickups are broadcast as
+`pickup` {x, y, by, cargo} so clients animate the box being pulled into the ship.

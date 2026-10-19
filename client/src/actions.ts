@@ -1,4 +1,4 @@
-import type { EntId, EntSnap, Faction, GroupMsg, MapDef, ObjMsg, YouMsg } from './types';
+import type { EntId, EntSnap, Faction, MapDef, ObjMsg, YouMsg } from './types';
 
 /** Things HUD/input can ask the game to do. */
 export interface Actions {
@@ -66,8 +66,6 @@ export interface GameState {
   ents: Iterable<{ snap: EntSnap; x: number; y: number }>;
   myId: string | null;
   selectedId: string | null;
-  /** current group (null = not in one) */
-  group?: GroupMsg | null;
   /** company objective (season) */
   obj?: ObjMsg | null;
 }

@@ -48,7 +48,7 @@ export class WarpWindow {
           this.win.close();
         });
         b.classList.add('warp-btn', FACTION_CLS[m.faction ?? ''] ?? 'neutral');
-        b.title = `Warp to ${m.name}`;
+        b.title = `Warp to ${m.name} (your company's station there, else a random spot)`;
         this.btns.set(m.id, b);
       }
     }
@@ -67,7 +67,7 @@ export class WarpWindow {
         const seen = new Set(sea.visited ?? []);
         for (const [id, b] of this.btns) {
           b.disabled = !seen.has(id);
-          b.title = seen.has(id) ? `Warp to ${b.textContent}` : 'Not reached yet this round - fly there through the portals first';
+          b.title = seen.has(id) ? `Warp to ${b.textContent} (your company's station there, else a random spot)` : 'Not reached yet this round - fly there through the portals first';
         }
         this.ready = cd <= 0;
         this.status.textContent = cd > 0 ? `Recharging: ${cd} s` : 'Ready';

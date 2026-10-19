@@ -251,7 +251,7 @@ impl World {
         let victims: Vec<u32> = self
             .ents
             .values()
-            .filter(|p| p.is_player() && p.alive() && p.map == map && dist(x, y, p.x, p.y) <= k.radius)
+            .filter(|p| p.is_player() && p.alive() && p.map == map && dist(x, y, p.x, p.y) <= k.radius && !self.alien_proof(p))
             .map(|p| p.id)
             .collect();
         for v in victims {

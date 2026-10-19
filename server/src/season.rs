@@ -12,16 +12,34 @@ use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet, HashMap};
 
 pub const DAY_SECS: u64 = 86_400;
-/// One recommended purchase (`you.season.next`, bought with `buy` kind "next").
+/// One entry of the Upgrades panel (`upgrades` message). Effects are % changes of your
+/// best fit (auto-equipped config 1) if you buy it now.
 #[derive(Serialize, Clone, Debug, PartialEq)]
-pub struct NextBuy {
+pub struct UpgradeOption {
+    /// ship | laser | shield | drone | extra | design | formation | booster | tech | level
+    pub cat: String,
+    /// `buy` kind to send (ship, item, design, formation, booster, tech, upgrade, switch).
     pub kind: String,
     pub id: String,
     pub label: String,
+    pub desc: String,
     pub c: f64,
     pub u: f64,
-    /// Affordable right now.
     pub ok: bool,
+    pub dmg: f64,
+    pub shd: f64,
+    pub hp: f64,
+    pub spd: f64,
+    /// Gain per 10k credits (damage % + ½ shield % + 0.3 HP %, uridium at `uriValue` credits).
+    pub value: f64,
+}
+
+/// A step of the ship progression (shop.json `tiers`).
+#[derive(Deserialize, Clone, Debug, Default)]
+#[serde(default)]
+pub struct Tier {
+    pub name: String,
+    pub ships: Vec<String>,
 }
 /// Unlock ids for the account-wide bonuses (`tech` in shop.json).
 pub const TECH_PET: &str = "tech:pet";
@@ -35,6 +53,9 @@ pub struct Price {
     pub u: f64,
     /// Rounds per pack (ammo / rockets).
     pub pack: u64,
+    /// Display name / description (tech entries).
+    pub name: Option<String>,
+    pub desc: Option<String>,
 }
 
 impl Price {
@@ -163,6 +184,8 @@ pub struct Shop {
     pub safe_radius: SafeRadius,
     pub pvp: PvpRule,
     pub upgrade: UpgradeRule,
+    /// Ship progression shown in the Upgrades panel.
+    pub tiers: Vec<Tier>,
     pub ships: BTreeMap<String, Price>,
     pub items: BTreeMap<String, Price>,
     pub designs: BTreeMap<String, Price>,
@@ -174,6 +197,11 @@ pub struct Shop {
 }
 
 impl Shop {
+    /// Tier index of a ship (0 when unlisted).
+    pub fn tier_of(&self, ship: &str) -> usize {
+        self.tiers.iter().position(|t| t.ships.iter().any(|s| s == ship)).unwrap_or(0)
+    }
+
     pub fn round_secs(&self) -> u64 {
         if self.round_minutes >= 1.0 {
             (self.round_minutes * 60.0) as u64
@@ -243,6 +271,12 @@ pub struct Eco {
     /// Beacon map -> world time of the last paid capture (rewards have a cooldown per beacon).
     #[serde(skip)]
     pub capture_paid: HashMap<u32, f64>,
+    /// Bought while under fire: switch to it once out of combat.
+    #[serde(skip)]
+    pub pending_ship: Option<String>,
+    /// Upgrade options you can afford right now (refreshed once a second, HUD badge).
+    #[serde(skip)]
+    pub affordable: u32,
 }
 
 impl Eco {
